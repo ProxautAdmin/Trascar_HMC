@@ -1,6 +1,6 @@
-cd C:\Proxaut\CPCInox\Server
-start /MIN C:\Proxaut\CPCInox\Server\agvx.exe
-start /MIN C:\Proxaut\CPCInox\Server\agvcommtcp.exe
-start C:\Proxaut\CPCInox\Server\ServerProxaut.exe
-cd C:\Proxaut\CPCInox\Client
-start C:\Proxaut\CPCInox\ProxautClient.exe
+cd D:\Proxaut\Trascar_HMC\Server
+start /MIN D:\Proxaut\Trascar_HMC\Server\agvx.exe
+start /MIN D:\Proxaut\Trascar_HMC\Server\agvcommtcp.exe
+start D:\Proxaut\Trascar_HMC\Server\ServerProxaut.exe
+cd D:\Proxaut\Trascar_HMC\Client
+start D:\Proxaut\Trascar_HMC\ProxautClient.exe

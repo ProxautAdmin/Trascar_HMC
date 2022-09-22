@@ -1,2 +1,2 @@
-xcopy "C:\Progetti\BuilderXE7\CPCInox\Client\ProxautClient.exe" c:\Proxaut\Client\CPCInox /e/y
-xcopy "C:\Progetti\BuilderXE7\CPCInox\Server\ServerProxaut.exe" c:\Proxaut\Server\CPCInox /e/y
+xcopy "C:\Progetti\BuilderXE7\Trascar_HMC\Client\ProxautClient.exe" D:\Proxaut\Trascar_HMC\Client /e/y
+xcopy "C:\Progetti\BuilderXE7\Trascar_HMC\Server\ServerProxaut.exe" D:\Proxaut\Trascar_HMC\Server /e/y
