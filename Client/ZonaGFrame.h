@@ -36,6 +36,7 @@ private:	// User declarations
 public:		// User declarations
     __fastcall TfrZonaG(TComponent* Owner);
     void AggiornaDati() ;
+            bool AbilitaConferma;
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfrZonaG *frZonaG;

@@ -28,12 +28,14 @@ __published: // IDE-managed Components
     TPanel *pnPosI9;
     TPanel *pnPosI10;
     TLabel *lbSelI;
+
     void __fastcall pnPosIMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 
 private: // User declarations
         public : // User declarations
     __fastcall TfrZonaI(TComponent* Owner);
     void AggiornaDati();
+    bool AbilitaConferma ;
 };
 
 // ---------------------------------------------------------------------------

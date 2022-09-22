@@ -132,6 +132,10 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                         // m.corsia_dep = dmDB->FilaPosizione(m.posdep);
 
                     }
+                    else if (ZonaPrel == "I") {
+                        dmDBImpianto->PrelievoVuoti(7, dbposprel, dbpianoprel);
+
+                    }
                 }
 
                 if (dbposdep == 0) {
@@ -397,24 +401,24 @@ int TdmDBServer::GeneraCMDaIaA2(int val) {
             cm.stato = 0;
             cm.Priorita = dmDB->priorita_missioni[4];
 
-            dmDBImpianto->TornaPosDepLibera("J", cm.posdep, cm.pianodep, TIPOLOGIA_MATERIEPRIME);
-            cm.h_dep = dmDB->RitornaAltezzedaPosizione(cm.posdep, cm.pianodep, "HDEP");
-            if (dmDB->PresenzaCentroMissione(cm.posdep, 0) == 0) {
-                if (dmDB->PosPresenteMissioneAttiva(cm.posdep) == 0) {
-                    cm.ZonaPrelievo = "I";
-                    cm.posprel = 0;
-                    cm.pianoprel = 0;
-                    cm.h_prel = 0;
+            cm.ZonaPrelievo = "I";
+            cm.posprel = 0;
+            cm.pianoprel = 0;
+            cm.h_prel = 0;
 
-                    // per ora lo faccio cosi' anche se si era detto di andare 2 piani sopra
-                    // cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
-                    res = dmDB->GeneraCentroMissione(cm);
-                    if (res > 0) {
-                        // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
-                        ok_genera = 1;
-                    }
-                }
+            cm.ZonaDeposito = "I";
+            cm.posdep = 0;
+            cm.pianodep = 0;
+            cm.h_dep = 0;
+
+            // per ora lo faccio cosi' anche se si era detto di andare 2 piani sopra
+            // cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
+            res = dmDB->GeneraCentroMissione(cm);
+            if (res > 0) {
+                // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
+                ok_genera = 1;
             }
+
         }
     }
     catch (...) {}

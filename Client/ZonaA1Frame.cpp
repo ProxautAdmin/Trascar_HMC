@@ -17,6 +17,7 @@ AnsiString Zona;
 // ---------------------------------------------------------------------------
 __fastcall TfrZonaA1::TfrZonaA1(TComponent* Owner) : TFrame(Owner) {
     Zona = "A";
+    AbilitaConferma=1;
 
 }
 

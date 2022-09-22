@@ -1,18 +1,19 @@
 object frZonaG: TfrZonaG
   Left = 0
   Top = 0
-  Width = 1040
-  Height = 250
+  Width = 1081
+  Height = 305
   Align = alClient
   TabOrder = 0
+  ExplicitWidth = 451
   object pnG: TPanel
     Left = 0
     Top = 0
-    Width = 905
-    Height = 250
+    Width = 946
+    Height = 305
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 912
+    ExplicitWidth = 316
     object pnPosG1: TPanel
       Tag = 301
       AlignWithMargins = True
@@ -236,12 +237,13 @@ object frZonaG: TfrZonaG
     end
   end
   object pnExtra: TPanel
-    Left = 905
+    Left = 946
     Top = 0
     Width = 135
-    Height = 250
+    Height = 305
     Align = alRight
     TabOrder = 1
+    ExplicitLeft = 316
     object Label1: TLabel
       Left = 6
       Top = 57

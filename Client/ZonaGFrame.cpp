@@ -19,6 +19,7 @@ AnsiString Zona;
 __fastcall TfrZonaG::TfrZonaG(TComponent* Owner) : TFrame(Owner) {
     Zona = "G";
     dmExtraFunction->ComboScelte(cbNumero, NUMPIANI_VUOTI);
+    AbilitaConferma=0;
 }
 
 void TfrZonaG::AggiornaDati() {

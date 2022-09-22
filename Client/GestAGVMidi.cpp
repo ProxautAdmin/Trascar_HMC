@@ -175,6 +175,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
                 frC->Parent = this->tsZonaCDest;
                 frC->Name = "frZonaCDest";
             }
+             frC->Enabled=false;
         }
         // B
         if (i == 1)
@@ -191,6 +192,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
                 frB->Parent = this->tsZonaBDest;
                 frB->Name = "frZonaBDest";
             }
+            frB->Enabled=false;
         }
         // E
         if (i == 1)
@@ -207,6 +209,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
                 frE->Parent = this->tsZonaEDest;
                 frE->Name = "frZonaEDest";
             }
+              frE->Enabled=false;
         }
         // F
         if (i == 1)
@@ -236,55 +239,66 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
 void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     AnsiString ts;
     TimerRef->Enabled = false;
+
     // NB ottimizzare, non c'e' bisogno di un tipo diverso TfrZonaxx
     // prel
     if (pcPrel->TabIndex == 0) {
         TabVisibili(0, 0, 0, 1, 0, 0, 0, 0, 1);
         frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Prel"));
         frA1->AggiornaDati();
+        btConferma->Enabled = frA1->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 1) {
         TabVisibili(0, 0, 1, 0, 0, 0, 0, 0, 0);
         frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Prel"));
         frA2->AggiornaDati();
+        btConferma->Enabled = frA1->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 2) {
         TabVisibili(1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         frG = (TfrZonaG*)(FindComponent("frZonaGPrel"));
         frG->AggiornaDati();
+        btConferma->Enabled = frG->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 3) {
         frH = (TfrZonaH*)(FindComponent("frZonaHPrel"));
         frH->AggiornaDati();
+        btConferma->Enabled = frH->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 4) {
         TabVisibili(0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
         frI = (TfrZonaI*)(FindComponent("frZonaIPrel"));
         frI->AggiornaDati();
+        btConferma->Enabled = frI->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 5) {
         frD = (TfrZonaD*)(FindComponent("frZonaDPrel"));
         frD->AggiornaDati();
+        btConferma->Enabled = frD->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 6) {
         TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
         frC = (TfrZonaC*)(FindComponent("frZonaCPrel"));
         frC->AggiornaDati();
+        btConferma->Enabled = frC->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 7) {
         TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
         frB = (TfrZonaB*)(FindComponent("frZonaBPrel"));
         frB->AggiornaDati();
+        btConferma->Enabled = frB->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 8) {
         TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
         frE = (TfrZonaE*)(FindComponent("frZonaEPrel"));
         frE->AggiornaDati();
+        btConferma->Enabled = frE->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 9) {
         TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
         frF = (TfrZonaF*)(FindComponent("frZonaFPrel"));
         frF->AggiornaDati();
+        btConferma->Enabled = frF->AbilitaConferma;
     }
 
     // dest

@@ -15,6 +15,7 @@
 class TfrZonaD : public TFrame
 {
 __published: // IDE-managed Components
+
     TPanel *pnD;
     TPanel *pnPosD1;
     TPanel *pnPosD2;
@@ -25,12 +26,14 @@ __published: // IDE-managed Components
     TPanel *pnPosD7;
     TPanel *pnPosD8;
     TLabel *lbSelD;
+
     void __fastcall pnPosDMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 
 private: // User declarations
         public : // User declarations
     __fastcall TfrZonaD(TComponent* Owner);
     void AggiornaDati();
+    bool AbilitaConferma ;
 };
 
 // ---------------------------------------------------------------------------

@@ -549,7 +549,7 @@ void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int
         // fa cagare ma va bene cosi'
         if ((Zona == "B") || (Zona == "C") || (Zona == "E"))
             strsql.printf("Select top 1 pos, piano from piani_view where %s  ISNULL(disabilitata,0)=0 and ISNULL(pos_disabilita,0)=0 and zona='%s' order by pos, piano", ev, Zona);
-          else
+        else
             strsql.printf("Select top 1 pos, piano from piani_view where %s idudc=0 and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='%s' order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos, piano", ev, Zona);
         ADOQuery->SQL->Text = strsql;
         ADOQuery->Open();
@@ -712,6 +712,35 @@ int TdmDBImpianto::AggiornaUDCPosizioni(int pos, int IDUDC, int piano) {
         ADOQuery->SQL->Text = strsql;
         res = ADOQuery->ExecSQL();
         dmDB->LogMsg(strsql + " , result : " + IntToStr(res));
+    }
+    catch (...) {
+    }
+    delete ADOQuery;
+    return res;
+}
+
+int TdmDBImpianto::CercaPrelievo(AnsiString Zona, int tipoposizione) {
+    AnsiString stringa;
+    TADOQuery *ADOQuery;
+    int res = 0;
+    try {
+        if (!dmDB->ADOConnection1->Connected)
+            return res;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        stringa = "select DISTINCT top 1 pos from piani_view where ";
+        if (tipoposizione > 0)
+            stringa += " tipoposizione= " + IntToStr(tipoposizione) + " and ";
+        stringa += " idudc>0 and zona='" + Zona + "' ";
+        stringa += " order by pos ";
+        ADOQuery->Close();
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Append(stringa);
+        ADOQuery->Open();
+        if (ADOQuery->RecordCount > 0)
+            res = ADOQuery->FieldByName("pos")->AsInteger;
+
+        ADOQuery->Close();
     }
     catch (...) {
     }

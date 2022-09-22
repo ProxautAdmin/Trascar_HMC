@@ -6,7 +6,7 @@ inherited fGestAGVMidi: TfGestAGVMidi
   KeyPreview = True
   OnActivate = FormActivate
   OnDestroy = FormDestroy
-  ExplicitTop = -62
+  ExplicitTop = -90
   ExplicitWidth = 1258
   ExplicitHeight = 714
   PixelsPerInch = 96
@@ -980,91 +980,51 @@ inherited fGestAGVMidi: TfGestAGVMidi
         object tsZonaA1Prel: TTabSheet
           Hint = 'A'
           Caption = 'Zona A1'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaA2Prel: TTabSheet
           Hint = 'J'
           Caption = 'Zona A2'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaGPrel: TTabSheet
           Hint = 'G'
           Caption = 'Zona G'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaHPrel: TTabSheet
           Hint = 'H'
           Caption = 'Zona H'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaIPrel: TTabSheet
           Hint = 'I'
           Caption = 'Zona I'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaDPrel: TTabSheet
           Hint = 'D'
           Caption = 'Zona D'
           ImageIndex = 5
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaCPrel: TTabSheet
           Hint = 'C'
           Caption = 'Zona C'
           ImageIndex = 6
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaBPrel: TTabSheet
           Hint = 'B'
           Caption = 'Zona B'
           ImageIndex = 7
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaEPrel: TTabSheet
           Hint = 'E'
           Caption = 'Zona E'
           ImageIndex = 8
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaFPrel: TTabSheet
           Hint = 'F'
           Caption = 'Zona F'
           ImageIndex = 9
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
       object pnOptionPrel: TPanel
@@ -1107,91 +1067,51 @@ inherited fGestAGVMidi: TfGestAGVMidi
         object tsZonaA1Dest: TTabSheet
           Hint = 'A'
           Caption = 'Zona A 1'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaA2Dest: TTabSheet
           Hint = 'J'
           Caption = 'Zona A2'
           ImageIndex = 5
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaGDest: TTabSheet
           Hint = 'G'
           Caption = 'Zona G'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaHDest: TTabSheet
           Hint = 'H'
           Caption = 'Zona H'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaIDest: TTabSheet
           Hint = 'I'
           Caption = 'Zona I'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaDDest: TTabSheet
           Hint = 'D'
           Caption = 'Zona D'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaCDest: TTabSheet
           Hint = 'C'
           Caption = 'Zona C'
           ImageIndex = 6
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaBDest: TTabSheet
           Hint = 'B'
           Caption = 'Zona B'
           ImageIndex = 7
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaEDest: TTabSheet
           Hint = 'E'
           Caption = 'Zone E'
           ImageIndex = 8
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaFDest: TTabSheet
           Hint = 'F'
           Caption = 'Zona F'
           ImageIndex = 9
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
     end
