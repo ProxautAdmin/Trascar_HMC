@@ -33,7 +33,7 @@ __published: // IDE-managed Components
     void SettaPLCEsclusa(int pos, int val);
     void SettaPLCPrenotata(int pos, int val);
     void SettaPLCIDUDC(int pos, int val);
-    void TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int eccezione=0);
+    void TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int tipoposizione=0);
     int PianiOccupatiPerPos(int pos);
     void PrelievoVuoti(int idzona, int &pos, int &pianiocc);
     int TornaPosVuoteZona(int idzona);

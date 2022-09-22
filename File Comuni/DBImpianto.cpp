@@ -532,16 +532,16 @@ void TdmDBImpianto::SettaPLCIDUDC(int pos, int val) {
      */
 }
 
-void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int eccezione) {
+void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int tipoposizione) {
     TADOQuery *ADOQuery;
-    AnsiString strsql, ev;
+    AnsiString strsql, ev, TP;
     pos = 0;
     piano = 0;
 
-    if (eccezione == 0)
+    if (tipoposizione == 0)
         ev = " ";
     else
-        ev = " tipoposizione= " + IntToStr(eccezione) + " and ";
+        ev = " tipoposizione= " + IntToStr(tipoposizione) + " and ";
 
     try {
         ADOQuery = new TADOQuery(NULL);
@@ -729,9 +729,12 @@ int TdmDBImpianto::CercaPrelievo(AnsiString Zona, int tipoposizione) {
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
         stringa = "select DISTINCT top 1 pos from piani_view where ";
+
         if (tipoposizione > 0)
             stringa += " tipoposizione= " + IntToStr(tipoposizione) + " and ";
+
         stringa += " idudc>0 and zona='" + Zona + "' ";
+        stringa += " and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 ";
         stringa += " order by pos ";
         ADOQuery->Close();
         ADOQuery->SQL->Clear();

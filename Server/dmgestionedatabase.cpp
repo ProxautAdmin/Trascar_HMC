@@ -133,14 +133,17 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
 
                     }
                     else if (ZonaPrel == "I") {
-                        dmDBImpianto->PrelievoVuoti(7, dbposprel, dbpianoprel);
-
+                        dbposprel = dmDBImpianto->CercaPrelievo("I", TIPOLOGIA_MATERIEPRIME);
+                        dbpianoprel = 1;
                     }
                 }
 
                 if (dbposdep == 0) {
                     if (ZonaDep == "D") {
                         dmDBImpianto->TornaPosDepLibera("D", dbposdep, dbpianodep);
+                    }
+                    else if (ZonaDep == "J") {
+                        dmDBImpianto->TornaPosDepLibera("J", dbposdep, dbpianodep, TIPOLOGIA_MATERIEPRIME);
                     }
 
                 }
@@ -402,23 +405,23 @@ int TdmDBServer::GeneraCMDaIaA2(int val) {
             cm.Priorita = dmDB->priorita_missioni[4];
 
             cm.ZonaPrelievo = "I";
-            cm.posprel = 0;
-            cm.pianoprel = 0;
-            cm.h_prel = 0;
+            cm.posprel = dmDBImpianto->CercaPrelievo(cm.ZonaPrelievo, TIPOLOGIA_MATERIEPRIME);
+            if (cm.posprel > 0) {
+                cm.posprel = 0;
+                cm.pianoprel = 0;
+                cm.h_prel = 0;
 
-            cm.ZonaDeposito = "I";
-            cm.posdep = 0;
-            cm.pianodep = 0;
-            cm.h_dep = 0;
-
-            // per ora lo faccio cosi' anche se si era detto di andare 2 piani sopra
-            // cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
-            res = dmDB->GeneraCentroMissione(cm);
-            if (res > 0) {
-                // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
-                ok_genera = 1;
+                cm.ZonaDeposito = "J";
+                dmDBImpianto->TornaPosDepLibera(cm.ZonaDeposito, cm.posdep, cm.pianodep, TIPOLOGIA_MATERIEPRIME);
+                if (cm.posdep > 0) {
+                    cm.h_dep = 0;
+                    res = dmDB->GeneraCentroMissione(cm);
+                    if (res > 0) {
+                        // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
+                        ok_genera = 1;
+                    }
+                }
             }
-
         }
     }
     catch (...) {}

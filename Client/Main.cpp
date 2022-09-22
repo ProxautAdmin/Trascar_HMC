@@ -1048,7 +1048,13 @@ void TMainForm::AggiornaMappa() {
                         }
                         pianioccupati = dmDB->QueryPos->FieldByName("npianiocc")->AsInteger;
 
-                        if (pianioccupati > 0) {
+                        if (dmDB->QueryPos->FieldByName("selezionata")->AsInteger > 0) {
+                            // valutare
+                            PosCella->Text = pianioccupati;
+                            PosCella->Brush->Style = bsSolid;
+                            PosCella->Brush->Color = clLime;
+                        }
+                        else if (pianioccupati > 0) {
                             if (dmDB->QueryPos->FieldByName("npiani")->AsInteger > 2)
                                 constcolor = 256 / NUMPIANI_VUOTI; // diviso numero di piani max
                             else
