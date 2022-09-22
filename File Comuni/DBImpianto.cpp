@@ -550,7 +550,7 @@ void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int
         if ((Zona == "B") || (Zona == "C") || (Zona == "E"))
             strsql.printf("Select top 1 pos, piano from piani_view where %s  ISNULL(disabilitata,0)=0 and ISNULL(pos_disabilita,0)=0 and zona='%s' order by pos, piano", ev, Zona);
           else
-            strsql.printf("Select top 1 pos, piano from piani_view where %s idudc=0 and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='%s' order by pos, piano", ev, Zona);
+            strsql.printf("Select top 1 pos, piano from piani_view where %s idudc=0 and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='%s' order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos, piano", ev, Zona);
         ADOQuery->SQL->Text = strsql;
         ADOQuery->Open();
         ADOQuery->Last();

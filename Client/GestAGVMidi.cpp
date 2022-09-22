@@ -404,8 +404,12 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
 
     // dep
     ZonaDep = pcDest->ActivePage->Hint;
-    if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione != TIPOLOGIA_SCARTO))
+    if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione == TIPOLOGIA_SCARTO))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_SCARTO);
+    else if ((ZonaPrel == "J") && (ZonaDep == "G"))
+        dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_PALLET);
+    else if ((ZonaPrel == "I") && (ZonaDep == "J"))
+        dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_MATERIEPRIME);
     else
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep);
 
@@ -450,7 +454,7 @@ void TfGestAGVMidi::TornaPosPrelSelezionata(AnsiString Zona, int &pos, int &pian
     try {
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
-        strsql.printf("Select pos, piano, tipo from piani_view where selezionata>0 and zona='%s' ", Zona);
+        strsql.printf("Select pos, piano, tipoposizione from piani_view where selezionata>0 and zona='%s' ", Zona);
         ADOQuery->SQL->Text = strsql;
         ADOQuery->Open();
         ADOQuery->Last();

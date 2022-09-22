@@ -77,7 +77,7 @@ void TdmDBClient::InserisciCorsiePostazioniDatabase() {
                     numfile = 1;
                     step = 1;
                     fine = inizio + (numfile * n_alveoli); // solo per la cancellazione dei piani. Semmai settare a mano
-                    tipo_posizione = TIPOLOGIA_TERRA;
+                    tipo_posizione = TIPOLOGIA_MATERIEPRIME;
                     posinputplc = 0;
                     ord_corsia = 0; // ordinamento descrizione righe , 0= parto dal numero più basso
                     ord_corsia_opposta = 1; // parto dal piu basso 121
@@ -187,7 +187,7 @@ void TdmDBClient::InserisciCorsiePostazioniDatabase() {
                     numfile = 1;
                     step = 1;
                     fine = inizio + (numfile * n_alveoli); // solo per la cancellazione dei piani. Semmai settare a mano
-                    tipo_posizione = TIPOLOGIA_TERRA;
+                    tipo_posizione = TIPOLOGIA_MATERIEPRIME;
                     posinputplc = 0;
                     ord_corsia = 0; // ordinamento descrizione righe , 0= parto dal numero più basso
                     ord_corsia_opposta = 1; // parto dal piu basso 121

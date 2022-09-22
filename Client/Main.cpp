@@ -1072,7 +1072,7 @@ void TMainForm::AggiornaMappa() {
                         }
                         else if (prenotata) {
                             cornice = clBlue;
-                            PosCella->Pen->Width = 3;
+                            PosCella->Pen->Width = 5;
                         }
                         else if (escludi) {
                             cornice = clRed;

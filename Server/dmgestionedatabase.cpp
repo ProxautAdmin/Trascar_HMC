@@ -53,6 +53,7 @@ void __fastcall TdmDBServer::TimerMissioniDBTimer(TObject * Sender) {
     // Missioni automatiche
     GeneraCMDaGaA1(0);
     GeneraCMDaHaB(0);
+    GeneraCMDaIaA2(0);
     // giorno /notte
     if (ClientData.ParametriFunzionali.Giorno == 0) {
         GeneraCMDaPrelievo(0); // missione da prelievo C
@@ -372,6 +373,49 @@ int TdmDBServer::GeneraCMDaHaB(int val) {
 
         }
 
+    }
+    catch (...) {}
+    return res;
+}
+
+int TdmDBServer::GeneraCMDaIaA2(int val) {
+    TCentroMissione cm;
+    AnsiString strsql;
+    int tipo_mis, agv;
+    int npianiocc, hprel;
+    TUDC UDCMissione;
+    int i, ok_genera = 0, idudc, idudc2, res = 0, piano_dep = 0;
+
+    try {
+        if (ok_genera == 0) {
+            cm.TipoMissione = 0;
+            cm.CodTipoMovimento = 0;
+            cm.CodTipoMissione = 0;
+            cm.Agv = 1;
+            cm.IDUDC = 1; // ???
+            cm.TipoUDC = 0; // ??
+            cm.stato = 0;
+            cm.Priorita = dmDB->priorita_missioni[4];
+
+            dmDBImpianto->TornaPosDepLibera("J", cm.posdep, cm.pianodep, TIPOLOGIA_MATERIEPRIME);
+            cm.h_dep = dmDB->RitornaAltezzedaPosizione(cm.posdep, cm.pianodep, "HDEP");
+            if (dmDB->PresenzaCentroMissione(cm.posdep, 0) == 0) {
+                if (dmDB->PosPresenteMissioneAttiva(cm.posdep) == 0) {
+                    cm.ZonaPrelievo = "I";
+                    cm.posprel = 0;
+                    cm.pianoprel = 0;
+                    cm.h_prel = 0;
+
+                    // per ora lo faccio cosi' anche se si era detto di andare 2 piani sopra
+                    // cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
+                    res = dmDB->GeneraCentroMissione(cm);
+                    if (res > 0) {
+                        // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
+                        ok_genera = 1;
+                    }
+                }
+            }
+        }
     }
     catch (...) {}
     return res;

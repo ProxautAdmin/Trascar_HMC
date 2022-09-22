@@ -51,6 +51,7 @@ private: // User declarations
     int GeneraCMDaPrelievo(int val) ;
     int GeneraCMDaGaA1(int val) ;
     int GeneraCMDaHaB(int val);
+    int GeneraCMDaIaA2(int val);
 
     int minuto_prec, letto_data_peso_campione;
     AnsiString DataOraPesoCampione;

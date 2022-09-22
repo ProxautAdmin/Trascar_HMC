@@ -95,7 +95,7 @@ void __fastcall TfrZonaA2::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
             }
         }
         if (Button == mbRight) {
-            if (Pan->Color == clBtnFace) {
+            if ((Pan->Color == clBtnFace) || (Pan->Color == clWhite)) {
                 dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
             }
             else if (Pan->Color == clYellow) {
