@@ -1,0 +1,30 @@
+# Folders #
+**/__history/*
+**/Immagini_Supervisione
+**/log/*
+**/LogProxaut
+**/LogProxaut/*
+**/log/*
+**/Intermediate/*
+**/Win64/*
+# files #
+**/*.obj
+**/*.pch
+**/*.tds
+**/*.il?
+**/*.local
+# per configurazioni standalone o in cartella progetto #
+**/documenti/*
+filenuovopc/*
+salvataggi/*
+*.#00
+*.#01
+*.#02
+*.#03
+*.obj
+proxaut.zip
+*.obj
+*.bak
+*.agv
+*.tm1
+Server/AgvXLog.txt

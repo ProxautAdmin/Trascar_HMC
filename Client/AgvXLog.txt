@@ -1,0 +1,118 @@
+04/12/2017 14:05:20 , OK,C,5,M,1673,1003-1673
+04/12/2017 14:05:20 , OK,C,5,M,1674,1673-1674
+04/12/2017 14:05:20 , OK,C,5,M,1675,1674-1675
+04/12/2017 14:05:20 , OK,C,5,M,1659,1675-1659
+04/12/2017 14:05:22 , Agv 4: position 1695
+04/12/2017 14:05:22 , Battery charger = 1003:
+04/12/2017 14:05:22 , [L, 1262, 1656, 1655, 1654, 1653, 1652, 1651, 1675, 1674, 1673, 1003, C]
+04/12/2017 14:05:22 , Commands AGV 4: [L, 1262, 1656, 1655, 1654]
+04/12/2017 14:05:22 , OK,C,4,>,dest_agv,I,1003
+04/12/2017 14:05:22 , OK,C,4,L,450
+04/12/2017 14:05:22 , OK,C,4,V,Agv in Mission                
+04/12/2017 14:05:22 , OK,C,4,M,1262,1695-1262
+04/12/2017 14:05:22 , OK,C,4,M,1656,1262-1656
+04/12/2017 14:05:22 , OK,C,4,M,1655,1656-1655
+04/12/2017 14:05:22 , OK,C,4,M,1654,1655-1654
+04/12/2017 14:05:26 , Agv_id: 1(1004) [State: AMU Alarm: NONE Miss: 0(0) Load: 1004 Unload: 1004]
+04/12/2017 14:05:26 , Percorso: 
+04/12/2017 14:05:26 , [C]
+04/12/2017 14:05:26 , Commands AGV 1: [C]
+04/12/2017 14:05:26 , Agv_id: 2(1005) [State: MCU Alarm: NONE Miss: 0(0) Load: 0 Unload: 0]
+04/12/2017 14:05:26 , Percorso: 
+04/12/2017 14:05:26 , []
+04/12/2017 14:05:26 , Commands AGV 2: []
+04/12/2017 14:05:26 , Agv_id: 3(1002) [State: ACU Alarm: NONE Miss: 0(0) Load: 0 Unload: 0]
+04/12/2017 14:05:26 , Percorso: 
+04/12/2017 14:05:26 , []
+04/12/2017 14:05:26 , Commands AGV 3: []
+04/12/2017 14:05:26 , Agv_id: 4(1695) [State: AMU Alarm: NONE Miss: 0(0) Load: 1003 Unload: 1003]
+04/12/2017 14:05:26 , Percorso: 
+04/12/2017 14:05:26 , [L, 1262, 1656, 1655, 1654, 1653, 1652, 1651, 1675, 1674, 1673, 1003, C]
+04/12/2017 14:05:26 , Commands AGV 4: [L, 1262, 1656, 1655, 1654]
+04/12/2017 14:05:26 , Agv_id: 5(1003) [State: AMU Alarm: NONE Miss: 1(0) Load: 1311 Unload: 1253]
+04/12/2017 14:05:26 , Percorso: 
+04/12/2017 14:05:26 , [N, L, 1673, 1674, 1675, 1659, 1680, U, 1312, L, K, 1311, P, 1312, B, 1643, 1681, 1650, 1651, 1652, 1653, U, 1254, L, K, 1253, D]
+04/12/2017 14:05:26 , Commands AGV 5: [N, L, 1673, 1674, 1675, 1659]
+04/12/2017 14:05:26 , Missioni cambiate per blocco: 0
+04/12/2017 14:05:26 , Percorsi cambiati per agv : 0
+04/12/2017 14:06:06 , Richiesta Client: I,5,1003,A,0,0
+04/12/2017 14:06:06 , imposto pos_prelievo = 0 (reset) agv 5
+04/12/2017 14:06:06 , Commands AGV 5: [L, 1673, 1674, 1675, 1659]
+04/12/2017 14:06:06 , OK,C,5,V,Agv Automatic in Idle         
+04/12/2017 14:06:06 , OK,S,1,A,1003,5,0,100,0
+04/12/2017 14:06:06 , OK,T,5,1003,1001,0,100,0,00000000,NONE
+04/12/2017 14:06:06 , OK,C,5,>,dest_agv,I,1001
+04/12/2017 14:06:06 , OK,C,5,L,450
+04/12/2017 14:06:06 , OK,C,5,V,Agv in Mission                
+04/12/2017 14:06:06 , OK,C,5,M,1673,1003-1673
+04/12/2017 14:06:06 , OK,C,5,M,1674,1673-1674
+04/12/2017 14:06:06 , OK,C,5,M,1675,1674-1675
+04/12/2017 14:06:06 , OK,C,5,M,1659,1675-1659
+04/12/2017 14:06:12 , Lista delle Missioni da Assegnare:
+04/12/2017 14:06:12 , No entries found
+04/12/2017 14:06:13 , Lista delle Missioni Assegnate:
+04/12/2017 14:06:13 , No entries found
+04/12/2017 14:06:15 , Richiesta Client: T,5,M
+04/12/2017 14:06:15 , OK,C,5,V,Agv in manual mode            
+04/12/2017 14:06:15 , OK,T,5,1003,1001,0,100,0,00000001,NONE
+04/12/2017 14:06:15 , Richiesta Client: I,5,1003,A,0,0
+04/12/2017 14:06:15 , imposto pos_prelievo = 0 (reset) agv 5
+04/12/2017 14:06:15 , Commands AGV 5: [L, 1673, 1674, 1675, 1659]
+04/12/2017 14:06:15 , OK,C,5,V,Agv Automatic in Idle         
+04/12/2017 14:06:15 , OK,T,5,1003,1001,0,100,0,00000000,NONE
+04/12/2017 14:06:15 , OK,C,5,>,dest_agv,I,1001
+04/12/2017 14:06:15 , OK,C,5,L,450
+04/12/2017 14:06:15 , OK,C,5,V,Agv in Mission                
+04/12/2017 14:06:15 , OK,C,5,M,1673,1003-1673
+04/12/2017 14:06:15 , OK,C,5,M,1674,1673-1674
+04/12/2017 14:06:15 , OK,C,5,M,1675,1674-1675
+04/12/2017 14:06:15 , OK,C,5,M,1659,1675-1659
+04/12/2017 14:06:21 , Richiesta Client: I,3,1002,A,0,0
+04/12/2017 14:06:21 , imposto pos_prelievo = 0 (reset) agv 3
+04/12/2017 14:06:21 , Commands AGV 3: [C]
+04/12/2017 14:06:21 , OK,C,3,V,Agv Automatic in Idle         
+04/12/2017 14:06:21 , OK,T,3,1002,1002,0,100,0,00000000,NONE
+04/12/2017 14:06:21 , OK,C,3,>,dest_agv,I,1002
+04/12/2017 14:06:21 , OK,C,3,C
+04/12/2017 14:06:23 , Richiesta Client: I,4,1528,A,0,0
+04/12/2017 14:06:23 , imposto pos_prelievo = 0 (reset) agv 4
+04/12/2017 14:06:23 , OK,C,4,V,Agv Automatic in Idle         
+04/12/2017 14:06:23 , OK,T,4,1695,0,0,100,0,00000001,NONE
+04/12/2017 14:06:23 , OK,C,4,V,Reserved Position             
+04/12/2017 14:06:43 , Richiesta Client: I,4,1001,A,0,0
+04/12/2017 14:06:43 , imposto pos_prelievo = 0 (reset) agv 4
+04/12/2017 14:06:43 , imposto pos_prelievo = 0 (GoToCharge) agv 4
+04/12/2017 14:06:43 , OK,C,4,V,Agv Automatic in Idle         
+04/12/2017 14:06:43 , OK,T,4,1001,0,0,100,0,00000000,NONE
+04/12/2017 14:06:46 , Richiesta Client: I,5,1003,A,0,0
+04/12/2017 14:06:46 , imposto pos_prelievo = 0 (reset) agv 5
+04/12/2017 14:06:46 , Commands AGV 5: [C]
+04/12/2017 14:06:46 , OK,C,5,V,Agv Automatic in Idle         
+04/12/2017 14:06:46 , OK,T,5,1003,1003,0,100,0,00000000,NONE
+04/12/2017 14:06:46 , OK,C,5,>,dest_agv,I,1003
+04/12/2017 14:06:46 , OK,C,5,C
+04/12/2017 14:06:47 , Richiesta Client: G,3,1002,100,0
+04/12/2017 14:06:47 , imposto pos_prelievo = 0 (stato charging) agv 3
+04/12/2017 14:06:47 , OK,C,3,V,Agv in Carica                 
+04/12/2017 14:06:47 , OK,T,3,1002,0,0,100,0,00100000,NONE
+04/12/2017 14:06:47 , Richiesta Client: G,5,1003,100,0
+04/12/2017 14:06:47 , imposto pos_prelievo = 0 (stato charging) agv 5
+04/12/2017 14:06:47 , OK,C,5,V,Agv in Carica                 
+04/12/2017 14:06:48 , OK,T,5,1003,0,0,100,0,00100000,NONE
+04/12/2017 14:06:48 , Agv 4: position 1001
+04/12/2017 14:06:48 , Battery charger = 1001:
+04/12/2017 14:06:48 , [C]
+04/12/2017 14:06:48 , Commands AGV 4: [C]
+04/12/2017 14:06:48 , OK,C,4,>,dest_agv,I,1001
+04/12/2017 14:06:48 , OK,C,4,C
+04/12/2017 14:06:48 , Richiesta Client: G,4,1001,100,0
+04/12/2017 14:06:48 , imposto pos_prelievo = 0 (stato charging) agv 4
+04/12/2017 14:06:48 , OK,T,4,1001,0,0,100,0,00100000,NONE
+04/12/2017 14:06:48 , OK,C,4,V,Agv in Carica                 
+04/12/2017 14:06:54 , Richiesta Chiusura Programma Agvx Accettata
+04/12/2017 14:06:54 , Chiusura Programma Agvx
+04/12/2017 14:23:56 , Richiesta Chiusura Programma Agvx Accettata
+04/12/2017 14:23:56 , Chiusura Programma Agvx
+15/01/2018 16:48:21 , Avvio Programma AgvX
+15/01/2018 16:48:48 , Richiesta Chiusura Programma Agvx Accettata
+15/01/2018 16:48:48 , Chiusura Programma Agvx

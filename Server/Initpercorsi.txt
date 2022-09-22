@@ -1,0 +1,5 @@
+C:\Progetti\BuilderXE7\Bonfanti\Server\Bonfanti_prx.crs.prj
+C:\Progetti\BuilderXE7\Bonfanti\Server\Bonfanti_prx.prj
+C:\Progetti\BuilderXE7\Bonfanti\Server\Ampacet_prx.prj
+C:\Progetti\BuilderXE7\Mec-Track\Server\MecTrack_prx.prj
+C:\Progetti\BuilderXE7\Trascar_HMC\Server\Trascar_HMC_prx.prj

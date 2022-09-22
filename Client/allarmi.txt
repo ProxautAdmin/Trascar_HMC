@@ -1,0 +1,405 @@
+Nessun Allarme
+01-Manca la marcia
+02-Laserscanner posteriore destro intervenuto
+03-Fungo emergenza destro premuto
+04-Extra corsa sterzo
+05-Montante sù/giù feedback
+06-Errore posizione
+07-Laserscanner posteriore sinistro intervenuto
+08-Mancato catarifran. piede scaff
+09-Laserscanner anteriore intervenuto
+10-Errore azzeramento encoder sollevamento
+11-Lettura errata catarifrangenti
+12-Azionamento Trazione errore
+13-Azionamento Sterzo errore
+14-Errore apertura file
+15-Tastatore forche non premuto
+16-Stato logico diverso da stato fisico
+17-Trazione errore feedback
+18-Sterzo errore feedback
+19-Errore nel file percorsi
+20-Pallet non trovato in trazione
+21-Pieno su pieno
+22-Forche non in quota
+23-Stand by da PC
+24-Allarme temperatura motore trazione
+25-Tastatore ancora premuto
+26-Carica batteria non funzionante
+27-Coordinate errate da NAV350
+28-Allarme temperatura motore sterzo
+29-BATTERIA SCARICA!!!
+30-Pulsante abilitazione movimenti non premuto
+31-Manca comunicazione con supervisione
+32-Agv in stand-by
+33-Timeout Attesa Segnale
+34-Fungo emergenza tastiera premuto
+35-Errore slittamento
+36-TASTIERA NON INSERITA IN MANUALE
+37-Errore centralina sicurezza Sick
+38-Temperatura alta pompa olio
+39-Forche né aperte né chiuse
+40-Errore comunicazione testa laser
+41-Azionamento sollevamento errore
+42-Allarme Impianto Terra
+43-Errore comunicazione con batteria
+44-Agv fuori pista
+45-Sens.Azzeram.quota forche non legge
+46-Fungo emerg. anteriore premuto
+47-Errore AGV inatteso carico
+48-Errore AGV inatteso scarico
+49-Errore AGV in postazione errata
+50-Errore postazione prenotata da altro AGV
+51-Errore AGV in postazione inesistente
+52-Extra corsa sollevamento
+53-Motore trazione in fuga
+54-Errore doppio nodo
+55-Azionamento traslatore errore
+56-Errore ripristino
+57-Errore velocità encoder 
+58-errore feedback frenata
+59-XXXXXXXXX
+60-errore feedback comando KM0
+61-Errore feedback chiuso KM0
+62-Errore Altezza Montante
+63-Traslando a Dx la FTC non rileva il pallet 
+64-Traslando a Sx la FTC non rileva il pallet 
+65-traslazione laterale non in quota
+66-extra corsa traslazione
+67-Feedback Traslazione
+68-Quota traslatore errata
+69-allarme movimento traslazione
+70-Fungo emergenza sinistro premuto
+71-Temperatura azionamento sterzo alta 
+72-Temperatura azionamento trazione alta
+73-Temperatura azionamento pompa alta
+74-Temperatura azionamento traslatore alta
+75-Temperatura motore traslatore alta
+76-Traslatore non rientrato
+77-XXXXXXXXXXXXXXX
+78-Allarme_carico_pesante
+79-Mancato magnete
+80-Errore altezza montante ne tunnel
+81-Rotazione forche non chiusa a dx
+82-Rotazione forche  non chiusa a sx
+83-extra corsa rotazione
+84-allarme traslazione forche in sforzo
+85-Feedback Rotazione
+86-Quota Rotazione errata 
+87-Pallet non a battuta forche
+88-Allarme tastatori forche premuti
+89-Allarme Mirino Basso
+90-Quota rotazione non ok
+91-Allarme temperatura piastre ricarica
+92-Errore mirino non Alto
+93-Errore ricerca posizione in X
+94-Fungo lato forche premuto
+95-Errore ricerca posizione in Y
+96-Sensore Non Legge
+97- free
+98-ALLARME COMUNICAZIONE WIFI
+99-COMUNICAZIONE INTERROTTA
+100-
+01-Manca la marcia
+02-Laserscanner posteriore destro intervenuto
+03-Fungo emergenza destro premuto
+04-Extra corsa sterzo
+05-Montante sù/giù feedback
+06-Errore posizione
+07-Laserscanner posteriore sinistro intervenuto
+08-Mancato catarifran. piede scaff
+09-Laserscanner anteriore intervenuto
+10-Errore azzeramento encoder sollevamento
+11-Lettura errata catarifrangenti
+12-Azionamento Trazione errore
+13-Azionamento Sterzo errore
+14-Errore apertura file
+15-Tastatore forche non premuto
+16-Stato logico diverso da stato fisico
+17-Trazione errore feedback
+18-Sterzo errore feedback
+19-Errore nel file percorsi
+20-Pallet non trovato in trazione
+21-Pieno su pieno
+22-Forche non in quota
+23-Stand by da PC
+24-Allarme temperatura motore trazione
+25-Tastatore ancora premuto
+26-Carica batteria non funzionante
+27-Coordinate errate da NAV350
+28-Allarme temperatura motore sterzo
+29-BATTERIA SCARICA!!!
+30-Pulsante abilitazione movimenti non premuto
+31-Manca comunicazione con supervisione
+32-Agv in stand-by
+33-Timeout Attesa Segnale
+34-Fungo emergenza tastiera premuto
+35-Errore slittamento
+36-TASTIERA NON INSERITA IN MANUALE
+37-Errore centralina sicurezza Sick
+38-Temperatura alta pompa olio
+39-Forche né aperte né chiuse
+40-Errore comunicazione testa laser
+41-Azionamento sollevamento errore
+42-Allarme Impianto Terra
+43-Errore comunicazione con batteria
+44-Agv fuori pista
+45-Sens.Azzeram.quota forche non legge
+46-Fungo emerg. anteriore premuto
+47-Errore AGV inatteso carico
+48-Errore AGV inatteso scarico
+49-Errore AGV in postazione errata
+50-Errore postazione prenotata da altro AGV
+51-Errore AGV in postazione inesistente
+52-Extra corsa sollevamento
+53-Motore trazione in fuga
+54-Errore doppio nodo
+55-Azionamento traslatore errore
+56-Errore ripristino
+57-Errore velocità encoder 
+58-errore feedback frenata
+59-XXXXXXXXX
+60-errore feedback comando KM0
+61-Errore feedback chiuso KM0
+62-Errore Altezza Montante
+63-Traslando a Dx la FTC non rileva il pallet 
+64-Traslando a Sx la FTC non rileva il pallet 
+65-traslazione laterale non in quota
+66-extra corsa traslazione
+67-Feedback Traslazione
+68-Quota traslatore errata
+69-allarme movimento traslazione
+70-Fungo emergenza sinistro premuto
+71-Temperatura azionamento sterzo alta 
+72-Temperatura azionamento trazione alta
+73-Temperatura azionamento pompa alta
+74-Temperatura azionamento traslatore alta
+75-Temperatura motore traslatore alta
+76-Traslatore non rientrato
+77-XXXXXXXXXXXXXXX
+78-Allarme_carico_pesante
+79-Mancato magnete
+80-Errore altezza montante ne tunnel
+81-Rotazione forche non chiusa a dx
+82-Rotazione forche  non chiusa a sx
+83-extra corsa rotazione
+84-allarme traslazione forche in sforzo
+85-Feedback Rotazione
+86-Quota Rotazione errata 
+87-Pallet non a battuta forche
+88-Allarme tastatori forche premuti
+89-Allarme Mirino Basso
+90-Quota rotazione non ok
+91-Allarme temperatura piastre ricarica
+92-Errore mirino non Alto
+93-Errore ricerca posizione in X
+94-Fungo lato forche premuto
+95-Errore ricerca posizione in Y
+96-Sensore Non Legge
+97-free
+98-ALLARME COMUNICAZIONE WIFI
+99-COMUNICAZIONE INTERROTTA
+200-
+01-Manca la marcia
+02-Fungo anteriore sinistro premuto
+03-Fungo anteriore destro premuto
+04-Extra corsa sterzo
+05-Lift feedback
+06-Errore posizione
+07-Laserscanner anteriore
+08-Magnete a terra non letto
+09-Laserscanner posteriore
+10-Errore azzeramento encoder sollevamento
+11-Lettura errata catarifrangenti
+12-Errore azionamento trazione anteriore
+13-Errore azionamento sterzo anteriore
+14-Errore apertura file
+15-Tastatore forche non premuto
+16-Stato logico diverso da stato fisico
+17-Drive feedback anteriore
+18-Steer feedback anteriore
+19-Errore nel file percorsi
+20-Pallet non trovato in trazione
+21-Pieno su pieno
+22-Forche non in quota
+23-Stand by da PC
+24-Allarme temperatura motore trazione anteriore
+25-Tastatore ancora premuto
+26-Carica batteria non funzionante
+27-Coordinate errate da NAV350
+28-Allarme temperatura motore sterzo anteriore
+29-BATTERIA SCARICA!!!
+30-Pulsante abilitazione movimenti non premuto
+31-Manca comunicazione con supervisione
+32-Agv in stand-by
+33-Timeout attesa segnale
+34-Fungo emergenza tastiera premuto
+35-Errore slittamento
+36-TASTIERA NON INSERITA IN MANUALE
+37-Errore centralina sicurezza Sick
+38-Temperatura alta pompa olio
+39-Timeout movimento centratore
+40-Errore comunicazione testa laser
+41-Errore azionamento pompa
+42-Laserscanner laterale posteriore sinistro
+43-Errore comunicazione con batteria
+44-Laserscanner laterale posteriore destro
+45-Fungo posteriore destro premuto
+46-Fungo posteriore sinistro premuto
+47-Errore AGV inatteso carico
+48-Errore AGV inatteso scarico
+49-Errore AGV in postazione errata
+50-Errore postazione prenotata da altro AGV
+51-Errore AGV in postazione inesistente
+52-Extra corsa sollevamento
+53-Extra corsa traslatore
+54-Errore doppio nodo
+55-Altezza montante troppo alta
+56-Errore ripristino
+57-Allarme velocità encoder anteriore
+58-Allarme fuga encoder anteriore
+59-Allarme fuori pista
+60-Laserscanner laterale anteriore sinistro
+61-Laserscanner laterale anteriore destro
+62-Errore lettura FTC di fermata traslatore
+63-Errore quota traslatore
+64-Extra corsa traslatore
+65-Errore feedback traslatore
+66-Pieno su pieno anteriore
+67-Pieno su pieno posteriore
+68-Errore azionamento trazione posteriore
+69-Errore azionamento sterzo posteriore
+70-Errore velocita encoder posteriore
+71-Allarme fuga encoder posteriore
+72-Allarme temperatura motore sterzo posteriore
+73-Allarme temperatura motore trazione posteriore
+74-Allarme sterzo posteriore
+75-Drive feedback posteriore
+76-Feedback sterzo posteriore
+77-Allarme movimento traslatore
+78-Timeout movimento stabilizzatori
+79-Timeout movimento centratore
+80-Drive feedback posteriore
+81-Allarme fuga encoder posteriore
+82-Allarme velocità encoder posteriore
+83-Steer feedback posteriore
+84-Allarme Laserscanner 1 zona interscambio tripla
+85-Allarme Laserscanner 2 zona interscambio tripla
+86-Allarme Laserscanner 3 zona interscambio doppia
+87-Allarme Laserscanner 4 corsia 1&2
+88-Allarme Laserscanner 6 corsia 3&4
+89-Allarme Barriera corsia 1
+90-Allarme Barriera corsia 2
+91-Allarme Barriera corsia 3
+92-Carico a bordo senza codice
+93-Allarme Porte Sicurezza 1e2 aperte
+94-Allarme Porta Sicurezza 3 aperta
+95-Free
+96-Free
+97
+98-ALLARME COMUNICAZIONE WIFI
+99-COMUNICAZIONE INTERROTTA
+300-
+01-Manca la marcia
+02-Fungo anteriore sinistro premuto
+03-Fungo anteriore destro premuto
+04-Extra corsa sterzo
+05-Lift feedback
+06-Errore posizione
+07-Laserscanner anteriore
+08-Magnete a terra non letto
+09-Laserscanner posteriore
+10-Errore azzeramento encoder sollevamento
+11-Lettura errata catarifrangenti
+12-Errore azionamento trazione anteriore
+13-Errore azionamento sterzo anteriore
+14-Errore apertura file
+15-Tastatore forche non premuto
+16-Stato logico diverso da stato fisico
+17-Drive feedback anteriore
+18-Steer feedback anteriore
+19-Errore nel file percorsi
+20-Pallet non trovato in trazione
+21-Pieno su pieno
+22-Forche non in quota
+23-Stand by da PC
+24-Allarme temperatura motore trazione anteriore
+25-Tastatore ancora premuto
+26-Carica batteria non funzionante
+27-Coordinate errate da NAV350
+28-Allarme temperatura motore sterzo anteriore
+29-BATTERIA SCARICA!!!
+30-Pulsante abilitazione movimenti non premuto
+31-Manca comunicazione con supervisione
+32-Agv in stand-by
+33-Timeout attesa segnale
+34-Fungo emergenza tastiera premuto
+35-Errore slittamento
+36-TASTIERA NON INSERITA IN MANUALE
+37-Errore centralina sicurezza Sick
+38-Temperatura alta pompa olio
+39-Timeout movimento centratore
+40-Errore comunicazione testa laser
+41-Errore azionamento pompa
+42-Laserscanner laterale posteriore sinistro
+43-Errore comunicazione con batteria
+44-Laserscanner laterale posteriore destro
+45-Fungo posteriore destro premuto
+46-Fungo posteriore sinistro premuto
+47-Errore AGV inatteso carico
+48-Errore AGV inatteso scarico
+49-Errore AGV in postazione errata
+50-Errore postazione prenotata da altro AGV
+51-Errore AGV in postazione inesistente
+52-Extra corsa sollevamento
+53-Extra corsa traslatore
+54-Errore doppio nodo
+55-Altezza montante troppo alta
+56-Errore ripristino
+57-Allarme velocità encoder anteriore
+58-Allarme fuga encoder anteriore
+59-Allarme fuori pista
+60-Laserscanner laterale anteriore sinistro
+61-Laserscanner laterale anteriore destro
+62-Errore lettura FTC di fermata traslatore
+63-Errore quota traslatore
+64-Extra corsa traslatore
+65-Errore feedback traslatore
+66-Pieno su pieno anteriore
+67-Pieno su pieno posteriore
+68-Errore azionamento trazione posteriore
+69-Errore azionamento sterzo posteriore
+70-Errore velocita encoder posteriore
+71-Allarme fuga encoder posteriore
+72-Allarme temperatura motore sterzo posteriore
+73-Allarme temperatura motore trazione posteriore
+74-Allarme sterzo posteriore
+75-Drive feedback posteriore
+76-Feedback sterzo posteriore
+77-Allarme movimento traslatore
+78-Timeout movimento stabilizzatori
+79-Timeout movimento centratore
+80-Drive feedback posteriore
+81-Allarme fuga encoder posteriore
+82-Allarme velocità encoder posteriore
+83-Steer feedback posteriore
+84-Allarme Laserscanner 1 zona interscambio tripla
+85-Allarme Laserscanner 2 zona interscambio tripla
+86-Allarme Laserscanner 3 zona interscambio doppia
+87-Allarme Laserscanner 4 corsia 1&2
+88-Allarme Laserscanner 6 corsia 3&4
+89-Allarme Barriera corsia 1
+90-Allarme Barriera corsia 2
+91-Allarme Barriera corsia 3
+92-Carico a bordo senza codice
+93-Allarme Porte Sicurezza 1e2 aperte
+94-Allarme Porta Sicurezza 3 aperta
+95-Free
+96-Free
+97
+98-ALLARME COMUNICAZIONE WIFI
+99-COMUNICAZIONE INTERROTTA
+400 Missions Stop
+401 Sbarre Aperte
+402 Alarm WatchDog Plc Vemac UnLoading Area
+403 Alarm WatchDog Plc Vemac Door / Washing Machine
+404 Stop all Agv for Fire Alarm !!!

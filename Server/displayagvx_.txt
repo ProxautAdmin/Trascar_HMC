@@ -1,0 +1,15 @@
+Agv in allarme
+Agv non carico
+Agv non scarico
+Posizione errata
+Posizione prenotata
+Posizione NULL
+Agv disattivato
+Agv in manuale
+Batteria bassa
+Agv Automatico in Attesa
+Agv in SemiAutomatico
+Agv in Missione
+                           
+Agv Signale di attesa
+Posizione o Percorso non trovato

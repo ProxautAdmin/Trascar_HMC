@@ -1,0 +1,5 @@
+IMAGE c:\progetti\builderxe7\trascar_hmc\server\layout.wmf 
+FILE_PERCORSI c:\progetti\builderxe7\trascar_hmc\server\trascar_hmc_prx.crs
+SAFETYDIST  2000
+SIDEDIST  1000
+LINEDIST  3000

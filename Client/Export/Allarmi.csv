@@ -1,0 +1,17 @@
+DataOra;Descrizione;Posizione;Destinazione;Missione;Agv;NAllarme;PosPrec;Ripristinato;DataOraRipristino;LogOp;Tempo;StatoAgv;EMail;
+30/06/2021_08:36:30;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;11;12;919;1;41;1401;2;30/06/2021_08:38:45;0;00:02:15;Agv_1_in_pos_11_dest_12_;_;;
+30/06/2021_10:19:57;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;1418;11;967;1;41;1419;2;30/06/2021_10:22:10;0;00:02:13;Agv_1_in_pos_1418_dest_11_;_;;
+30/06/2021_10:26:18;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;1410;1404;969;1;41;1411;2;30/06/2021_10:30:03;0;00:03:45;Agv_1_in_pos_1410_dest_1404_;_;;
+30/06/2021_10:49:25;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;2;1;971;1;41;3;2;30/06/2021_10:51:30;0;00:02:05;Agv_1_in_pos_2_dest_1_;_;;
+30/06/2021_13:01:32;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;1;12;1012;1;41;2;1;30/06/2021_13:02:57;0;00:01:25;Agv_1_in_pos_1_dest_12_;_;;
+30/06/2021_14:11:36;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;1428;3;1014;1;41;1427;3;30/06/2021_14:11:50;0;00:00:14;Agv_1_in_pos_1428_dest_3_;_;;
+30/06/2021_15:24:00;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;11;1639;1037;1;41;12;2;30/06/2021_15:25:05;0;00:01:05;Agv_1_in_pos_11_dest_1639_;_;;
+03/07/2021_19:28:19;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;1525;99;0;1;41;1523;2;03/07/2021_19:32:46;0;00:04:27;Agv_1_in_pos_1525_dest_99_;_;;
+08/07/2021_09:22:35;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;1453;99;0;1;41;1454;1;08/07/2021_09:24:07;0;00:01:32;Agv_1_in_pos_1453_dest_99_;_;;
+08/07/2021_16:27:18;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;1410;3;1500;1;41;1409;2;08/07/2021_16:27:38;0;00:00:20;Agv_1_in_pos_1410_dest_3_;_;;
+15/07/2021_10:24:49;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;3;99;0;1;41;2;2;15/07/2021_10:25:04;0;00:00:15;Agv_1_in_pos_3_dest_99_;_;;
+15/07/2021_15:06:17;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;3;99;0;1;41;1454;2;15/07/2021_15:49:36;0;00:43:19;Agv_1_in_pos_3_dest_99_;_;;
+15/07/2021_15:52:11;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;3;99;0;1;41;1454;2;15/07/2021_16:26:47;0;00:34:36;Agv_1_in_pos_3_dest_99_;_;;
+15/07/2021_16:27:26;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;3;99;0;1;41;1454;2;15/07/2021_16:34:33;0;00:07:07;Agv_1_in_pos_3_dest_99_;_;;
+15/07/2021_19:47:49;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;1454;2;1873;1;41;1453;2;15/07/2021_19:48:07;0;00:00:18;Agv_1_in_pos_1454_dest_2_;_;;
+15/07/2021_19:49:04;Agv_1_in_Alarm_:_41-Azionamento_sollevamento_errore;3;2;1873;1;41;1454;2;15/07/2021_19:49:40;0;00:00:36;Agv_1_in_pos_3_dest_2_;_;;

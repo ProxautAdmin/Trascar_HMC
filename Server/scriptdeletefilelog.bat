@@ -1,0 +1,1 @@
+Forfiles /p C:\Proxaut\LogProxaut /s /m *.* /d -30 /c "cmd /c del /q @path
