@@ -305,19 +305,21 @@ int TdmDBServer::GeneraCMDaGaA1(int val) {
             cm.posdep = dmDBImpianto->TornaPosVuoteZona(1);
             cm.pianodep = 1;
             cm.h_dep = dmDB->RitornaAltezzedaPosizione(cm.posdep, cm.pianodep, "HDEP");
-            if (dmDB->PresenzaCentroMissione(cm.posdep, 0) == 0) {
-                if (dmDB->PosPresenteMissioneAttiva(cm.posdep) == 0) {
-                    cm.ZonaPrelievo = "G";
-                    cm.posprel = 0;
-                    cm.pianoprel = 0;
-                    cm.h_prel = 0;
+            if (cm.posdep > 0) {
+                if (dmDB->PresenzaCentroMissione(cm.posdep, 0) == 0) {
+                    if (dmDB->PosPresenteMissioneAttiva(cm.posdep) == 0) {
+                        cm.ZonaPrelievo = "G";
+                        cm.posprel = 0;
+                        cm.pianoprel = 0;
+                        cm.h_prel = 0;
 
-                    // per ora lo faccio cosi' anche se si era detto di andare 2 piani sopra
-                    // cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
-                    res = dmDB->GeneraCentroMissione(cm);
-                    if (res > 0) {
-                        // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
-                        ok_genera = 1;
+                        // per ora lo faccio cosi' anche se si era detto di andare 2 piani sopra
+                        // cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
+                        res = dmDB->GeneraCentroMissione(cm);
+                        if (res > 0) {
+                            // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
+                            ok_genera = 1;
+                        }
                     }
                 }
             }
@@ -361,18 +363,19 @@ int TdmDBServer::GeneraCMDaHaB(int val) {
 
                         if ((cm.posdep > 0) && (cm.pianodep > 0) && (cm.h_dep > 0)) {
                             cm.posprel = dmDBImpianto->CercaPrelievoH();
-                            cm.pianoprel = 1;
-                            cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
-                            if (dmDB->PresenzaCentroMissione(cm.posprel, 0) == 0) {
-                                if (dmDB->PosPresenteMissioneAttiva(cm.posprel) == 0) {
-                                    res = dmDB->GeneraCentroMissione(cm);
+                            if (cm.posprel > 0) {
+                                cm.pianoprel = 1;
+                                cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
+                                if (dmDB->PresenzaCentroMissione(cm.posprel, 0) == 0) {
+                                    if (dmDB->PosPresenteMissioneAttiva(cm.posprel) == 0) {
+                                        res = dmDB->GeneraCentroMissione(cm);
+                                    }
+                                }
+                                if (res > 0) {
+                                    // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
+                                    ok_genera = 1;
                                 }
                             }
-                            if (res > 0) {
-                                // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
-                                ok_genera = 1;
-                            }
-
                         }
                     }
                 }
@@ -612,10 +615,13 @@ int TdmDBServer::GeneraMissione(TMissione m)
                     // pre il prelievo della vasca vuota dai ribaltatori imposto prenotata con il bit[1], devo tenere conto di una missione sotot pero
                     prenota = 1;
                     dmDB->PrenotaPos(m.posprel, prenota, m.corsia_prel);
+                    dmDB->SettaPosSelezionata(m.posprel, 0, 0);
+
                 }
                 if ((m.tipo_mis == 0) || (m.tipo_mis == 2)) {
                     prenota = 1;
                     dmDB->PrenotaPos(m.posdep, prenota, m.corsia_dep);
+                    dmDB->SettaPosSelezionata(m.posdep, 0, 0);
                 }
                 dmDB->AggiornaTabPostazioni();
                 dmDB->aggiorna_tab_posizioni_locale = 1;

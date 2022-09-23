@@ -1,7 +1,7 @@
 object frZonaG: TfrZonaG
   Left = 0
   Top = 0
-  Width = 1081
+  Width = 1102
   Height = 305
   Align = alClient
   TabOrder = 0
@@ -9,7 +9,7 @@ object frZonaG: TfrZonaG
   object pnG: TPanel
     Left = 0
     Top = 0
-    Width = 946
+    Width = 967
     Height = 305
     Align = alClient
     TabOrder = 0
@@ -237,7 +237,7 @@ object frZonaG: TfrZonaG
     end
   end
   object pnExtra: TPanel
-    Left = 946
+    Left = 967
     Top = 0
     Width = 135
     Height = 305

@@ -305,6 +305,8 @@ private: // User declarations
     int InsertArticoli(TArticoli &Articoli) ;
     int LeggiParametro(int id_parametro) ;
     void FullTabella(AnsiString TableName, TRecordList &RecList);
+    AnsiString DescrizioneArticolo(int IDArticolo) ;
+    AnsiString TornaDescrizioneDaIDArticolo(int IDArticolo);
 
 	AnsiString Lingua;
 
@@ -312,7 +314,7 @@ private: // User declarations
 	/* TRecordList TabListaMissioni;
 	 TRecordList TabListaMissioniAssegnate ; */
 	TIndexList TabStrutturaZone, TabPostazioni, TabPorte, TipologiaArticoli, TabNomePiani, TabTipoUDC, TipologiaCorsia, TabParametri, TabMessaggiAllarme;
-    TIndexList TabPosizioniUDC;
+    TIndexList TabPosizioniUDC, TabArticoli;
 	int peso_min, diametro_min, escludi_missioni, log_comunicazioni, lettostatoagv, lettoparametri;
 	int tempo_prelievo, tempo_deposito, ultimo_id_articolo, pwdlevel, num_porte, quota_prel_ribalatatore, quota_prel_default, quota_dep_default;
 	bool aggiornamentolista, aggiorna_tab_posizioni_locale, aggiorna_tab_porte_locale, aggiorna_tab_portefumo_locale, aggiorna_tab_tipologia_locale, aggiorna_tab_parametri;

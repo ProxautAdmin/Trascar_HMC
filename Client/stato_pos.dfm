@@ -1,613 +1,1278 @@
 inherited fCorsia: TfCorsia
   BorderStyle = bsSingle
   Caption = 'Stato Corsia'
-  ClientHeight = 693
-  ClientWidth = 1747
+  ClientHeight = 800
+  ClientWidth = 1749
   DoubleBuffered = True
   Font.Height = -13
   OnActivate = FormActivate
   OnCreate = FormCreate
-  ExplicitWidth = 1753
-  ExplicitHeight = 722
+  ExplicitLeft = -630
+  ExplicitWidth = 1755
+  ExplicitHeight = 829
   PixelsPerInch = 96
   TextHeight = 16
   inherited PanelButtons: TPanel
-    Left = 1639
-    Height = 653
-    ExplicitLeft = 1639
-    ExplicitHeight = 653
+    Left = 1641
+    Height = 760
+    ExplicitLeft = 1641
+    ExplicitHeight = 760
     inherited PanelClose: TPanel
-      Top = 567
-      ExplicitTop = 567
+      Top = 674
+      ExplicitTop = 674
       inherited BitBtnClose: TBitBtn
-        Caption = 'Close'
+        Glyph.Data = {
+          360C0000424D360C000000000000360000002800000020000000200000000100
+          180000000000000C0000120B0000120B00000000000000000000FFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3F2F1F6F2F0FFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD8D6D4352F2DA09D9CFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE7E5E2000000000000433F3DBEBB
+          B9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E21C140F0800000000000000
+          005B5552DBDAD8F5F5F3D4CECCDEDBD8DDD9D7DDD9D7DDD9D7D9D5D2DBD8D7FB
+          FBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B0000200C001504
+          000000008C84818F90900702001D100C1A0F0B1A0F0B1B0F0B0F09051E1714E5
+          E2E1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001B0A
+          00000000988C888083850000001100000F00000D00000D00000000000D0704E4
+          E2E0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001A09
+          0000000099908B86898D0000001501000300001D0900200C000B000019130EE6
+          E4E2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001A09
+          000000009A908C8386890000003A2A234239380000001707000E000018120EE6
+          E4E2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001A09
+          000000009B928D848684000000514540FFFFFD6D6A6B0000000C00001A130FE6
+          E4E2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001B09
+          0000000079706CEFEDECCAC7C5C8C6C3FDFCFCFFFFFF7D7673000000170F0AE6
+          E4E2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001A09
+          00000000817774D8D8D7A19B979B9692F2F2F1FFFFFF6F6A6700000017100BE6
+          E4E2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001A09
+          000000009D928F7E7F800000004A3F3CFFFFFE5555560000000D00001A130FE6
+          E4E2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001A09
+          00000000998F8B85898B00000053423C564D4D0000001909000D000018120EE6
+          E4E2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001A09
+          0000000099908B86898D000000110000000000200B00200C000B000019130EE6
+          E4E2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B00001C0A001B0A
+          00000000988C888083850000001100000F00000D00000D00000000000D0704E4
+          E2E0FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E218120E0B0000200C001504
+          000000008C84818F90900702001D100C1A0F0B1A0F0B1B0F0B0F09051E1714E5
+          E2E1FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E4E21C140F0800000000000000
+          005B5552DBDAD8F5F5F3D4CECCDEDBD8DDD9D7DDD9D7DDD9D7D9D5D2DBD8D7FB
+          FBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE7E5E2000000000000433F3DBEBB
+          B9FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD8D6D4352F2DA09D9CFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3F2F1F6F2F0FFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       end
     end
   end
   inherited PanelTitle: TPanel
-    Width = 1747
-    ExplicitWidth = 1747
+    Width = 1749
+    ExplicitWidth = 1749
   end
-  object MainPanel: TPanel
+  object Panel1: TPanel
     Left = 0
     Top = 40
-    Width = 1639
-    Height = 653
+    Width = 1641
+    Height = 760
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 2
-    object PanelScaffale: TPanel
+    object Panel2: TPanel
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 517
-      Height = 645
-      Align = alLeft
+      Width = 1633
+      Height = 280
+      Align = alTop
       BevelOuter = bvLowered
-      Color = clInactiveBorder
       ParentBackground = False
       TabOrder = 0
-    end
-    object PanelData: TPanel
-      Left = 974
-      Top = 1
-      Width = 664
-      Height = 651
-      Align = alRight
-      Caption = '...'
-      TabOrder = 1
-      object PanelFila: TPanel
+      object Panel4: TPanel
+        Left = 625
+        Top = 1
+        Width = 1007
+        Height = 278
+        Align = alRight
+        Color = clBtnShadow
+        DoubleBuffered = True
+        ParentBackground = False
+        ParentDoubleBuffered = False
+        TabOrder = 0
+      end
+      object Panel3: TPanel
         Left = 1
-        Top = 344
-        Width = 662
-        Height = 306
-        Align = alBottom
-        BevelOuter = bvLowered
+        Top = 1
+        Width = 88
+        Height = 278
+        Align = alLeft
+        Color = clBtnShadow
+        DoubleBuffered = True
+        ParentBackground = False
+        ParentDoubleBuffered = False
+        TabOrder = 1
+      end
+      inline frPosUDC1: TfrPosUDC
+        Left = 120
+        Top = 2
+        Width = 60
+        Height = 279
+        Margins.Left = 1
+        Margins.Right = 1
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
+        TabOrder = 2
+        ExplicitLeft = 120
+        ExplicitTop = 2
+        ExplicitWidth = 60
+        ExplicitHeight = 279
+        inherited Panel1: TPanel
+          Width = 54
+          Height = 273
+          ExplicitWidth = 54
+          ExplicitHeight = 273
+          inherited Image1: TImage
+            Width = 52
+            Height = 253
+            ExplicitWidth = 52
+            ExplicitHeight = 253
+          end
+          inherited MyShape1: TMyShape
+            OnMouseUp = frScaffale1MyShape4MouseUp
+          end
+          inherited Panel2: TPanel
+            Width = 52
+            ExplicitWidth = 52
+          end
+        end
+      end
+    end
+    object Panel6: TPanel
+      Left = 874
+      Top = 287
+      Width = 766
+      Height = 472
+      Align = alRight
+      BevelOuter = bvLowered
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      object Label1: TLabel
+        Left = 17
+        Top = 39
+        Width = 105
+        Height = 19
+        Caption = 'Num.Posizione'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
+        Font.Color = clBlue
         Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+      end
+      object Label2: TLabel
+        Left = 128
+        Top = 39
+        Width = 81
+        Height = 19
+        Alignment = taRightJustify
+        AutoSize = False
+        Caption = 'NumPos'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label3: TLabel
+        Left = 311
+        Top = 39
+        Width = 91
+        Height = 19
+        Caption = 'Nome Corsia'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label4: TLabel
+        Left = 432
+        Top = 39
+        Width = 73
+        Height = 19
+        AutoSize = False
+        Caption = 'NomeCorsia'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label17: TLabel
+        Left = 230
+        Top = 39
+        Width = 39
+        Height = 19
+        Caption = 'Piano'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object lbPiano: TLabel
+        Left = 275
+        Top = 39
+        Width = 30
+        Height = 19
+        AutoSize = False
+        Caption = 'Piano'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lbnomepiano: TLabel
+        Left = 672
+        Top = 39
+        Width = 81
+        Height = 19
+        AutoSize = False
+        Caption = 'NomeCorsia'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label30: TLabel
+        Left = 536
+        Top = 39
+        Width = 86
+        Height = 19
+        Caption = 'Nome Piano'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Panel7: TPanel
+        Left = 1
+        Top = 1
+        Width = 764
+        Height = 32
+        Align = alTop
+        Caption = 'Dati Posizione'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
         TabOrder = 0
-        Visible = False
-        object Label11: TLabel
-          Left = 571
-          Top = 39
-          Width = 12
-          Height = 19
-          Caption = 'A'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label12: TLabel
-          Left = 515
-          Top = 39
-          Width = 50
-          Height = 19
-          Caption = 'Area :'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlue
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object lbl2: TLabel
-          Left = 20
-          Top = 198
-          Width = 66
-          Height = 16
-          Caption = 'Annotazioni'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlue
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Panel9: TPanel
-          Left = 1
-          Top = 1
-          Width = 660
-          Height = 32
-          Align = alTop
-          Caption = 'Lane Data'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlue
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentBackground = False
-          ParentFont = False
-          TabOrder = 0
-        end
-        object Panel10: TPanel
-          Left = 1
-          Top = 244
-          Width = 660
-          Height = 61
-          Align = alBottom
-          TabOrder = 1
-          object BitBtn1: TBitBtn
-            AlignWithMargins = True
-            Left = 559
-            Top = 4
-            Width = 97
-            Height = 53
-            Align = alRight
-            Caption = 'Successiva'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            Layout = blGlyphRight
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 0
-            WordWrap = True
-            OnClick = BitBtn1Click
-          end
-          object BitBtn3: TBitBtn
-            AlignWithMargins = True
-            Left = 114
-            Top = 4
-            Width = 95
-            Height = 53
-            Align = alLeft
-            Caption = 'Svuota Corsia'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 1
-            WordWrap = True
-            OnClick = BitBtn3Click
-          end
-          object BitBtn4: TBitBtn
-            AlignWithMargins = True
-            Left = 408
-            Top = 4
-            Width = 145
-            Height = 53
-            Align = alRight
-            Caption = 'Applica modifiche'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 2
-            WordWrap = True
-            OnClick = BitBtn4Click
-          end
-          object BitBtn5: TBitBtn
-            AlignWithMargins = True
-            Left = 4
-            Top = 4
-            Width = 104
-            Height = 53
-            Align = alLeft
-            Caption = 'Precedente'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 3
-            WordWrap = True
-            OnClick = BitBtn5Click
-          end
-          object btDisabilitaPiani: TBitBtn
-            AlignWithMargins = True
-            Left = 215
-            Top = 4
-            Width = 140
-            Height = 53
-            Align = alLeft
-            Caption = 'Disabilita/Abilita piani '
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 4
-            WordWrap = True
-            OnClick = btDisabilitaPianiClick
-          end
-        end
-        object GroupBox1: TGroupBox
-          Left = 9
-          Top = 64
-          Width = 248
-          Height = 97
-          Caption = 'Status Fila'
-          Font.Charset = DEFAULT_CHARSET
+      end
+      object Panel8: TPanel
+        Left = 1
+        Top = 410
+        Width = 764
+        Height = 61
+        Align = alBottom
+        TabOrder = 1
+        object BitBtnChange: TBitBtn
+          AlignWithMargins = True
+          Left = 568
+          Top = 4
+          Width = 192
+          Height = 53
+          Align = alRight
+          Caption = 'Gestisci Art.UDC'
+          Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
-          object ckUsoPrel: TCheckBox
-            Left = 124
-            Top = 60
-            Width = 222
-            Height = 26
-            Caption = 'Corsia uso Prel.'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            OnClick = ckAbilitaClick
-          end
-          object ckUsoDep: TCheckBox
-            Left = 124
-            Top = 38
-            Width = 222
-            Height = 25
-            Caption = 'Corsia uso Dep.'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 1
-            OnClick = ckAbilitaClick
-          end
-          object ckAbilita: TCheckBox
-            Left = 11
-            Top = 15
-            Width = 144
-            Height = 25
-            Caption = 'Corsia Abilitata'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 2
-            OnClick = ckAbilitaClick
-          end
-          object ckPrenotata: TCheckBox
-            Left = 11
-            Top = 38
-            Width = 107
-            Height = 25
-            Caption = 'Corsia Riservata'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 3
-            OnClick = ckAbilitaClick
-          end
-          object ckPiena: TCheckBox
-            Left = 11
-            Top = 61
-            Width = 94
-            Height = 25
-            Caption = 'Corsia Piena'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 4
-            OnClick = ckAbilitaClick
-          end
-          object ckVuota: TCheckBox
-            Left = 124
-            Top = 15
-            Width = 111
-            Height = 25
-            Caption = 'Corsia Vuota'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 5
-            OnClick = ckAbilitaClick
-          end
+          Spacing = 3
+          TabOrder = 0
+          Visible = False
+          WordWrap = True
+          OnClick = BitBtnChangeClick
         end
-        object GroupBox2: TGroupBox
-          Left = 263
-          Top = 64
-          Width = 394
-          Height = 97
-          Caption = 'Settaggi'
+        object BitBtn2: TBitBtn
+          AlignWithMargins = True
+          Left = 4
+          Top = 4
+          Width = 157
+          Height = 53
+          Align = alLeft
+          Caption = 'Vuota Posizione'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Glyph.Data = {
+            360C0000424D360C000000000000360000002800000020000000200000000100
+            180000000000000C0000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4F2FD8883E77D76E4847DE6837DE6837D
+            E6837DE6837DE6837DE6837DE6837DE6837DE6837DE6837DE6847DE67D76E488
+            83E7F4F2FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE7E3FB0900CE0000C60000CC0000CC0000
+            CC0000CC0000CC0000CC0000CC0000CC0000CC0000CC0000CC0000CC0000C609
+            00CEE7E3FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2614D40800CD2109D21F08D22209
+            D32109D21F08D21F08D21E08D21F08D22008D21E07D21F08D22109D20800CD26
+            14D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD220CD31E07D20200
+            CC0600CD200AD2200AD2200AD22109D20000CC0600CD240BD3200BD20900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CE1D09D2200AD23E33
+            D9291FD40200CC2009D32008D20000C95951DF695DE10D03CF210AD30900CE26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40A00CE1200CF1910D1F3EC
+            FEF7F4FD4B45DC0000CA0000CA4946DAFFFFFFB8B6F10000CA2209D30A00CE26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD2109D30600CC5253
+            DBFFFFFFFFFFFF2B26D32B26D3FFFFFFFFFFFF403FD80600CD220BD30900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD220BD31E07D20000
+            C84F4ADCF5F3FDECE8FBECE8FBF5F3FD4F4ADC0000C92008D3200AD20900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD200AD2200BD32007
+            D30000C4746EE3FFFFFFFFFFFF746EE30000C42007D3200BD2200AD20900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD200AD22209D20000
+            CA3C35D8E2DFF9F7F4FEF7F4FEE2DFF93D35D80000C92009D2210BD20900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD210BD30901CD332F
+            D5FBFAFFFFFFFF3F3CD83E3BD8FFFFFFFFFEFF3939D60500CC230BD30900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40A00CE230AD30000CAB2AF
+            F1FFFFFF5C5ADE0000C90000C95C58DFFFFFFFF5EEFD150DD01201CF0B00CE26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CE210AD30901CE7B72
+            E56D67E20000C91E07D21F07D20000CB4039D85B53DE210DD31B07D10A00CE26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2715D40900CD200AD2230AD30B00
+            CE0000CC1D05D2200AD2200AD21F08D20000CC0000CB1E07D2230CD30900CD27
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E3FB200ED30A00CE220AD2210AD31C06
+            D21F08D2210AD32009D22009D22009D2230AD3230AD32009D2220AD20A00CE20
+            0ED3E6E3FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1EEFC1A0DD10000C50000CB0000CB0000
+            CB0000CB0000CB0000CB0000CB0000CB0000CB0000CB0000CB0000CB0000C51A
+            0DD1F1EEFCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFADA9EF5B53DC675DE0685EE0685E
+            E0685EE0685EE0685EE0685EE0685EE0685EE0685EE0685EE0675DE05B53DCAD
+            A9EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          ParentFont = False
+          Spacing = 3
+          TabOrder = 1
+          WordWrap = True
+          OnClick = BitBtn2Click
+        end
+        object BitBtn6: TBitBtn
+          AlignWithMargins = True
+          Left = 167
+          Top = 4
+          Width = 210
+          Height = 53
+          Align = alLeft
+          Caption = 'Applica Modifiche su Posizione'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Spacing = 3
+          TabOrder = 2
+          WordWrap = True
+          OnClick = BitBtn6Click
+        end
+      end
+      object GroupBox3: TGroupBox
+        Left = 487
+        Top = 64
+        Width = 274
+        Height = 57
+        Caption = 'Stato Posizione'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+        object ckDisabilitaPos: TCheckBox
+          Left = 7
+          Top = 22
+          Width = 134
+          Height = 25
+          Caption = 'Disabilita Posizione'
+          TabOrder = 0
+          OnClick = ckDisabilitaPosClick
+        end
+        object cPrenotataPos: TCheckBox
+          Left = 147
+          Top = 22
+          Width = 222
+          Height = 25
+          Caption = 'Posizione Riservata'
+          TabOrder = 1
+          OnClick = cPrenotataPosClick
+        end
+      end
+      object GroupBox4: TGroupBox
+        Left = 16
+        Top = 120
+        Width = 465
+        Height = 97
+        Caption = 'UDC Data'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 3
+        object Label13: TLabel
+          Left = 11
+          Top = 25
+          Width = 43
+          Height = 16
+          Caption = 'ID UDC'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlue
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label14: TLabel
+          Left = 11
+          Top = 67
+          Width = 53
+          Height = 16
+          Caption = 'Tipo UDC'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlue
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label19: TLabel
+          Left = 280
+          Top = 65
+          Width = 66
+          Height = 16
+          Caption = 'Codice UDC'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlue
           Font.Height = -13
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 3
-          object Label9: TLabel
-            Left = 4
-            Top = 22
-            Width = 65
-            Height = 16
-            Caption = 'Tipo Corsia'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlue
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-          end
-          object Label10: TLabel
-            Left = 4
-            Top = 62
-            Width = 80
-            Height = 16
-            Caption = 'Fila prioritaria'
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlue
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-          end
-          object cbTipo: TComboBox
-            Left = 94
-            Top = 23
-            Width = 187
-            Height = 24
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-            OnChange = cbTipoChange
-            Items.Strings = (
-              '')
-          end
-          object cbPriorita: TComboBox
-            Left = 94
-            Top = 56
-            Width = 89
-            Height = 27
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clBlack
-            Font.Height = -16
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 1
-            Items.Strings = (
-              '1'
-              '2'
-              '3'
-              '4'
-              '5'
-              '6'
-              '7'
-              '8'
-              '9'
-              '10'
-              '11'
-              '12'
-              '13'
-              '14'
-              '15'
-              '16')
-          end
-          object leNumUDC: TLabeledEdit
-            Left = 288
-            Top = 59
-            Width = 89
-            Height = 24
-            Alignment = taCenter
-            EditLabel.Width = 115
-            EditLabel.Height = 16
-            EditLabel.Caption = 'N'#176' Full UDC in Lane '
-            EditLabel.Font.Charset = DEFAULT_CHARSET
-            EditLabel.Font.Color = clBlue
-            EditLabel.Font.Height = -13
-            EditLabel.Font.Name = 'Tahoma'
-            EditLabel.Font.Style = []
-            EditLabel.ParentFont = False
-            LabelPosition = lpLeft
-            ReadOnly = True
-            TabOrder = 2
-          end
         end
-        object edtAnnotazioni: TEdit
-          Left = 104
-          Top = 198
-          Width = 553
+        object SpeedButton2: TSpeedButton
+          Left = 159
+          Top = 16
+          Width = 34
+          Height = 33
+          Glyph.Data = {
+            CA050000424DCA05000000000000360000002800000016000000150000000100
+            1800000000009405000000000000000000000000000000000000EAF0EFEAF0EF
+            EAF0EFEAEFEFEAEFEFEAEFEFEAEFEFEAF0EFEAF0EFEAF0EFEAF0EFEAEFEFEAEF
+            EFEAEFEFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EF0000EAF0
+            EFEAF0EFEAF0EFEAEFEFEAEFEFEAEFEFEAEFEFEAF0EFEAF0EFEAF0EFEAF0EFEA
+            EFEFEAEFEFEAEFEFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EF
+            0000ECF1F1ECF1F1A6A8AA5C6FAF9281A1CAA5AAEAE9E9ECF1F1ECF1F1ECF1F1
+            ECF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1
+            F1EBF1F10000ECF1F1ECF1F18BA9BB3C85DF5A6DAD9181A1C8A3A9E9E8E8ECF1
+            F1ECF1F1ECF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EB
+            F1F1EBF1F1EBF1F10000ECF1F1ECF1F198D0F949AEFE3D84DF5B6DAC9181A1CA
+            A6ABE9E8E8ECF1F1ECF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1
+            EBF1F1EBF1F1EBF1F1EBF1F10000ECF1F1ECF1F1ECF1F194CCF85DC0FE49AEFE
+            3C84DE596DAD93819FE8E4E4ECF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1
+            F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F10000ECF1F1ECF1F1ECF1F1ECF1F198CD
+            F85CC0FF4AAFFF3C83DD596EADCCADB2EBEBEBEBF1F1EBF1F1EBF1F1EBF1F1EB
+            F1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F10000ECF1F1ECF1F1ECF1F1EC
+            F1F1ECF1F199CEF85BBEFE49AEFE3B83DE9D94A6E3E7E6EBF1F1E2E1E1D4C9C9
+            DCD2CEE3D8D5E1D6D6E5E5E5EBF1F1EBF1F1EBF1F1EBF1F10000ECF1F1ECF1F1
+            ECF1F1ECF1F1ECF1F1ECF1F199CEF857BCFF4CAFFF8B9098C9CBCBD3C5C5C29E
+            97BD9182C7A797D0B1A1CEADA0CCAFAAD7C6C6EAEFEFEBF1F1EBF1F10000EEF2
+            F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0EFF2F0EFF2F1E2ECF1BA9896CE9B88F4
+            DAB1FFFAC9FFFECEFFFFD9FFFFDFFFFFE2FFFFF4F4EEE9CBAFA5EEF2F1EEF2F1
+            0000EEF2F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0EFF2F0EFF2F1EFF2F1CE9D8D
+            F4D7AEFFF7C8FFF1BEFFFBC7FFFFE1FFFFEAFFFFF3FFFFFFFFFFFFF4EEE3DAD1
+            D0EEF2F10000EEF2F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0EFF2F0EFF2F1EEEE
+            EDE0BCA1FFF6C5FFE9B6FFECB9FFFDCBFFFFE2FFFFEFFFFFFCFFFFFEFFFFFAFF
+            FFE4B18D8DEDEEED0000EEF2F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0EFF2F0EF
+            F2F1E6DADAFAF5C5FFECBAFFD9A6FFE6B3FFFBC7FFFFDFFFFFE8FFFFECFFFFEB
+            FFFFE6FFFFD8B9988CE5DADA0000EEF2F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0
+            EFF2F0EFF2F1E6DBDBFEFDCAFFE7B2FFD6A3FFE8B4FFF7C3FFFFD7FFFFDDFFFF
+            DFFFFFDFFFFFDCFFFFD3BC988AE5DBDB0000EEF2F1EEF2F1EEF2F1EFF2F0EFF2
+            F0EFF2F0EFF2F0EFF2F1E5D9DAFAF4C4FFF3C7FFE9BDFFE2B2FFECB8FFFFCFFF
+            FFD2FFFFD6FFFFD5FFFFD1FFFFCDB48B81E4D9DA0000EEF2F1EEF2F1EEF2F1EF
+            F2F0EFF2F0EFF2F0EFF2F0EFF2F1EAE5E5EEDCBAFFFCDAFFEECEFFDFB2FFDAA8
+            FFF1BFFFF6C4FFFBC9FFFBC8FFF3C1FFFECBA9807DE9E5E50000F0F3F1F0F3F1
+            F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1C9A49BEDDECFFFFFFFFFFF
+            FFFFEAC9FFDAA9FFD4A1FFDEABFFF4BFFFF2C6EDC098ECEBEAF0F2F10000F0F3
+            F1F0F3F1F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1DBCDCDC5A19BED
+            E0D7FFFFFDFFFFECFFF2BEFFF6C2FFFBCBFFEBBDEEBD95B88881F0F2F1F0F2F1
+            0000F0F3F1F0F3F1F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1
+            DDD1CFB8908CCBA791EDD6B1FDF0C5F9E6BBF1D2AAD3A793BC9290DFD4D4F0F2
+            F1F0F2F10000F0F3F1F0F3F1F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3
+            F1EFF3F1EFF3F1EFF3F2EFF3F2EFF3F2EFF2F2EFF2F2EFF2F2EFF2F2EFF2F2F0
+            F2F1F0F2F1F0F2F10000F0F3F1F0F3F1F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EF
+            F3F1EFF3F1EFF3F1EFF3F1EFF3F2EFF3F2EFF3F2EFF2F2EFF2F2EFF2F2EFF2F2
+            EFF2F2F0F2F1F0F2F1F0F2F10000}
+          OnClick = SpeedButton2Click
+        end
+        object lbl3: TLabel
+          Left = 216
+          Top = 22
+          Width = 69
+          Height = 16
+          Caption = 'ID Art.UDC'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlue
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object eUDC: TEdit
+          Left = 66
+          Top = 19
+          Width = 87
+          Height = 27
+          Color = 8454143
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 0
+        end
+        object cbTipoUDC: TComboBox
+          Left = 66
+          Top = 62
+          Width = 183
+          Height = 24
+          Enabled = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+        end
+        object edCodUDC: TEdit
+          Left = 352
+          Top = 64
+          Width = 113
+          Height = 21
+          Enabled = False
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 2
+        end
+        object cbbArtUDC: TComboBox
+          Left = 331
+          Top = 16
+          Width = 134
+          Height = 27
+          Color = 8454143
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+        end
+      end
+      object GroupBox5: TGroupBox
+        Left = 15
+        Top = 223
+        Width = 274
+        Height = 90
+        Caption = 'Peso'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
+        object Label18: TLabel
+          Left = 97
+          Top = 20
+          Width = 71
+          Height = 13
+          Caption = 'Peso attuale'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label35: TLabel
+          Left = 19
+          Top = 20
+          Width = 26
+          Height = 13
+          Caption = 'Tara'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label23: TLabel
+          Left = 196
+          Top = 20
+          Width = 40
+          Height = 13
+          Caption = 'Weigth'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Visible = False
+        end
+        object Label22: TLabel
+          Left = 3
+          Top = 66
+          Width = 41
+          Height = 13
+          Caption = 'Calo Kg'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Visible = False
+        end
+        object Label24: TLabel
+          Left = 143
+          Top = 66
+          Width = 40
+          Height = 13
+          Caption = 'Calo %'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Visible = False
+        end
+        object ePesoAttuale: TEdit
+          Left = 102
+          Top = 39
+          Width = 58
+          Height = 21
+          Alignment = taRightJustify
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 0
+        end
+        object ePesoBase: TEdit
+          Left = 189
+          Top = 39
+          Width = 58
+          Height = 21
+          Alignment = taRightJustify
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 1
+          Visible = False
+        end
+        object eTara: TEdit
+          Left = 6
+          Top = 39
+          Width = 52
+          Height = 21
+          Alignment = taRightJustify
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 2
+        end
+        object eCaloKg: TEdit
+          Left = 64
+          Top = 66
+          Width = 58
+          Height = 21
+          Alignment = taRightJustify
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 3
+          Visible = False
+        end
+        object eCaloPerc: TEdit
+          Left = 190
+          Top = 66
+          Width = 58
+          Height = 21
+          Alignment = taRightJustify
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 4
+          Visible = False
+        end
+      end
+      object GroupBox6: TGroupBox
+        Left = 313
+        Top = 362
+        Width = 449
+        Height = 42
+        Color = clGradientInactiveCaption
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 5
+        Visible = False
+        object Label16: TLabel
+          Left = 6
+          Top = 9
+          Width = 52
+          Height = 13
+          Caption = 'Id Article'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label15: TLabel
+          Left = 225
+          Top = 11
+          Width = 68
+          Height = 13
+          Caption = 'Code Article'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object sbArticolo: TSpeedButton
+          Left = 162
+          Top = 3
+          Width = 28
+          Height = 26
+          Glyph.Data = {
+            CA050000424DCA05000000000000360000002800000016000000150000000100
+            1800000000009405000000000000000000000000000000000000EAF0EFEAF0EF
+            EAF0EFEAEFEFEAEFEFEAEFEFEAEFEFEAF0EFEAF0EFEAF0EFEAF0EFEAEFEFEAEF
+            EFEAEFEFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EF0000EAF0
+            EFEAF0EFEAF0EFEAEFEFEAEFEFEAEFEFEAEFEFEAF0EFEAF0EFEAF0EFEAF0EFEA
+            EFEFEAEFEFEAEFEFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EFEAF0EF
+            0000ECF1F1ECF1F1A6A8AA5C6FAF9281A1CAA5AAEAE9E9ECF1F1ECF1F1ECF1F1
+            ECF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1
+            F1EBF1F10000ECF1F1ECF1F18BA9BB3C85DF5A6DAD9181A1C8A3A9E9E8E8ECF1
+            F1ECF1F1ECF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EB
+            F1F1EBF1F1EBF1F10000ECF1F1ECF1F198D0F949AEFE3D84DF5B6DAC9181A1CA
+            A6ABE9E8E8ECF1F1ECF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1
+            EBF1F1EBF1F1EBF1F1EBF1F10000ECF1F1ECF1F1ECF1F194CCF85DC0FE49AEFE
+            3C84DE596DAD93819FE8E4E4ECF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1
+            F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F10000ECF1F1ECF1F1ECF1F1ECF1F198CD
+            F85CC0FF4AAFFF3C83DD596EADCCADB2EBEBEBEBF1F1EBF1F1EBF1F1EBF1F1EB
+            F1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F1EBF1F10000ECF1F1ECF1F1ECF1F1EC
+            F1F1ECF1F199CEF85BBEFE49AEFE3B83DE9D94A6E3E7E6EBF1F1E2E1E1D4C9C9
+            DCD2CEE3D8D5E1D6D6E5E5E5EBF1F1EBF1F1EBF1F1EBF1F10000ECF1F1ECF1F1
+            ECF1F1ECF1F1ECF1F1ECF1F199CEF857BCFF4CAFFF8B9098C9CBCBD3C5C5C29E
+            97BD9182C7A797D0B1A1CEADA0CCAFAAD7C6C6EAEFEFEBF1F1EBF1F10000EEF2
+            F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0EFF2F0EFF2F1E2ECF1BA9896CE9B88F4
+            DAB1FFFAC9FFFECEFFFFD9FFFFDFFFFFE2FFFFF4F4EEE9CBAFA5EEF2F1EEF2F1
+            0000EEF2F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0EFF2F0EFF2F1EFF2F1CE9D8D
+            F4D7AEFFF7C8FFF1BEFFFBC7FFFFE1FFFFEAFFFFF3FFFFFFFFFFFFF4EEE3DAD1
+            D0EEF2F10000EEF2F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0EFF2F0EFF2F1EEEE
+            EDE0BCA1FFF6C5FFE9B6FFECB9FFFDCBFFFFE2FFFFEFFFFFFCFFFFFEFFFFFAFF
+            FFE4B18D8DEDEEED0000EEF2F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0EFF2F0EF
+            F2F1E6DADAFAF5C5FFECBAFFD9A6FFE6B3FFFBC7FFFFDFFFFFE8FFFFECFFFFEB
+            FFFFE6FFFFD8B9988CE5DADA0000EEF2F1EEF2F1EEF2F1EFF2F0EFF2F0EFF2F0
+            EFF2F0EFF2F1E6DBDBFEFDCAFFE7B2FFD6A3FFE8B4FFF7C3FFFFD7FFFFDDFFFF
+            DFFFFFDFFFFFDCFFFFD3BC988AE5DBDB0000EEF2F1EEF2F1EEF2F1EFF2F0EFF2
+            F0EFF2F0EFF2F0EFF2F1E5D9DAFAF4C4FFF3C7FFE9BDFFE2B2FFECB8FFFFCFFF
+            FFD2FFFFD6FFFFD5FFFFD1FFFFCDB48B81E4D9DA0000EEF2F1EEF2F1EEF2F1EF
+            F2F0EFF2F0EFF2F0EFF2F0EFF2F1EAE5E5EEDCBAFFFCDAFFEECEFFDFB2FFDAA8
+            FFF1BFFFF6C4FFFBC9FFFBC8FFF3C1FFFECBA9807DE9E5E50000F0F3F1F0F3F1
+            F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1C9A49BEDDECFFFFFFFFFFF
+            FFFFEAC9FFDAA9FFD4A1FFDEABFFF4BFFFF2C6EDC098ECEBEAF0F2F10000F0F3
+            F1F0F3F1F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1DBCDCDC5A19BED
+            E0D7FFFFFDFFFFECFFF2BEFFF6C2FFFBCBFFEBBDEEBD95B88881F0F2F1F0F2F1
+            0000F0F3F1F0F3F1F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1
+            DDD1CFB8908CCBA791EDD6B1FDF0C5F9E6BBF1D2AAD3A793BC9290DFD4D4F0F2
+            F1F0F2F10000F0F3F1F0F3F1F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3F1EFF3
+            F1EFF3F1EFF3F1EFF3F2EFF3F2EFF3F2EFF2F2EFF2F2EFF2F2EFF2F2EFF2F2F0
+            F2F1F0F2F1F0F2F10000F0F3F1F0F3F1F0F3F1EFF3F1EFF3F1EFF3F1EFF3F1EF
+            F3F1EFF3F1EFF3F1EFF3F1EFF3F2EFF3F2EFF3F2EFF2F2EFF2F2EFF2F2EFF2F2
+            EFF2F2F0F2F1F0F2F1F0F2F10000}
+          OnClick = sbArticoloClick
+        end
+        object eIdArticolo: TEdit
+          Left = 77
+          Top = 9
+          Width = 79
           Height = 21
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
-          MaxLength = 99
           ParentFont = False
-          TabOrder = 4
-          OnClick = ckAbilitaClick
+          ReadOnly = True
+          TabOrder = 0
         end
-        object ckIgnoraOrdine: TCheckBox
-          Left = 20
-          Top = 167
-          Width = 222
-          Height = 25
-          Caption = 'Ignora posizione da Ordine'
+        object eNome: TEdit
+          Left = 301
+          Top = 9
+          Width = 140
+          Height = 21
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 5
-          OnClick = ckAbilitaClick
-        end
-        object cbDepSelettivo: TCheckBox
-          Left = 263
-          Top = 167
-          Width = 121
-          Height = 25
-          Caption = 'Deposito Selettivo'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 6
-          OnClick = ckAbilitaClick
+          ReadOnly = True
+          TabOrder = 1
         end
       end
-      object PanelPosizione: TPanel
-        Left = 1
-        Top = 1
-        Width = 662
-        Height = 317
-        Align = alTop
-        BevelOuter = bvLowered
+      object GroupBox7: TGroupBox
+        Left = 312
+        Top = 223
+        Width = 449
+        Height = 104
+        Color = clBtnFace
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 6
+        Visible = False
+        object SpeedButton3: TSpeedButton
+          Left = 162
+          Top = 9
+          Width = 28
+          Height = 25
+          Glyph.Data = {
+            F6060000424DF606000000000000360000002800000018000000180000000100
+            180000000000C006000000000000000000000000000000000000FFFFFF6763CF
+            1712B61813BA1812BA1812BA1812BA1712B91712B91712B91711B91711B91711
+            B91711B91711B81711B81711B81711B81711B81711B81711B71610B36662CDFF
+            FFFF6966D4201DD52724ED2624ED2623ED2622ED2622ED2621ED2621ED2520ED
+            2520ED251FED251EED241EED241DED241DED241DED241CED241CED241CED241C
+            ED241CED1E17D36763D11A16BD2929EE2829EE2828EE2828EE2220DA2321DF27
+            26ED2725ED2725ED2724ED2724ED2624ED2623ED2622ED2622ED2621ED1A15C2
+            211CDF2520ED251FED251EED241EED1812B91D19C42A2EEE2A2DEE2A2DEE2526
+            E1140FAA140FAA2525E1292AEE2929EE2929EE2829EE2828EE2828EE2827ED28
+            26ED1A16C1130DA6140FAA2320E02724ED2624ED2623ED1A15C01E1BC72C33EE
+            2C32EE272BE21611AF6C69CA403CBA1611AF2629E22B2FEE2A2EEE2A2DEE2A2D
+            EE2A2CEE2A2CEE1C19C5140FABA7A5DF6C69CA1610AF2524E12828EE2828EE1C
+            17C31F1DC92D37EE2930E31813B46D6ACDFFFFFFF0F0FA423DBF1813B4282CE3
+            2C33EE2C32EE2C31EE2C31EE2324D71611B0A8A5E1FFFFFFFFFFFF6D6ACD1812
+            B42526DF2A2CEE1D19C6201FCC2F3DEF2225CE1812B6A9A6E4FFFFFFFFFFFFF1
+            F0FA6E6BD11915B92930E42D37EE2D37EE2528D91812B6A8A6E3FFFFFFFFFFFF
+            F1F0FB433FC41914B9282CE32C31EE1F1BC92120CE3141EF3141EF2225CE1A14
+            BBA9A7E6FFFFFFFFFFFFFFFFFF706CD41B16BF2B34E5272CDB1A14BBA9A7E5FF
+            FFFFFFFFFFFFFFFF4540C81B16BE2931E42D37EE2D36EE1F1DCB2222D13346EF
+            3245EF3245EF2427D11B15C0AAA7E8FFFFFFFFFFFFFFFFFF716DD71D17C31B15
+            C0AAA7E7FFFFFFFFFFFFFFFFFF716DD81D17C32B35E62F3CEE2F3BEE2E3BEE21
+            1ECD2423D3344AEF344AEF3449EF3449EF2932DC1D16C4AAA8E9FFFFFFFFFFFF
+            FFFFFF716DDA716DDAFFFFFFFFFFFFFFFFFF726DDB1E18C72D3AE73141EF3141
+            EF3040EF3040EF2220D02525D5374EF0374DEF364DEF364CEF364CEF2D38E01E
+            16C9ABA8EBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF726EDD1F19CB2F3EE8
+            3346EF3346EF3245EF3245EF3244EF2322D35656E04C61F23951F03950F03850
+            F0384FF0384FF02E3AE21F17CD817DE3FFFFFFFFFFFFFFFFFFFFFFFF736EE01F
+            17CD3141E8354BEF354BEF344AEF344AEF3449EF475AF15454DE5D5DE36D7EF4
+            6679F45066F23E55F03A52F03A52F03547EA211CD3736FE2FFFFFFFFFFFFFFFF
+            FFFFFFFF817DE52018D12F3AE4384EF0374EF03A50F04D60F16274F36879F35B
+            5BE15E5EE56E81F56E81F56E80F46E80F45E73F34E5EEE302BDA746FE5FFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFABA8EF2F27D84752EA5C6FF36B7CF46B7C
+            F46B7CF46A7CF45D5CE35F5FE77184F57083F57083F57083F56B79F25A56E497
+            94EDFFFFFFFFFFFFFFFFFF9E9BEF9490EDFFFFFFFFFFFFFFFFFFC1BFF45953E3
+            656EEE6D7EF46C7EF46C7EF46C7EF45D5DE55F60E97286F57286F57186F56D7C
+            F25B56E79794EFFFFFFFFFFFFFFFFFFFC1BFF65953E65953E69794F0FFFFFFFF
+            FFFFFFFFFFC1BFF65953E66164EC6E81F56E80F46E80F45E5EE76060EA7489F5
+            7488F56E7EF35B56EA7873EDF5F4FEFFFFFFFFFFFFC1BFF75953E96973F06D7C
+            F35B56EA9794F1FFFFFFFFFFFFFFFFFFC1BFF75953E96265EE7083F57083F55F
+            5FE86061EC758BF57080F35C57EC7974EFF5F4FEFFFFFFFFFFFFC1BFF85A54EC
+            6A75F17488F57488F56F7EF35C57EC9894F3FFFFFFFFFFFFFFFFFFC1BFF85A54
+            EC646AF07185F55F60EA6162EE778DF56E7BF35C58EF9894F5FFFFFFFFFFFFC1
+            BFF95A54EE6A73F2758BF5758AF5758AF5758AF57080F45C57EF7974F2F5F4FE
+            FFFFFF9894F55C57EF6F7FF47388F56060EB6263EF798FF5798FF57384F45D58
+            F09895F6C2BFFA5B55F0666AF2788EF5778DF5778DF5778DF5778CF5778CF571
+            82F45D58F07A75F39895F65C58F07081F4758AF5758AF56061ED6263F07B92F6
+            7B91F67B91F67586F55D59F25B55F2676BF37A90F57A90F5798FF5798FF5798F
+            F5798FF5798FF5788EF57384F45D59F25D59F27283F4778DF5778DF5778CF561
+            62EE6161F17D93F67D93F67D93F67D93F67787F56A70F47C92F67C92F67C92F6
+            7C92F67B91F67B91F67A91F57A90F57A90F57A90F57485F4707EF4798FF5798F
+            F5798FF5798FF5605FEF9797F6717CF47E94F67E94F67E94F67E94F67E94F67E
+            94F67E94F67E94F67D93F67D93F67D93F67D93F67D93F67D92F67C92F67C92F6
+            7C92F67C92F67B91F67B91F66F7AF39796F5FFFFFF9897F86261F36465F36465
+            F36465F36465F36465F36465F36465F36465F36465F36465F36465F36465F364
+            65F36465F36465F36465F26464F26464F26160F29797F7FFFFFF}
+          OnClick = SpeedButton3Click
+        end
+        object Label21: TLabel
+          Left = 6
+          Top = 18
+          Width = 59
+          Height = 13
+          Caption = 'Id Art.UDC'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label20: TLabel
+          Left = 217
+          Top = 19
+          Width = 75
+          Height = 13
+          Caption = 'Code Art.UDC'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label27: TLabel
+          Left = 296
+          Top = 59
+          Width = 50
+          Height = 13
+          Caption = 'Last UDC'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label28: TLabel
+          Left = 3
+          Top = 82
+          Width = 443
+          Height = 19
+          Alignment = taCenter
+          AutoSize = False
+          Caption = 'Incorrect! Article load in empty UDC'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clRed
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object eIDArtUDC: TEdit
+          Left = 77
+          Top = 13
+          Width = 79
+          Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 0
+        end
+        object eCodeArtUDC: TEdit
+          Left = 301
+          Top = 13
+          Width = 140
+          Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 1
+        end
+        object eUltimoUDC: TEdit
+          Left = 362
+          Top = 55
+          Width = 79
+          Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 2
+        end
+      end
+      object GroupBox8: TGroupBox
+        Left = 487
+        Top = 127
+        Width = 274
+        Height = 90
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -16
+        Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 1
-        object Label1: TLabel
-          Left = 489
-          Top = 44
-          Width = 69
-          Height = 19
-          Caption = 'Num.Pos.'
-          Font.Charset = DEFAULT_CHARSET
+        TabOrder = 7
+        object Label25: TLabel
+          Left = 14
+          Top = 15
+          Width = 36
+          Height = 13
+          Caption = 'H.Dep.'
+          Font.Charset = ANSI_CHARSET
           Font.Color = clBlue
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label2: TLabel
-          Left = 489
-          Top = 69
-          Width = 115
-          Height = 19
-          Caption = 'NumPosizione'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
+          Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object Label3: TLabel
-          Left = 601
-          Top = 149
-          Width = 77
-          Height = 19
-          Caption = 'Nome Pos.'
-          Font.Charset = DEFAULT_CHARSET
+        object Label26: TLabel
+          Left = 171
+          Top = 15
+          Width = 36
+          Height = 13
+          Caption = 'H.Prel.'
+          Font.Charset = ANSI_CHARSET
           Font.Color = clBlue
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          Visible = False
-        end
-        object Label4: TLabel
-          Left = 601
-          Top = 174
-          Width = 76
-          Height = 19
-          Caption = 'NomePos'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Visible = False
-        end
-        object Label17: TLabel
-          Left = 489
-          Top = 94
-          Width = 39
-          Height = 19
-          Caption = 'Piano'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlue
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object lbPiano: TLabel
-          Left = 489
-          Top = 119
-          Width = 46
-          Height = 19
-          Caption = 'Piano'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
+          Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object lbnomepiano: TLabel
-          Left = 489
-          Top = 230
-          Width = 98
-          Height = 19
-          Caption = 'NomeCorsia'
+        object eHDep: TEdit
+          Left = 76
+          Top = 10
+          Width = 58
+          Height = 21
+          Alignment = taRightJustify
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Label30: TLabel
-          Left = 489
-          Top = 205
-          Width = 86
-          Height = 19
-          Caption = 'Nome Piano'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlue
-          Font.Height = -16
+          Font.Color = clWindowText
+          Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          ReadOnly = True
+          TabOrder = 0
         end
+        object eHprel: TEdit
+          Left = 213
+          Top = 10
+          Width = 58
+          Height = 21
+          Alignment = taRightJustify
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 1
+        end
+        object ckDisabilitaPiano: TCheckBox
+          Left = 3
+          Top = 41
+          Width = 134
+          Height = 25
+          Caption = 'Disabilita Piano'
+          TabOrder = 2
+          OnClick = ckDisabilitaPosClick
+        end
+        object ckPianoRiservato: TCheckBox
+          Left = 143
+          Top = 41
+          Width = 222
+          Height = 25
+          Caption = 'Piano Riservato'
+          TabOrder = 3
+          OnClick = cPrenotataPosClick
+        end
+      end
+      object GroupBox10: TGroupBox
+        Left = 16
+        Top = 64
+        Width = 465
+        Height = 57
+        Caption = 'Settaggi Posizione'
+        Enabled = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 8
         object lbl1: TLabel
-          Left = 10
-          Top = 49
+          Left = 7
+          Top = 24
           Width = 82
           Height = 16
           Caption = 'Tipo Posizione'
@@ -617,377 +1282,37 @@ inherited fCorsia: TfCorsia
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          Visible = False
         end
-        object Label13: TLabel
-          Left = 43
-          Top = 78
-          Width = 34
-          Height = 13
-          Caption = 'Id UDC'
-          Font.Charset = ANSI_CHARSET
+        object Label29: TLabel
+          Left = 279
+          Top = 26
+          Width = 48
+          Height = 16
+          Caption = 'Rif. Ord.'
+          Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlue
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object edtRifOrdine: TEdit
+          Left = 331
+          Top = 23
+          Width = 134
+          Height = 21
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
-          ParentFont = False
-          Visible = False
-        end
-        object Label14: TLabel
-          Left = 41
-          Top = 105
-          Width = 51
-          Height = 13
-          Caption = 'Tab Carico'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlue
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          Visible = False
-        end
-        object Label15: TLabel
-          Left = 229
-          Top = 105
-          Width = 55
-          Height = 13
-          Caption = 'Tab Scarico'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlue
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          Visible = False
-        end
-        object Label16: TLabel
-          Left = 13
-          Top = 132
-          Width = 79
-          Height = 13
-          Caption = 'Lato Forche Agv'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlue
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label18: TLabel
-          Left = 250
-          Top = 132
-          Width = 34
-          Height = 13
-          Caption = 'Tabella'
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clBlue
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label7: TLabel
-          Left = 601
-          Top = 127
-          Width = 97
-          Height = 19
-          Caption = 'Nome Corsia:'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlue
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          Visible = False
-        end
-        object Label8: TLabel
-          Left = 601
-          Top = 188
-          Width = 131
-          Height = 19
-          Caption = 'Numero Corsia :'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Visible = False
-        end
-        object Label5: TLabel
-          Left = 489
-          Top = 149
-          Width = 65
-          Height = 19
-          Caption = 'Corsia N.'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlue
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-        end
-        object Label6: TLabel
-          Left = 489
-          Top = 174
-          Width = 131
-          Height = 19
-          Caption = 'Numero Corsia :'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-        end
-        object Panel7: TPanel
-          Left = 1
-          Top = 1
-          Width = 660
-          Height = 32
-          Align = alTop
-          Caption = 'Dati Posizione'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlue
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
         end
-        object Panel8: TPanel
-          Left = 1
-          Top = 255
-          Width = 660
-          Height = 61
-          Align = alBottom
-          TabOrder = 1
-          object BitBtnChange: TBitBtn
-            AlignWithMargins = True
-            Left = 632
-            Top = 4
-            Width = 24
-            Height = 53
-            Align = alRight
-            Caption = 'Deposito Manuale'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 0
-            Visible = False
-            WordWrap = True
-            OnClick = BitBtnChangeClick
-          end
-          object BitBtn2: TBitBtn
-            AlignWithMargins = True
-            Left = 4
-            Top = 4
-            Width = 157
-            Height = 53
-            Align = alLeft
-            Caption = 'Vuota Posizione'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 1
-            Visible = False
-            WordWrap = True
-            OnClick = BitBtn2Click
-          end
-          object BitBtn6: TBitBtn
-            AlignWithMargins = True
-            Left = 167
-            Top = 4
-            Width = 210
-            Height = 53
-            Align = alLeft
-            Caption = 'Applica Modifiche su Posizione'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 2
-            Visible = False
-            WordWrap = True
-            OnClick = BitBtn6Click
-          end
-          object BitBtn7: TBitBtn
-            AlignWithMargins = True
-            Left = 600
-            Top = 4
-            Width = 26
-            Height = 53
-            Align = alRight
-            Caption = 'Prelievo Manuale'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 3
-            Visible = False
-            WordWrap = True
-            OnClick = BitBtn7Click
-          end
-          object btnModificaAltezza: TBitBtn
-            AlignWithMargins = True
-            Left = 383
-            Top = 4
-            Width = 210
-            Height = 53
-            Align = alLeft
-            Caption = 'Modifica altezza'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            Spacing = 3
-            TabOrder = 4
-            Visible = False
-            WordWrap = True
-            OnClick = btnModificaAltezzaClick
-          end
-        end
-        object GroupBox3: TGroupBox
-          Left = 295
-          Top = 171
-          Width = 178
-          Height = 78
-          Caption = 'Stato Posizione'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 2
-          Visible = False
-          object ckDisabilitaPos: TCheckBox
-            Left = 7
-            Top = 17
-            Width = 134
-            Height = 25
-            Caption = 'Disabilita Posizione'
-            TabOrder = 0
-            OnClick = ckDisabilitaPosClick
-          end
-          object cPrenotataPos: TCheckBox
-            Left = 7
-            Top = 38
-            Width = 162
-            Height = 25
-            Caption = 'Posizione Riservata'
-            TabOrder = 1
-            OnClick = cPrenotataPosClick
-          end
-        end
-        object GroupBox8: TGroupBox
-          Left = 7
-          Top = 171
-          Width = 274
-          Height = 78
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 3
-          object Label25: TLabel
-            Left = 14
-            Top = 3
-            Width = 36
-            Height = 13
-            Caption = 'H.Dep.'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clBlue
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object Label26: TLabel
-            Left = 171
-            Top = 3
-            Width = 36
-            Height = 13
-            Caption = 'H.Prel.'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clBlue
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = [fsBold]
-            ParentFont = False
-          end
-          object eHDep: TEdit
-            Left = 76
-            Top = 3
-            Width = 58
-            Height = 21
-            Alignment = taRightJustify
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 0
-          end
-          object eHprel: TEdit
-            Left = 213
-            Top = 3
-            Width = 58
-            Height = 21
-            Alignment = taRightJustify
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -11
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            ParentFont = False
-            TabOrder = 1
-          end
-          object ckDisabilitaPiano: TCheckBox
-            Left = 3
-            Top = 30
-            Width = 134
-            Height = 25
-            Caption = 'Disabilita Piano'
-            TabOrder = 2
-            Visible = False
-            OnClick = ckDisabilitaPosClick
-          end
-          object ckPianoRiservato: TCheckBox
-            Left = 143
-            Top = 30
-            Width = 222
-            Height = 25
-            Caption = 'Piano Riservato'
-            TabOrder = 3
-            Visible = False
-            OnClick = cPrenotataPosClick
-          end
-        end
         object cbbTipoPosizione: TComboBox
-          Left = 98
-          Top = 46
-          Width = 186
+          Left = 112
+          Top = 21
+          Width = 137
           Height = 24
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -995,100 +1320,933 @@ inherited fCorsia: TfCorsia
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 4
-          Visible = False
+          TabOrder = 1
           OnChange = cbTipoChange
           Items.Strings = (
             '')
         end
-        object edtRifOrdine: TEdit
-          Left = 290
-          Top = 48
-          Width = 176
-          Height = 21
+      end
+    end
+    object Panel5: TPanel
+      Left = 1
+      Top = 287
+      Width = 722
+      Height = 472
+      Align = alLeft
+      BevelOuter = bvLowered
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 2
+      object Label5: TLabel
+        Left = 6
+        Top = 39
+        Width = 65
+        Height = 19
+        Caption = 'Fila N'#176' :'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lbNumCorsia: TLabel
+        Left = 87
+        Top = 39
+        Width = 131
+        Height = 19
+        Caption = 'Numero Corsia :'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label7: TLabel
+        Left = 224
+        Top = 39
+        Width = 87
+        Height = 19
+        Caption = 'Nome Fila:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 359
+        Top = 39
+        Width = 131
+        Height = 19
+        Caption = 'Numero Corsia :'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label11: TLabel
+        Left = 571
+        Top = 39
+        Width = 12
+        Height = 19
+        Caption = 'A'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label12: TLabel
+        Left = 515
+        Top = 39
+        Width = 46
+        Height = 19
+        Caption = 'Zona:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lbl2: TLabel
+        Left = 20
+        Top = 222
+        Width = 66
+        Height = 16
+        Caption = 'Annotazioni'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Panel9: TPanel
+        Left = 1
+        Top = 1
+        Width = 720
+        Height = 32
+        Align = alTop
+        Caption = 'Dati Corsia'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+      end
+      object Panel10: TPanel
+        Left = 1
+        Top = 410
+        Width = 720
+        Height = 61
+        Align = alBottom
+        TabOrder = 1
+        object BitBtn1: TBitBtn
+          AlignWithMargins = True
+          Left = 592
+          Top = 4
+          Width = 124
+          Height = 53
+          Align = alRight
+          Caption = 'Successiva'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Glyph.Data = {
+            360C0000424D360C000000000000360000002800000020000000200000000100
+            180000000000000C0000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFCFCD9D6D4FFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE6E3150D0A6561
+            5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE5E2E01809070000
+            007B7876FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E32C1D1A0600
+            0000000077726FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180A00
+            0017060000000075726FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            00200D001606000000007B7978FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            001C0B001F0C001404000000007A7572FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            001D0B001B0A001F0C00150300000000747270FFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            001D0B001B0A001B0A001F0C00170600000000797574FFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            001D0B001B0A001B0A001B0A001E0B00180500000000635E5AFBFAFAFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            001D0B001B0A001B0A001B0A001E0B00180500000000635E5AFBFAFAFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            001D0B001B0A001B0A001F0C00170600000000797574FFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            001D0B001B0A001F0C00150300000000747270FFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            001C0B001F0C001404000000007A7572FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180800
+            00200D001606000000007B7978FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E3281A180A00
+            0017060000000075726FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE8E5E32C1D1A0600
+            0000000077726FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE5E2E01809070000
+            007B7876FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE6E3150D0A6561
+            5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDFCFCD9D6D4FFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          Layout = blGlyphRight
+          ParentFont = False
+          Spacing = 3
+          TabOrder = 0
+          WordWrap = True
+          OnClick = BitBtn1Click
+        end
+        object BitBtn3: TBitBtn
+          AlignWithMargins = True
+          Left = 142
+          Top = 4
+          Width = 140
+          Height = 53
+          Align = alLeft
+          Caption = 'Svuota Corsia'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Glyph.Data = {
+            360C0000424D360C000000000000360000002800000020000000200000000100
+            180000000000000C0000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4F2FD8883E77D76E4847DE6837DE6837D
+            E6837DE6837DE6837DE6837DE6837DE6837DE6837DE6837DE6847DE67D76E488
+            83E7F4F2FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE7E3FB0900CE0000C60000CC0000CC0000
+            CC0000CC0000CC0000CC0000CC0000CC0000CC0000CC0000CC0000CC0000C609
+            00CEE7E3FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2614D40800CD2109D21F08D22209
+            D32109D21F08D21F08D21E08D21F08D22008D21E07D21F08D22109D20800CD26
+            14D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD220CD31E07D20200
+            CC0600CD200AD2200AD2200AD22109D20000CC0600CD240BD3200BD20900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CE1D09D2200AD23E33
+            D9291FD40200CC2009D32008D20000C95951DF695DE10D03CF210AD30900CE26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40A00CE1200CF1910D1F3EC
+            FEF7F4FD4B45DC0000CA0000CA4946DAFFFFFFB8B6F10000CA2209D30A00CE26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD2109D30600CC5253
+            DBFFFFFFFFFFFF2B26D32B26D3FFFFFFFFFFFF403FD80600CD220BD30900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD220BD31E07D20000
+            C84F4ADCF5F3FDECE8FBECE8FBF5F3FD4F4ADC0000C92008D3200AD20900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD200AD2200BD32007
+            D30000C4746EE3FFFFFFFFFFFF746EE30000C42007D3200BD2200AD20900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD200AD22209D20000
+            CA3C35D8E2DFF9F7F4FEF7F4FEE2DFF93D35D80000C92009D2210BD20900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CD210BD30901CD332F
+            D5FBFAFFFFFFFF3F3CD83E3BD8FFFFFFFFFEFF3939D60500CC230BD30900CD26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40A00CE230AD30000CAB2AF
+            F1FFFFFF5C5ADE0000C90000C95C58DFFFFFFFF5EEFD150DD01201CF0B00CE26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2615D40900CE210AD30901CE7B72
+            E56D67E20000C91E07D21F07D20000CB4039D85B53DE210DD31B07D10A00CE26
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAE7FB2715D40900CD200AD2230AD30B00
+            CE0000CC1D05D2200AD2200AD21F08D20000CC0000CB1E07D2230CD30900CD27
+            15D4EAE7FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6E3FB200ED30A00CE220AD2210AD31C06
+            D21F08D2210AD32009D22009D22009D2230AD3230AD32009D2220AD20A00CE20
+            0ED3E6E3FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1EEFC1A0DD10000C50000CB0000CB0000
+            CB0000CB0000CB0000CB0000CB0000CB0000CB0000CB0000CB0000CB0000C51A
+            0DD1F1EEFCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFADA9EF5B53DC675DE0685EE0685E
+            E0685EE0685EE0685EE0685EE0685EE0685EE0685EE0685EE0675DE05B53DCAD
+            A9EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          ParentFont = False
+          Spacing = 3
+          TabOrder = 1
+          WordWrap = True
+          OnClick = BitBtn3Click
+        end
+        object BitBtn4: TBitBtn
+          AlignWithMargins = True
+          Left = 432
+          Top = 4
+          Width = 154
+          Height = 53
+          Align = alRight
+          Caption = 'Applica modifiche'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Glyph.Data = {
+            360C0000424D360C000000000000360000002800000020000000200000000100
+            180000000000000C0000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9F6
+            F5FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFA2E28
+            265A5654FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5F3F14842400000
+            00000000706E6DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFAF7F646403F0000001300
+            001100000000006E6E6CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4644410000000F00000600
+            000900000F00000000006F6D6CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4F2F044413F000000090000080302C6C4
+            C2928D8C0000001200000000006F6E6DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFF9F8F7585350000000060000070403B5B1AFFFFF
+            FFFFFFFF7D78760000001100000000006F6E6EFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFCBC9C7000000000000000000B4B1AEFFFFFFFFFF
+            FFFFFFFFFFFFFF7877760000000E00000000006E6C6BFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFF0F0EF3F37340C0D0DBAB6B3FFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFF7977740000001000000000006E6D6CFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFF0F0DEDEDDFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFF7E7877000000130000000000706F6FFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7A78770000001000000000006E6D6BFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7875730000000F00000000006E
+            6B6AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7D787700000011000000
+            0000595756F7F5F4FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7A787600000000
+            00002F2A28EFEDECFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF65615F2A
+            2623F3F1EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA
+            F7F6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          ParentFont = False
+          Spacing = 3
+          TabOrder = 2
+          WordWrap = True
+          OnClick = BitBtn4Click
+        end
+        object BitBtn5: TBitBtn
+          AlignWithMargins = True
+          Left = 4
+          Top = 4
+          Width = 132
+          Height = 53
+          Align = alLeft
+          Caption = 'Precedente'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Glyph.Data = {
+            360C0000424D360C000000000000360000002800000020000000200000000100
+            180000000000000C0000120B0000120B00000000000000000000FFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD9D6D4FDFCFCFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF65615F150D0AEAE6E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7B7876000000180907E5E2E0FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFF77726F0000000600002C1D1AE8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFF75726F0000001706000A0000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF7B7978000000160600200D00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFF7A75720000001404001F0C001C0B00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FF7472700000001503001F0C001B0A001D0B00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7975
+            740000001706001F0C001B0A001B0A001D0B00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFAFA635E5A0000
+            001805001E0B001B0A001B0A001B0A001D0B00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFAFA635E5A0000
+            001805001E0B001B0A001B0A001B0A001D0B00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7975
+            740000001706001F0C001B0A001B0A001D0B00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FF7472700000001503001F0C001B0A001D0B00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFF7A75720000001404001F0C001C0B00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFF7B7978000000160600200D00080000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFF75726F0000001706000A0000281A18E8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFF77726F0000000600002C1D1AE8E5E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7B7876000000180907E5E2E0FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF65615F150D0AEAE6E3FFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD9D6D4FDFCFCFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          ParentFont = False
+          Spacing = 3
+          TabOrder = 3
+          WordWrap = True
+          OnClick = BitBtn5Click
+        end
+        object btDisabilitaPiani: TBitBtn
+          AlignWithMargins = True
+          Left = 288
+          Top = 4
+          Width = 140
+          Height = 53
+          Align = alLeft
+          Caption = 'Disabilita/Abilita piani '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          Spacing = 3
+          TabOrder = 4
+          WordWrap = True
+        end
+      end
+      object GroupBox1: TGroupBox
+        Left = 9
+        Top = 64
+        Width = 268
+        Height = 137
+        Caption = 'Stato Corsia'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+        object ckUsoPrel: TCheckBox
+          Left = 11
+          Top = 108
+          Width = 222
+          Height = 26
+          Caption = 'In uso Prelievo'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -11
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
+          OnClick = ckAbilitaClick
+        end
+        object ckUsoDep: TCheckBox
+          Left = 148
+          Top = 108
+          Width = 222
+          Height = 25
+          Caption = 'In uso deposito'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          OnClick = ckAbilitaClick
+        end
+        object ckAbilita: TCheckBox
+          Left = 11
+          Top = 15
+          Width = 144
+          Height = 25
+          Caption = 'Corsia Abilitata'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 2
+          OnClick = ckAbilitaClick
+        end
+        object ckPrenotata: TCheckBox
+          Left = 11
+          Top = 46
+          Width = 198
+          Height = 25
+          Caption = 'Corsia Riservata'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 3
+          OnClick = ckAbilitaClick
+        end
+        object ckPiena: TCheckBox
+          Left = 11
+          Top = 77
+          Width = 117
+          Height = 25
+          Caption = 'Corsia Piena'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 4
+          OnClick = ckAbilitaClick
+        end
+        object ckVuota: TCheckBox
+          Left = 148
+          Top = 77
+          Width = 111
+          Height = 25
+          Caption = 'Corsia Vuota'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
           TabOrder = 5
-          Visible = False
+          OnClick = ckAbilitaClick
+        end
+      end
+      object GroupBox2: TGroupBox
+        Left = 283
+        Top = 64
+        Width = 434
+        Height = 137
+        Caption = 'Settaggi'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 3
+        object Label9: TLabel
+          Left = 4
+          Top = 22
+          Width = 65
+          Height = 16
+          Caption = 'Tipo Corsia'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label10: TLabel
+          Left = 6
+          Top = 62
+          Width = 41
+          Height = 16
+          Caption = 'Priorit'#224
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
+        object cbTipo: TComboBox
+          Left = 94
+          Top = 23
+          Width = 323
+          Height = 24
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 0
           OnChange = cbTipoChange
+          Items.Strings = (
+            '')
         end
-        object eUDC: TEdit
-          Left = 98
-          Top = 76
-          Width = 87
-          Height = 21
+        object cbPriorita: TComboBox
+          Left = 94
+          Top = 56
+          Width = 89
+          Height = 27
           Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
+          Font.Color = clBlack
+          Font.Height = -16
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          ReadOnly = True
-          TabOrder = 6
-          Visible = False
+          TabOrder = 1
+          Items.Strings = (
+            '1'
+            '2'
+            '3'
+            '4'
+            '5'
+            '6'
+            '7'
+            '8'
+            '9'
+            '10'
+            '11'
+            '12'
+            '13'
+            '14'
+            '15'
+            '16')
         end
-        object Edit1: TEdit
-          Left = 98
-          Top = 103
-          Width = 87
-          Height = 21
+        object leNumUDC: TLabeledEdit
+          Left = 328
+          Top = 59
+          Width = 89
+          Height = 24
+          Alignment = taCenter
+          EditLabel.Width = 113
+          EditLabel.Height = 16
+          EditLabel.Caption = 'UDC Pieni in  Corsia'
+          EditLabel.Font.Charset = DEFAULT_CHARSET
+          EditLabel.Font.Color = clBlue
+          EditLabel.Font.Height = -13
+          EditLabel.Font.Name = 'Tahoma'
+          EditLabel.Font.Style = []
+          EditLabel.ParentFont = False
+          LabelPosition = lpLeft
+          ReadOnly = True
+          TabOrder = 2
+        end
+        object ckIgnoraOrdine: TCheckBox
+          Left = 3
+          Top = 101
+          Width = 222
+          Height = 25
+          Caption = 'Ignora posizione da Ordine'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -11
+          Font.Height = -13
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          ReadOnly = True
-          TabOrder = 7
-          Visible = False
+          TabOrder = 3
+          OnClick = ckAbilitaClick
         end
-        object Edit2: TEdit
-          Left = 290
-          Top = 103
-          Width = 87
-          Height = 21
+        object cbDepSelettivo: TCheckBox
+          Left = 296
+          Top = 101
+          Width = 121
+          Height = 25
+          Caption = 'Deposito Selettivo'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -11
+          Font.Height = -13
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          ReadOnly = True
-          TabOrder = 8
-          Visible = False
+          TabOrder = 4
+          OnClick = ckAbilitaClick
         end
-        object Edit3: TEdit
-          Left = 98
-          Top = 130
-          Width = 87
-          Height = 21
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
+      end
+      object GroupBox9: TGroupBox
+        Left = 272
+        Top = 280
+        Width = 425
+        Height = 89
+        Caption = 'GroupBox9'
+        TabOrder = 4
+        Visible = False
+        object lePesoTotale: TLabeledEdit
+          Left = 287
+          Top = 22
+          Width = 138
+          Height = 27
+          Alignment = taCenter
+          EditLabel.Width = 192
+          EditLabel.Height = 16
+          EditLabel.Caption = 'Total UDC Weight in Lane (lb) '
+          EditLabel.Font.Charset = DEFAULT_CHARSET
+          EditLabel.Font.Color = clBlue
+          EditLabel.Font.Height = -13
+          EditLabel.Font.Name = 'Tahoma'
+          EditLabel.Font.Style = [fsBold]
+          EditLabel.ParentFont = False
+          LabelPosition = lpLeft
           ReadOnly = True
-          TabOrder = 9
+          TabOrder = 0
         end
-        object editTabella: TEdit
-          Left = 290
-          Top = 130
-          Width = 87
-          Height = 21
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
+        object lePesoTotaleNoTara: TLabeledEdit
+          Left = 287
+          Top = 62
+          Width = 138
+          Height = 27
+          Alignment = taCenter
+          EditLabel.Width = 257
+          EditLabel.Height = 16
+          EditLabel.Caption = 'Total UDC Weight in Lane (No Tare) (lb) '
+          EditLabel.Font.Charset = DEFAULT_CHARSET
+          EditLabel.Font.Color = clBlue
+          EditLabel.Font.Height = -13
+          EditLabel.Font.Name = 'Tahoma'
+          EditLabel.Font.Style = [fsBold]
+          EditLabel.ParentFont = False
+          LabelPosition = lpLeft
           ReadOnly = True
-          TabOrder = 10
+          TabOrder = 1
         end
+      end
+      object edtAnnotazioni: TEdit
+        Left = 104
+        Top = 219
+        Width = 603
+        Height = 21
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        MaxLength = 99
+        ParentFont = False
+        TabOrder = 5
+        OnClick = ckAbilitaClick
       end
     end
   end
@@ -1096,7 +2254,7 @@ inherited fCorsia: TfCorsia
     Enabled = False
     Interval = 500
     OnTimer = Timer1Timer
-    Left = 770
-    Top = 144
+    Left = 50
+    Top = 328
   end
 end

@@ -7,6 +7,8 @@
 #include "DB.h"
 #include "DBImpianto.h"
 #include "main.h"
+#include "anagrafica_articoli.h"
+
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "MyShape"
@@ -17,7 +19,7 @@ AnsiString Zona;
 // ---------------------------------------------------------------------------
 __fastcall TfrZonaA1::TfrZonaA1(TComponent* Owner) : TFrame(Owner) {
     Zona = "A";
-    AbilitaConferma=1;
+    AbilitaConferma = 1;
 
 }
 
@@ -64,6 +66,8 @@ void TfrZonaA1::AggiornaDati() {
                     else {
                         Pan->Caption = "Pos." + IntToStr(j) + " - " + IntToStr(TabPosizioni[idx]["IDUDC"].ToIntDef(0));
                     }
+
+                    Pan->Hint = TabPosizioni[idx]["IDUDC"].ToIntDef(0);
                 }
                 if (!trovato)
                     idx++;
@@ -76,6 +80,7 @@ void __fastcall TfrZonaA1::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
     TPanel *Pan;
     Pan = (TPanel*) Sender;
     if (Pan != NULL) {
+        edIDArt->Text = Pan->Hint.ToIntDef(0);
         if (Button == mbLeft) {
             if (Pan->Color == clLime) {
                 dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 0);
@@ -91,13 +96,27 @@ void __fastcall TfrZonaA1::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
         }
         if (Button == mbRight) {
             if (Pan->Color == clWhite) {
-                 dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
+                dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
             }
-            else  if (Pan->Color == clYellow){
+            else if (Pan->Color == clYellow) {
                 dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 0, 1, dmDB->FilaPosizione(Pan->Tag));
             }
 
         }
     }
+}
+
+// ---------------------------------------------------------------------------
+void __fastcall TfrZonaA1::sbCercaClick(TObject *Sender)     {
+    FormAnagraficaArticoli->insert_produzione = true;
+    FormAnagraficaArticoli->edEdIDArt->Text = tDescArticolo->Text;
+    FormAnagraficaArticoli->ShowModal();
+    edIDArt->Text = MainForm->trova_udc;
+    tDescArticolo->Text = dmDB->TornaDescrizioneDaIDArticolo(StrToInt(edIDArt->Text));
+}
+
+// ---------------------------------------------------------------------------
+void __fastcall TfrZonaA1::edIDArtChange(TObject * Sender)      {
+    tDescArticolo->Text = dmDB->TornaDescrizioneDaIDArticolo(StrToInt(edIDArt->Text));
 }
 // ---------------------------------------------------------------------------

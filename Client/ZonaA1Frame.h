@@ -10,6 +10,7 @@
 #include "MyShape.h"
 #include "clientdata.h"
 #include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Buttons.hpp>
 
 // ---------------------------------------------------------------------------
 class TfrZonaA1 : public TFrame
@@ -25,10 +26,15 @@ __published: // IDE-managed Components
     TPanel *pnPosA5;
     TPanel *pnPosA6;
     TPanel *pnPosA7;
-    TListBox *ListBox1;
+    TPanel *Panel1;
     TLabel *Label1;
+    TSpeedButton *sbCerca;
+    TEdit *tDescArticolo;
+    TEdit *edIDArt;
 
     void __fastcall pnPosAMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+    void __fastcall sbCercaClick(TObject *Sender);
+    void __fastcall edIDArtChange(TObject *Sender);
 
 private: // User declarations
 

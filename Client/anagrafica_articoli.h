@@ -1,8 +1,8 @@
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 
 #ifndef anagrafica_articoliH
 #define anagrafica_articoliH
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 #include <Classes.hpp>
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
@@ -14,10 +14,12 @@
 #include <ExtCtrls.hpp>
 #include <Grids.hpp>
 #include <Buttons.hpp>
-//---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
 class TFormAnagraficaArticoli : public TForm
 {
-__published:	// IDE-managed Components
+__published: // IDE-managed Components
+
     TPanel *Panel1;
     TPanel *Panel3;
     TPanel *Panel4;
@@ -30,48 +32,49 @@ __published:	// IDE-managed Components
     TLabel *lb04;
     TLabel *Label6;
     TLabel *Tot;
-    TCheckBox *CheckBox1;
-    TShape *Shape1;
-    TColorDialog *ColorDialog1;
-    TEdit *edNome;
-	TPanel *Panel2;
-	TPanel *Panel6;
-	TBitBtn *BitBtn8;
-	TBitBtn *BitBtn3;
-	TBitBtn *BitBtn2;
-	TBitBtn *BitBtn1;
+    TEdit *edCodArt;
+    TPanel *Panel2;
+    TPanel *Panel6;
+    TBitBtn *BitBtn8;
+    TBitBtn *BitBtn3;
+    TBitBtn *BitBtn2;
+    TBitBtn *BitBtn1;
     TEdit *edFase;
     TLabel *lb03;
-    TEdit *edCodice;
+    TEdit *edDescrizione;
     TLabel *lb02;
     TEdit *edEdIDArt;
     TLabel *lb01;
     TBitBtn *btInsInPos;
+
     void __fastcall DBGrid1DblClick(TObject *Sender);
     void __fastcall BitBtn4Click(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall BitBtn3Click(TObject *Sender);
     void __fastcall FormDeactivate(TObject *Sender);
     void __fastcall DBGrid1DrawColumnCell(TObject *Sender,
-          const TRect &Rect, int DataCol, TColumn *Column,
-          TGridDrawState State);
+        const TRect &Rect, int DataCol, TColumn *Column,
+        TGridDrawState State);
     void __fastcall FormActivate(TObject *Sender);
     void __fastcall CheckBox1Click(TObject *Sender);
     void __fastcall Edit1Change(TObject *Sender);
-    void __fastcall Shape1MouseUp(TObject *Sender, TMouseButton Button,
-          TShiftState Shift, int X, int Y);
     void __fastcall BitBtn1Click(TObject *Sender);
     void __fastcall BitBtn2Click(TObject *Sender);
-	void __fastcall edEdIDArtChange(TObject *Sender);
     void __fastcall ADOQuery1AfterScroll(TDataSet *DataSet);
     void __fastcall btInsInPosClick(TObject *Sender);
-private:	// User declarations
-public:		// User declarations
-	__fastcall TFormAnagraficaArticoli(TComponent* Owner);
-	int insert_produzione,IdArticolo, artsel,idartudc;
-	AnsiString ProductName ;
+    void __fastcall edEdIDArtExit(TObject *Sender);
+
+private: // User declarations
+        public : // User declarations
+    __fastcall TFormAnagraficaArticoli(TComponent* Owner);
+
+    void Filtra();
+
+    int insert_produzione, IdArticolo, artsel, idartudc;
+    AnsiString ProductName;
 };
-//---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
 extern PACKAGE TFormAnagraficaArticoli *FormAnagraficaArticoli;
-//---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 #endif

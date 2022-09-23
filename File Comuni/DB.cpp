@@ -403,7 +403,7 @@ void __fastcall TdmDB::TimerConnectTimer(TObject *Sender) {
             AggiornaNomePiani();
             AggiornaTabPorte();
             dmDB->AggiornaTabTipoArticoli();
-            AggiornaTabAnagrafica();
+            // AggiornaTabAnagrafica();
             dmDB->AggiornaTabTipologiaCorsia();
             dmDB->AggiornaTabTipoUdc();
             dmDB->AggiornaStrutturaZone();
@@ -2656,9 +2656,11 @@ void TdmDB::AggiornaTabTipologiaCorsia() {
 }
 
 void TdmDB::AggiornaTabAnagrafica() {
-    ///  CaricaTabellaK("AnagraficaArticoliCarne order by IdArticolo", "IdArticolo", TabAnagraficaArticoliCarne);
-    ///  CaricaTabellaK("AnagraficaFornitori order by IdFornitore", "IdFornitore", TabAnagraficaFornitori);
-    ///  CaricaTabellaK("AnagraficaArticoliVasche order by IdArticolo", "IdArticolo", TabAnagraficaArticoliSalami);
+    CaricaTabellaK("Articoli order by IdArticolo", "IdArticolo", TabArticoli);
+}
+
+AnsiString TdmDB::DescrizioneArticolo(int IDArticolo) {
+    return TabArticoli[IntToStr(IDArticolo)]["DESCRIZIONE"];
 }
 
 AnsiString TdmDB::NomePosizione(int pos) {
@@ -3645,7 +3647,7 @@ int TdmDB::GeneraCentroMissione(TCentroMissione CentroMis) {
         IdArtUdc = UdcMissione.Articolo.IDArticolo;
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = ADOConnection1;
-        if ((CentroMis.posprel > 0) || (CentroMis.posdep > 0)) {
+        if ((CentroMis.posprel > 0) || (CentroMis.posdep > 0) || (CentroMis.ZonaPrelievo != "") || (CentroMis.ZonaDeposito != "")) {
             ADOQuery = new TADOQuery(NULL);
             ADOQuery->Connection = ADOConnection1;
             strsql.printf
@@ -3675,6 +3677,10 @@ int TdmDB::GeneraCentroMissione(TCentroMissione CentroMis) {
                 );
             ADOQuery->SQL->Text = strsql;
             res = ADOQuery->ExecSQL();
+            if (res > 0) {
+                dmDB->SettaPosSelezionata(CentroMis.posprel, 1, 0);
+                dmDB->SettaPosSelezionata(CentroMis.posdep, 1, 0);
+            }
             strsql = "Centro missione creata , result : " + IntToStr(res);
         }
         else {
@@ -5012,5 +5018,30 @@ int TdmDB::InsertArticoli(TArticoli &Articoli) {
     }
     delete ADOQuery;
     aggiorna_tab_posizioni_locale = 1;
+    return res;
+}
+
+AnsiString TdmDB::TornaDescrizioneDaIDArticolo(int IDArticolo) {
+    AnsiString stringa;
+    TADOQuery *ADOQuery;
+    AnsiString res = "";
+    try {
+        if (!dmDB->ADOConnection1->Connected)
+            return res;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        stringa = "Select descrizione from ARTicoli where IDArticolo=" + IntToStr(IDArticolo);
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Text = stringa;
+        ADOQuery->Open();
+        if (ADOQuery->RecordCount) {
+            res = ADOQuery->FieldByName("descrizione")->AsString;
+
+        }
+        ADOQuery->Close();
+        delete ADOQuery;
+    }
+    catch (...) {
+    }
     return res;
 }

@@ -59,6 +59,8 @@ __published: // IDE-managed Components
     TTabSheet *tsZonaEDest;
     TTabSheet *tsZonaFPrel;
     TTabSheet *tsZonaFDest;
+    TLabel *Label1;
+    TComboBox *cbPriorita;
 
     void __fastcall TimerRefTimer(TObject *Sender);
     void __fastcall BitBtnCloseClick(TObject *Sender);

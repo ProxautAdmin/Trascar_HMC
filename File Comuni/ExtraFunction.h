@@ -62,7 +62,7 @@ __published: // IDE-managed Components
     int VerificaUtentePerZona(int zonaint) ;
     int Constrain(int vval, int mmin, int mmax);
     bool IsNum(char c) ;
-    void ComboScelte(TComboBox * tcbCombo, int numero);
+    void ComboScelte(TComboBox * tcbCombo, int numero, int def, int start=0);
 
 
 };

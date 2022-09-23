@@ -19,9 +19,9 @@ class TfCorsia : public TMDIChild
 {
 __published: // IDE-managed Components
 
-    TPanel *MainPanel;
-    TPanel *PanelScaffale;
-    TPanel *PanelPosizione;
+    TPanel *Panel1;
+    TPanel *Panel2;
+    TPanel *Panel6;
     TPanel *Panel7;
     TLabel *Label1;
     TLabel *Label2;
@@ -30,7 +30,11 @@ __published: // IDE-managed Components
     TPanel *Panel8;
     TBitBtn *BitBtnChange;
     TBitBtn *BitBtn2;
-    TPanel *PanelFila;
+    TPanel *Panel5;
+    TLabel *Label5;
+    TLabel *lbNumCorsia;
+    TLabel *Label7;
+    TLabel *Label8;
     TPanel *Panel9;
     TPanel *Panel10;
     TBitBtn *BitBtn1;
@@ -56,43 +60,70 @@ __published: // IDE-managed Components
     TGroupBox *GroupBox3;
     TCheckBox *ckDisabilitaPos;
     TCheckBox *cPrenotataPos;
+    TGroupBox *GroupBox4;
+    TLabel *Label13;
+    TLabel *Label14;
+    TEdit *eUDC;
     TLabeledEdit *leNumUDC;
+    TPanel *Panel4;
+    TPanel *Panel3;
+    TfrPosUDC *frPosUDC1;
+    TLabel *Label19;
+    TGroupBox *GroupBox5;
+    TEdit *ePesoAttuale;
+    TLabel *Label18;
+    TEdit *ePesoBase;
+    TLabel *Label35;
+    TGroupBox *GroupBox6;
+    TGroupBox *GroupBox7;
+    TComboBox *cbTipoUDC;
+    TLabel *Label23;
+    TEdit *eTara;
+    TEdit *eCaloKg;
+    TEdit *eCaloPerc;
+    TLabel *Label22;
+    TLabel *Label24;
+    TSpeedButton *SpeedButton2;
     TGroupBox *GroupBox8;
     TLabel *Label25;
     TLabel *Label26;
     TEdit *eHDep;
     TEdit *eHprel;
+	TSpeedButton *SpeedButton3;
+    TEdit *eIdArticolo;
+    TLabel *Label16;
+    TLabel *Label21;
+    TEdit *eIDArtUDC;
+    TEdit *eNome;
+    TLabel *Label15;
+    TEdit *eCodeArtUDC;
+    TLabel *Label20;
+    TEdit *eUltimoUDC;
+    TLabel *Label27;
+    TLabel *Label28;
+    TSpeedButton *sbArticolo;
     TLabel *Label17;
     TLabel *lbPiano;
-    TLabel *lbnomepiano;
-    TLabel *Label30;
-    TComboBox *cbbTipoPosizione;
-    TLabel *lbl1;
-    TCheckBox *ckDisabilitaPiano;
-    TCheckBox *ckPianoRiservato;
-    TBitBtn *btDisabilitaPiani;
-    TEdit *edtRifOrdine;
-    TEdit *edtAnnotazioni;
-    TLabel *lbl2;
-    TCheckBox *ckIgnoraOrdine;
-    TCheckBox *cbDepSelettivo;
-    TPanel *PanelData;
-    TBitBtn *BitBtn7;
-    TEdit *eUDC;
-    TLabel *Label13;
-    TLabel *Label14;
-    TEdit *Edit1;
-    TLabel *Label15;
-    TEdit *Edit2;
-    TEdit *Edit3;
-    TLabel *Label16;
-    TEdit *editTabella;
-    TLabel *Label18;
-    TLabel *Label7;
-    TLabel *Label8;
-    TLabel *Label5;
-    TLabel *Label6;
-    TBitBtn *btnModificaAltezza;
+    TEdit *edCodUDC;
+	TLabel *lbnomepiano;
+	TLabel *Label30;
+	TGroupBox *GroupBox9;
+	TLabeledEdit *lePesoTotale;
+	TLabeledEdit *lePesoTotaleNoTara;
+	TCheckBox *ckDisabilitaPiano;
+	TCheckBox *ckPianoRiservato;
+	TBitBtn *btDisabilitaPiani;
+	TCheckBox *ckIgnoraOrdine;
+	TCheckBox *cbDepSelettivo;
+	TEdit *edtAnnotazioni;
+	TLabel *lbl2;
+	TLabel *lbl3;
+	TComboBox *cbbArtUDC;
+	TGroupBox *GroupBox10;
+	TEdit *edtRifOrdine;
+	TComboBox *cbbTipoPosizione;
+	TLabel *lbl1;
+	TLabel *Label29;
 
     void __fastcall frScaffale1MyShape4MouseUp(TObject *Sender, TMouseButton Button,
         TShiftState Shift, int X, int Y);
@@ -107,33 +138,24 @@ __published: // IDE-managed Components
     void __fastcall BitBtn6Click(TObject *Sender);
     void __fastcall cbTipoChange(TObject *Sender);
     void __fastcall ckAbilitaClick(TObject *Sender);
+    void __fastcall SpeedButton2Click(TObject *Sender);
     void __fastcall ckDisabilitaPosClick(TObject *Sender);
-    void __fastcall SpeedButton3Click(TObject *Sender);
+	void __fastcall SpeedButton3Click(TObject *Sender);
     void __fastcall cPrenotataPosClick(TObject *Sender);
     void __fastcall sbArticoloClick(TObject *Sender);
-    void __fastcall btDisabilitaPianiClick(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
-    void __fastcall BitBtn7Click(TObject *Sender);
-    void __fastcall btnModificaAltezzaClick(TObject *Sender);
+
+
 
 private: // User declarations
-
-    TRecordList TabPosizioni;
-    TRecordList TabCorsie;
-    TRecordList TabPiani;
-    TIndexList TabUDC;
-
-public: // User declarations
-
+        public : // User declarations
     __fastcall TfCorsia(TComponent* Owner);
     void VisualizzaPosizioneUDC();
-    void CaricaDB();
+    void CalcolaPesoTotale();
 
-    int statodisabilita, statoprenotata, pianosel, pos;
+
+    int  statodisabilita, statoprenotata, pianosel;
     bool change_dati_corsia, change_dati_pos, aggiornamento, change_dati_udc, cambiocheck;
-
-    int count_inizio;
-    int TopPiano;
 };
 
 // ---------------------------------------------------------------------------

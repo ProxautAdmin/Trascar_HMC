@@ -6,7 +6,6 @@ inherited fGestAGVMidi: TfGestAGVMidi
   KeyPreview = True
   OnActivate = FormActivate
   OnDestroy = FormDestroy
-  ExplicitTop = -90
   ExplicitWidth = 1258
   ExplicitHeight = 714
   PixelsPerInch = 96
@@ -1033,8 +1032,25 @@ inherited fGestAGVMidi: TfGestAGVMidi
         Width = 185
         Height = 320
         Align = alRight
-        Caption = 'pnOptionPrel'
         TabOrder = 1
+        ExplicitLeft = 940
+        ExplicitTop = -3
+        object Label1: TLabel
+          Left = 56
+          Top = 112
+          Width = 51
+          Height = 19
+          Caption = 'Priorita'
+        end
+        object cbPriorita: TComboBox
+          Left = 24
+          Top = 147
+          Width = 145
+          Height = 27
+          AutoDropDown = True
+          DropDownCount = 9
+          TabOrder = 0
+        end
       end
     end
     object PanelDest: TPanel
@@ -1119,18 +1135,18 @@ inherited fGestAGVMidi: TfGestAGVMidi
   object TimerRef: TTimer
     Enabled = False
     OnTimer = TimerRefTimer
-    Left = 1016
-    Top = 161
+    Left = 1064
+    Top = 81
   end
   object Query: TADOQuery
     Connection = dmDB.ADOConnection1
     Parameters = <>
-    Left = 976
-    Top = 120
+    Left = 968
+    Top = 80
   end
   object DataSource1: TDataSource
     DataSet = Query1
-    Left = 1064
+    Left = 1048
     Top = 128
   end
   object Query1: TADOQuery

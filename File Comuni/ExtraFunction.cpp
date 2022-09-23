@@ -659,15 +659,14 @@ bool TdmExtraFunction::IsNum(char c) {
     return ((c >= '0') && (c <= '9'));
 }
 
-void TdmExtraFunction::ComboScelte(TComboBox * tcbCombo, int numero) {
+void TdmExtraFunction::ComboScelte(TComboBox * tcbCombo, int numero, int def, int start) {
     // riempio codice articolo combo box
     TComboBox *cbCombo;
-    int valoredef = numero;
     cbCombo = tcbCombo;
     cbCombo->Items->Clear();
 
-    for (int j = 0; j <= numero; j++) {
+    for (int j = start; j <= numero; j++) {
         cbCombo->Items->Append(IntToStr(j));
     }
-    cbCombo->Text = valoredef;
+    cbCombo->Text = def;
 }

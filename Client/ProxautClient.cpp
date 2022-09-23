@@ -4,39 +4,40 @@
 #pragma hdrstop
 #include <tchar.h>
 // ---------------------------------------------------------------------------
+USEFORM("tipologia.cpp", FormTipologia);
 USEFORM("stato_pos.cpp", fCorsia);
 USEFORM("SocketComunicazioneClient.cpp", SocketDataModule); /* TDataModule: File Type */
-USEFORM("selectAgvframe.cpp", frSelectAgv); /* TFrame: File Type */
-USEFORM("tipologia.cpp", FormTipologia);
+USEFORM("UDCDuplicati.cpp", FormUDCDuplicati);
+USEFORM("ZonaA2Frame.cpp", frZonaA2); /* TFrame: File Type */
 USEFORM("ZonaA1Frame.cpp", frZonaA1); /* TFrame: File Type */
 USEFORM("UDClist.cpp", FormUDCList);
-USEFORM("UDCDuplicati.cpp", FormUDCDuplicati);
+USEFORM("selectAgvframe.cpp", frSelectAgv); /* TFrame: File Type */
 USEFORM("pos_UDC.cpp", frPosUDC); /* TFrame: File Type */
 USEFORM("PosPrelievoPLC.cpp", FormPosPrelPLC);
 USEFORM("PosDepositoPLC.cpp", FormPosDepPLC);
 USEFORM("segnaliBaia.cpp", fSegnaliBaia);
 USEFORM("SceltaUDC.cpp", FormSceltaUDC);
-USEFORM("ZonaA2Frame.cpp", frZonaA2); /* TFrame: File Type */
 USEFORM("..\File Comuni\DBImpianto.cpp", dmDBImpianto); /* TDataModule: File Type */
 USEFORM("..\File Comuni\DB.cpp", dmDB); /* TDataModule: File Type */
 USEFORM("..\File Comuni\dmFunzioniComuniClientServer.cpp", dmFunzioni); /* TDataModule: File Type */
 USEFORM("..\File Comuni\login.cpp", FormLogin);
 USEFORM("..\File Comuni\ExtraFunction.cpp", dmExtraFunction); /* TDataModule: File Type */
+USEFORM("ZonaIFrame.cpp", frZonaI); /* TFrame: File Type */
 USEFORM("ZonaDFrame.cpp", frZonaD); /* TFrame: File Type */
 USEFORM("ZonaCFrame.cpp", frZonaC); /* TFrame: File Type */
 USEFORM("ZonaBFrame.cpp", frZonaB); /* TFrame: File Type */
 USEFORM("ZonaEFrame.cpp", frZonaE); /* TFrame: File Type */
-USEFORM("ZonaIFrame.cpp", frZonaI); /* TFrame: File Type */
-USEFORM("ZonaFFrame.cpp", frZonaF); /* TFrame: File Type */
+USEFORM("ZonaHFrame.cpp", frZonaH); /* TFrame: File Type */
 USEFORM("ZonaGFrame.cpp", frZonaG); /* TFrame: File Type */
-USEFORM("PorteFumo.cpp", FormStatusPorteFumo);
+USEFORM("ZonaFFrame.cpp", frZonaF); /* TFrame: File Type */
+USEFORM("configCBFrame.cpp", frCB); /* TFrame: File Type */
 USEFORM("config.cpp", frConfig);
 USEFORM("Chiusura.cpp", ChiusuraForm);
-USEFORM("ChildWin.cpp", MDIChild);
-USEFORM("configCBFrame.cpp", frCB); /* TFrame: File Type */
+USEFORM("DataExchange.cpp", DataForm);
+USEFORM("frame_info.cpp", FrameInfo); /* TFrame: File Type */
 USEFORM("DBExtra.cpp", fDBExtra);
 USEFORM("DBClient.cpp", dmDBClient); /* TDataModule: File Type */
-USEFORM("DataExchange.cpp", DataForm);
+USEFORM("ChildWin.cpp", MDIChild);
 USEFORM("allarmi.cpp", fAllarmi);
 USEFORM("AGVFrameL.cpp", frAgvL); /* TFrame: File Type */
 USEFORM("AGV.cpp", fAGV);
@@ -44,13 +45,13 @@ USEFORM("AllarmiAttivi.cpp", FormAllarmiAttivi);
 USEFORM("CentroMissioni.cpp", fCentroMissioni);
 USEFORM("Batterie.cpp", fBatterie);
 USEFORM("anagrafica_articoli.cpp", FormAnagraficaArticoli);
-USEFORM("frame_info.cpp", FrameInfo); /* TFrame: File Type */
+USEFORM("MSG.cpp", MSGForm);
 USEFORM("missioni.cpp", fMissioni);
 USEFORM("Main.cpp", MainForm);
-USEFORM("log.cpp", fLog);
-USEFORM("MSG.cpp", MSGForm);
-USEFORM("port.cpp", FormPortStatus);
 USEFORM("Password.cpp", PasswordDlg);
+USEFORM("PorteFumo.cpp", FormStatusPorteFumo);
+USEFORM("port.cpp", FormPortStatus);
+USEFORM("log.cpp", fLog);
 USEFORM("GestMissioni.cpp", dmGestMissioni); /* TDataModule: File Type */
 USEFORM("GestAGVMidi.cpp", fGestAGVMidi);
 USEFORM("frame_modulo.cpp", FrameModulo); /* TFrame: File Type */
@@ -58,7 +59,6 @@ USEFORM("GestUser.cpp", FrmGestUser);
 USEFORM("ins_Utenti.cpp", FrmInsUtenti);
 USEFORM("ins_UDC.cpp", FormInsUDC);
 USEFORM("ins_MssioniWMS.cpp", FIns_MissioniWMS);
-USEFORM("ZonaHFrame.cpp", frZonaH); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -87,6 +87,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
          Application->CreateForm(__classid(TFormUDCList), &FormUDCList);
          Application->CreateForm(__classid(TFrmGestUser), &FrmGestUser);
          Application->CreateForm(__classid(TFormInsUDC), &FormInsUDC);
+         Application->CreateForm(__classid(TFormAnagraficaArticoli), &FormAnagraficaArticoli);
          Application->Run();
     }
     catch (Exception &exception)

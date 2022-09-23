@@ -62,6 +62,8 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
     PanelPrel->Height = gbMain->Height / 2;
     PanelPrel->Top = 0;
     PanelPrel->Left = 0;
+    dmExtraFunction->ComboScelte(cbPriorita, 9, 1,1)    ;
+
 
     for (int i = 1; i <= 2; i++) {
         // A1
@@ -438,7 +440,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         CentroMis.TipoMissione = 0;
         CentroMis.CodTipoMovimento = 0;
         CentroMis.CodTipoMissione = 0;
-        CentroMis.Priorita = 3;
+        CentroMis.Priorita = cbPriorita->Text.ToIntDef(1);
         CentroMis.Agv = 1;
         CentroMis.IDUDC = dmDB->RitornaUDCdaPosPiano(CentroMis.posprel, CentroMis.pianoprel);
         CentroMis.CorsiaDeposito = "";

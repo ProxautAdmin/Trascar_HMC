@@ -147,13 +147,12 @@
             <DependentOn>AllarmiAttivi.h</DependentOn>
             <BuildOrder>23</BuildOrder>
         </CppCompile>
-        <None Include="anagrafica_articoli.cpp">
-            <Exclude>True</Exclude>
+        <CppCompile Include="anagrafica_articoli.cpp">
             <Form>FormAnagraficaArticoli</Form>
             <FormType>dfm</FormType>
             <DependentOn>anagrafica_articoli.h</DependentOn>
             <BuildOrder>56</BuildOrder>
-        </None>
+        </CppCompile>
         <CppCompile Include="Batterie.cpp">
             <Form>fBatterie</Form>
             <FormType>dfm</FormType>

@@ -123,7 +123,7 @@ void __fastcall TfCentroMissioni::NMisCheckClick(TObject *Sender)
     if ((CheckBox5->Checked) && (Edit1->Text.ToIntDef(0) > 0)) {
         filter = filter + " and IdUDC =" + Edit1->Text;
     }
-        if (FilterOnDateFrom->Checked) {
+    if (FilterOnDateFrom->Checked) {
         DecodeDate(DaData->Date, Year, Month, Day);
         str = DateToStr(DaData->Date) + " " + TimeToStr(DaOra->Time);
         filter = filter + " and generata >= '" + FormatDateTime(MainForm->format_data_ora_datatbase, StrToDateTime(str)) + "'";
@@ -170,14 +170,26 @@ void __fastcall TfCentroMissioni::BitBtn2Click(TObject *Sender)
 
 void __fastcall TfCentroMissioni::btDelRigaClick(TObject *Sender) {
     AnsiString sqlstring;
-
-    QueryDel->Close();
-    QueryDel->SQL->Clear();
-    sqlstring = "delete from centromissioni where ID=" + Query1->FieldByName("ID")->AsString;
-    QueryDel->SQL->Append(sqlstring);
-    QueryDel->ExecSQL();
-    QueryDel->Close();
-    FormActivate(Sender);
+    int id, posprel, posdep;
+    // cancello preontazioni
+    id = Query1->FieldByName("ID")->AsInteger;
+    posprel = Query1->FieldByName("posprel")->AsInteger;
+    posdep = Query1->FieldByName("posdep")->AsInteger;
+    // cancello missione
+    try {
+        QueryDel->Close();
+        QueryDel->SQL->Clear();
+        sqlstring = "delete from centromissioni where ID=" + Query1->FieldByName("ID")->AsString;
+        QueryDel->SQL->Append(sqlstring);
+        QueryDel->ExecSQL();
+        dmDB->LogMsg("Eliminato CM ID  " + IntToStr(id) );
+        QueryDel->Close();
+        dmDB->SettaPosSelezionata(posprel, 0, 0);
+        dmDB->SettaPosSelezionata(posdep, 0, 0);
+        FormActivate(Sender);
+    }
+    catch (...) {
+    }
 
 }
 // ---------------------------------------------------------------------------
