@@ -261,9 +261,9 @@ public:
 	int all;
 	AnsiString imgfile_agv[8]; // come N_Carrelli
 
-	AnsiString PWD, RobotAddress;
-	int baiaformSegnali, TouchPanel, stationnumber, EnableManuals, countwatchdog, actual, prev, num_stazioni;
-	bool formbaiaattivo, forzature_attive;
+	AnsiString PWD;
+	int baiaformSegnali, TouchPanel, countwatchdog, actual, prev;
+	bool  forzature_attive;
 	AnsiString msg, timestr, NomeClient, format_data_ora_datatbase;
 	int tempo_carica, init_mappa, tempo_carica_batt_bassa, percentuale_batt_bassa, percentuale_batt_ok, poscb;
 	int zoom, count_inizio, alarmmissioni, chiusura_applicazione, num_pallet_minimi, tempo_pallet, count_cb, count_forzature;
@@ -273,9 +273,9 @@ public:
 	// variabili per zoom e selezione
 	int agvdaspostare, Contatore, x1, x2, y1, y2, Contatoresel, x1sel, x2sel, y1sel, y2sel, xmouse, ymouse, countmousemove, countwheel;
 	int widthextend, heightextend, ultimapospassata, ridisegnapalsel;
-	int invia_richiesta_simulazione, spostaframe, aggiornamappa, aggiornaagv, h_corsia[5], quota_dep_terra, offset_dep, pos_mappa_no_db[4], num_pos_no_database;
+	int invia_richiesta_simulazione, spostaframe, aggiornamappa, aggiornaagv, h_corsia[5],  num_pos_no_database;
 	int aggiorna_stato_pos, prelievo_missione_manuale, count_aggiorna_mappa_client;
-	int trova_udc, count_trova_udc;
+	int trova_udc, trova_idarticolo;
 	bool ret, mousedown, retsel, mousedownsel, sync_lamp;
 
 	TTime ScrollMouse;

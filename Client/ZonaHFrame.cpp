@@ -7,6 +7,9 @@
 #include "DB.h"
 #include "DBImpianto.h"
 #include "main.h"
+#include "ExtraFunction.h"
+#include "anagrafica_articoli.h"
+
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "MyShape"
@@ -17,7 +20,7 @@ AnsiString Zona;
 // ---------------------------------------------------------------------------
 __fastcall TfrZonaH::TfrZonaH(TComponent* Owner) : TFrame(Owner) {
     Zona = "H";
-    AbilitaConferma=1;
+    AbilitaConferma = 1;
 }
 
 // ---------------------------------------------------------------------------
@@ -31,7 +34,7 @@ void TfrZonaH::AggiornaDati() {
     TRecordList TabPosizioni;
     // sarebbe da farsi  con posizioni ma ok
     str = "select *, (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.Piani_View.Pos) AND (IDUDC <> 0)) as npianiocc from piani_view ";
-    str += " WHERE Zona = '"+Zona+"' and piano= 1 ORDER BY Pos ";
+    str += " WHERE Zona = '" + Zona + "' and piano= 1 ORDER BY Pos ";
     dmDB->FullTabella(str, TabPosizioni);
     for (int j = 1; j <= numeroelementi; j++) {
         Pan = (TPanel*) FindComponent("pnPos" + Zona + IntToStr(j));
@@ -139,7 +142,8 @@ void __fastcall TfrZonaH::Carica1Click(TObject * Sender) {
     AnsiString s;
     TMenuItem *Item = (TMenuItem*) Sender;
     if (Item != NULL) {
-        dmDBImpianto->AggiornaUDCPosizioni( Item->Hint.ToIntDef(0), 1, 1);
+        if (lIdUDC->Caption.ToIntDef(0) > 0)
+            dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), lIdUDC->Caption.ToIntDef(0), 1);
     }
 }
 
@@ -148,7 +152,8 @@ void __fastcall TfrZonaH::Carica2Click(TObject * Sender) {
     AnsiString s;
     TMenuItem *Item = (TMenuItem*) Sender;
     if (Item != NULL) {
-        dmDBImpianto->AggiornaUDCPosizioni( Item->Hint.ToIntDef(0), 1, 2);
+        if (lIdUDC->Caption.ToIntDef(0) > 0)
+            dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), lIdUDC->Caption.ToIntDef(0), 2);
     }
 }
 
@@ -157,7 +162,36 @@ void __fastcall TfrZonaH::SvuotaPosizioneClick(TObject * Sender) {
     AnsiString s;
     TMenuItem *Item = (TMenuItem*) Sender;
     if (Item != NULL) {
-        dmDBImpianto->AggiornaUDCPosizioni( Item->Hint.ToIntDef(0), 0);
+        dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), 0);
 
     }
 }
+
+void __fastcall TfrZonaH::sbCercaClick(TObject *Sender)
+{
+    TUDC UDC;
+    FormAnagraficaArticoli->insert_produzione = true;
+    FormAnagraficaArticoli->edEdIDArt->Text = tDescArticolo->Text;
+    FormAnagraficaArticoli->ShowModal();
+    if (MainForm->trova_idarticolo != edIDArt->Text.ToIntDef(0)) {
+        edIDArt->Text = MainForm->trova_idarticolo;
+        UDC.IDUDC = dmDB->IDUDCdaIDArticolo(edIDArt->Text.Trim().ToIntDef(0));
+        if (UDC.IDUDC == 0) {
+            UDC.Articolo.IDArticolo = MainForm->trova_idarticolo;
+            dmExtraFunction->StringToChar("", UDC.Lotto);
+            UDC.CodTipoUDC = 0;
+            UDC.IndiceImpilabilita = 0;
+            UDC.Parziale = 0;
+            UDC.Riservato = 0;
+            UDC.IDUDC = dmDB->InsertUpdateUDC(UDC);
+        }
+        // zona cerca
+        dmDB->LeggiStrutturaUdc(UDC);
+        lIdUDC->Caption = UDC.IDUDC;
+        edIDArt->Text = UDC.Articolo.IDArticolo;
+        edCodArt->Text = UDC.Articolo.CodArt;
+        tDescArticolo->Text = UDC.Articolo.Descrizione;
+
+    }
+}
+// ---------------------------------------------------------------------------

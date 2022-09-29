@@ -300,13 +300,15 @@ private: // User declarations
     int TipoPlc(int pos) ;
     int RitornaAltezzadaPosizioneNuovo(int pos, int piano, AnsiString stringaprelievo, int corsia);
     int UpdateAltezzaPiano(int pos, int piano, int corsia, int hprel, int hdep);
-    int InsertUpdateUDC(TUDC UDC, TArticoli &Articolo) ;
+    int InsertUpdateUDCeArticolo(TUDC UDC, TArticoli &Articolo) ;
+    int InsertUpdateUDC(TUDC UDC);
     int UDCPresenteInArchivio(int idudc, int &idarticolo) ;
     int InsertArticoli(TArticoli &Articoli) ;
     int LeggiParametro(int id_parametro) ;
     void FullTabella(AnsiString TableName, TRecordList &RecList);
     AnsiString DescrizioneArticolo(int IDArticolo) ;
-    AnsiString TornaDescrizioneDaIDArticolo(int IDArticolo);
+    int IDUDCdaIDArticolo(int IDArticolo);
+    void LeggiStrutturaUdc(TUDC & UDC) ;
 
 	AnsiString Lingua;
 

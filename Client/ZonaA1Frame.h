@@ -21,7 +21,6 @@ __published: // IDE-managed Components
     TPanel *pnPosA1;
     TPanel *pnPosA2;
     TPanel *pnPosA3;
-    TLabel *lbSelA;
     TPanel *pnPosA4;
     TPanel *pnPosA5;
     TPanel *pnPosA6;
@@ -31,10 +30,16 @@ __published: // IDE-managed Components
     TSpeedButton *sbCerca;
     TEdit *tDescArticolo;
     TEdit *edIDArt;
+    TEdit *edCodArt;
+    TLabel *Label2;
+    TLabeledEdit *leIdUDC;
+    TLabeledEdit *leIDArt;
+    TLabeledEdit *leCodArt;
+    TLabeledEdit *leDescArticolo;
+    TLabel *lIdUDC;
 
     void __fastcall pnPosAMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
     void __fastcall sbCercaClick(TObject *Sender);
-    void __fastcall edIDArtChange(TObject *Sender);
 
 private: // User declarations
 

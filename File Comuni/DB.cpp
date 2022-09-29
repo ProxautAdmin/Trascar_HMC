@@ -4136,17 +4136,30 @@ int TdmDB::RitornaAltezzadaPosizioneNuovo(int pos, int piano, AnsiString stringa
 }
 
 int TdmDB::PrimoPianoOk(int pos) {
-    int ret = 1, numpiani = 0;
-    TRecordList TabPiani;
-    dmDB->CaricaTabella("piani_view where pos = " + String(pos) + " order by piano", TabPiani);
-    numpiani = TabPiani.size();
-    // qui aggiungere anche il cobntrollo del tipo udc, se pallet va bene solo 1
-    while ((TabPiani[ret - 1]["IDUDC"].ToIntDef(0) != 0) && (ret <= numpiani)) {
-        ret++;
+    int res = 0, cont;
+    TADOQuery *ADOQuery;
+    AnsiString strsql;
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = ADOConnection1;
+        strsql = "select (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.Piani_View.Pos) AND (IDUDC <> 0)) as npianiocc,";
+        strsql += " (SELECT COUNT(*) AS Expr1 FROM dbo.Piani WHERE (pos = dbo.Piani_View.Pos)) AS npiani from piani_view ";
+        strsql += " Where pos=" + String(pos);
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+        ADOQuery->First();
+
+        if (ADOQuery->RecordCount) {
+            if (ADOQuery->FieldByName("npianiocc")->AsInteger + 1 <= ADOQuery->FieldByName("npiani")->AsInteger)
+                res = ADOQuery->FieldByName("npianiocc")->AsInteger +1;
+        }
+        ADOQuery->Close();
     }
-    if (ret == 4)
-        ret = 0; // ATTENZIONE! TRAPPARE IN CASO DI RITORNO A ZERO ALTRIMENTI DA' ERRORE!!!!
-    return ret;
+    catch (...) {
+    }
+    delete ADOQuery;
+
+    return res;
 }
 
 int TdmDB::ControllaSopraESotto(int pos, int piano) {
@@ -4866,7 +4879,7 @@ int TdmDB::RitornaUDCdaPosPiano(int pos, int piano) {
     return res;
 }
 
-int TdmDB::InsertUpdateUDC(TUDC UDC, TArticoli &Articolo) {
+int TdmDB::InsertUpdateUDCeArticolo(TUDC UDC, TArticoli &Articolo) {
     AnsiString strsql;
     TADOQuery *ADOQuery;
     int res = 0, dacreare = 0, idarttemp;
@@ -4910,6 +4923,84 @@ int TdmDB::InsertUpdateUDC(TUDC UDC, TArticoli &Articolo) {
                 res = UDC.IDUDC; // ritorno ID creato
                 // creo articolo
                 UDC.Articolo.IDArticolo = InsertArticoli(Articolo);
+            }
+            ADOQuery->Close();
+        }
+        else {
+            res = UDC.IDUDC;
+            if ((UDC.CodStato > 0) && (UDC.Articolo.IDArticolo > 0)) {
+                strsql.printf("UPDATE UDC SET " "CodStatoUDC = %d , " "IDArticolo = %d, " "Tara = %d, " "PesoAttuale = %d, " "IndiceImpilabilita = %d, " "Lotto = '%s', " "Parziale =%u, " " Riservato=%d " " where IDUDC = %d "
+                    , UDC.CodStato
+                    , UDC.Articolo.IDArticolo
+                    , 0
+                    , 0
+                    , UDC.IndiceImpilabilita
+                    , UDC.Lotto
+                    , UDC.Parziale
+                    , UDC.Riservato
+                    , UDC.IDUDC);
+
+                ADOQuery->SQL->Text = strsql;
+                res = ADOQuery->ExecSQL();
+                if (res)
+                    res = UDC.IDUDC; // ritorno ID creato
+            }
+        }
+        LogMsg(strsql);
+    }
+    catch (...) {
+        // ADOConnection1->Close();
+        LogMsg("Eccezione creazione UDC, stringa :" + strsql);
+        UDC.IDUDC = 0;
+        res = 0;
+    }
+    delete ADOQuery;
+    aggiorna_tab_posizioni_locale = 1;
+    return res;
+}
+
+int TdmDB::InsertUpdateUDC(TUDC UDC) {
+    AnsiString strsql;
+    TADOQuery *ADOQuery;
+    int res = 0, dacreare = 0, idarttemp;
+    AnsiString Val, CodUDC = "", CodTipoSpedizione = ""; ;
+
+    if (!ADOConnection1->Connected)
+        return 0;
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = ADOConnection1;
+        if (UDC.IDUDC == 0) {
+            UDC.IDUDC = CreaIdUDC();
+            dacreare = 1;
+        }
+        // se CodUDC e' vuoto, inserisco  IDUDc come CodUDC
+        if (CodUDC.Trim() == "") {
+            CodUDC = String(UDC.IDUDC);
+        }
+
+        if ((dacreare) || (!UDCPresenteInArchivio(UDC.IDUDC, idarttemp))) {
+            ADOQuery = new TADOQuery(NULL);
+            ADOQuery->Connection = ADOConnection1;
+            strsql.printf("INSERT INTO UDC (IDUDC ,CodUDC, Stato, IDArticolo, CodTipoUDC, Tara, PesoAttuale, Lotto, IndiceImpilabilita, Parziale, Riservato)"
+                " VALUES (%d,'%s',%d,%d,%d,%d,%d,'%s',%d, %d, %d)"
+                , UDC.IDUDC
+                , CodUDC
+                , UDC.CodStato
+                , UDC.Articolo.IDArticolo
+                , UDC.CodTipoUDC
+                , 0
+                , 0
+                , UDC.Lotto
+                , UDC.IndiceImpilabilita
+                , UDC.Parziale
+                , UDC.Riservato
+                );
+
+            ADOQuery->SQL->Text = strsql;
+            res = ADOQuery->ExecSQL();
+            if (res) {
+                res = UDC.IDUDC; // ritorno ID creato
             }
             ADOQuery->Close();
         }
@@ -5021,22 +5112,21 @@ int TdmDB::InsertArticoli(TArticoli &Articoli) {
     return res;
 }
 
-AnsiString TdmDB::TornaDescrizioneDaIDArticolo(int IDArticolo) {
+int TdmDB::IDUDCdaIDArticolo(int IDArticolo) {
     AnsiString stringa;
     TADOQuery *ADOQuery;
-    AnsiString res = "";
+    int res = 0;
     try {
         if (!dmDB->ADOConnection1->Connected)
             return res;
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
-        stringa = "Select descrizione from ARTicoli where IDArticolo=" + IntToStr(IDArticolo);
+        stringa = "Select IDUDC from UDC_View where IDArticolo = " + IntToStr(IDArticolo);
         ADOQuery->SQL->Clear();
         ADOQuery->SQL->Text = stringa;
         ADOQuery->Open();
         if (ADOQuery->RecordCount) {
-            res = ADOQuery->FieldByName("descrizione")->AsString;
-
+            res = ADOQuery->FieldByName("IDUDC")->AsInteger;
         }
         ADOQuery->Close();
         delete ADOQuery;
@@ -5044,4 +5134,39 @@ AnsiString TdmDB::TornaDescrizioneDaIDArticolo(int IDArticolo) {
     catch (...) {
     }
     return res;
+}
+
+void TdmDB::LeggiStrutturaUdc(TUDC & UDC) {
+    AnsiString stringa;
+    AnsiString strsql;
+    TADOQuery *ADOQuery;
+    // leggo la struttura idudc dal database
+
+    try {
+        if (!ADOConnection1->Connected)
+            return;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = ADOConnection1;
+        stringa = "Select * from UDC_view where IdUdc = " + IntToStr(UDC.IDUDC) + " and idudc>0";
+        ADOQuery->Close();
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Append(stringa);
+        ADOQuery->Open();
+        if (ADOQuery->RecordCount > 0) {
+            UDC.IDUDC = ADOQuery->FieldByName("IDUDC")->AsInteger;
+            UDC.CodTipoUDC = ADOQuery->FieldByName("CodTipoUDC")->AsInteger;
+            UDC.IdArtUDC = 0;
+            UDC.Articolo.IDArticolo = ADOQuery->FieldByName("IDArticolo")->AsInteger;
+            dmExtraFunction->StringToChar(ADOQuery->FieldByName("codart")->AsString, UDC.Articolo.CodArt);
+            dmExtraFunction->StringToChar(ADOQuery->FieldByName("DescArt")->AsString, UDC.Articolo.Descrizione);
+            UDC.Articolo.IDTipoArticolo = 0; // ??????
+            UDC.CodStato = ADOQuery->FieldByName("Stato")->AsInteger;
+        }
+        ADOQuery->Close();
+        // MainForm->LogMsg(stringa);
+    }
+    catch (...) {
+
+    }
+    delete ADOQuery;
 }

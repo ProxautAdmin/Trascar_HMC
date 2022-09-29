@@ -410,7 +410,6 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
     UpdControls();
     Visible = false;
     Screen->Cursor = Save_Cursor;
-    num_stazioni = 15;
     baiaformSegnali = 0;
     tab.Load1("Trascar_HMC_prx.crs");
     f = fopen("Trascar_HMC_prx.crs", "r");

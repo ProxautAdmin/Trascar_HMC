@@ -194,26 +194,10 @@ void __fastcall TFormAnagraficaArticoli::btInsInPosClick(TObject *Sender)
 {
     int artUDCold;
     AnsiString messaggio;
-    MainForm->trova_udc = ADOQuery1->FieldByName("IdArticolo")->AsInteger;
-    /*
-     artUDCold = dmDBClient->CercaArticoloinArtUDC(artsel);
-     if (artUDCold > 0) {
-     messaggio = "Are you sure you want to move article " + String(artsel) + " from ArtUDC " + String(artUDCold) + " to ArtUDC " + String(idartudc) + "?";
-     if (Application->MessageBox(L"Are you sure you want to move UDC ", L"Confirm!!!", MB_YESNO) == IDYES) {
-     dmDBClient->EliminaArticolodaArtUDC(artUDCold);
-     dmDB->InsertArticoloPosizione(artsel, idartudc);
-     }
-     }
-     else
-     dmDB->InsertArticoloPosizione(artsel, idartudc);
-     */
-
+    MainForm->trova_idarticolo =0;
     if (insert_produzione) {
         if ((ADOQuery1->RecNo) && (ADOQuery1->FieldByName("IdArticolo")->AsInteger > 0)) {
-            ProductName = ADOQuery1->FieldByName("Nome")->AsString;
-            // CodiceProdotto = ADOQuery1->FieldByName("Codice")->AsString;
-            IdArticolo = ADOQuery1->FieldByName("IdArticolo")->AsInteger;
-            Close();
+            MainForm->trova_idarticolo = ADOQuery1->FieldByName("IdArticolo")->AsInteger;
         }
     }
     Close();

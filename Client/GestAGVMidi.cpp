@@ -62,8 +62,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
     PanelPrel->Height = gbMain->Height / 2;
     PanelPrel->Top = 0;
     PanelPrel->Left = 0;
-    dmExtraFunction->ComboScelte(cbPriorita, 9, 1,1)    ;
-
+    dmExtraFunction->ComboScelte(cbPriorita, 9, 1, 1);
 
     for (int i = 1; i <= 2; i++) {
         // A1
@@ -177,7 +176,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
                 frC->Parent = this->tsZonaCDest;
                 frC->Name = "frZonaCDest";
             }
-             frC->Enabled=false;
+            frC->Enabled = false;
         }
         // B
         if (i == 1)
@@ -194,7 +193,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
                 frB->Parent = this->tsZonaBDest;
                 frB->Name = "frZonaBDest";
             }
-            frB->Enabled=false;
+            frB->Enabled = false;
         }
         // E
         if (i == 1)
@@ -211,7 +210,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
                 frE->Parent = this->tsZonaEDest;
                 frE->Name = "frZonaEDest";
             }
-              frE->Enabled=false;
+            frE->Enabled = false;
         }
         // F
         if (i == 1)
@@ -412,15 +411,17 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
     TADOQuery *ADOQuery;
     AnsiString strsql, ZonaPrel, ZonaDep;
     bool chiudi = true;
-    int posprel = 0, pianoprel = 0, posdep = 0, pianodep = 0, tipoposizione;
+    int posprel = 0, pianoprel = 0, posdep = 0, pianodep = 0, tipoposizione, idudc;
 
     // prel
     ZonaPrel = pcPrel->Pages[pcPrel->TabIndex]->Hint;
-    TornaPosPrelSelezionata(ZonaPrel, posprel, pianoprel, tipoposizione);
+    TornaPosPrelSelezionata(ZonaPrel, posprel, pianoprel, tipoposizione, idudc);
 
     // dep
     ZonaDep = pcDest->ActivePage->Hint;
-    if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione == TIPOLOGIA_SCARTO))
+    if ((ZonaPrel == "A") && (ZonaDep == "H"))
+        dmDBImpianto->TornaPosDepLiberaH(ZonaDep, idudc, posdep, pianodep);
+    else if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione == TIPOLOGIA_SCARTO))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_SCARTO);
     else if ((ZonaPrel == "J") && (ZonaDep == "G"))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_PALLET);
@@ -459,22 +460,24 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
 
 // ---------------------------------------------------------------------------
 
-void TfGestAGVMidi::TornaPosPrelSelezionata(AnsiString Zona, int &pos, int &piano, int &tipoposizione) {
+void TfGestAGVMidi::TornaPosPrelSelezionata(AnsiString Zona, int &pos, int &piano, int &tipoposizione, int &idudc) {
     TADOQuery *ADOQuery;
     AnsiString strsql, ev;
     pos = 0;
     piano = 0;
     tipoposizione = 0;
+    idudc = 0;
 
     AnsiString codudc = "";
     try {
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
-        strsql.printf("Select pos, piano, tipoposizione from piani_view where selezionata>0 and zona='%s' ", Zona);
+        strsql.printf("Select idudc, pos, piano, tipoposizione from piani_view where selezionata>0 and zona='%s' ", Zona);
         ADOQuery->SQL->Text = strsql;
         ADOQuery->Open();
         ADOQuery->Last();
         if (ADOQuery->RecordCount) {
+            idudc = ADOQuery->FieldByName("idudc")->AsInteger;
             pos = ADOQuery->FieldByName("pos")->AsInteger;
             piano = ADOQuery->FieldByName("piano")->AsInteger;
             tipoposizione = ADOQuery->FieldByName("tipoposizione")->AsInteger;

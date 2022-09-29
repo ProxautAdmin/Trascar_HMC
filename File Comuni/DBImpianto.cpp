@@ -566,6 +566,34 @@ void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int
     return;
 }
 
+void TdmDBImpianto::TornaPosDepLiberaH(AnsiString Zona, int IDUDC, int &pos, int &piano) {
+    TADOQuery *ADOQuery;
+    AnsiString strsql, ev, TP;
+    pos = 0;
+    piano = 0;
+
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        // strsql.printf(order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos, piano", Zona);
+        strsql = "Select top 1 pos, piano from piani_view where idudc=0 and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='" + Zona + "' ";
+        strsql += " and ((select idudc FROM dbo.Piani AS Piani_1 WHERE  (pos = dbo.piani_view.Pos) AND (piano = dbo.piani_view.piano-1))=" + IntToStr(IDUDC) + " or (piano=1)) ";
+        strsql += " order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos, piano ";
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+        ADOQuery->Last();
+        if (ADOQuery->RecordCount) {
+            pos = ADOQuery->FieldByName("pos")->AsInteger;
+            piano = ADOQuery->FieldByName("piano")->AsInteger;
+        }
+        ADOQuery->Close();
+    }
+    catch (...) {
+    }
+    delete ADOQuery;
+    return;
+}
+
 int TdmDBImpianto::PianiOccupatiPerPos(int pos) {
     AnsiString stringa;
     AnsiString strsql;

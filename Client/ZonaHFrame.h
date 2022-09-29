@@ -12,6 +12,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.ImgList.hpp>
 #include <Vcl.Menus.hpp>
+#include <Vcl.Buttons.hpp>
 
 // ---------------------------------------------------------------------------
 class TfrZonaH : public TFrame
@@ -26,11 +27,19 @@ __published: // IDE-managed Components
     TPanel *pnPosH4;
     TImageList *ImageListMenu;
     TPopupMenu *PopupMenu;
+    TPanel *Panel2;
+    TLabel *Label1;
+    TSpeedButton *sbCerca;
+    TEdit *tDescArticolo;
+    TEdit *edIDArt;
+    TEdit *edCodArt;
+    TLabel *lIdUDC;
 
     void __fastcall pnPosH1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
     void __fastcall Carica1Click(TObject * Sender);
     void __fastcall Carica2Click(TObject * Sender);
     void __fastcall SvuotaPosizioneClick(TObject * Sender);
+    void __fastcall sbCercaClick(TObject *Sender);
 
 private: // User declarations
         public : // User declarations

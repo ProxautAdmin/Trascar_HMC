@@ -631,9 +631,9 @@ AnsiString TdmExtraFunction::RiempiGiorniSettimana(TComboBox * tcbCombo, AnsiStr
 }
 
 void TdmExtraFunction::StringToChar(AnsiString varString, unsigned char *varChar) {
-    // solo per evitare una var temporanea ecc. Non ho trovato uan funzione equivalente
-    strcpy(varChar, varString.c_str());
-    return;
+    AnsiString strpos = "";
+    strpos = String(varString.Trim()); // serve nel caso non sia un AnsiString ma un UnicodeString
+    sprintf(varChar, "%s", strpos.c_str());
 }
 
 int TdmExtraFunction::VerificaUtentePerZona(int zonaint) {
