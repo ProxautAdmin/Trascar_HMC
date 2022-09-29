@@ -402,7 +402,7 @@ void __fastcall TdmDB::TimerConnectTimer(TObject *Sender) {
             AggiornaTabPostazioni();
             AggiornaNomePiani();
             AggiornaTabPorte();
-            dmDB->AggiornaTabTipoArticoli();
+          //  dmDB->AggiornaTabTipoArticoli();
             // AggiornaTabAnagrafica();
             dmDB->AggiornaTabTipologiaCorsia();
             dmDB->AggiornaTabTipoUdc();
