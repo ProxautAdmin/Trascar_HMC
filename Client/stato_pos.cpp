@@ -25,8 +25,8 @@ TfCorsia *fCorsia;
 // ---------------------------------------------------------------------------
 __fastcall TfCorsia::TfCorsia(TComponent* Owner)
     : TMDIChild(Owner) {
-  //  loadLanguage();
-   // _TSL_FORM(this);
+    // loadLanguage();
+    // _TSL_FORM(this);
     change_dati_corsia = false;
     change_dati_pos = false;
 
@@ -69,7 +69,7 @@ void TfCorsia::VisualizzaPosizioneUDC() {
     dmDB->CaricaTabella(str, TabPosizioni);
     dmDB->CaricaTabella("Corsie where Fila = " + IntToStr(MainForm->corsia_udc), TabCorsie);
 
-    dmDB->FullTabellaK("Select IDUDC, CODUDC, ARTICOLI.DESCRIZIONE as [descart], ArticoliUDC.Codice as [CARTUDC] from UDC INNER JOIN TabTipoUDC ON UDC.CodTipoUDC = TabTipoUDC.IDTipoUDC LEFT OUTER JOIN ArticoliUDC ON UDC.IDArtUDC = ArticoliUDC.IDArtUDC LEFT OUTER JOIN Articoli ON ArticoliUDC.IDArticolo = Articoli.IDArticolo ORDER BY UDC.IDUDC", "IDUDC", TabUDC);
+    dmDB->FullTabellaK("Select * from UDC_view IDUDC", "IDUDC", TabUDC);
     i = 0;
     aggiornamento = true;
 
@@ -179,10 +179,11 @@ void TfCorsia::VisualizzaPosizioneUDC() {
                     // eProdotto->Text = TabUDC[idudc]["DESCART"];
                     // eStatus->Text = dmDBClient->ReturnDescStatoUDC(TabUDC[idudc]["STATO"].ToIntDef(0));
                     cbTipoUDC->Text = dmExtraFunction->RiempiTipoUDC(cbTipoUDC, dmExtraFunction->PadS(TabPiani[pianosel]["CODTIPOUDC"].ToIntDef(0), 2, "0"));
-                 ////   cbbArtUDC->Text = dmExtraFunction->RiempiArticoliUDC(cbbArtUDC, TabPiani[pianosel]["IDARTUDC"]);
+                    ////   cbbArtUDC->Text = dmExtraFunction->RiempiArticoliUDC(cbbArtUDC, TabPiani[pianosel]["IDARTUDC"]);
                     eIDArtUDC->Text = TabUDC[idudc]["IDARTUDC"].ToIntDef(0);
                     eCodeArtUDC->Text = TabUDC[idudc]["CARTUDC"];
                     edCodUDC->Text = dmDB->RitornaCodiceUDCdaUDC(idudc);
+                    cbImpilabile->Checked = TabUDC[idudc]["PIANIPERUDC"].ToIntDef(0);
                 }
                 else {
                     eUDC->Text = "0";
@@ -198,11 +199,12 @@ void TfCorsia::VisualizzaPosizioneUDC() {
                     // eProdotto->Text = TabUDC[idudc]["DESCART"];
                     // eProdotto->Text = "";
                     cbTipoUDC->Text = dmExtraFunction->RiempiTipoUDC(cbTipoUDC, "00");
-                ////    cbbArtUDC->Text = dmExtraFunction->RiempiArticoliUDC(cbbArtUDC, "0");
+                    ////    cbbArtUDC->Text = dmExtraFunction->RiempiArticoliUDC(cbbArtUDC, "0");
                     eIDArtUDC->Text = "";
                     eCodeArtUDC->Text = "";
                     edCodUDC->Text = "";
-                    cbbTipoPosizione->Text = "00";
+                    cbImpilabile->Checked = 0;
+                    // cbbTipoPosizione->Text = "00";
 
                 }
 
@@ -278,7 +280,7 @@ void __fastcall TfCorsia::BitBtn4Click(TObject * Sender)
     try {
         if ((dmDB->ADOConnection1->Connected) && (cbTipo->Items->IndexOf(cbTipo->Text) >= 0)) {
             tipologia = cbTipo->Text.SubString(1, 2).ToIntDef(0);
-      ////      dmDBImpianto->CambiaZonaPosizione(lbNumCorsia->Caption.ToIntDef(0), tipologia);
+            ////      dmDBImpianto->CambiaZonaPosizione(lbNumCorsia->Caption.ToIntDef(0), tipologia);
             res = res + dmDB->UpdateCorsia(MainForm->corsia_udc, ckPrenotata->Checked, ckAbilita->Checked,
                 ckPiena->Checked, ckVuota->Checked, ckUsoPrel->Checked, ckUsoDep->Checked,
                 cbPriorita->Text.ToIntDef(1), tipologia, ckIgnoraOrdine->Checked, cbDepSelettivo->Checked, edtAnnotazioni->Text);
@@ -355,17 +357,17 @@ void __fastcall TfCorsia::BitBtn6Click(TObject * Sender) {
             // AGGIIORNARE LA POSIZIONE NON SOLO L'UDC
             //
             UdcMod.IDUDC = eUDC->Text.ToIntDef(0);
-        ////    dmDB->LeggiStrutturaUdc(UdcMod);
+            ////    dmDB->LeggiStrutturaUdc(UdcMod);
             if ((UdcMod.IDUDC) && (dmDB->pwdlevel)) {
-        ////        UdcMod.stato = 0;
+                ////        UdcMod.stato = 0;
                 UdcMod.CodTipoUDC = StrToInt(cbTipoUDC->Text.SubString(1, 2));
 
                 UdcMod.IdArtUDC = 0; // eIDArtUDC->Text.ToIntDef(0);
                 UdcMod.tara = 0; // eTara->Text.ToIntDef(0);
                 UdcMod.pesoattuale = 0; // ePesoAttuale->Text.ToIntDef(0);
                 artudc = (eUDC->Text.ToIntDef(0) == 1 ? 0 : cbbArtUDC->Text.ToIntDef(0));
-            ////    dmDB->InsertUpdateUDC(UdcMod);
-        ////        res = dmDB->UpdatePiano(MainForm->pos_udc, lbPiano->Caption.ToIntDef(0), eUDC->Text.ToIntDef(0), eHprel->Text.ToIntDef(0), eHDep->Text.ToIntDef(0), artudc);
+                ////    dmDB->InsertUpdateUDC(UdcMod);
+                ////        res = dmDB->UpdatePiano(MainForm->pos_udc, lbPiano->Caption.ToIntDef(0), eUDC->Text.ToIntDef(0), eHprel->Text.ToIntDef(0), eHDep->Text.ToIntDef(0), artudc);
             }
             if (cambiocheck) {
                 if (Application->MessageBox(L"Sei sicuro di voler cambiare lo stato UDC ?", L"Conferma!!!", MB_YESNO) == IDYES) {
@@ -493,10 +495,10 @@ void __fastcall TfCorsia::SpeedButton3Click(TObject * Sender)
     TUDC UdcMod;
     if (Application->MessageBox(L"Sei sicuro di voler cancellare questo elemento?", L"Conferma!!!", MB_YESNO) == IDYES) {
         UdcMod.IDUDC = eUDC->Text.ToIntDef(0);
-     ////   dmDB->LeggiStrutturaUdc(UdcMod);
+        ////   dmDB->LeggiStrutturaUdc(UdcMod);
         if (UdcMod.IDUDC) {
             UdcMod.IdArtUDC = 0;
-     ////       dmDB->InsertUpdateUDC(UdcMod);
+            ////       dmDB->InsertUpdateUDC(UdcMod);
             VisualizzaPosizioneUDC();
         }
         else

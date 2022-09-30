@@ -27,8 +27,9 @@ void TfrZonaI::AggiornaDati() {
     AnsiString str;
     TPanel *Pan;
     TRecordList TabPosizioni;
-    str = "piani_view WHERE Zona = '" + Zona + "' ORDER BY Pos ";
-    dmDB->CaricaTabella(str, TabPosizioni);
+    str = "select *, (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.Piani_View.Pos) AND (IDUDC <> 0)) as npianiocc from piani_view ";
+    str += " WHERE Zona = '" + Zona + "' and piano= 1 ORDER BY Pos ";
+    dmDB->FullTabella(str, TabPosizioni);
     for (int j = 1; j <= numeroelementi; j++) {
         Pan = (TPanel*) FindComponent("pnPos" + Zona + IntToStr(j));
         if (Pan != Null) {
@@ -39,7 +40,11 @@ void TfrZonaI::AggiornaDati() {
                 pos = TabPosizioni[idx]["POS"].ToIntDef(0);
                 if (Pan->Tag == pos) {
                     trovato = 1;
-                    if (TabPosizioni[idx]["PRENOTATA"].ToIntDef(0) || TabPosizioni[idx]["POS_PRENOTATA"].ToIntDef(0)) {
+                    if (TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_SCARTO) {
+                        Pan->Color = clBtnFace;
+                        Pan->Enabled = false;
+                    }
+                    else if (TabPosizioni[idx]["PRENOTATA"].ToIntDef(0) || TabPosizioni[idx]["POS_PRENOTATA"].ToIntDef(0)) {
                         Pan->Color = clBlue;
                     }
                     else if (TabPosizioni[idx]["DISABILITATA"].ToIntDef(0) || TabPosizioni[idx]["POS_DISABILITA"].ToIntDef(0)) {
@@ -55,7 +60,10 @@ void TfrZonaI::AggiornaDati() {
                         Pan->Color = clWhite;
                     }
                     // caption
-                    if (TabPosizioni[idx]["IDUDC"].ToIntDef(0) == 0) {
+                    if (TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_SCARTO) {
+                        Pan->Caption = "SCARTO";
+                    }
+                    else if (TabPosizioni[idx]["IDUDC"].ToIntDef(0) == 0) {
                         Pan->Caption = "Pos." + IntToStr(j) + " (" + IntToStr(Pan->Tag) + ")";
                     }
                     else {

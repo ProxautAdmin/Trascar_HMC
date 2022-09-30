@@ -250,7 +250,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         btConferma->Enabled = frA1->AbilitaConferma;
     }
     else if (pcPrel->TabIndex == 1) {
-        TabVisibili(0, 0, 1, 0, 0, 0, 0, 0, 0);
+        TabVisibili(0, 0, 1, 0, 1, 0, 0, 0, 0);
         frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Prel"));
         frA2->AggiornaDati();
         btConferma->Enabled = frA1->AbilitaConferma;
@@ -421,7 +421,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
     ZonaDep = pcDest->ActivePage->Hint;
     if ((ZonaPrel == "A") && (ZonaDep == "H"))
         dmDBImpianto->TornaPosDepLiberaH(ZonaDep, idudc, posdep, pianodep);
-    else if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione == TIPOLOGIA_SCARTO))
+    else if ((ZonaPrel == "J") && (ZonaDep == "I") && (tipoposizione == TIPOLOGIA_SCARTO))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_SCARTO);
     else if ((ZonaPrel == "J") && (ZonaDep == "G"))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_PALLET);

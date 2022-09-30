@@ -334,7 +334,7 @@ void TdmDBClient::InserisciCorsiePostazioniDatabase() {
 
                         pos = (inizio + k_pos) + (j * n_alveoli);
                         poscliente = zona + nomecorsia + dmExtraFunction->PadS((numerofila) * 10, 3, "0") + dmExtraFunction->PadS(k, 2, "0");
-                        if ((i == 3) && (k == n_alveoli)) {
+                        if ((i == 2) && (k >= n_alveoli-2)) {
                             tipoposizione = TIPOLOGIA_SCARTO;
                         }
                         else if ((i == 7) && (k == n_alveoli)) {

@@ -124,6 +124,7 @@ __published: // IDE-managed Components
 	TComboBox *cbbTipoPosizione;
 	TLabel *lbl1;
 	TLabel *Label29;
+    TCheckBox *cbImpilabile;
 
     void __fastcall frScaffale1MyShape4MouseUp(TObject *Sender, TMouseButton Button,
         TShiftState Shift, int X, int Y);

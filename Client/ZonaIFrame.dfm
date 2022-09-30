@@ -19,6 +19,7 @@ object frZonaI: TfrZonaI
       AutoSize = False
       Caption = '0'
       Transparent = False
+      Visible = False
     end
     object pnPosI1: TPanel
       Tag = 201

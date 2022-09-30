@@ -28,26 +28,24 @@ void TfrPosUDC::RiempiCampi(TRecordList TabPiani, int prenotata, int esclusa) {
     npiani = TabPiani.size();
 
     if (TabPiani.size() > 0) {
-        Height = 700 / npiani;
-        if (Height > 70)
-            Height = 70;
+        Height = 240 / npiani;
+        if (Height>80) Height=80;
         for (int k = 1; k <= npiani; k++) {
             MyShape = (TMyShape*)(FindComponent("MyShape" + IntToStr(k)));
             idudc = TabPiani[k - 1]["IDUDC"].ToIntDef(0);
             if (MyShape == NULL) {
                 MyShape = new TMyShape(this);
-                MyShape->Parent = this->Panel1;
+                 MyShape->Parent = this->Panel1;
                 MyShape->Shape = mstRectangle;
-           //     MyShape->Width = 43;
-           //     MyShape->Left = 7;
+                MyShape->Width = 43;
+                MyShape->Left = 7;
                 MyShape->Visible = true;
                 MyShape->Name = "MyShape" + IntToStr(k);
             }
-            MyShape->BringToFront();
             MyShape->Tag = TabPiani[k - 1]["POS"].ToIntDef(0);
-          //  MyShape->Height = Height;
-         //   MyShape->Top = 700 - (k * MyShape->Height);
-            // MyShape->OnMouseUp = MyShape1MouseUp;
+            MyShape->Height = Height;
+            MyShape->Top = 270 - (k * MyShape->Height);
+            //  MyShape->OnMouseUp = MyShape1MouseUp;
 
             if (idudc > 0) {
                 MyShape->Hint = TabPiani[k - 1]["IDUDC"].ToIntDef(0);
@@ -72,8 +70,8 @@ void TfrPosUDC::RiempiCampi(TRecordList TabPiani, int prenotata, int esclusa) {
                 MyShape->Pen->Width = 3;
             }
             else {
-                MyShape->Pen->Color = clBlack;
-                MyShape->Pen->Width = 2;
+                MyShape->Pen->Color = clAqua;
+                MyShape->Pen->Width = 1;
             }
             if (TabPiani[k - 1]["DISABILITATA"].ToIntDef(0)) {
                 MyShape->Visible = true;
@@ -83,7 +81,6 @@ void TfrPosUDC::RiempiCampi(TRecordList TabPiani, int prenotata, int esclusa) {
             }
 
         }
-        /*
         // ANNERISCI I PIANI MANCANTI
         for (int k = npiani + 1; k <= 3; k++) {
             MyShape = (TMyShape*)(FindComponent("MyShape" + IntToStr(k)));
@@ -96,14 +93,13 @@ void TfrPosUDC::RiempiCampi(TRecordList TabPiani, int prenotata, int esclusa) {
             MyShape->Brush->Color = clBlack;
 
         }
-        */
     }
 
 }
-
 void __fastcall TfrPosUDC::MyShape1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
 {
-    // TMenuItem *Item = (TMenuItem*) Sender;
-    fCorsia->frScaffale1MyShape4MouseUp(Sender, Button, Shift, X, Y);
+  // 	TMenuItem *Item = (TMenuItem*) Sender;
+  	fCorsia->frScaffale1MyShape4MouseUp(Sender,  Button,  Shift,  X,  Y);
 }
-// ---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+

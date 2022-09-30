@@ -1,32 +1,25 @@
 object frPosUDC: TfrPosUDC
   Left = 0
   Top = 0
-  Width = 295
-  Height = 606
-  Margins.Left = 1
-  Margins.Right = 1
+  Width = 62
+  Height = 278
   DoubleBuffered = True
   ParentDoubleBuffered = False
   TabOrder = 0
   object Panel1: TPanel
     AlignWithMargins = True
-    Left = 1
+    Left = 3
     Top = 3
-    Width = 293
-    Height = 600
-    Margins.Left = 1
-    Margins.Right = 1
+    Width = 56
+    Height = 272
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 0
-    ExplicitWidth = 178
     object Image1: TImage
       Left = 1
       Top = 19
-      Width = 291
-      Height = 580
-      Margins.Left = 1
-      Margins.Right = 1
+      Width = 54
+      Height = 252
       Align = alClient
       Picture.Data = {
         07544269746D6170DEC90000424DDEC900000000000036000000280000004700
@@ -1647,13 +1640,14 @@ object frPosUDC: TfrPosUDC
         40808040FFFFFF000000}
       Stretch = True
       Transparent = True
-      ExplicitWidth = 177
+      ExplicitWidth = 968
+      ExplicitHeight = 366
     end
     object MyShape1: TMyShape
-      Left = 44
-      Top = 437
-      Width = 213
-      Height = 124
+      Left = 7
+      Top = 190
+      Width = 43
+      Height = 80
       Shape = mstRectangle
       Brush.Style = bsClear
       Font.Charset = DEFAULT_CHARSET
@@ -1663,10 +1657,10 @@ object frPosUDC: TfrPosUDC
       Font.Style = []
     end
     object Shape1: TShape
-      Left = 36
-      Top = 17
-      Width = 130
-      Height = 552
+      Left = 1
+      Top = 25
+      Width = 50
+      Height = 245
       Brush.Color = clFuchsia
       Brush.Style = bsDiagCross
       Pen.Color = clFuchsia
@@ -1674,10 +1668,10 @@ object frPosUDC: TfrPosUDC
       Visible = False
     end
     object MyShape2: TMyShape
-      Left = 44
-      Top = 312
-      Width = 213
-      Height = 119
+      Left = 7
+      Top = 110
+      Width = 43
+      Height = 80
       Shape = mstRectangle
       Brush.Style = bsClear
       Font.Charset = DEFAULT_CHARSET
@@ -1687,10 +1681,10 @@ object frPosUDC: TfrPosUDC
       Font.Style = []
     end
     object MyShape3: TMyShape
-      Left = 44
-      Top = 175
-      Width = 213
-      Height = 131
+      Left = 7
+      Top = 30
+      Width = 43
+      Height = 80
       Shape = mstRectangle
       Brush.Style = bsClear
       Font.Charset = DEFAULT_CHARSET
@@ -1700,10 +1694,10 @@ object frPosUDC: TfrPosUDC
       Font.Style = []
     end
     object MyShape4: TMyShape
-      Left = 44
-      Top = 42
-      Width = 213
-      Height = 127
+      Left = 7
+      Top = 30
+      Width = 43
+      Height = 80
       Shape = mstRectangle
       Brush.Style = bsClear
       Font.Charset = DEFAULT_CHARSET
@@ -1715,18 +1709,17 @@ object frPosUDC: TfrPosUDC
     object Panel2: TPanel
       Left = 1
       Top = 1
-      Width = 291
+      Width = 54
       Height = 18
       Align = alTop
       Caption = 'Pos A1_01_01'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
+      Font.Height = -9
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      ExplicitWidth = 176
     end
   end
 end

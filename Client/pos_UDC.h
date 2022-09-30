@@ -24,7 +24,7 @@ __published: // IDE-managed Components
     TShape *Shape1;
     TMyShape *MyShape2;
     TMyShape *MyShape3;
-	TMyShape *MyShape4;
+    TMyShape *MyShape4;
     void __fastcall MyShape1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 
 private: // User declarations

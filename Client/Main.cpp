@@ -1662,7 +1662,7 @@ void __fastcall TMainForm::ShapePosMouseUp(TObject *Sender, TMouseButton Button,
                         FormPosDepPLC->ShowModal();
                     }
                     else {
-                        corsia_udc = StrToInt(Pos->Name.SubString(Pos->Name.Pos("_") + 1, Pos->Name.Length() - Pos->Name.Pos("_"))); // dmDB->ReturnFilaDaPos(pos_udc);
+                        corsia_udc = dmDB->ReturnFilaDaPos(pos_udc);
                         CreateMDIChild(fCorsia, "fCorsia", "Gestione posizione");
                     }
                 }

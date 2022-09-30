@@ -31,7 +31,7 @@ void TfrZonaG::AggiornaDati() {
     TRecordList TabPosizioni;
     // str = "piani_view WHERE Zona = '" + Zona + "' ORDER BY Pos ";
     str = "select *, (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.Piani_View.Pos) AND (IDUDC <> 0)) as npianiocc from piani_view ";
-    str += " WHERE Zona = 'G' and piano= 1 ORDER BY Pos ";
+    str += " WHERE Zona = '"+Zona+"' and piano= 1 ORDER BY Pos ";
     dmDB->FullTabella(str, TabPosizioni);
     for (int j = 1; j <= numeroelementi; j++) {
         Pan = (TPanel*) FindComponent("pnPos" + Zona + IntToStr(j));

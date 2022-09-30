@@ -1,24 +1,25 @@
 inherited fCorsia: TfCorsia
   BorderStyle = bsSingle
   Caption = 'Stato Corsia'
-  ClientHeight = 800
+  ClientHeight = 826
   ClientWidth = 1749
   DoubleBuffered = True
   Font.Height = -13
   OnActivate = FormActivate
   OnCreate = FormCreate
-  ExplicitLeft = -630
+  ExplicitLeft = -591
+  ExplicitTop = -177
   ExplicitWidth = 1755
-  ExplicitHeight = 829
+  ExplicitHeight = 855
   PixelsPerInch = 96
   TextHeight = 16
   inherited PanelButtons: TPanel
     Left = 1641
-    Height = 760
+    Height = 786
     ExplicitLeft = 1641
     ExplicitHeight = 760
     inherited PanelClose: TPanel
-      Top = 674
+      Top = 700
       ExplicitTop = 674
       inherited BitBtnClose: TBitBtn
         Glyph.Data = {
@@ -131,10 +132,11 @@ inherited fCorsia: TfCorsia
     Left = 0
     Top = 40
     Width = 1641
-    Height = 760
+    Height = 786
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 2
+    ExplicitHeight = 760
     object Panel2: TPanel
       AlignWithMargins = True
       Left = 4
@@ -208,7 +210,7 @@ inherited fCorsia: TfCorsia
       Left = 874
       Top = 287
       Width = 766
-      Height = 472
+      Height = 498
       Align = alRight
       BevelOuter = bvLowered
       Font.Charset = DEFAULT_CHARSET
@@ -218,6 +220,7 @@ inherited fCorsia: TfCorsia
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      ExplicitHeight = 472
       object Label1: TLabel
         Left = 17
         Top = 39
@@ -344,11 +347,12 @@ inherited fCorsia: TfCorsia
       end
       object Panel8: TPanel
         Left = 1
-        Top = 410
+        Top = 436
         Width = 764
         Height = 61
         Align = alBottom
         TabOrder = 1
+        ExplicitTop = 410
         object BitBtnChange: TBitBtn
           AlignWithMargins = True
           Left = 568
@@ -511,7 +515,7 @@ inherited fCorsia: TfCorsia
         Left = 487
         Top = 64
         Width = 274
-        Height = 57
+        Height = 89
         Caption = 'Stato Posizione'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -541,9 +545,9 @@ inherited fCorsia: TfCorsia
       end
       object GroupBox4: TGroupBox
         Left = 16
-        Top = 120
+        Top = 152
         Width = 465
-        Height = 97
+        Height = 113
         Caption = 'UDC Data'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -567,7 +571,7 @@ inherited fCorsia: TfCorsia
         end
         object Label14: TLabel
           Left = 11
-          Top = 67
+          Top = 59
           Width = 53
           Height = 16
           Caption = 'Tipo UDC'
@@ -580,7 +584,7 @@ inherited fCorsia: TfCorsia
         end
         object Label19: TLabel
           Left = 280
-          Top = 65
+          Top = 57
           Width = 66
           Height = 16
           Caption = 'Codice UDC'
@@ -676,7 +680,7 @@ inherited fCorsia: TfCorsia
         end
         object cbTipoUDC: TComboBox
           Left = 66
-          Top = 62
+          Top = 54
           Width = 183
           Height = 24
           Enabled = False
@@ -690,7 +694,7 @@ inherited fCorsia: TfCorsia
         end
         object edCodUDC: TEdit
           Left = 352
-          Top = 64
+          Top = 56
           Width = 113
           Height = 21
           Enabled = False
@@ -717,12 +721,21 @@ inherited fCorsia: TfCorsia
           ParentFont = False
           TabOrder = 3
         end
+        object cbImpilabile: TCheckBox
+          Left = 11
+          Top = 88
+          Width = 134
+          Height = 25
+          Caption = 'Impilabilita'#39
+          TabOrder = 4
+          OnClick = ckDisabilitaPosClick
+        end
       end
       object GroupBox5: TGroupBox
-        Left = 15
-        Top = 223
+        Left = 16
+        Top = 271
         Width = 274
-        Height = 90
+        Height = 106
         Caption = 'Peso'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -880,7 +893,7 @@ inherited fCorsia: TfCorsia
       end
       object GroupBox6: TGroupBox
         Left = 313
-        Top = 362
+        Top = 378
         Width = 449
         Height = 42
         Color = clGradientInactiveCaption
@@ -1000,7 +1013,7 @@ inherited fCorsia: TfCorsia
       end
       object GroupBox7: TGroupBox
         Left = 312
-        Top = 223
+        Top = 271
         Width = 449
         Height = 104
         Color = clBtnFace
@@ -1171,9 +1184,9 @@ inherited fCorsia: TfCorsia
       end
       object GroupBox8: TGroupBox
         Left = 487
-        Top = 127
+        Top = 159
         Width = 274
-        Height = 90
+        Height = 106
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -1183,7 +1196,7 @@ inherited fCorsia: TfCorsia
         TabOrder = 7
         object Label25: TLabel
           Left = 14
-          Top = 15
+          Top = 13
           Width = 36
           Height = 13
           Caption = 'H.Dep.'
@@ -1196,7 +1209,7 @@ inherited fCorsia: TfCorsia
         end
         object Label26: TLabel
           Left = 171
-          Top = 15
+          Top = 13
           Width = 36
           Height = 13
           Caption = 'H.Prel.'
@@ -1238,8 +1251,8 @@ inherited fCorsia: TfCorsia
           TabOrder = 1
         end
         object ckDisabilitaPiano: TCheckBox
-          Left = 3
-          Top = 41
+          Left = 7
+          Top = 49
           Width = 134
           Height = 25
           Caption = 'Disabilita Piano'
@@ -1247,8 +1260,8 @@ inherited fCorsia: TfCorsia
           OnClick = ckDisabilitaPosClick
         end
         object ckPianoRiservato: TCheckBox
-          Left = 143
-          Top = 41
+          Left = 147
+          Top = 49
           Width = 222
           Height = 25
           Caption = 'Piano Riservato'
@@ -1260,7 +1273,7 @@ inherited fCorsia: TfCorsia
         Left = 16
         Top = 64
         Width = 465
-        Height = 57
+        Height = 89
         Caption = 'Settaggi Posizione'
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
@@ -1284,9 +1297,9 @@ inherited fCorsia: TfCorsia
           ParentFont = False
         end
         object Label29: TLabel
-          Left = 279
-          Top = 26
-          Width = 48
+          Left = 7
+          Top = 59
+          Width = 73
           Height = 16
           Caption = 'Rif. Ord.'
           Font.Charset = DEFAULT_CHARSET
@@ -1297,9 +1310,9 @@ inherited fCorsia: TfCorsia
           ParentFont = False
         end
         object edtRifOrdine: TEdit
-          Left = 331
-          Top = 23
-          Width = 134
+          Left = 112
+          Top = 58
+          Width = 137
           Height = 21
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1312,11 +1325,11 @@ inherited fCorsia: TfCorsia
         object cbbTipoPosizione: TComboBox
           Left = 112
           Top = 21
-          Width = 137
-          Height = 24
+          Width = 337
+          Height = 27
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -16
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
@@ -1331,7 +1344,7 @@ inherited fCorsia: TfCorsia
       Left = 1
       Top = 287
       Width = 722
-      Height = 472
+      Height = 498
       Align = alLeft
       BevelOuter = bvLowered
       Font.Charset = DEFAULT_CHARSET
@@ -1341,6 +1354,7 @@ inherited fCorsia: TfCorsia
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      ExplicitHeight = 472
       object Label5: TLabel
         Left = 6
         Top = 39
@@ -1450,11 +1464,12 @@ inherited fCorsia: TfCorsia
       end
       object Panel10: TPanel
         Left = 1
-        Top = 410
+        Top = 436
         Width = 720
         Height = 61
         Align = alBottom
         TabOrder = 1
+        ExplicitTop = 410
         object BitBtn1: TBitBtn
           AlignWithMargins = True
           Left = 592
@@ -2095,6 +2110,7 @@ inherited fCorsia: TfCorsia
           Top = 23
           Width = 323
           Height = 24
+          Enabled = False
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
