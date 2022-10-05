@@ -31,12 +31,13 @@ __published: // IDE-managed Components
     TEdit *tDescArticolo;
     TEdit *edIDArt;
     TEdit *edCodArt;
-    TLabel *Label2;
-    TLabeledEdit *leIdUDC;
-    TLabeledEdit *leIDArt;
-    TLabeledEdit *leCodArt;
-    TLabeledEdit *leDescArticolo;
     TLabel *lIdUDC;
+    TPanel *pInfoUDC;
+    TLabeledEdit *leDescArticolo;
+    TLabeledEdit *leCodArt;
+    TLabeledEdit *leIDArt;
+    TLabeledEdit *leIdUDC;
+    TLabel *Label2;
 
     void __fastcall pnPosAMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
     void __fastcall sbCercaClick(TObject *Sender);

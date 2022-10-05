@@ -459,7 +459,6 @@ object FormUDCList: TFormUDCList
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'CodUDC'
             Font.Charset = DEFAULT_CHARSET
@@ -473,7 +472,6 @@ object FormUDCList: TFormUDCList
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'DescTipoUDC'
             Font.Charset = DEFAULT_CHARSET
@@ -487,7 +485,6 @@ object FormUDCList: TFormUDCList
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'Stato'
             Font.Charset = DEFAULT_CHARSET
@@ -501,7 +498,6 @@ object FormUDCList: TFormUDCList
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'DescStato'
             Font.Charset = DEFAULT_CHARSET
@@ -515,7 +511,6 @@ object FormUDCList: TFormUDCList
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'IDArticolo'
             Font.Charset = DEFAULT_CHARSET
@@ -529,7 +524,6 @@ object FormUDCList: TFormUDCList
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'DescArt'
             Font.Charset = DEFAULT_CHARSET
@@ -543,7 +537,6 @@ object FormUDCList: TFormUDCList
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'CodContenitore'
             Font.Charset = DEFAULT_CHARSET
@@ -556,7 +549,6 @@ object FormUDCList: TFormUDCList
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'DescContenitore'
             Font.Charset = DEFAULT_CHARSET

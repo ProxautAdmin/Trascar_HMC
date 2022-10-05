@@ -175,8 +175,7 @@ AnsiString TdmFunzioni::RitornaHexDaDouble(AnsiString valdouble) {
     return result;
 }
 
-AnsiString TdmFunzioni::DaBufferAStringa(unsigned char *data, int lunghezza_str)
-{
+AnsiString TdmFunzioni::DaBufferAStringa(unsigned char *data, int lunghezza_str)  {
     // ritorno stringa esadecimale (di 2,4,6 caratteri in base a num_hex) da intero
     char car;
     int j;

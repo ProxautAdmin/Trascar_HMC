@@ -34,7 +34,7 @@ USEFORM("configCBFrame.cpp", frCB); /* TFrame: File Type */
 USEFORM("config.cpp", frConfig);
 USEFORM("Chiusura.cpp", ChiusuraForm);
 USEFORM("DataExchange.cpp", DataForm);
-USEFORM("frame_info.cpp", FrameInfo); /* TFrame: File Type */
+USEFORM("frame_ArticoliMP.cpp", FrameMatPrime); /* TFrame: File Type */
 USEFORM("DBExtra.cpp", fDBExtra);
 USEFORM("DBClient.cpp", dmDBClient); /* TDataModule: File Type */
 USEFORM("ChildWin.cpp", MDIChild);
@@ -59,6 +59,7 @@ USEFORM("GestUser.cpp", FrmGestUser);
 USEFORM("ins_Utenti.cpp", FrmInsUtenti);
 USEFORM("ins_UDC.cpp", FormInsUDC);
 USEFORM("ins_MssioniWMS.cpp", FIns_MissioniWMS);
+USEFORM("frame_info.cpp", FrameInfo); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {

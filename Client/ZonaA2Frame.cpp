@@ -7,6 +7,7 @@
 #include "DB.h"
 #include "DBImpianto.h"
 #include "main.h"
+
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "MyShape"
@@ -17,7 +18,8 @@ AnsiString Zona;
 // ---------------------------------------------------------------------------
 __fastcall TfrZonaA2::TfrZonaA2(TComponent* Owner) : TFrame(Owner) {
     Zona = "J";
-        AbilitaConferma=1;
+    AbilitaConferma = 1;
+
 }
 
 // ---------------------------------------------------------------------------

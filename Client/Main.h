@@ -276,6 +276,7 @@ public:
 	int invia_richiesta_simulazione, spostaframe, aggiornamappa, aggiornaagv, h_corsia[5],  num_pos_no_database;
 	int aggiorna_stato_pos, prelievo_missione_manuale, count_aggiorna_mappa_client;
 	int trova_udc, trova_idarticolo;
+    AnsiString trova_HMC_Anagrafica;
 	bool ret, mousedown, retsel, mousedownsel, sync_lamp;
 
 	TTime ScrollMouse;

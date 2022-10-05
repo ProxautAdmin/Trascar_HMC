@@ -210,12 +210,19 @@
             <DependentOn>DBExtra.h</DependentOn>
             <BuildOrder>47</BuildOrder>
         </None>
+        <CppCompile Include="frame_ArticoliMP.cpp">
+            <Form>FrameMatPrime</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frame_ArticoliMP.h</DependentOn>
+            <BuildOrder>63</BuildOrder>
+        </CppCompile>
         <CppCompile Include="frame_info.cpp">
             <Form>FrameInfo</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frame_info.h</DependentOn>
-            <BuildOrder>63</BuildOrder>
+            <BuildOrder>60</BuildOrder>
         </CppCompile>
         <None Include="frame_modulo.cpp">
             <Exclude>True</Exclude>
@@ -537,7 +544,7 @@
         <FormResources Include="config.dfm"/>
         <FormResources Include="Chiusura.dfm"/>
         <FormResources Include="DataExchange.dfm"/>
-        <FormResources Include="frame_info.dfm"/>
+        <FormResources Include="frame_ArticoliMP.dfm"/>
         <FormResources Include="DBExtra.dfm"/>
         <FormResources Include="DBClient.dfm"/>
         <FormResources Include="ChildWin.dfm"/>
@@ -562,6 +569,7 @@
         <FormResources Include="ins_Utenti.dfm"/>
         <FormResources Include="ins_UDC.dfm"/>
         <FormResources Include="ins_MssioniWMS.dfm"/>
+        <FormResources Include="frame_info.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -601,6 +609,22 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32160mt.dll" Class="DependencyModule">
+                    <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgcrtl.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="\Progetti\BuilderXE7\Trascar_HMC\Client\ProxautClient.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>ProxautClient.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64160mt.dll" Class="DependencyModule">
                     <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
@@ -612,13 +636,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin\cc32160mt.dll" Class="DependencyModule">
+                <DeployFile LocalName="\Progetti\BuilderXE7\Trascar_HMC\Client\ProxautClient.tds" Configuration="Debug" Class="DebugSymbols">
                     <Platform Name="Win32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true'" LocalName="$(BDS)\Redist\osx32\libcgcrtl.dylib" Class="DependencyModule">
-                    <Platform Name="OSX32">
+                        <RemoteName>ProxautClient.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -630,12 +650,6 @@
                 </DeployFile>
                 <DeployFile Condition="'$(UsingDelphiRTL)'=='true'" LocalName="$(BDS)\bin\borlndmm.dll" Class="DependencyModule">
                     <Platform Name="Win32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="ProxautClient.tds" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win32">
-                        <RemoteName>ProxautClient.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

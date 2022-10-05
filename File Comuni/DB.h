@@ -309,6 +309,7 @@ private: // User declarations
     AnsiString DescrizioneArticolo(int IDArticolo) ;
     int IDUDCdaIDArticolo(int IDArticolo);
     void LeggiStrutturaUdc(TUDC & UDC) ;
+    int IDUDCdaCodart(AnsiString CodArt) ;
 
 	AnsiString Lingua;
 

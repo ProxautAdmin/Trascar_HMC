@@ -59,7 +59,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
     ttop = (MainForm->ScrollBox1->Height - 260 - 280 - PanelDest->Top - PanelTitle->Height) / 2; // -altezza frame-altezza panel4 fa un po' cagare
     ttop = 10;
     pos = MainForm->pos_udc;
-    PanelPrel->Height = gbMain->Height / 2;
+   // PanelPrel->Height = gbMain->Height / 2;
     PanelPrel->Top = 0;
     PanelPrel->Left = 0;
     dmExtraFunction->ComboScelte(cbPriorita, 9, 1, 1);
@@ -425,7 +425,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_SCARTO);
     else if ((ZonaPrel == "J") && (ZonaDep == "G"))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_PALLET);
-    else if ((ZonaPrel == "I") && (ZonaDep == "J"))
+    else if ((ZonaPrel == "I") && (ZonaDep == "J")&& (tipoposizione == TIPOLOGIA_MATERIEPRIME))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_MATERIEPRIME);
     else
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep);

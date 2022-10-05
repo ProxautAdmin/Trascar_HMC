@@ -7,9 +7,11 @@
 #include "DB.h"
 #include "DBImpianto.h"
 #include "main.h"
+#include "ExtraFunction.h"
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "MyShape"
+#pragma link "frame_ArticoliMP"
 #pragma resource "*.dfm"
 TfrZonaI *frZonaI;
 AnsiString Zona;
@@ -17,7 +19,8 @@ AnsiString Zona;
 // ---------------------------------------------------------------------------
 __fastcall TfrZonaI::TfrZonaI(TComponent* Owner) : TFrame(Owner) {
     Zona = "I";
-    AbilitaConferma = 0;
+    AbilitaConferma = 1;
+    FrameMatPrime->FrameEnter(this);
 }
 
 void TfrZonaI::AggiornaDati() {
@@ -69,6 +72,7 @@ void TfrZonaI::AggiornaDati() {
                     else {
                         Pan->Caption = "Pos." + IntToStr(j) + " - " + IntToStr(TabPosizioni[idx]["IDUDC"].ToIntDef(0));
                     }
+                    Pan->Hint = TabPosizioni[idx]["IDUDC"].ToIntDef(0);
                 }
                 if (!trovato)
                     idx++;
@@ -77,11 +81,13 @@ void TfrZonaI::AggiornaDati() {
     }
 }
 
-void __fastcall TfrZonaI::pnPosIMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
-{
+void __fastcall TfrZonaI::pnPosIMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y) {
+    TUDC UDC;
     TPanel *Pan;
     Pan = (TPanel*) Sender;
     if (Pan != NULL) {
+        UDC.IDUDC = Pan->Hint.ToIntDef(0);
+        leIdUDC->Text = UDC.IDUDC;
         if (Button == mbLeft) {
             if (Pan->Color == clLime) {
                 dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 0);
@@ -97,13 +103,46 @@ void __fastcall TfrZonaI::pnPosIMouseUp(TObject *Sender, TMouseButton Button, TS
         }
         if (Button == mbRight) {
             if (Pan->Color == clWhite) {
-                dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
+                // dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
+                UDC.IDUDC = CercaConCodart(FrameMatPrime->ADOQuery1->FieldByName("componente")->AsString);
+                if (UDC.IDUDC > 0) {
+                    dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));
+                }
             }
             else if (Pan->Color == clYellow) {
                 dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 0, 1, dmDB->FilaPosizione(Pan->Tag));
             }
+            leIdUDC->Text = UDC.IDUDC;
+        }
 
+        // gestione udc/articoli
+        if (UDC.IDUDC > 0) {
+            // udc esiste
+            dmDB->LeggiStrutturaUdc(UDC);
+            // leIDArt->Text = UDC.Articolo.IDArticolo;
+            leCodArt->Text = UDC.Articolo.CodArt;
+            leDescArticolo->Text = UDC.Articolo.Descrizione;
         }
     }
 }
 // ---------------------------------------------------------------------------
+
+int TfrZonaI::CercaConCodart(AnsiString CodArt) {
+    int res = 0;
+    TUDC UDC;
+    UDC.IDUDC = dmDB->IDUDCdaCodart(FrameMatPrime->ADOQuery1->FieldByName("componente")->AsString);
+    if (UDC.IDUDC == 0) {
+        UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
+        dmExtraFunction->StringToChar("", UDC.Lotto);
+        dmExtraFunction->StringToChar(CodArt, UDC.Articolo.CodArt);
+        dmExtraFunction->StringToChar(FrameMatPrime->ADOQuery1->FieldByName("descrizione componente")->AsString, UDC.Articolo.Descrizione);
+        UDC.CodTipoUDC = 0;
+        UDC.IndiceImpilabilita = 0;
+        UDC.Parziale = 0;
+        UDC.Riservato = 0;
+        UDC.CodStato = 0;
+        UDC.IDUDC = dmDB->InsertUpdateUDC(UDC);
+    }
+    res = UDC.IDUDC;
+    return res;
+}

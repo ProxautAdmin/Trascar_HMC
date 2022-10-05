@@ -10,6 +10,11 @@
 #include "MyShape.h"
 #include "clientdata.h"
 #include <Vcl.ExtCtrls.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.Grids.hpp>
+#include "frame_ArticoliMP.h"
+#include <Data.DB.hpp>
+#include <Data.Win.ADODB.hpp>
 
 // ---------------------------------------------------------------------------
 class TfrZonaI : public TFrame
@@ -27,7 +32,12 @@ __published: // IDE-managed Components
     TPanel *pnPosI8;
     TPanel *pnPosI9;
     TPanel *pnPosI10;
-    TLabel *lbSelI;
+    TFrameMatPrime *FrameMatPrime;
+    TPanel *pInfoUDC;
+    TLabel *Label2;
+    TLabeledEdit *leDescArticolo;
+    TLabeledEdit *leIdUDC;
+    TLabeledEdit *leCodArt;
 
     void __fastcall pnPosIMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 
@@ -36,6 +46,7 @@ private: // User declarations
     __fastcall TfrZonaI(TComponent* Owner);
     void AggiornaDati();
     bool AbilitaConferma ;
+    int CercaConCodart(AnsiString CodArt) ;
 };
 
 // ---------------------------------------------------------------------------

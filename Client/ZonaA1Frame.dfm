@@ -2,37 +2,19 @@ object frZonaA1: TfrZonaA1
   Left = 0
   Top = 0
   Width = 1327
-  Height = 250
+  Height = 291
   TabOrder = 0
   object pnA: TPanel
     Left = 0
     Top = 0
     Width = 1327
-    Height = 250
+    Height = 291
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1135
+    ExplicitHeight = 250
     DesignSize = (
       1327
-      250)
-    object Label2: TLabel
-      Left = 16
-      Top = 215
-      Width = 121
-      Height = 25
-      AutoSize = False
-      Caption = 'Selezione'
-      Color = cl3DLight
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentColor = False
-      ParentFont = False
-      Transparent = False
-      Layout = tlCenter
-    end
+      291)
     object pnPosA1: TPanel
       Tag = 101
       AlignWithMargins = True
@@ -156,9 +138,10 @@ object frZonaA1: TfrZonaA1
       Left = 912
       Top = 16
       Width = 209
-      Height = 217
+      Height = 258
       Anchors = [akLeft, akTop, akBottom]
       TabOrder = 7
+      ExplicitHeight = 217
       object Label1: TLabel
         Left = 8
         Top = 9
@@ -356,133 +339,158 @@ object frZonaA1: TfrZonaA1
         Text = '...'
       end
     end
-    object leIdUDC: TLabeledEdit
-      Left = 168
-      Top = 218
-      Width = 96
-      Height = 21
-      AutoSelect = False
-      AutoSize = False
-      BorderStyle = bsNone
-      Color = clBtnHighlight
-      DoubleBuffered = True
-      EditLabel.Width = 11
-      EditLabel.Height = 16
-      EditLabel.Caption = 'Id'
-      EditLabel.Font.Charset = DEFAULT_CHARSET
-      EditLabel.Font.Color = clWindowText
-      EditLabel.Font.Height = -13
-      EditLabel.Font.Name = 'Tahoma'
-      EditLabel.Font.Style = []
-      EditLabel.ParentFont = False
-      EditLabel.Transparent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      LabelPosition = lpLeft
-      LabelSpacing = 10
-      ParentDoubleBuffered = False
-      ParentFont = False
-      ReadOnly = True
+    object pInfoUDC: TPanel
+      Left = 16
+      Top = 217
+      Width = 883
+      Height = 57
       TabOrder = 8
-    end
-    object leIDArt: TLabeledEdit
-      Left = 318
-      Top = 218
-      Width = 83
-      Height = 21
-      AutoSelect = False
-      AutoSize = False
-      BorderStyle = bsNone
-      Color = clBtnHighlight
-      DoubleBuffered = True
-      EditLabel.Width = 36
-      EditLabel.Height = 16
-      EditLabel.Caption = 'Id Art.'
-      EditLabel.Font.Charset = DEFAULT_CHARSET
-      EditLabel.Font.Color = clWindowText
-      EditLabel.Font.Height = -13
-      EditLabel.Font.Name = 'Tahoma'
-      EditLabel.Font.Style = []
-      EditLabel.ParentFont = False
-      EditLabel.Transparent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      LabelPosition = lpLeft
-      LabelSpacing = 10
-      ParentDoubleBuffered = False
-      ParentFont = False
-      ReadOnly = True
-      TabOrder = 9
-    end
-    object leCodArt: TLabeledEdit
-      Left = 480
-      Top = 218
-      Width = 96
-      Height = 21
-      AutoSelect = False
-      AutoSize = False
-      BorderStyle = bsNone
-      Color = clBtnHighlight
-      DoubleBuffered = True
-      EditLabel.Width = 51
-      EditLabel.Height = 16
-      EditLabel.Caption = 'Cod. Art.'
-      EditLabel.Font.Charset = DEFAULT_CHARSET
-      EditLabel.Font.Color = clWindowText
-      EditLabel.Font.Height = -13
-      EditLabel.Font.Name = 'Tahoma'
-      EditLabel.Font.Style = []
-      EditLabel.ParentFont = False
-      EditLabel.Transparent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      LabelPosition = lpLeft
-      LabelSpacing = 10
-      ParentDoubleBuffered = False
-      ParentFont = False
-      ReadOnly = True
-      TabOrder = 10
-    end
-    object leDescArticolo: TLabeledEdit
-      Left = 664
-      Top = 218
-      Width = 235
-      Height = 21
-      AutoSelect = False
-      AutoSize = False
-      BorderStyle = bsNone
-      Color = clBtnHighlight
-      DoubleBuffered = True
-      EditLabel.Width = 65
-      EditLabel.Height = 16
-      EditLabel.Caption = 'Descrizione'
-      EditLabel.Font.Charset = DEFAULT_CHARSET
-      EditLabel.Font.Color = clWindowText
-      EditLabel.Font.Height = -13
-      EditLabel.Font.Name = 'Tahoma'
-      EditLabel.Font.Style = []
-      EditLabel.ParentFont = False
-      EditLabel.Transparent = False
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      LabelPosition = lpLeft
-      LabelSpacing = 10
-      ParentDoubleBuffered = False
-      ParentFont = False
-      ReadOnly = True
-      TabOrder = 11
+      object Label2: TLabel
+        Left = 7
+        Top = 12
+        Width = 121
+        Height = 25
+        AutoSize = False
+        Caption = 'Selezione'
+        Color = cl3DLight
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+        Layout = tlCenter
+      end
+      object leDescArticolo: TLabeledEdit
+        Left = 643
+        Top = 12
+        Width = 235
+        Height = 21
+        AutoSelect = False
+        AutoSize = False
+        BorderStyle = bsNone
+        Color = clBtnHighlight
+        DoubleBuffered = True
+        EditLabel.Width = 65
+        EditLabel.Height = 16
+        EditLabel.Caption = 'Descrizione'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -13
+        EditLabel.Font.Name = 'Tahoma'
+        EditLabel.Font.Style = []
+        EditLabel.ParentFont = False
+        EditLabel.Transparent = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        LabelPosition = lpLeft
+        LabelSpacing = 10
+        ParentDoubleBuffered = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 0
+      end
+      object leCodArt: TLabeledEdit
+        Left = 463
+        Top = 12
+        Width = 96
+        Height = 21
+        AutoSelect = False
+        AutoSize = False
+        BorderStyle = bsNone
+        Color = clBtnHighlight
+        DoubleBuffered = True
+        EditLabel.Width = 51
+        EditLabel.Height = 16
+        EditLabel.Caption = 'Cod. Art.'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -13
+        EditLabel.Font.Name = 'Tahoma'
+        EditLabel.Font.Style = []
+        EditLabel.ParentFont = False
+        EditLabel.Transparent = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        LabelPosition = lpLeft
+        LabelSpacing = 10
+        ParentDoubleBuffered = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 1
+      end
+      object leIDArt: TLabeledEdit
+        Left = 309
+        Top = 12
+        Width = 83
+        Height = 21
+        AutoSelect = False
+        AutoSize = False
+        BorderStyle = bsNone
+        Color = clBtnHighlight
+        DoubleBuffered = True
+        EditLabel.Width = 36
+        EditLabel.Height = 16
+        EditLabel.Caption = 'Id Art.'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -13
+        EditLabel.Font.Name = 'Tahoma'
+        EditLabel.Font.Style = []
+        EditLabel.ParentFont = False
+        EditLabel.Transparent = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        LabelPosition = lpLeft
+        LabelSpacing = 10
+        ParentDoubleBuffered = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 2
+      end
+      object leIdUDC: TLabeledEdit
+        Left = 159
+        Top = 12
+        Width = 96
+        Height = 21
+        AutoSelect = False
+        AutoSize = False
+        BorderStyle = bsNone
+        Color = clBtnHighlight
+        DoubleBuffered = True
+        EditLabel.Width = 11
+        EditLabel.Height = 16
+        EditLabel.Caption = 'Id'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -13
+        EditLabel.Font.Name = 'Tahoma'
+        EditLabel.Font.Style = []
+        EditLabel.ParentFont = False
+        EditLabel.Transparent = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        LabelPosition = lpLeft
+        LabelSpacing = 10
+        ParentDoubleBuffered = False
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 3
+      end
     end
   end
 end
