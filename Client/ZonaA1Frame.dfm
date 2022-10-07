@@ -1,147 +1,189 @@
 object frZonaA1: TfrZonaA1
   Left = 0
   Top = 0
-  Width = 1327
+  Width = 1373
   Height = 291
   TabOrder = 0
   object pnA: TPanel
     Left = 0
     Top = 0
-    Width = 1327
+    Width = 1373
     Height = 291
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 250
+    ExplicitWidth = 1327
     DesignSize = (
-      1327
+      1373
       291)
     object pnPosA1: TPanel
       Tag = 101
       AlignWithMargins = True
       Left = 16
       Top = 16
-      Width = 121
+      Width = 160
       Height = 193
       BorderWidth = 10
       BorderStyle = bsSingle
       Caption = 'Posizione 1'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 0
       OnMouseUp = pnPosAMouseUp
     end
     object pnPosA2: TPanel
       Tag = 102
       AlignWithMargins = True
-      Left = 143
+      Left = 178
       Top = 16
-      Width = 121
+      Width = 160
       Height = 193
       BorderWidth = 10
       BorderStyle = bsSingle
       Caption = 'Posizione 2'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 1
       OnMouseUp = pnPosAMouseUp
     end
     object pnPosA3: TPanel
       Tag = 103
       AlignWithMargins = True
-      Left = 270
+      Left = 340
       Top = 16
-      Width = 121
+      Width = 160
       Height = 193
       BorderWidth = 10
       BorderStyle = bsSingle
       Caption = 'Posizione 3'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 2
       OnMouseUp = pnPosAMouseUp
     end
     object pnPosA4: TPanel
       Tag = 104
       AlignWithMargins = True
-      Left = 397
+      Left = 502
       Top = 16
-      Width = 121
+      Width = 160
       Height = 193
       BorderWidth = 10
       BorderStyle = bsSingle
       Caption = 'Posizione 4'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 3
       OnMouseUp = pnPosAMouseUp
     end
     object pnPosA5: TPanel
       Tag = 105
       AlignWithMargins = True
-      Left = 524
+      Left = 664
       Top = 16
-      Width = 121
+      Width = 160
       Height = 193
       BorderWidth = 10
       BorderStyle = bsSingle
       Caption = 'Posizione 5'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 4
       OnMouseUp = pnPosAMouseUp
     end
     object pnPosA6: TPanel
       Tag = 106
       AlignWithMargins = True
-      Left = 651
+      Left = 827
       Top = 16
-      Width = 121
+      Width = 160
       Height = 193
       BorderWidth = 10
       BorderStyle = bsSingle
       Caption = 'Posizione 6'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 5
       OnMouseUp = pnPosAMouseUp
     end
     object pnPosA7: TPanel
       Tag = 107
       AlignWithMargins = True
-      Left = 778
+      Left = 990
       Top = 16
-      Width = 121
+      Width = 160
       Height = 193
       BorderWidth = 10
       BorderStyle = bsSingle
       Caption = 'Posizione 7'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 6
       OnMouseUp = pnPosAMouseUp
     end
     object Panel1: TPanel
-      Left = 912
+      Left = 1156
       Top = 16
       Width = 209
       Height = 258
       Anchors = [akLeft, akTop, akBottom]
       TabOrder = 7
-      ExplicitHeight = 217
+      Visible = False
       object Label1: TLabel
         Left = 8
         Top = 9
@@ -342,7 +384,7 @@ object frZonaA1: TfrZonaA1
     object pInfoUDC: TPanel
       Left = 16
       Top = 217
-      Width = 883
+      Width = 1134
       Height = 57
       TabOrder = 8
       object Label2: TLabel
@@ -364,9 +406,9 @@ object frZonaA1: TfrZonaA1
         Layout = tlCenter
       end
       object leDescArticolo: TLabeledEdit
-        Left = 643
+        Left = 504
         Top = 12
-        Width = 235
+        Width = 486
         Height = 21
         AutoSelect = False
         AutoSize = False
@@ -396,7 +438,7 @@ object frZonaA1: TfrZonaA1
         TabOrder = 0
       end
       object leCodArt: TLabeledEdit
-        Left = 463
+        Left = 324
         Top = 12
         Width = 96
         Height = 21
@@ -426,38 +468,6 @@ object frZonaA1: TfrZonaA1
         ParentFont = False
         ReadOnly = True
         TabOrder = 1
-      end
-      object leIDArt: TLabeledEdit
-        Left = 309
-        Top = 12
-        Width = 83
-        Height = 21
-        AutoSelect = False
-        AutoSize = False
-        BorderStyle = bsNone
-        Color = clBtnHighlight
-        DoubleBuffered = True
-        EditLabel.Width = 36
-        EditLabel.Height = 16
-        EditLabel.Caption = 'Id Art.'
-        EditLabel.Font.Charset = DEFAULT_CHARSET
-        EditLabel.Font.Color = clWindowText
-        EditLabel.Font.Height = -13
-        EditLabel.Font.Name = 'Tahoma'
-        EditLabel.Font.Style = []
-        EditLabel.ParentFont = False
-        EditLabel.Transparent = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        LabelPosition = lpLeft
-        LabelSpacing = 10
-        ParentDoubleBuffered = False
-        ParentFont = False
-        ReadOnly = True
-        TabOrder = 2
       end
       object leIdUDC: TLabeledEdit
         Left = 159
@@ -489,6 +499,14 @@ object frZonaA1: TfrZonaA1
         ParentDoubleBuffered = False
         ParentFont = False
         ReadOnly = True
+        TabOrder = 2
+      end
+      object ckImpilabile: TCheckBox
+        Left = 1029
+        Top = 16
+        Width = 97
+        Height = 17
+        Caption = 'Impilabile'
         TabOrder = 3
       end
     end

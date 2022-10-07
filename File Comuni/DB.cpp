@@ -4994,7 +4994,7 @@ int TdmDB::InsertUpdateUDC(TUDC UDC) {
             ADOQuery = new TADOQuery(NULL);
             ADOQuery->Connection = ADOConnection1;
             strsql.printf("INSERT INTO UDC (IDUDC ,CodUDC, Stato, IDArticolo, CodTipoUDC, Tara, PesoAttuale, Lotto, IndiceImpilabilita, Parziale, Riservato, Descrizione)"
-                " VALUES (%d,'%s',%d,%d,%d,%d,%d,'%s',%d, %d, %d,' %s')"
+                " VALUES (%d,'%s',%d,%d,%d,%d,%d,'%s',%d, %d, %d,'%s')"
                 , UDC.IDUDC
                 , CodUDC.c_str()
                 , UDC.CodStato
@@ -5177,6 +5177,7 @@ void TdmDB::LeggiStrutturaUdc(TUDC & UDC) {
                 dmExtraFunction->StringToChar(ADOQuery->FieldByName("DescArt")->AsString, UDC.Articolo.Descrizione);
             UDC.Articolo.IDTipoArticolo = 0; // ??????
             UDC.CodStato = ADOQuery->FieldByName("Stato")->AsInteger;
+            UDC.IndiceImpilabilita  =ADOQuery->FieldByName("Sovrapposto")->AsInteger  ;
         }
         ADOQuery->Close();
         // MainForm->LogMsg(stringa);

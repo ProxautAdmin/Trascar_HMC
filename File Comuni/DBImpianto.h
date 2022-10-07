@@ -41,6 +41,8 @@ __published: // IDE-managed Components
     int AggiornaUDCPosizioni(int pos, int IDUDC, int piano=0) ;
     int CercaPrelievo(AnsiString Zona, int tipoposizione=0)   ;
     void TornaPosDepLiberaH(AnsiString Zona, int IDUDC, int &pos, int &piano) ;
+    AnsiString TornaDescrizionedaZonaA1(AnsiString CodArt, int &impila);
+    int TornaIndiceImpilabilitadaIDUDC(int idudc)     ;
 
 };
 

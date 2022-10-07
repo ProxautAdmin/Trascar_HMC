@@ -182,8 +182,8 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                         trovato = false;
                         posplc = false;
                         // controllo che le missioni alle postazioni deposito siano praticabili
-                        while ((idx <= IDX_PLCDEPOSITO) && (trovato == false)) {
-                            idx_plc = NUM_DEPOSITOPLC; // metti che ci siano altri indici cosi' lo tratto come voglio
+                        while ((idx <= NUM_DEPOSITOPLC) && (trovato == false)) {
+                            idx_plc = IDX_PLCDEPOSITO; // metti che ci siano altri indici cosi' lo tratto come voglio
                             if (ClientData.Plc[idx_plc].Deposito[idx][1].pos == dbposdep) {
                                 if ((ClientData.Plc[idx_plc].Deposito[idx][1].Ready) && (!ClientData.Plc[idx_plc].Deposito[idx][1].InAllarme) && (ClientData.Plc[idx_plc].Deposito[idx][1].ProntaAlDeposito)) {
                                     m.posdep = dbposdep;

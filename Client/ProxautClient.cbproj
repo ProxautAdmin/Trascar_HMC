@@ -540,6 +540,7 @@
         <FormResources Include="ZonaHFrame.dfm"/>
         <FormResources Include="ZonaGFrame.dfm"/>
         <FormResources Include="ZonaFFrame.dfm"/>
+        <FormResources Include="PorteFumo.dfm"/>
         <FormResources Include="configCBFrame.dfm"/>
         <FormResources Include="config.dfm"/>
         <FormResources Include="Chiusura.dfm"/>
@@ -555,21 +556,20 @@
         <FormResources Include="CentroMissioni.dfm"/>
         <FormResources Include="Batterie.dfm"/>
         <FormResources Include="anagrafica_articoli.dfm"/>
-        <FormResources Include="MSG.dfm"/>
         <FormResources Include="missioni.dfm"/>
         <FormResources Include="Main.dfm"/>
-        <FormResources Include="Password.dfm"/>
-        <FormResources Include="PorteFumo.dfm"/>
-        <FormResources Include="port.dfm"/>
         <FormResources Include="log.dfm"/>
-        <FormResources Include="GestMissioni.dfm"/>
+        <FormResources Include="MSG.dfm"/>
+        <FormResources Include="port.dfm"/>
+        <FormResources Include="Password.dfm"/>
+        <FormResources Include="ins_Utenti.dfm"/>
         <FormResources Include="GestAGVMidi.dfm"/>
         <FormResources Include="frame_modulo.dfm"/>
-        <FormResources Include="GestUser.dfm"/>
-        <FormResources Include="ins_Utenti.dfm"/>
+        <FormResources Include="frame_info.dfm"/>
+        <FormResources Include="GestMissioni.dfm"/>
         <FormResources Include="ins_UDC.dfm"/>
         <FormResources Include="ins_MssioniWMS.dfm"/>
-        <FormResources Include="frame_info.dfm"/>
+        <FormResources Include="GestUser.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -625,6 +625,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="\Progetti\BuilderXE7\Trascar_HMC\Client\ProxautClient.tds" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win32">
+                        <RemoteName>ProxautClient.tds</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64160mt.dll" Class="DependencyModule">
                     <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
@@ -633,12 +639,6 @@
                 <DeployFile LocalName="ProxautClient.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>ProxautClient.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="\Progetti\BuilderXE7\Trascar_HMC\Client\ProxautClient.tds" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win32">
-                        <RemoteName>ProxautClient.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

@@ -35,9 +35,9 @@ __published: // IDE-managed Components
     TPanel *pInfoUDC;
     TLabeledEdit *leDescArticolo;
     TLabeledEdit *leCodArt;
-    TLabeledEdit *leIDArt;
     TLabeledEdit *leIdUDC;
     TLabel *Label2;
+    TCheckBox *ckImpilabile;
 
     void __fastcall pnPosAMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
     void __fastcall sbCercaClick(TObject *Sender);
@@ -47,6 +47,7 @@ private: // User declarations
         public : // User declarations
     __fastcall TfrZonaA1(TComponent* Owner);
     void AggiornaDati();
+    int CercaConCodart(AnsiString CodArt) ;
 
     bool AbilitaConferma;
 

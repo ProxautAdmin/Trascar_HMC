@@ -778,3 +778,54 @@ int TdmDBImpianto::CercaPrelievo(AnsiString Zona, int tipoposizione) {
     delete ADOQuery;
     return res;
 }
+
+
+AnsiString TdmDBImpianto::TornaDescrizionedaZonaA1(AnsiString CodArt, int &impila) {
+    AnsiString stringa;
+    TADOQuery *ADOQuery;
+    AnsiString res = "";
+    impila=0;
+    try {
+        if (!dmDB->ADOConnection1->Connected)
+            return res;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        stringa = "Select DescrizioneArticolo, sovrapposto from ZonaA1 where articolo = '" + CodArt + "'";
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Text = stringa;
+        ADOQuery->Open();
+        if (ADOQuery->RecordCount) {
+            res = ADOQuery->FieldByName("DescrizioneArticolo")->AsString;
+            impila= ADOQuery->FieldByName("sovrapposto")->AsInteger   ;
+        }
+        ADOQuery->Close();
+        delete ADOQuery;
+    }
+    catch (...) {
+    }
+    return res;
+}
+
+
+int TdmDBImpianto::TornaIndiceImpilabilitadaIDUDC(int idudc) {
+    TADOQuery *ADOQuery;
+    AnsiString strsql;
+    int res=0;
+
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        strsql.printf("SELECT IndiceImpilabilita FROM UDC_view where IDUDC=%d", idudc);
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+        ADOQuery->Last();
+        if (ADOQuery->RecordCount) {
+            res = ADOQuery->FieldByName("IndiceImpilabilita")->AsInteger;
+        }
+        ADOQuery->Close();
+    }
+    catch (...) {
+    }
+    delete ADOQuery;
+    return res;
+}

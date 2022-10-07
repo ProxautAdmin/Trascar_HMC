@@ -32,7 +32,7 @@ void TfrZonaA1::AggiornaDati() {
     AnsiString str;
     TPanel *Pan;
     TRecordList TabPosizioni;
-    str = "select *, (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.Piani_View.Pos) AND (IDUDC <> 0)) as npianiocc from piani_view ";
+    str = "select POS,PRENOTATA,POS_PRENOTATA, DISABILITATA, POS_DISABILITA, SELEZIONATA, ARTICOLO from ZonaA1 ";
     str += " WHERE Zona = '" + Zona + "' and piano= 1 ORDER BY Pos ";
     dmDB->FullTabella(str, TabPosizioni);
     for (int j = 1; j <= numeroelementi; j++) {
@@ -54,24 +54,23 @@ void TfrZonaA1::AggiornaDati() {
                     else if (TabPosizioni[idx]["SELEZIONATA"].ToIntDef(0)) {
                         Pan->Color = clLime;
                     }
-                    else if (TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0) == 1) {
+                    else if (TabPosizioni[idx]["ARTICOLO"] != "") {
                         Pan->Color = clYellow;
-                    }
-                    else if (TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0) == 2) {
-                        Pan->Color = clWebOrange;
                     }
                     else {
                         Pan->Color = clWhite;
                     }
                     // caption
-                    if (TabPosizioni[idx]["IDUDC"].ToIntDef(0) == 0) {
+                    if (TabPosizioni[idx]["ARTICOLO"] == "") {
                         Pan->Caption = "Pos." + IntToStr(j) + " (" + IntToStr(Pan->Tag) + ")";
+
                     }
                     else {
-                        Pan->Caption = "Pos." + IntToStr(j) + " - " + IntToStr(TabPosizioni[idx]["IDUDC"].ToIntDef(0));
+                        Pan->Caption = TabPosizioni[idx]["ARTICOLO"];
+
                     }
 
-                    Pan->Hint = TabPosizioni[idx]["IDUDC"].ToIntDef(0);
+                    Pan->Hint = TabPosizioni[idx]["ARTICOLO"];
                 }
                 if (!trovato)
                     idx++;
@@ -86,33 +85,30 @@ void __fastcall TfrZonaA1::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
     TUDC UDC;
     Pan = (TPanel*) Sender;
     if (Pan != NULL) {
-        UDC.IDUDC = Pan->Hint.ToIntDef(0);
-        leIdUDC->Text = UDC.IDUDC;
+        // UDC.IDUDC = Pan->Hint.ToIntDef(0);
+        // leIdUDC->Text = UDC.IDUDC;
         // gestione tasto mause
         if (Button == mbLeft) {
             if (Pan->Color == clLime) {
                 dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 0);
-
             }
             else if (Pan->Color == clYellow) {
+                UDC.IDUDC = CercaConCodart(Pan->Hint.Trim());
+                if (UDC.IDUDC > 0) {
+                    dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));
+                }
                 dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 1);
             }
-
         }
 
         if (Button == mbRight) {
             if (Pan->Color == clWhite) {
-                if (lIdUDC->Caption.ToIntDef(0) > 0) {
-                    dmDB->ArticoloPrelevatoDepositato(Pan->Tag, lIdUDC->Caption.ToIntDef(0), 1, dmDB->FilaPosizione(Pan->Tag));
-                    UDC.IDUDC = lIdUDC->Caption.ToIntDef(0);
-                }
-            }
-            else if (Pan->Color == clYellow) {
-                dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 0, 1, dmDB->FilaPosizione(Pan->Tag));
                 UDC.IDUDC = 0;
             }
+            else if ((Pan->Color == clYellow) || (Pan->Color == clLime)) {
+                UDC.IDUDC = CercaConCodart(Pan->Hint.Trim());
+            }
 
-            leIdUDC->Text = UDC.IDUDC;
         }
 
         // gestione udc/articoli
@@ -120,9 +116,16 @@ void __fastcall TfrZonaA1::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
         if (UDC.IDUDC > 0) {
             // udc esiste
             dmDB->LeggiStrutturaUdc(UDC);
-            leIDArt->Text = UDC.Articolo.IDArticolo;
+            leIdUDC->Text = UDC.IDUDC;
             leCodArt->Text = UDC.Articolo.CodArt;
             leDescArticolo->Text = UDC.Articolo.Descrizione;
+            ckImpilabile->Checked = UDC.IndiceImpilabilita;     //da sistemare
+        }
+        else {
+            leIdUDC->Text = "";
+            leCodArt->Text = "";
+            leDescArticolo->Text = "";
+            ckImpilabile->Checked = false;       //da sistemare
         }
 
     }
@@ -152,8 +155,30 @@ void __fastcall TfrZonaA1::sbCercaClick(TObject *Sender) {
         edIDArt->Text = UDC.Articolo.IDArticolo;
         edCodArt->Text = UDC.Articolo.CodArt;
         tDescArticolo->Text = UDC.Articolo.Descrizione;
+        ckImpilabile->Checked = UDC.IndiceImpilabilita;
 
     }
 }
 
 // ---------------------------------------------------------------------------
+
+int TfrZonaA1::CercaConCodart(AnsiString CodArt) {
+    // sarebbe da fare una funzione unica con zona I. Ora non ho tempo
+    int res = 0;
+    TUDC UDC;
+    UDC.IDUDC = dmDB->IDUDCdaCodart(CodArt);
+    if (UDC.IDUDC == 0) {
+        UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
+        dmExtraFunction->StringToChar("", UDC.Lotto);
+        dmExtraFunction->StringToChar(CodArt, UDC.Articolo.CodArt);
+        dmExtraFunction->StringToChar(dmDBImpianto->TornaDescrizionedaZonaA1(CodArt, UDC.IndiceImpilabilita), UDC.Articolo.Descrizione);
+        UDC.CodTipoUDC = 0;
+        // UDC.IndiceImpilabilita = 0;  vedi funzione
+        UDC.Parziale = 0;
+        UDC.Riservato = 0;
+        UDC.CodStato = 0;
+        UDC.IDUDC = dmDB->InsertUpdateUDC(UDC);
+    }
+    res = UDC.IDUDC;
+    return res;
+}

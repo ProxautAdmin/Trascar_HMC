@@ -310,6 +310,7 @@ private: // User declarations
     int IDUDCdaIDArticolo(int IDArticolo);
     void LeggiStrutturaUdc(TUDC & UDC) ;
     int IDUDCdaCodart(AnsiString CodArt) ;
+        int CercaConCodart(AnsiString CodArt) ;
 
 	AnsiString Lingua;
 
