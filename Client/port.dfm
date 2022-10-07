@@ -58,7 +58,7 @@ object FormPortStatus: TFormPortStatus
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object BitBtn1: TBitBtn
+    object btOk: TBitBtn
       Left = 24
       Top = 4
       Width = 124
@@ -71,9 +71,9 @@ object FormPortStatus: TFormPortStatus
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      OnClick = BitBtn1Click
+      OnClick = btOkClick
     end
-    object BitBtn3: TBitBtn
+    object btEsci: TBitBtn
       Left = 472
       Top = 4
       Width = 124
@@ -185,7 +185,7 @@ object FormPortStatus: TFormPortStatus
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       ParentFont = False
       TabOrder = 1
-      OnClick = BitBtn3Click
+      OnClick = btEsciClick
     end
   end
   object Panel3: TPanel
@@ -339,7 +339,7 @@ object FormPortStatus: TFormPortStatus
       object CheckBox1: TCheckBox
         Left = 11
         Top = 20
-        Width = 174
+        Width = 110
         Height = 17
         Caption = 'Apri Porta '
         TabOrder = 0
@@ -352,14 +352,30 @@ object FormPortStatus: TFormPortStatus
         Caption = 'Chiudi Porta'
         TabOrder = 1
       end
-      object BitBtn2: TBitBtn
-        Left = 234
-        Top = 16
+      object btSetOut: TBitBtn
+        Left = 106
+        Top = 61
         Width = 55
         Height = 25
         Caption = 'Set'
         TabOrder = 2
-        OnClick = BitBtn2Click
+        OnClick = btSetOutClick
+      end
+      object CheckBox3: TCheckBox
+        Left = 155
+        Top = 20
+        Width = 134
+        Height = 17
+        Caption = 'AGV in Ingombro'
+        TabOrder = 3
+      end
+      object CheckBox4: TCheckBox
+        Left = 155
+        Top = 43
+        Width = 110
+        Height = 17
+        Caption = 'AGV in Zona'
+        TabOrder = 4
       end
     end
     object Edit4: TEdit
@@ -385,7 +401,7 @@ object FormPortStatus: TFormPortStatus
       object ckInput1: TCheckBox
         Left = 11
         Top = 20
-        Width = 188
+        Width = 126
         Height = 17
         Caption = 'Porta Aperta'
         TabOrder = 0
@@ -398,6 +414,15 @@ object FormPortStatus: TFormPortStatus
         Height = 17
         Caption = 'Porta Chiusa'
         TabOrder = 1
+        OnClick = ckInput1Click
+      end
+      object ckInput3: TCheckBox
+        Left = 155
+        Top = 20
+        Width = 123
+        Height = 17
+        Caption = 'Porta Ready'
+        TabOrder = 2
         OnClick = ckInput1Click
       end
     end

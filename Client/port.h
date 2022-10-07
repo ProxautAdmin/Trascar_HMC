@@ -22,8 +22,8 @@ __published:	// IDE-managed Components
 	TLabel *Label3;
     TLabel *Label4;
     TTimer *Timer1;
-    TBitBtn *BitBtn1;
-    TBitBtn *BitBtn3;
+    TBitBtn *btOk;
+    TBitBtn *btEsci;
     TSpeedButton *SpeedButton1;
     TLabel *Label2;
     TEdit *Edit2;
@@ -40,17 +40,20 @@ __published:	// IDE-managed Components
 	TGroupBox *GroupBox2;
 	TCheckBox *ckInput1;
 	TRadioGroup *RadioGroup2;
-	TBitBtn *BitBtn2;
+    TBitBtn *btSetOut;
 	TCheckBox *ckInput2;
+    TCheckBox *ckInput3;
+    TCheckBox *CheckBox3;
+    TCheckBox *CheckBox4;
     void __fastcall Timer1Timer(TObject *Sender);
-    void __fastcall BitBtn1Click(TObject *Sender);
+    void __fastcall btOkClick(TObject *Sender);
     void __fastcall FormActivate(TObject *Sender);
     void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
     void __fastcall FormDeactivate(TObject *Sender);
-    void __fastcall BitBtn3Click(TObject *Sender);
+    void __fastcall btEsciClick(TObject *Sender);
     void __fastcall RadioGroup2Click(TObject *Sender);
 	void __fastcall ckInput1Click(TObject *Sender);
-	void __fastcall BitBtn2Click(TObject *Sender);
+	void __fastcall btSetOutClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     __fastcall TFormPortStatus(TComponent* Owner);
