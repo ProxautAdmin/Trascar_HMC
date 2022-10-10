@@ -779,12 +779,11 @@ int TdmDBImpianto::CercaPrelievo(AnsiString Zona, int tipoposizione) {
     return res;
 }
 
-
 AnsiString TdmDBImpianto::TornaDescrizionedaZonaA1(AnsiString CodArt, int &impila) {
     AnsiString stringa;
     TADOQuery *ADOQuery;
     AnsiString res = "";
-    impila=0;
+    impila = 0;
     try {
         if (!dmDB->ADOConnection1->Connected)
             return res;
@@ -796,7 +795,7 @@ AnsiString TdmDBImpianto::TornaDescrizionedaZonaA1(AnsiString CodArt, int &impil
         ADOQuery->Open();
         if (ADOQuery->RecordCount) {
             res = ADOQuery->FieldByName("DescrizioneArticolo")->AsString;
-            impila= ADOQuery->FieldByName("sovrapposto")->AsInteger   ;
+            impila = ADOQuery->FieldByName("sovrapposto")->AsInteger;
         }
         ADOQuery->Close();
         delete ADOQuery;
@@ -806,11 +805,10 @@ AnsiString TdmDBImpianto::TornaDescrizionedaZonaA1(AnsiString CodArt, int &impil
     return res;
 }
 
-
 int TdmDBImpianto::TornaIndiceImpilabilitadaIDUDC(int idudc) {
     TADOQuery *ADOQuery;
     AnsiString strsql;
-    int res=0;
+    int res = 0;
 
     try {
         ADOQuery = new TADOQuery(NULL);
@@ -827,5 +825,36 @@ int TdmDBImpianto::TornaIndiceImpilabilitadaIDUDC(int idudc) {
     catch (...) {
     }
     delete ADOQuery;
+    return res;
+}
+
+int TdmDBImpianto::ClonaHMC_ORDINI_IN_LAVORAZIONE() {
+    TADOQuery *ADOQuery;
+    AnsiString strsql;
+    int res = 1;
+     //NB: pensare di mettere un loop se record =0
+    try {
+            ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        if (dmDB->ADOConnection1->Connected) {
+            ADOQuery->Close();
+            ADOQuery->SQL->Clear();
+            ADOQuery->SQL->Append("Delete HMC_ORDINI_IN_LAVORAZIONE_Copia");
+            ADOQuery->ExecSQL();
+            ADOQuery->Close();
+            ADOQuery->Close();
+            ADOQuery->SQL->Clear();
+            strsql = "INSERT INTO HMC_ORDINI_IN_LAVORAZIONE_Copia select * from HMC_ORDINI_IN_LAVORAZIONE";
+            ADOQuery->SQL->Append(strsql);
+            ADOQuery->ExecSQL();
+            ADOQuery->Close();
+        }
+
+    }
+    catch (...) {
+        res = 0;
+    }
+    delete ADOQuery;
+
     return res;
 }

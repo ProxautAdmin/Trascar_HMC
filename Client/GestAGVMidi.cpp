@@ -230,7 +230,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
         }
     }
 
-    AggiornaDati();
+    AggiornaDatiLocali();
 
     pcPrel->TabIndex = 0;
     TimerRef->Enabled = true;
@@ -393,8 +393,8 @@ void TfGestAGVMidi::TabVisibili(bool tab0, bool tab1, bool tab2, bool tab3, bool
 
 }
 
-void TfGestAGVMidi::AggiornaDati() {
-
+void TfGestAGVMidi::AggiornaDatiLocali() {
+  dmDBImpianto->ClonaHMC_ORDINI_IN_LAVORAZIONE()  ;
 }
 
 void __fastcall TfGestAGVMidi::BitBtnCloseClick(TObject * Sender)
@@ -512,3 +512,9 @@ void __fastcall TfGestAGVMidi::FormDestroy(TObject * Sender)
 }
 
 // ---------------------------------------------------------------------------
+void __fastcall TfGestAGVMidi::btRefreshClick(TObject *Sender)
+{
+  AggiornaDatiLocali();
+}
+//---------------------------------------------------------------------------
+

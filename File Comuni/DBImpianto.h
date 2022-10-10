@@ -43,6 +43,7 @@ __published: // IDE-managed Components
     void TornaPosDepLiberaH(AnsiString Zona, int IDUDC, int &pos, int &piano) ;
     AnsiString TornaDescrizionedaZonaA1(AnsiString CodArt, int &impila);
     int TornaIndiceImpilabilitadaIDUDC(int idudc)     ;
+    int ClonaHMC_ORDINI_IN_LAVORAZIONE() ;
 
 };
 

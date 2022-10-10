@@ -139,8 +139,8 @@ void TdmDBClient::InserisciCorsiePostazioniDatabase() {
                     nomecorsia = "D";
                     inizio = 500; // far partire da pos=pos-1
                     startfila = 200; // imppostazione partenza fila manuale
-                    n_alveoli = 10;
-                    numfile = 6;
+                    n_alveoli = 12;
+                    numfile = 5;
                     step = 1;
                     fine = inizio + (numfile * n_alveoli); // solo per la cancellazione dei piani. Semmai settare a mano
                     tipo_posizione = TIPOLOGIA_TERRA;

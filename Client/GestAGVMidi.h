@@ -67,6 +67,7 @@ __published: // IDE-managed Components
     void __fastcall btConfermaClick(TObject *Sender);
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormActivate(TObject *Sender);
+    void __fastcall btRefreshClick(TObject *Sender);
 
 private: // User declarations
         public : // User declarations
@@ -78,7 +79,7 @@ private: // User declarations
     };
 
     std::vector<order>Ordinamento;
-    void AggiornaDati();
+    void AggiornaDatiLocali();
     void TabVisibili(bool tab0 = 0, bool tab1 = 0, bool tab2 = 0, bool tab3 = 0, bool tab4 = 0, bool tab5 = 0, bool tab6 = 0, bool tab7 = 0, bool tab8 = 0, bool tab9 = 0);
     void TornaPosPrelSelezionata(AnsiString Zona, int &pos, int &piano, int &tipoposizione, int &idudc);
 
