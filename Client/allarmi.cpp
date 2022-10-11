@@ -83,7 +83,7 @@ void __fastcall TfAllarmi::CheckBox1Click(TObject *Sender)
 // ---------------------------------------------------------------------------
 void __fastcall TfAllarmi::FormActivate(TObject *Sender) {
 
-    if (dmDB->ZonaString == "Z") {
+    if (dmDB->ZonaString == "XXX") {
         BitBtn1->Visible = false;
         btStorico->Visible = false;
     }

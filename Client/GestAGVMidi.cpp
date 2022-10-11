@@ -50,8 +50,10 @@ __fastcall TfGestAGVMidi::TfGestAGVMidi(TComponent* Owner)
 // ---------------------------------------------------------------------------
 
 void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
+    TTabSheet *Tab;
     int numpos, ttop, lleft, calcpos, contafile, ordinamento, poscalcolata;
     int numdestperfila = 7;
+    AnsiString Zona;
 
     // crea e gestisci i frame
     posselezionata = 0;
@@ -64,169 +66,253 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
     PanelPrel->Left = 0;
     dmExtraFunction->ComboScelte(cbPriorita, 9, 1, 1);
 
-    for (int i = 1; i <= 2; i++) {
-        // A1
-        if (i == 1)
-            frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Prel"));
-        else
-            frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Dest"));
+    // PREL
+    // A1
+    if (dmDBImpianto->CheckZonaUtente("A") > 0) {
+        frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Prel"));
         if (frA1 == NULL) {
             frA1 = new TfrZonaA1(this);
-            if (i == 1) {
-                frA1->Parent = this->tsZonaA1Prel;
-                frA1->Name = "frZonaA1Prel";
-            }
-            else {
-                frA1->Parent = this->tsZonaA1Dest;
-                frA1->Name = "frZonaA1Dest";
-            }
+            frA1->Parent = this->tsZonaA1Prel;
+            frA1->Name = "frZonaA1Prel";
         }
-        // A2
-        if (i == 1)
-            frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Prel"));
-        else
-            frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Dest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZonaA1Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // A2
+    if (dmDBImpianto->CheckZonaUtente("J") > 0) {
+        frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Prel"));
         if (frA2 == NULL) {
             frA2 = new TfrZonaA2(this);
-            if (i == 1) {
-                frA2->Parent = this->tsZonaA2Prel;
-                frA2->Name = "frZonaA2Prel";
-            }
-            else {
-                frA2->Parent = this->tsZonaA2Dest;
-                frA2->Name = "frZonaA2Dest";
-            }
+            frA2->Parent = this->tsZonaA2Prel;
+            frA2->Name = "frZonaA2Prel";
         }
-        // G
-        if (i == 1)
-            frG = (TfrZonaG*)(FindComponent("frZonaGPrel"));
-        else
-            frG = (TfrZonaG*)(FindComponent("frZonaGDest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZonaA2Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // G
+    Zona = "G";
+    if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
+        frG = (TfrZonaG*)(FindComponent("frZonaGPrel"));
         if (frG == NULL) {
             frG = new TfrZonaG(this);
-            if (i == 1) {
-                frG->Parent = this->tsZonaGPrel;
-                frG->Name = "frZonaGPrel";
-            }
-            else {
-                frG->Parent = this->tsZonaGDest;
-                frG->Name = "frZonaGDest";
-            }
+            frG->Parent = this->tsZonaGPrel;
+            frG->Name = "frZonaGPrel";
         }
-        // H
-        if (i == 1)
-            frH = (TfrZonaH*)(FindComponent("frZonaHPrel"));
-        else
-            frH = (TfrZonaH*)(FindComponent("frZonaHDest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZona" + Zona + "Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // H
+    Zona = "H";
+    if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
+        frH = (TfrZonaH*)(FindComponent("frZonaHPrel"));
         if (frH == NULL) {
             frH = new TfrZonaH(this);
-            if (i == 1) {
-                frH->Parent = this->tsZonaHPrel;
-                frH->Name = "frZonaHPrel";
-            }
-            else {
-                frH->Parent = this->tsZonaHDest;
-                frH->Name = "frZonaHDest";
-            }
+            frH->Parent = this->tsZonaHPrel;
+            frH->Name = "frZonaHPrel";
         }
-        // I
-        if (i == 1)
-            frI = (TfrZonaI*)(FindComponent("frZonaIPrel"));
-        else
-            frI = (TfrZonaI*)(FindComponent("frZonaIDest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZona" + Zona + "Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // I
+    Zona = "I";
+    if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
+        frI = (TfrZonaI*)(FindComponent("frZonaIPrel"));
         if (frI == NULL) {
             frI = new TfrZonaI(this);
-            if (i == 1) {
-                frI->Parent = this->tsZonaIPrel;
-                frI->Name = "frZonaIPrel";
-            }
-            else {
-                frI->Parent = this->tsZonaIDest;
-                frI->Name = "frZonaIDest";
-            }
+            frI->Parent = this->tsZonaIPrel;
+            frI->Name = "frZonaIPrel";
         }
-        // D
-        if (i == 1)
-            frD = (TfrZonaD*)(FindComponent("frZonaDPrel"));
-        else
-            frD = (TfrZonaD*)(FindComponent("frZonaDDest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZona" + Zona + "Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // D
+    Zona = "D";
+    if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
+        frD = (TfrZonaD*)(FindComponent("frZonaDPrel"));
         if (frD == NULL) {
             frD = new TfrZonaD(this);
-            if (i == 1) {
-                frD->Parent = this->tsZonaDPrel;
-                frD->Name = "frZonaDPrel";
-            }
-            else {
-                frD->Parent = this->tsZonaDDest;
-                frD->Name = "frZonaDDest";
-            }
+            frD->Parent = this->tsZonaDPrel;
+            frD->Name = "frZonaDPrel";
         }
-        // C
-        if (i == 1)
-            frC = (TfrZonaC*)(FindComponent("frZonaCPrel"));
-        else
-            frC = (TfrZonaC*)(FindComponent("frZonaCDest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZona" + Zona + "Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // C
+    Zona = "C";
+    if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
+        frC = (TfrZonaC*)(FindComponent("frZonaCPrel"));
         if (frC == NULL) {
             frC = new TfrZonaC(this);
-            if (i == 1) {
-                frC->Parent = this->tsZonaCPrel;
-                frC->Name = "frZonaCPrel";
-            }
-            else {
-                frC->Parent = this->tsZonaCDest;
-                frC->Name = "frZonaCDest";
-            }
+            frC->Parent = this->tsZonaCPrel;
+            frC->Name = "frZonaCPrel";
             frC->Enabled = false;
         }
-        // B
-        if (i == 1)
-            frB = (TfrZonaB*)(FindComponent("frZonaBPrel"));
-        else
-            frB = (TfrZonaB*)(FindComponent("frZonaBDest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZona" + Zona + "Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // B
+    Zona = "B";
+    if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
+        frB = (TfrZonaB*)(FindComponent("frZonaBPrel"));
         if (frB == NULL) {
             frB = new TfrZonaB(this);
-            if (i == 1) {
-                frB->Parent = this->tsZonaBPrel;
-                frB->Name = "frZonaBPrel";
-            }
-            else {
-                frB->Parent = this->tsZonaBDest;
-                frB->Name = "frZonaBDest";
-            }
+            frB->Parent = this->tsZonaBPrel;
+            frB->Name = "frZonaBPrel";
             frB->Enabled = false;
         }
-        // E
-        if (i == 1)
-            frE = (TfrZonaE*)(FindComponent("frZonaEPrel"));
-        else
-            frE = (TfrZonaE*)(FindComponent("frZonaEDest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZona" + Zona + "Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // E
+    Zona = "E";
+    if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
+        frE = (TfrZonaE*)(FindComponent("frZonaEPrel"));
         if (frE == NULL) {
             frE = new TfrZonaE(this);
-            if (i == 1) {
-                frE->Parent = this->tsZonaEPrel;
-                frE->Name = "frZonaEPrel";
-            }
-            else {
-                frE->Parent = this->tsZonaEDest;
-                frE->Name = "frZonaEDest";
-            }
+            frE->Parent = this->tsZonaEPrel;
+            frE->Name = "frZonaEPrel";
             frE->Enabled = false;
         }
-        // F
-        if (i == 1)
-            frF = (TfrZonaF*)(FindComponent("frZonaFPrel"));
-        else
-            frF = (TfrZonaF*)(FindComponent("frZonaFDest"));
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZona" + Zona + "Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+    // F
+    Zona = "F";
+    if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
+        frF = (TfrZonaF*)(FindComponent("frZonaFPrel"));
         if (frF == NULL) {
             frF = new TfrZonaF(this);
-            if (i == 1) {
-                frF->Parent = this->tsZonaFPrel;
-                frF->Name = "frZonaFPrel";
-            }
-            else {
-                frF->Parent = this->tsZonaFDest;
-                frF->Name = "frZonaFDest";
-            }
+            frF->Parent = this->tsZonaFPrel;
+            frF->Name = "frZonaFPrel";
+        }
+    }
+    else {
+        Tab = (TTabSheet*)(FindComponent("tsZona" + Zona + "Prel"));
+        if (Tab != NULL)
+            Tab->TabVisible = false;
+    }
+
+    // DEST
+    // A1
+    if (1 == 1) { // in qualche modo filtrare
+        frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Dest"));
+        if (frA1 == NULL) {
+            frA1 = new TfrZonaA1(this);
+            frA1->Parent = this->tsZonaA1Dest;
+            frA1->Name = "frZonaA1Dest";
+        }
+    }
+    // A2
+    if (1 == 1) { // in qualche modo filtrare
+        frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Dest"));
+        if (frA2 == NULL) {
+            frA2 = new TfrZonaA2(this);
+            frA2->Parent = this->tsZonaA2Dest;
+            frA2->Name = "frZonaA2Dest";
+        }
+    }
+    // G
+    if (1 == 1) { // in qualche modo filtrare
+        frG = (TfrZonaG*)(FindComponent("frZonaGDest"));
+        if (frG == NULL) {
+            frG = new TfrZonaG(this);
+            frG->Parent = this->tsZonaGDest;
+            frG->Name = "frZonaGDest";
+        }
+    }
+    // H
+    if (1 == 1) { // in qualche modo filtrare
+        frH = (TfrZonaH*)(FindComponent("frZonaHDest"));
+        if (frH == NULL) {
+            frH = new TfrZonaH(this);
+            frH->Parent = this->tsZonaHDest;
+            frH->Name = "frZonaHDest";
+        }
+    }
+    // I
+    if (1 == 1) { // in qualche modo filtrare
+        frI = (TfrZonaI*)(FindComponent("frZonaIDest"));
+        if (frI == NULL) {
+            frI = new TfrZonaI(this);
+            frI->Parent = this->tsZonaIDest;
+            frI->Name = "frZonaIDest";
+        }
+    }
+    // D
+    if (1 == 1) { // in qualche modo filtrare
+        frD = (TfrZonaD*)(FindComponent("frZonaDDest"));
+        if (frD == NULL) {
+            frD = new TfrZonaD(this);
+            frD->Parent = this->tsZonaDDest;
+            frD->Name = "frZonaDDest";
+        }
+    }
+
+    // C
+    if (1 == 1) { // in qualche modo filtrare
+        frC = (TfrZonaC*)(FindComponent("frZonaCDest"));
+        if (frC == NULL) {
+            frC = new TfrZonaC(this);
+            frC->Parent = this->tsZonaCDest;
+            frC->Name = "frZonaCDest";
+        }
+        frC->Enabled = false;
+    }
+
+    // B
+    if (1 == 1) { // in qualche modo filtrare
+        frB = (TfrZonaB*)(FindComponent("frZonaBDest"));
+        if (frB == NULL) {
+            frB = new TfrZonaB(this);
+            frB->Parent = this->tsZonaBDest;
+            frB->Name = "frZonaBDest";
+        }
+        frB->Enabled = false;
+    }
+    // E
+    if (1 == 1) { // in qualche modo filtrare
+        frE = (TfrZonaE*)(FindComponent("frZonaEDest"));
+        if (frE == NULL) {
+            frE = new TfrZonaE(this);
+            frE->Parent = this->tsZonaEDest;
+            frE->Name = "frZonaEDest";
+        }
+        frE->Enabled = false;
+    }
+    // F
+    if (1 == 1) { // in qualche modo filtrare
+        frF = (TfrZonaF*)(FindComponent("frZonaFDest"));
+        if (frF == NULL) {
+            frF = new TfrZonaF(this);
+            frF->Parent = this->tsZonaFDest;
+            frF->Name = "frZonaFDest";
         }
     }
 
@@ -243,107 +329,130 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
 
     // NB ottimizzare, non c'e' bisogno di un tipo diverso TfrZonaxx
     // prel
-    if (pcPrel->TabIndex == 0) {
+    if (pcPrel->ActivePage->Hint == "A") {
         TabVisibili(0, 0, 0, 1, 0, 0, 0, 0, 1);
         frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Prel"));
-        frA1->AggiornaDati();
-        btConferma->Enabled = frA1->AbilitaConferma;
+        if (frA1 != NULL) {
+            frA1->AggiornaDati();
+            btConferma->Enabled = frA1->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 1) {
+    else if (pcPrel->ActivePage->Hint == "J") {
         TabVisibili(0, 0, 1, 0, 1, 0, 0, 0, 0);
         frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Prel"));
-        frA2->AggiornaDati();
-        btConferma->Enabled = frA1->AbilitaConferma;
+        if (frA2 != NULL) {
+            frA2->AggiornaDati();
+            btConferma->Enabled = frA1->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 2) {
+    else if (pcPrel->ActivePage->Hint == "G") {
         TabVisibili(1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         frG = (TfrZonaG*)(FindComponent("frZonaGPrel"));
-        frG->AggiornaDati();
-        btConferma->Enabled = frG->AbilitaConferma;
+        if (frG != NULL) {
+            frG->AggiornaDati();
+            btConferma->Enabled = frG->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 3) {
+    else if (pcPrel->ActivePage->Hint == "H") {
+        TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
         frH = (TfrZonaH*)(FindComponent("frZonaHPrel"));
-        frH->AggiornaDati();
-        btConferma->Enabled = frH->AbilitaConferma;
+        if (frH != NULL) {
+            frH->AggiornaDati();
+            btConferma->Enabled = frH->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 4) {
+    else if (pcPrel->ActivePage->Hint == "I") {
         TabVisibili(0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
         frI = (TfrZonaI*)(FindComponent("frZonaIPrel"));
-        frI->AggiornaDati();
-        btConferma->Enabled = frI->AbilitaConferma;
+        if (frI != NULL) {
+            frI->AggiornaDati();
+            btConferma->Enabled = frI->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 5) {
+    else if (pcPrel->ActivePage->Hint == "D") {
+        TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         frD = (TfrZonaD*)(FindComponent("frZonaDPrel"));
-        frD->AggiornaDati();
-        btConferma->Enabled = frD->AbilitaConferma;
+        if (frD != NULL) {
+            frD->AggiornaDati();
+            btConferma->Enabled = frD->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 6) {
+    else if (pcPrel->ActivePage->Hint == "C") {
         TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
         frC = (TfrZonaC*)(FindComponent("frZonaCPrel"));
-        frC->AggiornaDati();
-        btConferma->Enabled = frC->AbilitaConferma;
+        if (frC != NULL) {
+            frC->AggiornaDati();
+            btConferma->Enabled = frC->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 7) {
+    else if (pcPrel->ActivePage->Hint == "B") {
         TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
         frB = (TfrZonaB*)(FindComponent("frZonaBPrel"));
-        frB->AggiornaDati();
-        btConferma->Enabled = frB->AbilitaConferma;
+        if (frB != NULL) {
+            frB->AggiornaDati();
+            btConferma->Enabled = frB->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 8) {
+    else if (pcPrel->ActivePage->Hint == "E") {
         TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
         frE = (TfrZonaE*)(FindComponent("frZonaEPrel"));
-        frE->AggiornaDati();
-        btConferma->Enabled = frE->AbilitaConferma;
+        if (frE != NULL) {
+            frE->AggiornaDati();
+            btConferma->Enabled = frE->AbilitaConferma;
+        }
     }
-    else if (pcPrel->TabIndex == 9) {
+    else if (pcPrel->ActivePage->Hint == "F") {
         TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
         frF = (TfrZonaF*)(FindComponent("frZonaFPrel"));
-        frF->AggiornaDati();
-        btConferma->Enabled = frF->AbilitaConferma;
+        if (frF != NULL) {
+            frF->AggiornaDati();
+            btConferma->Enabled = frF->AbilitaConferma;
+        }
     }
 
     // dest
-    if (pcDest->ActivePage->Hint == "A") {
-        frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Dest"));
-        frA1->AggiornaDati();
+    if (pcDest->ActivePage != NULL) {
+        if (pcDest->ActivePage->Hint == "A") {
+            frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Dest"));
+            frA1->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "J") {
+            frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Dest"));
+            frA2->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "G") {
+            frG = (TfrZonaG*)(FindComponent("frZonaGDest"));
+            frG->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "H") {
+            frH = (TfrZonaH*)(FindComponent("frZonaHDest"));
+            frH->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "I") {
+            frI = (TfrZonaI*)(FindComponent("frZonaIDest"));
+            frI->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "D") {
+            frD = (TfrZonaD*)(FindComponent("frZonaDDest"));
+            frD->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "C") {
+            frC = (TfrZonaC*)(FindComponent("frZonaCDest"));
+            frC->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "B") {
+            frB = (TfrZonaB*)(FindComponent("frZonaBDest"));
+            frB->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "E") {
+            frE = (TfrZonaE*)(FindComponent("frZonaEDest"));
+            frE->AggiornaDati();
+        }
+        else if (pcDest->ActivePage->Hint == "F") {
+            frF = (TfrZonaF*)(FindComponent("frZonaFDest"));
+            frF->AggiornaDati();
+        }
     }
-    else if (pcDest->ActivePage->Hint == "J") {
-        frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Dest"));
-        frA2->AggiornaDati();
-    }
-    else if (pcDest->ActivePage->Hint == "G") {
-        frG = (TfrZonaG*)(FindComponent("frZonaGDest"));
-        frG->AggiornaDati();
-    }
-    else if (pcDest->ActivePage->Hint == "H") {
-        frH = (TfrZonaH*)(FindComponent("frZonaHDest"));
-        frH->AggiornaDati();
-    }
-    else if (pcDest->ActivePage->Hint == "I") {
-        frI = (TfrZonaI*)(FindComponent("frZonaIDest"));
-        frI->AggiornaDati();
-    }
-    else if (pcDest->ActivePage->Hint == "D") {
-        frD = (TfrZonaD*)(FindComponent("frZonaDDest"));
-        frD->AggiornaDati();
-    }
-    else if (pcDest->ActivePage->Hint == "C") {
-        frC = (TfrZonaC*)(FindComponent("frZonaCDest"));
-        frC->AggiornaDati();
-    }
-    else if (pcDest->ActivePage->Hint == "B") {
-        frB = (TfrZonaB*)(FindComponent("frZonaBDest"));
-        frB->AggiornaDati();
-    }
-    else if (pcDest->ActivePage->Hint == "E") {
-        frE = (TfrZonaE*)(FindComponent("frZonaEDest"));
-        frE->AggiornaDati();
-    }
-    else if (pcDest->ActivePage->Hint == "F") {
-        frF = (TfrZonaF*)(FindComponent("frZonaFDest"));
-        frF->AggiornaDati();
-    }
-
     TimerRef->Enabled = true;
 }
 // ---------------------------------------------------------------------------
@@ -394,7 +503,7 @@ void TfGestAGVMidi::TabVisibili(bool tab0, bool tab1, bool tab2, bool tab3, bool
 }
 
 void TfGestAGVMidi::AggiornaDatiLocali() {
-  dmDBImpianto->ClonaHMC_ORDINI_IN_LAVORAZIONE()  ;
+    dmDBImpianto->ClonaHMC_ORDINI_IN_LAVORAZIONE();
 }
 
 void __fastcall TfGestAGVMidi::BitBtnCloseClick(TObject * Sender)
@@ -514,7 +623,6 @@ void __fastcall TfGestAGVMidi::FormDestroy(TObject * Sender)
 // ---------------------------------------------------------------------------
 void __fastcall TfGestAGVMidi::btRefreshClick(TObject *Sender)
 {
-  AggiornaDatiLocali();
+    AggiornaDatiLocali();
 }
-//---------------------------------------------------------------------------
-
+// ---------------------------------------------------------------------------

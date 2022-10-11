@@ -102,8 +102,8 @@ typedef struct {
 
 typedef struct {
     int IDArticolo;
-    char CodArt[20];
-    char Descrizione[50];
+    char CodArt[30];
+    char Descrizione[100];
     char Descrizione2[30];
     int IDTipoArticolo;
     int PezziPerPiano;

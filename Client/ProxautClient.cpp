@@ -30,11 +30,12 @@ USEFORM("ZonaEFrame.cpp", frZonaE); /* TFrame: File Type */
 USEFORM("ZonaHFrame.cpp", frZonaH); /* TFrame: File Type */
 USEFORM("ZonaGFrame.cpp", frZonaG); /* TFrame: File Type */
 USEFORM("ZonaFFrame.cpp", frZonaF); /* TFrame: File Type */
+USEFORM("PorteFumo.cpp", FormStatusPorteFumo);
 USEFORM("configCBFrame.cpp", frCB); /* TFrame: File Type */
 USEFORM("config.cpp", frConfig);
 USEFORM("Chiusura.cpp", ChiusuraForm);
 USEFORM("DataExchange.cpp", DataForm);
-USEFORM("frame_ArticoliMP.cpp", FrameMatPrime); /* TFrame: File Type */
+USEFORM("frame_ArticoliSovrapposti.cpp", FrameSovrapposti); /* TFrame: File Type */
 USEFORM("DBExtra.cpp", fDBExtra);
 USEFORM("DBClient.cpp", dmDBClient); /* TDataModule: File Type */
 USEFORM("ChildWin.cpp", MDIChild);
@@ -45,21 +46,21 @@ USEFORM("AllarmiAttivi.cpp", FormAllarmiAttivi);
 USEFORM("CentroMissioni.cpp", fCentroMissioni);
 USEFORM("Batterie.cpp", fBatterie);
 USEFORM("anagrafica_articoli.cpp", FormAnagraficaArticoli);
-USEFORM("MSG.cpp", MSGForm);
 USEFORM("missioni.cpp", fMissioni);
 USEFORM("Main.cpp", MainForm);
-USEFORM("Password.cpp", PasswordDlg);
-USEFORM("PorteFumo.cpp", FormStatusPorteFumo);
-USEFORM("port.cpp", FormPortStatus);
 USEFORM("log.cpp", fLog);
-USEFORM("GestMissioni.cpp", dmGestMissioni); /* TDataModule: File Type */
+USEFORM("MSG.cpp", MSGForm);
+USEFORM("port.cpp", FormPortStatus);
+USEFORM("Password.cpp", PasswordDlg);
+USEFORM("ins_Utenti.cpp", FrmInsUtenti);
 USEFORM("GestAGVMidi.cpp", fGestAGVMidi);
 USEFORM("frame_modulo.cpp", FrameModulo); /* TFrame: File Type */
-USEFORM("GestUser.cpp", FrmGestUser);
-USEFORM("ins_Utenti.cpp", FrmInsUtenti);
+USEFORM("frame_info.cpp", FrameInfo); /* TFrame: File Type */
+USEFORM("GestMissioni.cpp", dmGestMissioni); /* TDataModule: File Type */
 USEFORM("ins_UDC.cpp", FormInsUDC);
 USEFORM("ins_MssioniWMS.cpp", FIns_MissioniWMS);
-USEFORM("frame_info.cpp", FrameInfo); /* TFrame: File Type */
+USEFORM("GestUser.cpp", FrmGestUser);
+USEFORM("frame_ArticoliMP.cpp", FrameMatPrime); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {

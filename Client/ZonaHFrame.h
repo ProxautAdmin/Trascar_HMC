@@ -13,6 +13,11 @@
 #include <Vcl.ImgList.hpp>
 #include <Vcl.Menus.hpp>
 #include <Vcl.Buttons.hpp>
+#include "frame_ArticoliSovrapposti.h"
+#include <Data.DB.hpp>
+#include <Data.Win.ADODB.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.Grids.hpp>
 
 // ---------------------------------------------------------------------------
 class TfrZonaH : public TFrame
@@ -23,28 +28,33 @@ __published: // IDE-managed Components
     TPanel *pnPosH1;
     TPanel *pnPosH2;
     TPanel *pnPosH3;
-    TLabel *lbSelH;
     TPanel *pnPosH4;
     TImageList *ImageListMenu;
     TPopupMenu *PopupMenu;
+    TFrameSovrapposti *FrameSovrapposti;
     TPanel *Panel2;
-    TLabel *Label1;
-    TSpeedButton *sbCerca;
-    TEdit *tDescArticolo;
-    TEdit *edIDArt;
-    TEdit *edCodArt;
-    TLabel *lIdUDC;
+    TDBGrid *DBGrid1;
+    TADOQuery *ADOQuery1;
+    TDataSource *DataSource1;
+    TPanel *pInfoUDC;
+    TLabel *Label2;
+    TLabeledEdit *leDescArticolo;
+    TLabeledEdit *leIdUDC;
+    TLabeledEdit *leCodArt;
+    TCheckBox *ckImpilabile;
 
     void __fastcall pnPosH1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
     void __fastcall Carica1Click(TObject * Sender);
     void __fastcall Carica2Click(TObject * Sender);
     void __fastcall SvuotaPosizioneClick(TObject * Sender);
-    void __fastcall sbCercaClick(TObject *Sender);
 
 private: // User declarations
         public : // User declarations
     __fastcall TfrZonaH(TComponent* Owner);
     void AggiornaDati();
+    int CercaConCodart(AnsiString CodArt) ;
+    int FillDescrizione(int idudc);
+
             bool AbilitaConferma;
 };
 

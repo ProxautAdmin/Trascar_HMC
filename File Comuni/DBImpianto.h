@@ -44,6 +44,7 @@ __published: // IDE-managed Components
     AnsiString TornaDescrizionedaZonaA1(AnsiString CodArt, int &impila);
     int TornaIndiceImpilabilitadaIDUDC(int idudc)     ;
     int ClonaHMC_ORDINI_IN_LAVORAZIONE() ;
+    int CheckZonaUtente(AnsiString zonadacontrollare);
 
 };
 

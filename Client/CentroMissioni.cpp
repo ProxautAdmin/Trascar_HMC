@@ -54,7 +54,7 @@ void __fastcall TfCentroMissioni::FormActivate(TObject *Sender)
 
     CheckBox7->Checked = true;
 
-    if (dmDB->ZonaString == "Z") {
+    if (dmDB->ZonaString == "XXX") {
         btDelRiga->Visible = false; // dmDB->pwdlevel;
         btGestCMiss->Visible = false; // dmDB->pwdlevel;
         BitBtn2->Visible = false;

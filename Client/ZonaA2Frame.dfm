@@ -1,16 +1,17 @@
 object frZonaA2: TfrZonaA2
   Left = 0
   Top = 0
-  Width = 915
+  Width = 1105
   Height = 250
   TabOrder = 0
   object pnA: TPanel
     Left = 0
     Top = 0
-    Width = 915
+    Width = 1105
     Height = 250
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 915
     object lbSelA: TLabel
       Left = 808
       Top = 200

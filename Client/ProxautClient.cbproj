@@ -215,15 +215,23 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frame_ArticoliMP.h</DependentOn>
+            <BuildOrder>61</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="frame_ArticoliSovrapposti.cpp">
+            <Form>FrameSovrapposti</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frame_ArticoliSovrapposti.h</DependentOn>
             <BuildOrder>63</BuildOrder>
         </CppCompile>
-        <CppCompile Include="frame_info.cpp">
+        <None Include="frame_info.cpp">
+            <Exclude>True</Exclude>
             <Form>FrameInfo</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frame_info.h</DependentOn>
             <BuildOrder>60</BuildOrder>
-        </CppCompile>
+        </None>
         <None Include="frame_modulo.cpp">
             <Exclude>True</Exclude>
             <Form>FrameModulo</Form>
@@ -545,7 +553,7 @@
         <FormResources Include="config.dfm"/>
         <FormResources Include="Chiusura.dfm"/>
         <FormResources Include="DataExchange.dfm"/>
-        <FormResources Include="frame_ArticoliMP.dfm"/>
+        <FormResources Include="frame_ArticoliSovrapposti.dfm"/>
         <FormResources Include="DBExtra.dfm"/>
         <FormResources Include="DBClient.dfm"/>
         <FormResources Include="ChildWin.dfm"/>
@@ -570,6 +578,7 @@
         <FormResources Include="ins_UDC.dfm"/>
         <FormResources Include="ins_MssioniWMS.dfm"/>
         <FormResources Include="GestUser.dfm"/>
+        <FormResources Include="frame_ArticoliMP.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

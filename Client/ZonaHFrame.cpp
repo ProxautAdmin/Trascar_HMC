@@ -8,11 +8,12 @@
 #include "DBImpianto.h"
 #include "main.h"
 #include "ExtraFunction.h"
-#include "anagrafica_articoli.h"
+#include "frame_ArticoliSovrapposti.h"
 
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "MyShape"
+#pragma link "frame_ArticoliSovrapposti"
 #pragma resource "*.dfm"
 TfrZonaH *frZonaH;
 AnsiString Zona;
@@ -21,6 +22,7 @@ AnsiString Zona;
 __fastcall TfrZonaH::TfrZonaH(TComponent* Owner) : TFrame(Owner) {
     Zona = "H";
     AbilitaConferma = 1;
+    FrameSovrapposti->FrameEnter(this);
 }
 
 // ---------------------------------------------------------------------------
@@ -71,6 +73,7 @@ void TfrZonaH::AggiornaDati() {
                     else {
                         Pan->Caption = "Pos." + IntToStr(j) + " - " + IntToStr(TabPosizioni[idx]["IDUDC"].ToIntDef(0));
                     }
+                    Pan->Hint = TabPosizioni[idx]["IDUDC"];
                 }
                 if (!trovato)
                     idx++;
@@ -81,23 +84,30 @@ void TfrZonaH::AggiornaDati() {
 
 // ---------------------------------------------------------------------------
 
-void __fastcall TfrZonaH::pnPosH1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y)
-{
+void __fastcall TfrZonaH::pnPosH1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y) {
+    TUDC UDC;
     TPanel *Pan;
     Pan = (TPanel*) Sender;
+
     if (Pan != NULL) {
         if (Button == mbLeft) {
+            UDC.IDUDC = Pan->Hint.ToIntDef(0);
+            leIdUDC->Text = UDC.IDUDC;
             if (Pan->Color == clLime) {
                 dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 0);
-
+              //  UDC.IDUDC = 0;
+            }
+            else if (Pan->Color == clWebOrange) {
+                UDC.IDUDC = CercaConCodart(Pan->Hint.Trim());
+                if (UDC.IDUDC > 0) {
+                    dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));
+                }
+                dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 1);
             }
             else {
-                // c'e' da comprendere anche il piano 1?;
-                if (Pan->Color == clWebOrange) {
-                    dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 1);
-                }
-
+                FillDescrizione(UDC.IDUDC);
             }
+
         }
         if (Button == mbRight) {
             PopupMenu->Items->Clear();
@@ -133,27 +143,39 @@ void __fastcall TfrZonaH::pnPosH1MouseUp(TObject *Sender, TMouseButton Button, T
              */
 
         }
+
+        // gestione udc/articoli
+        FillDescrizione(UDC.IDUDC);
+
     }
 }
 // ---------------------------------------------------------------------------
 
 void __fastcall TfrZonaH::Carica1Click(TObject * Sender) {
     //
+    TUDC UDC;
     AnsiString s;
     TMenuItem *Item = (TMenuItem*) Sender;
     if (Item != NULL) {
-        if (lIdUDC->Caption.ToIntDef(0) > 0)
-            dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), lIdUDC->Caption.ToIntDef(0), 1);
+        UDC.IDUDC = CercaConCodart(FrameSovrapposti->ADOQuery1->FieldByName("distinta")->AsString);
+        if (UDC.IDUDC > 0) {
+            dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), UDC.IDUDC, 1);
+        }
+        FillDescrizione(UDC.IDUDC);
     }
 }
 
 void __fastcall TfrZonaH::Carica2Click(TObject * Sender) {
     //
+    TUDC UDC;
     AnsiString s;
     TMenuItem *Item = (TMenuItem*) Sender;
     if (Item != NULL) {
-        if (lIdUDC->Caption.ToIntDef(0) > 0)
-            dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), lIdUDC->Caption.ToIntDef(0), 2);
+        UDC.IDUDC = CercaConCodart(FrameSovrapposti->ADOQuery1->FieldByName("distinta")->AsString);
+        if (UDC.IDUDC > 0) {
+            dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), UDC.IDUDC, 2);
+        }
+        FillDescrizione(UDC.IDUDC);
     }
 }
 
@@ -163,35 +185,47 @@ void __fastcall TfrZonaH::SvuotaPosizioneClick(TObject * Sender) {
     TMenuItem *Item = (TMenuItem*) Sender;
     if (Item != NULL) {
         dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), 0);
-
+        FillDescrizione(0);
     }
 }
 
-void __fastcall TfrZonaH::sbCercaClick(TObject *Sender)
-{
+int TfrZonaH::CercaConCodart(AnsiString CodArt) {
+    int res = 0;
     TUDC UDC;
-    FormAnagraficaArticoli->insert_produzione = true;
-    FormAnagraficaArticoli->edEdIDArt->Text = tDescArticolo->Text;
-    FormAnagraficaArticoli->ShowModal();
-    if (MainForm->trova_idarticolo != edIDArt->Text.ToIntDef(0)) {
-        edIDArt->Text = MainForm->trova_idarticolo;
-        UDC.IDUDC = dmDB->IDUDCdaIDArticolo(edIDArt->Text.Trim().ToIntDef(0));
-        if (UDC.IDUDC == 0) {
-            UDC.Articolo.IDArticolo = MainForm->trova_idarticolo;
-            dmExtraFunction->StringToChar("", UDC.Lotto);
-            UDC.CodTipoUDC = 0;
-            UDC.IndiceImpilabilita = 0;
-            UDC.Parziale = 0;
-            UDC.Riservato = 0;
-            UDC.IDUDC = dmDB->InsertUpdateUDC(UDC);
-        }
-        // zona cerca
-        dmDB->LeggiStrutturaUdc(UDC);
-        lIdUDC->Caption = UDC.IDUDC;
-        edIDArt->Text = UDC.Articolo.IDArticolo;
-        edCodArt->Text = UDC.Articolo.CodArt;
-        tDescArticolo->Text = UDC.Articolo.Descrizione;
+    UDC.IDUDC = dmDB->IDUDCdaCodart(FrameSovrapposti->ADOQuery1->FieldByName("distinta")->AsString);
+    if (UDC.IDUDC == 0) {
+        UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
+        dmExtraFunction->StringToChar("", UDC.Lotto);
+        dmExtraFunction->StringToChar(CodArt, UDC.Articolo.CodArt);
+        dmExtraFunction->StringToChar(FrameSovrapposti->ADOQuery1->FieldByName("Descrizione distinta")->AsString, UDC.Articolo.Descrizione);
+        UDC.CodTipoUDC = 0;
+        UDC.IndiceImpilabilita = 1;
+        UDC.Parziale = 0;
+        UDC.Riservato = 0;
+        UDC.CodStato = 0;
+        UDC.IDUDC = dmDB->InsertUpdateUDC(UDC);
+    }
+    res = UDC.IDUDC;
+    return res;
+}
 
+// ---------------------------------------------------------------------------
+
+int TfrZonaH::FillDescrizione(int idudc) {
+    TUDC UDC;
+    UDC.IDUDC = idudc;
+    if (UDC.IDUDC > 0) {
+        // udc esiste
+        dmDB->LeggiStrutturaUdc(UDC);
+        leIdUDC->Text = UDC.IDUDC;
+        leCodArt->Text = UDC.Articolo.CodArt;
+        leDescArticolo->Text = UDC.Articolo.Descrizione;
+        ckImpilabile->Checked = UDC.IndiceImpilabilita; // da sistemare
+    }
+    else {
+        leIdUDC->Text = "";
+        leCodArt->Text = "";
+        leDescArticolo->Text = "";
+        ckImpilabile->Checked = false; // da sistemare
     }
 }
-// ---------------------------------------------------------------------------

@@ -872,7 +872,7 @@ void __fastcall TMainForm::MainStatusBarDrawPanel(TStatusBar *StatusBar, TStatus
             pPassword->Color = clGradientInactiveCaption;
             pPassword->Font->Color = clBlue;
         }
-        pPassword->Caption = "USER : " + dmDB->ActualUser + " (" + dmDB->pwdlevel + ")";
+        pPassword->Caption = "USER : " + dmDB->ActualUser + " (" + dmDB->ZonaString + ")"; // " (" + dmDB->pwdlevel + ")";
         break;
     case 7:
         if (ClientData.ParametriFunzionali.Giorno) {
@@ -1519,7 +1519,7 @@ void __fastcall TMainForm::ShapePosMouseUp(TObject *Sender, TMouseButton Button,
     int tipopos, i, popupok = 0, tipoplc, corsia, tipologia_corsia, zonadapos, autorizzazione;
     PopupMenuPos->Items->Clear();
     Pos = (TMyShape*) Sender;
-    if (dmDB->ZonaString != "Z") {
+    if (dmDB->ZonaString != "XXX") {
         if (Pos != NULL) {
             corsia = dmDB->TabPostazioni[IntToStr(Pos->Tag)]["FILA"].ToIntDef(0);
             if (Button == mbRight) {
@@ -1977,7 +1977,7 @@ void __fastcall TMainForm::img2MouseUp(TObject * Sender, TMouseButton Button, TS
     int pos_sel;
     Img = (TRotateImage*) Sender;
     PopupMenu1->Items->Clear();
-    if (dmDB->ZonaString != "Z") {
+    if (dmDB->ZonaString != "XXX") {
         if ((Button == mbRight) && (Img != NULL))
         {
             if ((!ClientData.DatiAgv[Img->Tag].manuale) && (dmDB->pwdlevel) && ((!ClientData.DatiAgv[Img->Tag].alarm) || (ClientData.DatiAgv[Img->Tag].stand_by)) && (ClientData.DatiAgv[Img->Tag].pos > 0)) {

@@ -832,9 +832,9 @@ int TdmDBImpianto::ClonaHMC_ORDINI_IN_LAVORAZIONE() {
     TADOQuery *ADOQuery;
     AnsiString strsql;
     int res = 1;
-     //NB: pensare di mettere un loop se record =0
+    // NB: pensare di mettere un loop se record =0
     try {
-            ADOQuery = new TADOQuery(NULL);
+        ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
         if (dmDB->ADOConnection1->Connected) {
             ADOQuery->Close();
@@ -857,4 +857,16 @@ int TdmDBImpianto::ClonaHMC_ORDINI_IN_LAVORAZIONE() {
     delete ADOQuery;
 
     return res;
+}
+
+int TdmDBImpianto::CheckZonaUtente(AnsiString zonadacontrollare) {
+    int ret = 0;
+     //comunque se Z fai tutto, 99 puo' essere qualunque valore >0
+    if (dmDB->ZonaString == "Z")
+        ret = 99;
+    else
+        ret = dmDB->ZonaString.Pos(zonadacontrollare);
+
+    return ret;
+
 }
