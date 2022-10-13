@@ -2990,6 +2990,9 @@ int TdmDB::ControllaUtentePassword(AnsiString Utente, AnsiString Password) {
             res = ADOQuery->FieldByName("IdLogin")->AsInteger;
             pwdlevel = res;
             ActualUser = Utente;
+            //assehna la zona solo se specificato nel record altrimenti usa il valore nel.ini
+            if ((ADOQuery->FieldByName("Zona")->AsString.Trim() != NULL) && (ADOQuery->FieldByName("Zona")->AsString.Trim() != ""))
+                ZonaString = ADOQuery->FieldByName("Zona")->AsString.Trim();
         }
         else {
             res = 0;
@@ -5170,14 +5173,14 @@ void TdmDB::LeggiStrutturaUdc(TUDC & UDC) {
             UDC.IdArtUDC = 0;
             UDC.Articolo.IDArticolo = ADOQuery->FieldByName("IDArticolo")->AsInteger;
             dmExtraFunction->StringToChar(ADOQuery->FieldByName("codart")->AsString, UDC.Articolo.CodArt);
-            if (ADOQuery->FieldByName("idarticolo")->AsInteger ==0) {
+            if (ADOQuery->FieldByName("idarticolo")->AsInteger == 0) {
                 dmExtraFunction->StringToChar(ADOQuery->FieldByName("descudc")->AsString, UDC.Articolo.Descrizione);
             }
             else
                 dmExtraFunction->StringToChar(ADOQuery->FieldByName("DescArt")->AsString, UDC.Articolo.Descrizione);
             UDC.Articolo.IDTipoArticolo = 0; // ??????
             UDC.CodStato = ADOQuery->FieldByName("Stato")->AsInteger;
-            UDC.IndiceImpilabilita  =ADOQuery->FieldByName("Sovrapposto")->AsInteger  ;
+            UDC.IndiceImpilabilita = ADOQuery->FieldByName("Sovrapposto")->AsInteger;
         }
         ADOQuery->Close();
         // MainForm->LogMsg(stringa);

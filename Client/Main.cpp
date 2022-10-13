@@ -3099,6 +3099,7 @@ void __fastcall TMainForm::btAnagraficheMouseUp(TObject *Sender, TMouseButton Bu
     ImageListMenu->Draw(NewItem1->Bitmap->Canvas, X + bStorici->Left, Y + btAnagrafiche->Height, 1); // non va
     NewItem1->OnClick = UDCClick;
     PopupMenu->Items->Add(NewItem1);
+
     TMenuItem *NewItem2 = new TMenuItem(this); // create the separator
     NewItem2->Caption = "Gestione Utenti";
     NewItem2->Tag = 2;
