@@ -4,19 +4,20 @@
 #pragma hdrstop
 #include <tchar.h>
 // ---------------------------------------------------------------------------
-USEFORM("tipologia.cpp", FormTipologia);
 USEFORM("stato_pos.cpp", fCorsia);
 USEFORM("SocketComunicazioneClient.cpp", SocketDataModule); /* TDataModule: File Type */
-USEFORM("UDCDuplicati.cpp", FormUDCDuplicati);
-USEFORM("ZonaA2Frame.cpp", frZonaA2); /* TFrame: File Type */
-USEFORM("ZonaA1Frame.cpp", frZonaA1); /* TFrame: File Type */
-USEFORM("UDClist.cpp", FormUDCList);
 USEFORM("selectAgvframe.cpp", frSelectAgv); /* TFrame: File Type */
-USEFORM("pos_UDC.cpp", frPosUDC); /* TFrame: File Type */
+USEFORM("tipologia.cpp", FormTipologia);
+USEFORM("ZonaA1Frame_PosDirette.cpp", frZonaA1PosDirette); /* TFrame: File Type */
+USEFORM("UDClist.cpp", FormUDCList);
+USEFORM("UDCDuplicati.cpp", FormUDCDuplicati);
+USEFORM("segnaliBaia.cpp", fSegnaliBaia);
 USEFORM("PosPrelievoPLC.cpp", FormPosPrelPLC);
 USEFORM("PosDepositoPLC.cpp", FormPosDepPLC);
-USEFORM("segnaliBaia.cpp", fSegnaliBaia);
+USEFORM("PorteFumo.cpp", FormStatusPorteFumo);
+USEFORM("pos_UDC.cpp", frPosUDC); /* TFrame: File Type */
 USEFORM("SceltaUDC.cpp", FormSceltaUDC);
+USEFORM("ZonaA2Frame.cpp", frZonaA2); /* TFrame: File Type */
 USEFORM("..\File Comuni\DBImpianto.cpp", dmDBImpianto); /* TDataModule: File Type */
 USEFORM("..\File Comuni\DB.cpp", dmDB); /* TDataModule: File Type */
 USEFORM("..\File Comuni\dmFunzioniComuniClientServer.cpp", dmFunzioni); /* TDataModule: File Type */
@@ -30,12 +31,11 @@ USEFORM("ZonaEFrame.cpp", frZonaE); /* TFrame: File Type */
 USEFORM("ZonaHFrame.cpp", frZonaH); /* TFrame: File Type */
 USEFORM("ZonaGFrame.cpp", frZonaG); /* TFrame: File Type */
 USEFORM("ZonaFFrame.cpp", frZonaF); /* TFrame: File Type */
-USEFORM("PorteFumo.cpp", FormStatusPorteFumo);
 USEFORM("configCBFrame.cpp", frCB); /* TFrame: File Type */
 USEFORM("config.cpp", frConfig);
 USEFORM("Chiusura.cpp", ChiusuraForm);
 USEFORM("DataExchange.cpp", DataForm);
-USEFORM("frame_ArticoliSovrapposti.cpp", FrameSovrapposti); /* TFrame: File Type */
+USEFORM("frame_ArticoliInLavorazione.cpp", FrameArticoliInLavorazione); /* TFrame: File Type */
 USEFORM("DBExtra.cpp", fDBExtra);
 USEFORM("DBClient.cpp", dmDBClient); /* TDataModule: File Type */
 USEFORM("ChildWin.cpp", MDIChild);
@@ -46,6 +46,7 @@ USEFORM("AllarmiAttivi.cpp", FormAllarmiAttivi);
 USEFORM("CentroMissioni.cpp", fCentroMissioni);
 USEFORM("Batterie.cpp", fBatterie);
 USEFORM("anagrafica_articoli.cpp", FormAnagraficaArticoli);
+USEFORM("frame_ArticoliSovrapposti.cpp", FrameSovrapposti); /* TFrame: File Type */
 USEFORM("missioni.cpp", fMissioni);
 USEFORM("Main.cpp", MainForm);
 USEFORM("log.cpp", fLog);
@@ -61,6 +62,7 @@ USEFORM("ins_UDC.cpp", FormInsUDC);
 USEFORM("ins_MssioniWMS.cpp", FIns_MissioniWMS);
 USEFORM("GestUser.cpp", FrmGestUser);
 USEFORM("frame_ArticoliMP.cpp", FrameMatPrime); /* TFrame: File Type */
+USEFORM("ZonaA1Frame.cpp", frZonaA1); /* TFrame: File Type */
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {

@@ -210,12 +210,19 @@
             <DependentOn>DBExtra.h</DependentOn>
             <BuildOrder>47</BuildOrder>
         </None>
+        <CppCompile Include="frame_ArticoliInLavorazione.cpp">
+            <Form>FrameArticoliInLavorazione</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frame_ArticoliInLavorazione.h</DependentOn>
+            <BuildOrder>61</BuildOrder>
+        </CppCompile>
         <CppCompile Include="frame_ArticoliMP.cpp">
             <Form>FrameMatPrime</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frame_ArticoliMP.h</DependentOn>
-            <BuildOrder>61</BuildOrder>
+            <BuildOrder>62</BuildOrder>
         </CppCompile>
         <CppCompile Include="frame_ArticoliSovrapposti.cpp">
             <Form>FrameSovrapposti</Form>
@@ -417,8 +424,16 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>ZonaA1Frame.h</DependentOn>
-            <BuildOrder>55</BuildOrder>
+            <BuildOrder>63</BuildOrder>
         </CppCompile>
+        <None Include="ZonaA1Frame_PosDirette.cpp">
+            <Exclude>True</Exclude>
+            <Form>frZonaA1PosDirette</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>ZonaA1Frame_PosDirette.h</DependentOn>
+            <BuildOrder>55</BuildOrder>
+        </None>
         <CppCompile Include="ZonaA2Frame.cpp">
             <Form>frZonaA2</Form>
             <FormType>dfm</FormType>
@@ -522,19 +537,20 @@
         <CppCompile Include="..\File Comuni\LogTxt.cpp">
             <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <FormResources Include="tipologia.dfm"/>
         <FormResources Include="stato_pos.dfm"/>
         <FormResources Include="SocketComunicazioneClient.dfm"/>
-        <FormResources Include="UDCDuplicati.dfm"/>
-        <FormResources Include="ZonaA2Frame.dfm"/>
-        <FormResources Include="ZonaA1Frame.dfm"/>
-        <FormResources Include="UDClist.dfm"/>
         <FormResources Include="selectAgvframe.dfm"/>
-        <FormResources Include="pos_UDC.dfm"/>
+        <FormResources Include="tipologia.dfm"/>
+        <FormResources Include="ZonaA1Frame_PosDirette.dfm"/>
+        <FormResources Include="UDClist.dfm"/>
+        <FormResources Include="UDCDuplicati.dfm"/>
+        <FormResources Include="segnaliBaia.dfm"/>
         <FormResources Include="PosPrelievoPLC.dfm"/>
         <FormResources Include="PosDepositoPLC.dfm"/>
-        <FormResources Include="segnaliBaia.dfm"/>
+        <FormResources Include="PorteFumo.dfm"/>
+        <FormResources Include="pos_UDC.dfm"/>
         <FormResources Include="SceltaUDC.dfm"/>
+        <FormResources Include="ZonaA2Frame.dfm"/>
         <FormResources Include="..\File Comuni\DBImpianto.dfm"/>
         <FormResources Include="..\File Comuni\DB.dfm"/>
         <FormResources Include="..\File Comuni\dmFunzioniComuniClientServer.dfm"/>
@@ -548,12 +564,11 @@
         <FormResources Include="ZonaHFrame.dfm"/>
         <FormResources Include="ZonaGFrame.dfm"/>
         <FormResources Include="ZonaFFrame.dfm"/>
-        <FormResources Include="PorteFumo.dfm"/>
         <FormResources Include="configCBFrame.dfm"/>
         <FormResources Include="config.dfm"/>
         <FormResources Include="Chiusura.dfm"/>
         <FormResources Include="DataExchange.dfm"/>
-        <FormResources Include="frame_ArticoliSovrapposti.dfm"/>
+        <FormResources Include="frame_ArticoliInLavorazione.dfm"/>
         <FormResources Include="DBExtra.dfm"/>
         <FormResources Include="DBClient.dfm"/>
         <FormResources Include="ChildWin.dfm"/>
@@ -564,6 +579,7 @@
         <FormResources Include="CentroMissioni.dfm"/>
         <FormResources Include="Batterie.dfm"/>
         <FormResources Include="anagrafica_articoli.dfm"/>
+        <FormResources Include="frame_ArticoliSovrapposti.dfm"/>
         <FormResources Include="missioni.dfm"/>
         <FormResources Include="Main.dfm"/>
         <FormResources Include="log.dfm"/>
@@ -579,6 +595,7 @@
         <FormResources Include="ins_MssioniWMS.dfm"/>
         <FormResources Include="GestUser.dfm"/>
         <FormResources Include="frame_ArticoliMP.dfm"/>
+        <FormResources Include="ZonaA1Frame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
