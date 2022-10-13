@@ -804,14 +804,14 @@ void __fastcall TMainForm::MainStatusBarDrawPanel(TStatusBar *StatusBar, TStatus
         break;
     case 4:
         if (ClientData.Plc[1].PlcConnesso) {
-            Panel->Text = "PLC OK";
+            Panel->Text = "Siemens OK";
             if (!ClientData.ParametriFunzionali.Simula) {
                 pCanvas->Brush->Color = clLime;
                 pCanvas->Font->Color = clBlack;
             }
         }
         else {
-            Panel->Text = "PLC KO";
+            Panel->Text = "Siemens KO";
             if (!ClientData.ParametriFunzionali.Simula) {
                 pCanvas->Brush->Color = clRed;
                 pCanvas->Font->Color = clWhite;
@@ -827,7 +827,33 @@ void __fastcall TMainForm::MainStatusBarDrawPanel(TStatusBar *StatusBar, TStatus
         t = (Rect.Height() - pCanvas->TextHeight(Panel->Text)) / 2;
         pCanvas->TextOut(Rect.left + l, Rect.top + t, Panel->Text);
         break;
-    case 5:
+            case 5:
+        if ( ClientData.DatiPorte[1].PlcConnesso) {
+            Panel->Text = "Phoenix OK";
+            if (!ClientData.ParametriFunzionali.Simula) {
+                pCanvas->Brush->Color = clLime;
+                pCanvas->Font->Color = clBlack;
+            }
+        }
+        else {
+            Panel->Text = "Phoenix KO";
+            if (!ClientData.ParametriFunzionali.Simula) {
+                pCanvas->Brush->Color = clRed;
+                pCanvas->Font->Color = clWhite;
+            }
+
+        }
+        if (ClientData.ParametriFunzionali.Simula) {
+            pCanvas->Brush->Color = clAqua;
+            pCanvas->Font->Color = clBlue;
+        }
+        pCanvas->FillRect(Rect);
+        l = (Rect.Width() - pCanvas->TextWidth(Panel->Text)) / 2;
+        t = (Rect.Height() - pCanvas->TextHeight(Panel->Text)) / 2;
+        pCanvas->TextOut(Rect.left + l, Rect.top + t, Panel->Text);
+        break;
+
+    case 6:
         // db
         if (dmDB->ADOConnection1->Connected) {
             Panel->Text = "DB: " + dmExtraFunction->nomeIstanza(dmDB->ADOConnection1->ConnectionString);
@@ -844,7 +870,7 @@ void __fastcall TMainForm::MainStatusBarDrawPanel(TStatusBar *StatusBar, TStatus
         t = (Rect.Height() - pCanvas->TextHeight(Panel->Text)) / 2;
         pCanvas->TextOut(Rect.left + l, Rect.top + t, Panel->Text);
         break;
-    case 6:
+    case 7:
         if (ClientData.ParametriFunzionali.AbilitaMissioni) {
             pCanvas->Brush->Color = clLime;
             pCanvas->Font->Color = clBlack;
@@ -874,7 +900,7 @@ void __fastcall TMainForm::MainStatusBarDrawPanel(TStatusBar *StatusBar, TStatus
         }
         pPassword->Caption = "USER : " + dmDB->ActualUser + " (" + dmDB->ZonaString + ")"; // " (" + dmDB->pwdlevel + ")";
         break;
-    case 7:
+    case 8:
         if (ClientData.ParametriFunzionali.Giorno) {
             pCanvas->Brush->Color = clWebOrange;
             pCanvas->Font->Color = clBlack;
