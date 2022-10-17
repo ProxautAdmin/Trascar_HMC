@@ -57,7 +57,7 @@ void __fastcall TfMissioni::FormActivate(TObject *Sender)
     edPickCust->Text = "";
     edDropCust->Text = "";
 
-    if (dmDB->ZonaString == "Z") {
+    if (dmDB->pwdlevel <8) {
         BitBtn1->Visible = false;
         BitBtn2->Visible = false;
         btCancellaRiga->Visible = false;

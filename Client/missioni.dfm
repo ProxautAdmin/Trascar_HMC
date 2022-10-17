@@ -3,7 +3,6 @@ inherited fMissioni: TfMissioni
   ClientHeight = 751
   ClientWidth = 1548
   OnActivate = FormActivate
-  ExplicitLeft = -439
   ExplicitWidth = 1564
   ExplicitHeight = 790
   PixelsPerInch = 96
@@ -1310,25 +1309,6 @@ inherited fMissioni: TfMissioni
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'NomePosPrel'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Title.Alignment = taCenter
-        Title.Caption = 'Prelievo'
-        Title.Font.Charset = DEFAULT_CHARSET
-        Title.Font.Color = clBlue
-        Title.Font.Height = -13
-        Title.Font.Name = 'Tahoma'
-        Title.Font.Style = []
-        Width = 90
-        Visible = True
-      end
-      item
-        Alignment = taCenter
-        Expanded = False
         FieldName = 'Posdep'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -1346,7 +1326,24 @@ inherited fMissioni: TfMissioni
         Visible = True
       end
       item
-        Alignment = taCenter
+        Expanded = False
+        FieldName = 'NomePosPrel'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Caption = 'Nome Prel.'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clBlue
+        Title.Font.Height = -13
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = []
+        Width = 80
+        Visible = True
+      end
+      item
         Expanded = False
         FieldName = 'NomePosDep'
         Font.Charset = DEFAULT_CHARSET
@@ -1355,17 +1352,16 @@ inherited fMissioni: TfMissioni
         Font.Name = 'Tahoma'
         Font.Style = []
         Title.Alignment = taCenter
-        Title.Caption = 'Deposito'
+        Title.Caption = 'Nome Dep.'
         Title.Font.Charset = DEFAULT_CHARSET
         Title.Font.Color = clBlue
         Title.Font.Height = -13
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = []
-        Width = 90
+        Width = 80
         Visible = True
       end
       item
-        Alignment = taCenter
         Expanded = False
         FieldName = 'CodUDC'
         Font.Charset = DEFAULT_CHARSET
@@ -1380,7 +1376,7 @@ inherited fMissioni: TfMissioni
         Title.Font.Height = -13
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = []
-        Width = 100
+        Width = 150
         Visible = True
       end
       item

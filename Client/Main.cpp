@@ -139,7 +139,7 @@ void TMainForm::DisegnaCarrello(int car) {
                 LabelAGV->Name = "LabelAGV" + IntToStr(car);
                 LabelAGV->AutoSize = true;
                 LabelAGV->Font->Name = "Tahoma";
-                LabelAGV->Font->Size = 24;
+                LabelAGV->Font->Size = 14;
                 LabelAGV->Caption = IntToStr(car);
                 LabelAGV->Visible = true;
                 LabelAGV->Font->Color = clYellow;
@@ -153,7 +153,7 @@ void TMainForm::DisegnaCarrello(int car) {
             if (LabelAGV != NULL) {
                 if ((imgCarr->Angle >= 0) && (imgCarr->Angle < 90)) {
                     LabelAGV->Top = imgCarr->Top + ((imgCarr->Height / 2) - LabelAGV->Height / 2);
-                    LabelAGV->Left = imgCarr->Left + imgCarr->Width / 3;
+                    LabelAGV->Left = imgCarr->Left + imgCarr->Width / 1.5f;
                 }
                 else if ((imgCarr->Angle >= 90) && (imgCarr->Angle < 180)) {
                     LabelAGV->Top = imgCarr->Top * 1.01f;
@@ -161,14 +161,14 @@ void TMainForm::DisegnaCarrello(int car) {
                 }
                 if ((imgCarr->Angle >= 180) && (imgCarr->Angle < 270)) { // ok
                     LabelAGV->Top = imgCarr->Top + ((imgCarr->Height / 2) - LabelAGV->Height / 2);
-                    LabelAGV->Left = imgCarr->Left + ((imgCarr->Width / 3) - LabelAGV->Width / 2);
+                    LabelAGV->Left = imgCarr->Left + (imgCarr->Width / 8);
                 }
                 if (imgCarr->Angle >= 270) {
-                    LabelAGV->Top = imgCarr->Top + ((imgCarr->Height / 2) - LabelAGV->Height / 2);
-                    LabelAGV->Left = imgCarr->Left * 1.01f;
+                    LabelAGV->Top = imgCarr->Top+ imgCarr->Height*0.55f ;//* 1.5f;
+                    LabelAGV->Left = imgCarr->Left + ((imgCarr->Width - LabelAGV->Width) / 2);
                 }
                 LabelAGV->BringToFront();
-                LabelAGV->Font->Size = 18 * zoom;
+                LabelAGV->Font->Size = 14 * zoom;
                 LabelAGV->Visible = imgCarr->Visible;
             }
         }
@@ -827,8 +827,8 @@ void __fastcall TMainForm::MainStatusBarDrawPanel(TStatusBar *StatusBar, TStatus
         t = (Rect.Height() - pCanvas->TextHeight(Panel->Text)) / 2;
         pCanvas->TextOut(Rect.left + l, Rect.top + t, Panel->Text);
         break;
-            case 5:
-        if ( ClientData.DatiPorte[1].PlcConnesso) {
+    case 5:
+        if (ClientData.DatiPorte[1].PlcConnesso) {
             Panel->Text = "Phoenix OK";
             if (!ClientData.ParametriFunzionali.Simula) {
                 pCanvas->Brush->Color = clLime;
@@ -1047,7 +1047,7 @@ void TMainForm::AggiornaMappa() {
                                 PosCella->Pen->Width = 4;
                             }
                             else if (dmDB->QueryPos->FieldByName("posinputplc")->AsInteger == TIPOLOGIA_PRELIEVO) { // stacker
-                                cornice = clWebOrange;
+                                cornice = 0x00FFFFAA;
                                 PosCella->Pen->Width = 4;
                             }
                             /*

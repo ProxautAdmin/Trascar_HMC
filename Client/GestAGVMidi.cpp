@@ -330,7 +330,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     // NB ottimizzare, non c'e' bisogno di un tipo diverso TfrZonaxx
     // prel
     if (pcPrel->ActivePage->Hint == "A") {
-        TabVisibili(0, 0, 0, 1, 0, 0, 0, 0, 1);
+        TabVisibili(0, 0, 0, 1, 0, 0, 0, 1, 0);
         frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Prel"));
         if (frA1 != NULL) {
             frA1->AggiornaDati();
@@ -532,7 +532,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         if (dmDBImpianto->TornaIndiceImpilabilitadaIDUDC(idudc) == 1)
             dmDBImpianto->TornaPosDepLiberaH("H", idudc, posdep, pianodep);
         else
-            dmDBImpianto->TornaPosDepLibera("E", posdep, pianodep);
+            dmDBImpianto->TornaPosDepLibera("B", posdep, pianodep);
     }
     else if ((ZonaPrel == "J") && (ZonaDep == "I") && (tipoposizione == TIPOLOGIA_SCARTO))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_SCARTO);

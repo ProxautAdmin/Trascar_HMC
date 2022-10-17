@@ -37,8 +37,8 @@ __fastcall TDMPlc::TDMPlc(TComponent* Owner) : TDataModule(Owner) {
         // zona
         ClientData.Plc[i].Zona = i; // uso futuro?
         // postazioni
-        ClientData.Plc[i].SegnaliGenerali[1].dbInput = 0;
-        ClientData.Plc[i].SegnaliGenerali[1].dbOutput = 0;
+        ClientData.Plc[i].SegnaliGenerali[1].dbInput = 41;
+        ClientData.Plc[i].SegnaliGenerali[1].dbOutput = 40;
 
         ClientData.Plc[i].SegnaliGenerali[1].byteOutput_accesso = 0;
         ClientData.Plc[i].SegnaliGenerali[1].bitOutput_conferma_accesso = 0;
@@ -51,8 +51,8 @@ __fastcall TDMPlc::TDMPlc(TComponent* Owner) : TDataModule(Owner) {
             for (int p = 1; p <= NUMPIANI_PREL; p++) {
                 // PRELIEVO
                 ClientData.Plc[i].Prelievo[j][p].idplc = IDX_PLCPRELIEVO;
-                ClientData.Plc[i].Prelievo[j][p].dbInput = 0;
-                ClientData.Plc[i].Prelievo[j][p].dbOutput = 0;
+                ClientData.Plc[i].Prelievo[j][p].dbInput = 45;
+                ClientData.Plc[i].Prelievo[j][p].dbOutput = 44;
                 //
                 ClientData.Plc[i].Prelievo[j][p].pos = PosPrel[j - 1];
                 ClientData.Plc[i].Prelievo[j][p].pos_fuori_ingombro = PosPrel_FuoriIngombro[j - 1];
@@ -63,8 +63,8 @@ __fastcall TDMPlc::TDMPlc(TComponent* Owner) : TDataModule(Owner) {
                 //
                 ClientData.Plc[i].Prelievo[j][p].bit_Ready = 0;
                 ClientData.Plc[i].Prelievo[j][p].bit_InAllarme = 1;
-                ClientData.Plc[i].Prelievo[j][p].bit_ProntaAlPrelievo = 2;
-                ClientData.Plc[i].Prelievo[j][p].bit_OkPrelievo = 3;
+                ClientData.Plc[i].Prelievo[j][p].bit_ProntaAlPrelievo = 4;
+                ClientData.Plc[i].Prelievo[j][p].bit_OkPrelievo = 2;
                 // out
                 // ClientData.Plc[i].Prelievo[1].byteOutput = 10;
                 // ClientData.Plc[i].Prelievo[2].byteOutput = 50;
@@ -79,8 +79,8 @@ __fastcall TDMPlc::TDMPlc(TComponent* Owner) : TDataModule(Owner) {
             for (int p = 1; p <= NUMPIANI_DEP; p++) {
                 // DEPOSITO
                 ClientData.Plc[i].Deposito[j][p].idplc = IDX_PLCDEPOSITO;
-                ClientData.Plc[i].Deposito[j][p].dbInput = 0;
-                ClientData.Plc[i].Deposito[j][p].dbOutput = 0;
+                ClientData.Plc[i].Deposito[j][p].dbInput = 41+((j-1)*2);
+                ClientData.Plc[i].Deposito[j][p].dbOutput = 40+((j-1)*2);
                 //
                 ClientData.Plc[i].Deposito[j][p].pos = PosDep[j - 1];
                 ClientData.Plc[i].Deposito[j][p].pos_fuori_ingombro = PosDep_FuoriIngombro[j - 1];
@@ -88,8 +88,8 @@ __fastcall TDMPlc::TDMPlc(TComponent* Owner) : TDataModule(Owner) {
                 ClientData.Plc[i].Deposito[j][p].byteInput = 0;
                 ClientData.Plc[i].Deposito[j][p].bit_Ready = 0;
                 ClientData.Plc[i].Deposito[j][p].bit_InAllarme = 1;
-                ClientData.Plc[i].Deposito[j][p].bit_ProntaAlDeposito = 2;
-                ClientData.Plc[i].Deposito[j][p].bit_OkDeposito = 3;
+                ClientData.Plc[i].Deposito[j][p].bit_ProntaAlDeposito = 4;
+                ClientData.Plc[i].Deposito[j][p].bit_OkDeposito = 2;
                 // out
                 // ClientData.Plc[i].Deposito[j][p].offsetOUT =0;
                 // ClientData.Plc[i].Deposito[j][p].byteOutput = 0;

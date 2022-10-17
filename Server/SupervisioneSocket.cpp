@@ -412,7 +412,7 @@ void SUPERVISIONEMISS_STATESOCKET::Elabora(char *ev, TCustomWinSocket *Socket) {
                 dmDB->LogMsg("Prelievo missione " + IntToStr(idmiss) + " eseguito in posizione: " + IntToStr(pos) + " corsia " + corsia_prel + " da agv numero " + IntToStr(id));
                 if (prel) {
                     // dmDBImpianto->AggiornaStatoMissioniWMS(IDWMS, 3);
-                    // dmDBServer->AggiornaMissione(idmiss, 2, nagv, pesata);
+                     dmDBServer->AggiornaMissione(idmiss, 2, nagv, pesata);
                     prenota = 0;
 
                     dmDB->PrenotaPos(prel, prenota, corsia_prel);

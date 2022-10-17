@@ -53,7 +53,7 @@ void __fastcall TdmDBServer::TimerMissioniDBTimer(TObject * Sender) {
     // Missioni automatiche
     GeneraCMDaGaA1(0);
     GeneraCMDaHaB(0);
- //   GeneraCMDaIaA2(0);
+    // GeneraCMDaIaA2(0);
     // giorno /notte
     if (ClientData.ParametriFunzionali.Giorno == 0) {
         GeneraCMDaPrelievo(0); // missione da prelievo C
@@ -99,7 +99,8 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                 m.Lotto = 0;
                 m.nodopassaggioprel = 0;
                 m.nodopassaggiodep = 0;
-                m.Agv = 0;
+                m.Agv = 1;
+                m.tipoudc=0;
                 //
                 // m.altezza_udc = ADOQuery->FieldByName("Height")->AsInteger;
                 // m.tipoudc = ADOQuery->FieldByName("TipoUDC")->AsInteger;
@@ -246,7 +247,7 @@ int TdmDBServer::GeneraCMDaPrelievo(int val) {
                         if (ok_genera == 0) {
                             cm.TipoMissione = 0;
                             cm.CodTipoMovimento = 0;
-                            cm.CodTipoMissione = 0;
+                            cm.CodTipoMissione = 1;
                             cm.Agv = 1;
                             cm.IDUDC = 1; // ???
                             cm.TipoUDC = 0; // ??
@@ -295,7 +296,7 @@ int TdmDBServer::GeneraCMDaGaA1(int val) {
         if (ok_genera == 0) {
             cm.TipoMissione = 0;
             cm.CodTipoMovimento = 0;
-            cm.CodTipoMissione = 0;
+            cm.CodTipoMissione = 1;
             cm.Agv = 1;
             cm.IDUDC = 1; // ???
             cm.TipoUDC = 0; // ??
@@ -349,7 +350,7 @@ int TdmDBServer::GeneraCMDaHaB(int val) {
                     if (ok_genera == 0) {
                         cm.TipoMissione = 0;
                         cm.CodTipoMovimento = 0;
-                        cm.CodTipoMissione = 0;
+                        cm.CodTipoMissione = 1;
                         cm.Agv = 1;
                         cm.IDUDC = 1; // ???
                         cm.TipoUDC = 0; // ??
@@ -468,7 +469,7 @@ int TdmDBServer::AggiornaStatoCentroMissioni(int id, int stato) {
             strsql = "UPDATE CentroMissioni SET stato = stato + 1 ";
         else
             strsql = "UPDATE CentroMissioni SET stato = " + IntToStr(stato);
-        if (stato >= 5)
+        if (stato >= 1)
             strsql = strsql + " , Fine = GetDate()";
         strsql = strsql + " where id = " + IntToStr(id);
         ADOQuery->SQL->Text = strsql;
