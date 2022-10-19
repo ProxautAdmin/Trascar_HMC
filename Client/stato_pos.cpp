@@ -151,7 +151,7 @@ void TfCorsia::VisualizzaPosizioneUDC() {
                 Label2->Caption = TabPosizioni[i]["POS"];
                 Label4->Caption = TabPosizioni[i]["CUSTOMERPOS"];
                 statodisabilita = TabPosizioni[i]["DISABILITA"].ToIntDef(0);
-                statoprenotata = TabPosizioni[i]["PRENOTATA"].ToIntDef(0);
+                statoprenotata = TabPiani[i]["PRENOTATA"].ToIntDef(0);
                 cbbTipoPosizione->Text = dmExtraFunction->RiempiTipologiaCorsia(cbbTipoPosizione, dmExtraFunction->PadS(TabPosizioni[i]["TIPOPOSIZIONE"].ToIntDef(0), 2, "0")); // dmDB->ReturnCodiceTipoUDCDaId(tipologia);
 
                 eHDep->Text = TabPiani[pianosel]["HDEP"].ToIntDef(0);
@@ -165,7 +165,9 @@ void TfCorsia::VisualizzaPosizioneUDC() {
                 edtRifOrdine->Text = TabPosizioni[i]["RIFORDINE"].Trim();
 
                 ckDisabilitaPos->Checked = statodisabilita;
-                cPrenotataPos->Checked = statoprenotata;
+                cPrenotataPos->Checked    =TabPosizioni[i]["PRENOTATA"].ToIntDef(0);
+                ckPianoRiservato->Checked = statoprenotata;
+                cSelezionata->Checked = TabPosizioni[i]["SELEZIONATA"].ToIntDef(0);
                 if (idudc) {
                     eUDC->Text = IntToStr(idudc);
                     eIdArticolo->Text = TabUDC[idudc]["IDARTICOLO"];
@@ -254,21 +256,22 @@ void __fastcall TfCorsia::BitBtn3Click(TObject * Sender)
 void __fastcall TfCorsia::Timer1Timer(TObject * Sender)
 {
     Timer1->Enabled = false;
-    GroupBox1->Enabled = dmDB->pwdlevel;
-    GroupBox3->Enabled = dmDB->pwdlevel;
-    GroupBox4->Enabled = dmDB->pwdlevel;
-    GroupBox8->Enabled = dmDB->pwdlevel;
+    GroupBox1->Enabled = (dmDB->pwdlevel >= 8);
+    GroupBox3->Enabled = (dmDB->pwdlevel >= 8);
+    GroupBox4->Enabled = false; // (dmDB->pwdlevel>=8);
+    GroupBox8->Enabled = (dmDB->pwdlevel >= 8);
     BitBtn3->Enabled = !ckVuota->Checked;
+    GroupBox10->Enabled = (dmDB->pwdlevel >= 8);
     BitBtn2->Enabled = (eUDC->Text.ToIntDef(0) > 0);
     if (MainForm->aggiorna_stato_pos) {
         VisualizzaPosizioneUDC();
         MainForm->aggiorna_stato_pos = 0;
     }
     BitBtn4->Enabled = change_dati_corsia;
-    if ((dmDB->pwdlevel) && ((eUDC->Text.ToIntDef(0) > 0) || (change_dati_pos)))
-        BitBtn6->Enabled = true;
+    if ((dmDB->pwdlevel >= 6) && ((eUDC->Text.ToIntDef(0) > 0) || (change_dati_pos) || (cambiocheck)))
+        btConferma->Enabled = true;
     else
-        BitBtn6->Enabled = false;
+        btConferma->Enabled = false;
     Timer1->Enabled = true;
 }
 // ---------------------------------------------------------------------------
@@ -347,7 +350,7 @@ void __fastcall TfCorsia::BitBtn2Click(TObject * Sender)
 }
 // ---------------------------------------------------------------------------
 
-void __fastcall TfCorsia::BitBtn6Click(TObject * Sender) {
+void __fastcall TfCorsia::btConfermaClick(TObject * Sender) {
     AnsiString stringa;
     int res, artudc;
     TUDC UdcMod;
@@ -358,25 +361,27 @@ void __fastcall TfCorsia::BitBtn6Click(TObject * Sender) {
             //
             UdcMod.IDUDC = eUDC->Text.ToIntDef(0);
             ////    dmDB->LeggiStrutturaUdc(UdcMod);
-            if ((UdcMod.IDUDC) && (dmDB->pwdlevel)) {
-                ////        UdcMod.stato = 0;
+            if (1 == 1) {
+                // UdcMod.stato = 0;
                 UdcMod.CodTipoUDC = StrToInt(cbTipoUDC->Text.SubString(1, 2));
 
                 UdcMod.IdArtUDC = 0; // eIDArtUDC->Text.ToIntDef(0);
                 UdcMod.tara = 0; // eTara->Text.ToIntDef(0);
                 UdcMod.pesoattuale = 0; // ePesoAttuale->Text.ToIntDef(0);
                 artudc = (eUDC->Text.ToIntDef(0) == 1 ? 0 : cbbArtUDC->Text.ToIntDef(0));
-                ////    dmDB->InsertUpdateUDC(UdcMod);
-                ////        res = dmDB->UpdatePiano(MainForm->pos_udc, lbPiano->Caption.ToIntDef(0), eUDC->Text.ToIntDef(0), eHprel->Text.ToIntDef(0), eHDep->Text.ToIntDef(0), artudc);
+                // dmDB->InsertUpdateUDC(UdcMod);
+                res = dmDB->UpdatePiano(MainForm->pos_udc, pianosel + 1, eUDC->Text.ToIntDef(0), eHprel->Text.ToIntDef(0), eHDep->Text.ToIntDef(0), cbbTipoPosizione->Text, ckDisabilitaPiano->Checked, artudc);
             }
             if (cambiocheck) {
-                if (Application->MessageBox(L"Sei sicuro di voler cambiare lo stato UDC ?", L"Conferma!!!", MB_YESNO) == IDYES) {
-                    dmDB->UpdateSoloStato(MainForm->pos_udc, cPrenotataPos->Checked, ckDisabilitaPos->Checked);
-                    // if (ckDisabilitaPos->Checked)
-                    // dmGestMissioni->GestisciMissioniPeso(MainForm->pos_udc);
-                    cambiocheck = false;
-                }
+                // dmDB->UpdateSoloStato(MainForm->pos_udc, cPrenotataPos->Checked, ckDisabilitaPos->Checked);
+                // ora messo uguale, da sistemare
+                res = dmDB->UpdatePos(MainForm->pos_udc, cPrenotataPos->Checked, ckDisabilitaPos->Checked, 0, cbbTipoPosizione->Text.SubString(1, 2).ToIntDef(0), cSelezionata->Checked);
 
+                cambiocheck = false;
+            }
+            else {
+                res = dmDB->UpdatePos(MainForm->pos_udc, cPrenotataPos->Checked, ckDisabilitaPos->Checked, 0, cbbTipoPosizione->Text.SubString(1, 2).ToIntDef(0), cSelezionata->Checked);
+                change_dati_pos = false;
             }
             VisualizzaPosizioneUDC();
             // }
@@ -471,19 +476,10 @@ void __fastcall TfCorsia::sbArticoloClick(TObject * Sender)
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
-void __fastcall TfCorsia::ckDisabilitaPosClick(TObject * Sender)
+void __fastcall TfCorsia::CambioCheck(TObject * Sender)
 {
     if (!aggiornamento) {
-        change_dati_pos = true;
-        cambiocheck = true;
-    }
-}
-
-// ---------------------------------------------------------------------------
-void __fastcall TfCorsia::cPrenotataPosClick(TObject * Sender)
-{
-    if (!aggiornamento) {
-        change_dati_pos = true;
+        // change_dati_pos = true;
         cambiocheck = true;
         ckPrenotata->Checked = cPrenotataPos->Checked;
     } // siamo sicuri? e se ci sono altre prenotazioni

@@ -141,7 +141,7 @@ void TdmDBClient::InserisciCorsiePostazioniDatabase() {
                     startfila = 200; // imppostazione partenza fila manuale
                     n_alveoli = 12;
                     numfile = 5;
-                    step = 1;
+                    step = 20;
                     fine = inizio + (numfile * n_alveoli); // solo per la cancellazione dei piani. Semmai settare a mano
                     tipo_posizione = TIPOLOGIA_TERRA;
                     posinputplc = 0;
@@ -332,7 +332,7 @@ void TdmDBClient::InserisciCorsiePostazioniDatabase() {
                         else
                             k_pos = k;
 
-                        pos = (inizio + k_pos) + (j * n_alveoli);
+                        pos = (inizio + k_pos) + (j * step);
                         poscliente = zona + nomecorsia + dmExtraFunction->PadS((numerofila) * 10, 3, "0") + dmExtraFunction->PadS(k, 2, "0");
                         if ((i == 2) && (k >= n_alveoli-2)) {
                             tipoposizione = TIPOLOGIA_SCARTO;

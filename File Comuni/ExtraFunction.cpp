@@ -652,6 +652,7 @@ int TdmExtraFunction::Constrain(int vval, int mmin, int mmax) {
     int ret = vval;
     vval = (vval < mmin ? mmin : vval);
     vval = (vval > mmax ? mmax : vval);
+    ret=vval;
     return ret;
 }
 

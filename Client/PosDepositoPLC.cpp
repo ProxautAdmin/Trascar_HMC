@@ -147,12 +147,12 @@ void __fastcall TFormPosDepPLC::BitBtn5Click(TObject *Sender) {
     // dmDB->UpdatePos(pos, cPrenotataPos->Checked, ckDisabilitaPos->Checked, fUDCSmall->eIDArtUDC->Text.ToIntDef(0), eHPrel->Text.ToIntDef(0), eHDep->Text.ToIntDef(0));
     if ((change_udc) && (dmDB->pwdlevel))
     {
-        dmDB->UpdatePosNoStato(pos, 0, eHPrel1->Text.ToIntDef(5), eHDep1->Text.ToIntDef(65), 0);
+        dmDB->UpdatePosNoStato(pos, 0, eHPrel1->Text.ToIntDef(5), eHDep1->Text.ToIntDef(65), 1);
         // dmDB->ArticoloPrelevatoDepositato(pos, edCodUDC->Text.ToIntDef(0), piano, );  // da mettere a posto
         // UpdateAltezzaPiano(int pos, int piano, int corsia, int hprel, int hdep)
     }
     if ((dmDB->pwdlevel) && (cambiocheck)) {
-        // dmDB->UpdateSoloStato(pos, cPrenotataPos->Checked, ckDisabilitaPos->Checked);
+    dmDB->UpdateSoloStato(pos, cPrenotataPos->Checked, ckDisabilitaPos->Checked);
     }
     if ((dmDB->pwdlevel) && ((cambiocheck) || (change_udc))) {
         SocketDataModule->InviaAggiornamentoPLC(); // aggiorna posizioni PLC con stati e udc

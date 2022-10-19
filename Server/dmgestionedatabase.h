@@ -13,10 +13,12 @@ __published: // IDE-managed Components
 
     TTimer *TimerMissioniDB;
     TTimer *TimerAggiornamentiMinuti;
+    TTimer *TimerStanza;
 
     void __fastcall TimerMissioniDBTimer(TObject *Sender);
     void __fastcall DataModuleCreate(TObject *Sender);
     void __fastcall TimerAggiornamentiMinutiTimer(TObject *Sender);
+    void __fastcall TimerStanzaTimer(TObject *Sender);
 
 private: // User declarations
         public : // User declarations
@@ -42,11 +44,8 @@ private: // User declarations
     int RitornaPosDaMiss(int pos, AnsiString tipopos);
     void MissionePrelievoManuale(int buttontag);
     void RitornaNodoPassaggio(int agv, int posprel, int posdep, int latoforcheprel,int latoforchedep, int tipomiss, int &pospassanteprel, int &pospassantedep);
+    int CercaZona(int xx, int yy) ;
 
-    int RitornaAgvDaIdPallet(int idPallet);
-
-    AnsiString RitornaNomePianoDepositoDaIdMissione(int id);
-    int RitornaLatoForcheDaNomePosizione(AnsiString NomePos);
 
     int GeneraCMDaPrelievo(int val) ;
     int GeneraCMDaGaA1(int val) ;

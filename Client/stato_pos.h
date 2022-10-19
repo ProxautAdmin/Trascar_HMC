@@ -55,7 +55,7 @@ __published: // IDE-managed Components
     TLabel *Label12;
     TBitBtn *BitBtn4;
     TBitBtn *BitBtn5;
-    TBitBtn *BitBtn6;
+    TBitBtn *btConferma;
     TTimer *Timer1;
     TGroupBox *GroupBox3;
     TCheckBox *ckDisabilitaPos;
@@ -87,7 +87,6 @@ __published: // IDE-managed Components
     TGroupBox *GroupBox8;
     TLabel *Label25;
     TLabel *Label26;
-    TEdit *eHDep;
     TEdit *eHprel;
 	TSpeedButton *SpeedButton3;
     TEdit *eIdArticolo;
@@ -125,6 +124,8 @@ __published: // IDE-managed Components
 	TLabel *lbl1;
 	TLabel *Label29;
     TCheckBox *cbImpilabile;
+    TEdit *eHDep;
+    TCheckBox *cSelezionata;
 
     void __fastcall frScaffale1MyShape4MouseUp(TObject *Sender, TMouseButton Button,
         TShiftState Shift, int X, int Y);
@@ -136,13 +137,12 @@ __published: // IDE-managed Components
     void __fastcall BitBtn4Click(TObject *Sender);
     void __fastcall BitBtnChangeClick(TObject *Sender);
     void __fastcall BitBtn2Click(TObject *Sender);
-    void __fastcall BitBtn6Click(TObject *Sender);
+    void __fastcall btConfermaClick(TObject *Sender);
     void __fastcall cbTipoChange(TObject *Sender);
     void __fastcall ckAbilitaClick(TObject *Sender);
     void __fastcall SpeedButton2Click(TObject *Sender);
-    void __fastcall ckDisabilitaPosClick(TObject *Sender);
 	void __fastcall SpeedButton3Click(TObject *Sender);
-    void __fastcall cPrenotataPosClick(TObject *Sender);
+    void __fastcall CambioCheck(TObject *Sender);
     void __fastcall sbArticoloClick(TObject *Sender);
     void __fastcall FormCreate(TObject *Sender);
 

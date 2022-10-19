@@ -550,7 +550,10 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         CentroMis.pianoprel = pianoprel;
         CentroMis.pianodep = pianodep;
         CentroMis.h_prel = dmDB->RitornaAltezzedaPosizione(CentroMis.posprel, CentroMis.pianoprel, "HPREL");
-        CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
+        if (ZonaDep == "G")
+            CentroMis.h_dep = pianodep * ClientData.ParametriFunzionali.altezza_pallet;
+        else
+            CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
         CentroMis.TipoMissione = 0;
         CentroMis.CodTipoMovimento = 0;
         CentroMis.CodTipoMissione = 0;

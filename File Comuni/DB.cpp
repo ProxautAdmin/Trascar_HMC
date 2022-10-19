@@ -732,11 +732,6 @@ void TdmDB::LogCom(AnsiString Telegramma) {
 }
 // ---------------------------------------------------------------------------
 
-void TdmDB::Log_MISS(int agv, int posizione, int destinazione, AnsiString comando, AnsiString posbloccate) {
-    logstr.sprintf("Comando ad AGV%d: posizione=%s, destinazione=%d, comando=%d, posbloccate=%s", agv, posizione, destinazione, comando.c_str(),
-        posbloccate.c_str());
-    Log("SERVER", "MISS", logstr);
-}
 
 void TdmDB::PuliziaStorici() {
     AnsiString strsql;
@@ -2059,7 +2054,7 @@ void TdmDB::PrenotaPos(int pos, int prenota, int corsiadaprenotare) {
     delete ADOQuery;
 }
 
-int TdmDB::UpdatePos(int pos, int prenota, int escludi, int IdUDC, int hprel, int hdep) {
+int TdmDB::UpdatePos(int pos, int prenota, int escludi, int TipoUDC, int Tipoposizione, int Selezionata) {
     AnsiString stringa;
     TADOQuery *ADOQuery;
     int res = 0, pren;
@@ -2069,8 +2064,8 @@ int TdmDB::UpdatePos(int pos, int prenota, int escludi, int IdUDC, int hprel, in
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = ADOConnection1;
 
-        stringa.printf("UPDATE Posizioni SET " " Prenotata = %d, " " Disabilita = %d, " " IdUDC = %d, " " HPrel = %d, " " HDep = %d where Pos = %d ",
-            prenota, escludi, IdUDC, hprel, hdep, pos);
+        stringa.printf("UPDATE Posizioni SET Prenotata = %d, Disabilita = %d, TipoUDC = %d, Tipoposizione = %d, Selezionata = %d where Pos = %d ",
+            prenota, escludi, TipoUDC, Tipoposizione, Selezionata, pos);
 
         ADOQuery->SQL->Clear();
         ADOQuery->SQL->Text = stringa;
@@ -2144,7 +2139,7 @@ int TdmDB::UpdateAltezzaPiano(int pos, int piano, int corsia, int hprel, int hde
     return res;
 }
 
-int TdmDB::UpdatePiano(int pos, int piano, int IdUDC, int hprel, int hdep) {
+int TdmDB::UpdatePiano(int pos, int piano, int IdUDC, int hprel, int hdep, AnsiString tipopiano, int disabilitata, int artudc) {
     AnsiString stringa;
     TADOQuery *ADOQuery;
     int res = 0, pren;
@@ -2153,19 +2148,15 @@ int TdmDB::UpdatePiano(int pos, int piano, int IdUDC, int hprel, int hdep) {
             return 0;
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = ADOConnection1;
-
-        stringa.printf("UPDATE piani SET IdUDC = %d, " " HPrel = %d, " " HDep = %d where Pos = %d and piano = %d",
-            IdUDC, hprel, hdep, pos, piano);
-
+        stringa.printf("UPDATE piani SET IdUDC = %d, HPrel = %d, HDep = %d, disabilitata=%d, tipopiano=%d where Pos = %d and piano = %d ",
+            IdUDC, hprel, hdep, disabilitata, artudc, pos, piano);
         ADOQuery->SQL->Clear();
         ADOQuery->SQL->Text = stringa;
         res = ADOQuery->ExecSQL();
         ADOQuery->Close();
         dmDB->LogMsg(stringa);
-        // dmDB->LogMsg("Update Pos "+IntToStr(pos)+", prenota : "+IntToStr(prenota)+", escludi : "+IntToStr(escludi)+", udc : "+CodiceUdc+", priorchiamata : "+IntToStr(priorita)+", secondi : "+IntToStr(secondi));
         delete ADOQuery;
         aggiorna_tab_posizioni_locale = true;
-        // MainForm->LogMsg(stringa);
     }
     catch (...) {
         dmDB->LogMsg("Errore in stringa " + stringa);
@@ -2183,7 +2174,7 @@ int TdmDB::UpdateSoloStato(int pos, int prenota, int escludi) {
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = ADOConnection1;
 
-        stringa.printf("UPDATE Posizioni SET " " Prenotata = %d, " " Disabilita = %d " "  where Pos = %d ",
+        stringa.printf("UPDATE Posizioni SET Prenotata = %d, Disabilita = %d  where Pos = %d ",
             prenota, escludi, pos);
 
         ADOQuery->SQL->Clear();
@@ -5214,3 +5205,42 @@ int TdmDB::IDUDCdaCodart(AnsiString CodArt) {
     }
     return res;
 }
+
+int TdmDB::RitornaLatoForcheDaNomePosizione(AnsiString NomePos) {
+    int ret = 0;
+    AnsiString strsql;
+    TADOQuery *ADOQuery;
+    int lato = 0;
+
+    if (!dmDB->ADOConnection1->Connected)
+        return 0;
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        strsql.printf("SELECT Lato FROM piani_view where NomePos='%s'", NomePos);
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+        ADOQuery->First();
+        if (ADOQuery->RecordCount) {
+            lato = ADOQuery->FieldByName("Lato")->AsInteger;
+        }
+        ADOQuery->Close();
+        delete ADOQuery;
+    }
+    catch (...) {}
+    dmDB->LogMsg("Ritorna lato da posizione " + NomePos + " lato : " + IntToStr(lato));
+    return lato;
+}
+
+int TdmDB::RitornaAgvDaIdPallet(int idPallet)
+{
+    for (int agv = 1; agv <= NAGV; agv++) {
+        if (ClientData.DatiAgv[agv].DatiUDC.IDUDC == idPallet) {
+            return agv;
+        }
+    }
+    return 0;
+}
+
+
+

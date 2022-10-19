@@ -181,7 +181,7 @@ void __fastcall TFormPosPrelPLC::BitBtn5Click(TObject * Sender) {
         // dmDB->ArticoloPrelevatoDepositato(pos, edCodUDC->Text.ToIntDef(0), piano);     // !!! DA METTERE A POSTO
     }
     if ((dmDB->pwdlevel) && (cambiocheck)) {
-        // dmDB->UpdateSoloStato(pos, cPrenotataPos->Checked, ckDisabilitaPos->Checked);
+         dmDB->UpdateSoloStato(pos, cPrenotataPos->Checked, ckDisabilitaPos->Checked);
     }
     if ((dmDB->pwdlevel) && ((cambiocheck) || (change_udc))) {
         SocketDataModule->InviaAggiornamentoPLC(); // aggiorna posizioni PLC con stati e udc

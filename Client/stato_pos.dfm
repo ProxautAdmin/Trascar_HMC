@@ -7,8 +7,8 @@ inherited fCorsia: TfCorsia
   Font.Height = -13
   OnActivate = FormActivate
   OnCreate = FormCreate
-  ExplicitLeft = -591
-  ExplicitTop = -177
+  ExplicitLeft = -630
+  ExplicitTop = -203
   ExplicitWidth = 1755
   ExplicitHeight = 855
   PixelsPerInch = 96
@@ -17,10 +17,10 @@ inherited fCorsia: TfCorsia
     Left = 1641
     Height = 786
     ExplicitLeft = 1641
-    ExplicitHeight = 760
+    ExplicitHeight = 786
     inherited PanelClose: TPanel
       Top = 700
-      ExplicitTop = 674
+      ExplicitTop = 700
       inherited BitBtnClose: TBitBtn
         Glyph.Data = {
           360C0000424D360C000000000000360000002800000020000000200000000100
@@ -136,7 +136,6 @@ inherited fCorsia: TfCorsia
     Align = alClient
     BevelOuter = bvLowered
     TabOrder = 2
-    ExplicitHeight = 760
     object Panel2: TPanel
       AlignWithMargins = True
       Left = 4
@@ -220,7 +219,6 @@ inherited fCorsia: TfCorsia
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      ExplicitHeight = 472
       object Label1: TLabel
         Left = 17
         Top = 39
@@ -352,7 +350,6 @@ inherited fCorsia: TfCorsia
         Height = 61
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 410
         object BitBtnChange: TBitBtn
           AlignWithMargins = True
           Left = 568
@@ -491,7 +488,7 @@ inherited fCorsia: TfCorsia
           WordWrap = True
           OnClick = BitBtn2Click
         end
-        object BitBtn6: TBitBtn
+        object btConferma: TBitBtn
           AlignWithMargins = True
           Left = 167
           Top = 4
@@ -508,7 +505,7 @@ inherited fCorsia: TfCorsia
           Spacing = 3
           TabOrder = 2
           WordWrap = True
-          OnClick = BitBtn6Click
+          OnClick = btConfermaClick
         end
       end
       object GroupBox3: TGroupBox
@@ -529,18 +526,26 @@ inherited fCorsia: TfCorsia
           Top = 22
           Width = 134
           Height = 25
-          Caption = 'Disabilita Posizione'
+          Caption = 'Posizione disabilitata'
           TabOrder = 0
-          OnClick = ckDisabilitaPosClick
         end
         object cPrenotataPos: TCheckBox
-          Left = 147
-          Top = 22
-          Width = 222
+          Left = 7
+          Top = 53
+          Width = 137
           Height = 25
-          Caption = 'Posizione Riservata'
+          Caption = 'Posizione riservata'
           TabOrder = 1
-          OnClick = cPrenotataPosClick
+          OnClick = CambioCheck
+        end
+        object cSelezionata: TCheckBox
+          Left = 181
+          Top = 22
+          Width = 90
+          Height = 25
+          Caption = 'Selezionata'
+          TabOrder = 2
+          OnClick = CambioCheck
         end
       end
       object GroupBox4: TGroupBox
@@ -722,13 +727,12 @@ inherited fCorsia: TfCorsia
           TabOrder = 3
         end
         object cbImpilabile: TCheckBox
-          Left = 11
-          Top = 88
+          Left = 3
+          Top = 85
           Width = 134
           Height = 25
           Caption = 'Impilabilita'#39
           TabOrder = 4
-          OnClick = ckDisabilitaPosClick
         end
       end
       object GroupBox5: TGroupBox
@@ -1187,6 +1191,7 @@ inherited fCorsia: TfCorsia
         Top = 159
         Width = 274
         Height = 106
+        Caption = 'Stato Piano'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -1196,7 +1201,7 @@ inherited fCorsia: TfCorsia
         TabOrder = 7
         object Label25: TLabel
           Left = 14
-          Top = 13
+          Top = 37
           Width = 36
           Height = 13
           Caption = 'H.Dep.'
@@ -1209,7 +1214,7 @@ inherited fCorsia: TfCorsia
         end
         object Label26: TLabel
           Left = 171
-          Top = 13
+          Top = 37
           Width = 36
           Height = 13
           Caption = 'H.Prel.'
@@ -1222,7 +1227,7 @@ inherited fCorsia: TfCorsia
         end
         object eHDep: TEdit
           Left = 76
-          Top = 10
+          Top = 34
           Width = 58
           Height = 21
           Alignment = taRightJustify
@@ -1232,12 +1237,12 @@ inherited fCorsia: TfCorsia
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          ReadOnly = True
           TabOrder = 0
+          OnClick = CambioCheck
         end
         object eHprel: TEdit
           Left = 213
-          Top = 10
+          Top = 34
           Width = 58
           Height = 21
           Alignment = taRightJustify
@@ -1247,26 +1252,26 @@ inherited fCorsia: TfCorsia
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          ReadOnly = True
           TabOrder = 1
+          OnClick = CambioCheck
         end
         object ckDisabilitaPiano: TCheckBox
           Left = 7
-          Top = 49
+          Top = 61
           Width = 134
           Height = 25
-          Caption = 'Disabilita Piano'
+          Caption = 'Piano Disabilitato'
           TabOrder = 2
-          OnClick = ckDisabilitaPosClick
+          OnClick = CambioCheck
         end
         object ckPianoRiservato: TCheckBox
           Left = 147
-          Top = 49
+          Top = 61
           Width = 222
           Height = 25
           Caption = 'Piano Riservato'
           TabOrder = 3
-          OnClick = cPrenotataPosClick
+          OnClick = CambioCheck
         end
       end
       object GroupBox10: TGroupBox
@@ -1299,7 +1304,7 @@ inherited fCorsia: TfCorsia
         object Label29: TLabel
           Left = 7
           Top = 59
-          Width = 73
+          Width = 48
           Height = 16
           Caption = 'Rif. Ord.'
           Font.Charset = DEFAULT_CHARSET
@@ -1354,7 +1359,6 @@ inherited fCorsia: TfCorsia
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      ExplicitHeight = 472
       object Label5: TLabel
         Left = 6
         Top = 39
@@ -1469,7 +1473,6 @@ inherited fCorsia: TfCorsia
         Height = 61
         Align = alBottom
         TabOrder = 1
-        ExplicitTop = 410
         object BitBtn1: TBitBtn
           AlignWithMargins = True
           Left = 592

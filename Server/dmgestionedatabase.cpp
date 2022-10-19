@@ -11,6 +11,7 @@
 #include "socket.h"
 #include "DBImpianto.h"
 #include "datamodulecomandiagv.h"
+#include "PLCphoenixThread.h"
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma classgroup "Vcl.Controls.TControl"
@@ -100,7 +101,7 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                 m.nodopassaggioprel = 0;
                 m.nodopassaggiodep = 0;
                 m.Agv = 1;
-                m.tipoudc=0;
+                m.tipoudc = 0;
                 //
                 // m.altezza_udc = ADOQuery->FieldByName("Height")->AsInteger;
                 // m.tipoudc = ADOQuery->FieldByName("TipoUDC")->AsInteger;
@@ -169,7 +170,11 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                 if ((m.posprel == 0) && (posplc == false)) {
                     m.posprel = dbposprel;
                     m.piano_prel = dbpianoprel;
-                    m.h_prel = dmDB->RitornaAltezzedaPosizione(m.posprel, m.piano_prel, "HPREL");
+                    if (ZonaPrel == "G")
+                        m.h_prel = dmExtraFunction->Constrain(ClientData.ParametriFunzionali.altezza_pallet * (m.piano_prel + 1), 70, 1500) ;
+                    else
+                        m.h_prel = dmDB->RitornaAltezzedaPosizione(m.posprel, m.piano_prel, "HPREL");
+
                     m.corsia_prel = dmDB->FilaPosizione(m.posprel);
                 }
 
@@ -841,7 +846,7 @@ void __fastcall TdmDBServer::TimerAggiornamentiMinutiTimer(TObject * Sender) {
     WORD Hour, Min, Sec, MSec;
     int fermati = 0;
 
-    if ((MainForm->count_inizio < 20) || (MainForm->close_program) || (!dmDB->ADOConnection1->Connected))
+    if ((MainForm->count_inizio < 20) || (MainForm->close_program) || (!dmDB->ADOConnection1->Connected) || (!dmDB->lettostatoagv))
         return;
     TimerAggiornamentiMinuti->Enabled = false;
     try {
@@ -860,6 +865,54 @@ void __fastcall TdmDBServer::TimerAggiornamentiMinutiTimer(TObject * Sender) {
     TimerAggiornamentiMinuti->Enabled = true;
 }
 // ---------------------------------------------------------------------------
+
+void __fastcall TdmDBServer::TimerStanzaTimer(TObject *Sender) {
+    int inzona = 0;
+    int idporta = 1;
+    if ((MainForm->count_inizio < 20) || (MainForm->close_program) || (!dmDB->ADOConnection1->Connected) || (!dmDB->lettostatoagv))
+        return;
+    TimerStanza->Enabled = false;
+    try {
+        for (int i = 1; i <= NAGV; i++) {
+            if (ClientData.DatiAgv[i].pos > 0) {
+                inzona = CercaZona(tab.mappa_nodi[ClientData.DatiAgv[i].pos].posx, tab.mappa_nodi[ClientData.DatiAgv[i].pos].posy);
+                if (inzona > 0) {
+                    if (!ClientData.DatiPorte[idporta].AGVInZona)
+                        PLCPhoenixThread[ClientData.DatiPorte[idporta].id_thread_plc]->ScriviPhoenix(ClientData.DatiPorte[idporta].Bit_AGVInZona, ClientData.DatiPorte[idporta].DW_Addr_AGVInZona, true);
+
+                }
+                else {
+                    if (ClientData.DatiPorte[1].AGVInZona)
+                        PLCPhoenixThread[ClientData.DatiPorte[idporta].id_thread_plc]->ScriviPhoenix(ClientData.DatiPorte[idporta].Bit_AGVInZona, ClientData.DatiPorte[idporta].DW_Addr_AGVInZona, false);
+
+                }
+            }
+        }
+    }
+    catch (...) {
+
+    }
+    TimerStanza->Enabled = true;
+}
+// ---------------------------------------------------------------------------
+
+int TdmDBServer::CercaZona(int xx, int yy) {
+    AnsiString zona;
+    int topx, topy, botx, boty;
+    TADOQuery * ADOQuery;
+    int res = 1;
+    int found = 0;
+
+    topx = 49000;
+    botx = 55000;
+    topy = 16500;
+    boty = 8000;
+    if (((xx >= topx) && (xx <= botx)) && ((yy >= boty) && (yy <= topy))) {
+        found = 1;
+    }
+
+    return found;
+}
 
 void TdmDBServer::NuovoRecordConsumoBatteria(int idagv) {
     TADOQuery *ADOQuery;
@@ -1052,66 +1105,3 @@ void TdmDBServer::MissionePrelievoManuale(int buttontag) {
 }
 
 // ---------------------------------------------------------------------------
-
-int TdmDBServer::RitornaAgvDaIdPallet(int idPallet)
-{
-    for (int agv = 1; agv <= NAGV; agv++) {
-        if (ClientData.DatiAgv[agv].DatiUDC.IDUDC == idPallet) {
-            return agv;
-        }
-    }
-    return 0;
-}
-
-int TdmDBServer::RitornaLatoForcheDaNomePosizione(AnsiString NomePos) {
-    int ret = 0;
-    AnsiString strsql;
-    TADOQuery *ADOQuery;
-    int lato = 0;
-
-    if (!dmDB->ADOConnection1->Connected)
-        return 0;
-    try {
-        ADOQuery = new TADOQuery(NULL);
-        ADOQuery->Connection = dmDB->ADOConnection1;
-        strsql.printf("SELECT Lato FROM piani_view where NomePos='%s'", NomePos);
-        ADOQuery->SQL->Text = strsql;
-        ADOQuery->Open();
-        ADOQuery->First();
-        if (ADOQuery->RecordCount) {
-            lato = ADOQuery->FieldByName("Lato")->AsInteger;
-        }
-        ADOQuery->Close();
-        delete ADOQuery;
-    }
-    catch (...) {}
-    dmDB->LogMsg("Ritorna lato da posizione " + NomePos + " lato : " + IntToStr(lato));
-    return lato;
-}
-
-AnsiString TdmDBServer::RitornaNomePianoDepositoDaIdMissione(int id)
-{
-    int ret = 0;
-    AnsiString strsql;
-    TADOQuery *ADOQuery;
-    AnsiString nome_posizione = "";
-
-    if (!dmDB->ADOConnection1->Connected)
-        return 0;
-    try {
-        ADOQuery = new TADOQuery(NULL);
-        ADOQuery->Connection = dmDB->ADOConnection1;
-        strsql.printf("SELECT NomePosDep FROM Missioni_view where id=%d", id);
-        ADOQuery->SQL->Text = strsql;
-        ADOQuery->Open();
-        ADOQuery->First();
-        if (ADOQuery->RecordCount) {
-            nome_posizione = ADOQuery->FieldByName("NomePosDep")->AsString;
-        }
-        ADOQuery->Close();
-        delete ADOQuery;
-    }
-    catch (...) {}
-    dmDB->LogMsg("Ritorna nome posizione " + nome_posizione + " id mis : " + IntToStr(id));
-    return nome_posizione;
-}
