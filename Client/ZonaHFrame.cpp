@@ -97,7 +97,7 @@ void __fastcall TfrZonaH::pnPosH1MouseUp(TObject *Sender, TMouseButton Button, T
                 dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 0);
               //  UDC.IDUDC = 0;
             }
-            else if (Pan->Color == clWebOrange) {
+            else if ((Pan->Color == clWebOrange)||  (Pan->Color == clYellow)) {
                 UDC.IDUDC = CercaConCodart(Pan->Hint.Trim());
                 if (UDC.IDUDC > 0) {
                     dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));

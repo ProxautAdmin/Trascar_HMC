@@ -95,7 +95,7 @@ Nessun Allarme
 94-Fungo lato forche premuto
 95-Errore ricerca posizione in Y
 96-Sensore Non Legge
-97- free
+97-Free
 98-ALLARME COMUNICAZIONE WIFI
 99-COMUNICAZIONE INTERROTTA
 100-
@@ -395,11 +395,11 @@ Nessun Allarme
 94-Allarme Porta Sicurezza 3 aperta
 95-Free
 96-Free
-97
+97-Free
 98-ALLARME COMUNICAZIONE WIFI
 99-COMUNICAZIONE INTERROTTA
 400 Missions Stop
 401 Sbarre Aperte
-402 Alarm WatchDog Plc Vemac UnLoading Area
-403 Alarm WatchDog Plc Vemac Door / Washing Machine
+402 Alarm WatchDog Plc Siemens
+403 Alarm WatchDog Plc
 404 Stop all Agv for Fire Alarm !!!

@@ -456,7 +456,7 @@ int TDMGestione_Porte::AgvInPosAperturaPorta(int porta, int controlla_agv) {
 int TDMGestione_Porte::ConsensoInviatoAdAgvInPosAperturaPorta(int porta, int controlla_agv) {
     int i, res = 0;
     AnsiString pos_porta_aperta, pos_apertura;
-    // ulteriore controll odi non avere un consenso dato su una posizone presente nella lista della porta che voglio chiudere
+    // ulteriore controllo di non avere un consenso dato su una posizone presente nella lista della porta che voglio chiudere
     if ((porta > 0) && (porta <= NUM_PORTE)) {
         pos_apertura = dmDB->PosizioniRichiestaAperturaPorta(porta);
         pos_porta_aperta = dmDB->PosizioniPortaAperta(porta);
@@ -511,7 +511,7 @@ int TDMGestione_Porte::ApriChiudiPorta(int porta, int apri) {
 
 void TDMGestione_Porte::ControllaResetSegnaleApriChiudiPorta(int tiporeset) {
     int i;
-    int impulso = true;
+    int impulso = false;
     // vedere se serve resettare il comando
     // se si resetta il consenso va dato solo col segnale apertura
     // tiporeset parametrizzo se devo togliereil segnale apri porta con porta aperta, e chiudi porta con porta non aperta
@@ -791,52 +791,3 @@ int TDMGestione_Porte::SettaLuceSemaforo(int semaforo, int verde) {
     return res;
 }
 
-void TDMGestione_Porte::ControllaSbarreDaChiudere() {
-    int possbarra = 0;
-    for (int agv = 1; agv <= NAGV; agv++) { // sarebbe da non mettere perche' il controllo agv e' sia' dentro la funzione agvinposporta. Da togliere quando tutto ok
-
-        for (int i = 3; i <= NUM_PORTE; i++) {
-            possbarra = AgvInPosPorta(i);
-            // possbarra = AgvInPosAperturaPorta(i, agv);
-            if (possbarra) {
-                // ApriChiudiPorta(i, ABBASSASEGNALIPORTA);
-                if (i < 5) {
-                    ApriChiudiPorta(i, APRIPORTA);
-                }
-                else {
-                    ApriChiudiPorta(i, CHIUDIPORTA);
-                }
-                // ApriChiudiPorta(i, CHIUDIPORTA);  NO
-            }
-            else {
-                // controllare, forse non serve
-                // ApriChiudiPorta(i, APRIPORTA);
-            }
-        }
-    }
-}
-
-int TDMGestione_Porte::SbarreChiuse(int porta) {
-    int ret = 0;
-    if ((porta == 4) || (porta == 6) || (porta == 8)) {
-        porta--;
-    }
-    if (porta == 3) {
-        if (((ClientData.DatiPorte[porta].PortaAperta) && (ClientData.DatiPorte[porta + 1].PortaAperta) &&
-                (!ClientData.DatiPorte[porta].ApriPorta) && (!ClientData.DatiPorte[porta + 1].ApriPorta)) ||
-            ((ClientData.DatiPorte[porta].Stato == 3) && (ClientData.DatiPorte[porta + 1].Stato == 3)) ||
-            ((ClientData.DatiPorte[porta].Stato == 0) && (ClientData.DatiPorte[porta + 1].Stato == 0))) {
-            ret = 1;
-        }
-    }
-    else if ((porta == 5) || (porta == 7)) {
-        if (((ClientData.DatiPorte[porta].PortaChiusa) && (!ClientData.DatiPorte[porta + 1].PortaChiusa) &&
-                (!ClientData.DatiPorte[porta].ApriPorta) && (!ClientData.DatiPorte[porta + 1].ApriPorta)) ||
-            ((ClientData.DatiPorte[porta].Stato == 3) && (ClientData.DatiPorte[porta + 1].Stato == 3)) ||
-            ((ClientData.DatiPorte[porta].Stato == 0) && (ClientData.DatiPorte[porta + 1].Stato == 0))) {
-            ret = 1;
-        }
-    }
-
-    return ret;
-}

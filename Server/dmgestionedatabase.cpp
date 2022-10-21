@@ -171,7 +171,7 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                     m.posprel = dbposprel;
                     m.piano_prel = dbpianoprel;
                     if (ZonaPrel == "G")
-                        m.h_prel = dmExtraFunction->Constrain(ClientData.ParametriFunzionali.altezza_pallet * (m.piano_prel + 1), 70, 1500) ;
+                        m.h_prel = dmExtraFunction->Constrain(ClientData.ParametriFunzionali.altezza_pallet * (m.piano_prel + 1), 70, 1500);
                     else
                         m.h_prel = dmDB->RitornaAltezzedaPosizione(m.posprel, m.piano_prel, "HPREL");
 
@@ -202,11 +202,12 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                             }
                             idx++;
                         }
-                        // se non sono posizioni plc E non sono praticabili
+
+                        // se non sono posizioni plc E non sono praticabili OPPURE e' una missione manuale
                         if ((m.posdep == 0) && (posplc == false)) {
                             m.posdep = dbposdep;
                             m.piano_dep = dbpianodep; ;
-                            m.h_dep = dmDB->RitornaAltezzedaPosizione(m.posdep, m.piano_dep, "HDEP");
+                            m.h_dep = max(dmDB->RitornaAltezzedaPosizione(m.posdep, m.piano_dep, "HDEP"), ALTEZZA_PRELIEVO);
                             m.corsia_dep = dmDB->FilaPosizione(m.posdep);
                         }
 

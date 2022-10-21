@@ -50,8 +50,6 @@ private: // User declarations
     void LogStatoPorta(int porta);
     void ModificaByteStrutturaPorte(int input, int idporta, int byte, int value);
     int AgvInPostazioni_Libere_Antincendio(int agv);
-    int SbarreChiuse(int porta);
-    void ControllaSbarreDaChiudere();
   //  void LeggiStrutturaDatiSensori();
 	void CompilaStrutturaSensori(TSensori & StructSensori);
 		void LeggiStrutturaDatiPulsanti();

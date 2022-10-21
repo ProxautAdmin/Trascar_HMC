@@ -32,8 +32,6 @@ __published: // IDE-managed Components
     TImageList *ImageListMenu;
     TPopupMenu *PopupMenu;
     TFrameSovrapposti *FrameSovrapposti;
-    TPanel *Panel2;
-    TDBGrid *DBGrid1;
     TADOQuery *ADOQuery1;
     TDataSource *DataSource1;
     TPanel *pInfoUDC;

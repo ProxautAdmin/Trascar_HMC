@@ -19,7 +19,7 @@
 #include "dmFunzioniComuniClientServer.h"
 #include "dmgestionedatabase.h"
 #include "DBImpianto.h"
- #include "dmgestioneporte.h"
+#include "dmgestioneporte.h"
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -319,16 +319,16 @@ void __fastcall TSocketDataModule::ServerSocket1ClientRead(TObject *Sender,
             dmDB->LogMsg("Ricevuta Richiesta forzatura input Plc ,PosPlc " + IntToStr(pos_plc) + ",Byte " + IntToStr(byte) + " , Value : " + IntToStr(value) + " , IDX : " + IntToStr(idx));
             DMPlc->ModificaByteStrutturaPlc(1, pos_plc, byte, value, idx);
         }
-       else if (MsgType == "SETSIMULAINPUTPORTA") {    // !! RIMETTERE SE CI SONO PORTE
-         s = Parser("IDPORTA=", Answer, "|");
-         pos_plc = s.ToIntDef(0);
-         s = Parser("BYTE=", Answer, "|");
-         byte = s.ToIntDef(0);
-         s = Parser("VAL=", Answer, "|");
-         value = s.ToIntDef(0);
-         dmDB->LogMsg("Ricevuta Richiesta forzatura input Porta ,IdPorta " + IntToStr(pos_plc) + " ) Value : " + IntToStr(value));
-         DMGestione_Porte->ModificaByteStrutturaPorte(1, pos_plc, byte, value);
-         }
+        else if (MsgType == "SETSIMULAINPUTPORTA") { // !! RIMETTERE SE CI SONO PORTE
+            s = Parser("IDPORTA=", Answer, "|");
+            pos_plc = s.ToIntDef(0);
+            s = Parser("BYTE=", Answer, "|");
+            byte = s.ToIntDef(0);
+            s = Parser("VAL=", Answer, "|");
+            value = s.ToIntDef(0);
+            dmDB->LogMsg("Ricevuta Richiesta forzatura input Porta ,IdPorta " + IntToStr(pos_plc) + " ) Value : " + IntToStr(value));
+            DMGestione_Porte->ModificaByteStrutturaPorte(1, pos_plc, byte, value);
+        }
         else if (MsgType == "SETUSCITEPLC") {
             s = Parser("POSPLC=", Answer, "|");
             pos_plc = s.ToIntDef(0);
@@ -341,16 +341,16 @@ void __fastcall TSocketDataModule::ServerSocket1ClientRead(TObject *Sender,
             dmDB->LogMsg("Ricevuta Richiesta forzatura uscitedascrivere Plc ,PosPlc " + IntToStr(pos_plc) + " ) Value : " + IntToStr(value));
             DMPlc->ModificaByteStrutturaPlc(0, pos_plc, byte, value, idx);
         }
-         else if (MsgType == "SETUSCITEPORTE") {  // !! RIMETTERE SE CI SONO PORTE
-         s = Parser("IDPORTA=", Answer, "|");
-         pos_plc = s.ToIntDef(0);
-         s = Parser("BYTE=", Answer, "|");
-         byte = s.ToIntDef(0);
-         s = Parser("VAL=", Answer, "|");
-         value = s.ToIntDef(0);
-         dmDB->LogMsg("Ricevuta Richiesta forzatura Output Porta ,IdPorta " + IntToStr(pos_plc) + " ) Value : " + IntToStr(value));
-         DMGestione_Porte->ModificaByteStrutturaPorte(0, pos_plc, byte, value);
-         }
+        else if (MsgType == "SETUSCITEPORTE") { // !! RIMETTERE SE CI SONO PORTE
+            s = Parser("IDPORTA=", Answer, "|");
+            pos_plc = s.ToIntDef(0);
+            s = Parser("BYTE=", Answer, "|");
+            byte = s.ToIntDef(0);
+            s = Parser("VAL=", Answer, "|");
+            value = s.ToIntDef(0);
+            dmDB->LogMsg("Ricevuta Richiesta forzatura Output Porta ,IdPorta " + IntToStr(pos_plc) + " ) Value : " + IntToStr(value));
+            DMGestione_Porte->ModificaByteStrutturaPorte(0, pos_plc, byte, value);
+        }
         else if (MsgType == "REFRESHPORTE") {
             dmDB->aggiorna_tab_porte_locale = 1;
         }
@@ -439,8 +439,16 @@ void __fastcall TSocketDataModule::ServerSocket1ClientRead(TObject *Sender,
                     m.h_prel = 0;
                     m.piano_dep = 0;
                     m.h_dep = 0;
-                    m.priorita = 2;
+                    m.priorita = 9;
                     m.idcentromissioni = 0;
+                    m.tipologia_mis = m.tipo_mis;
+                    m.tipologia_mov = m.tipo_mis;
+                    m.idgestionale=0;
+                    m.nodopassaggiodep=0;
+                    m.nodopassaggioprel=0;
+                    m.latoforchedep=0;
+                    m.latoforcheprel=0;
+                    m.idudc = ClientData.DatiAgv[agv].DatiUDC.IDUDC;
                     dmDBServer->GeneraMissione(m);
                 }
             }
@@ -506,7 +514,7 @@ void __fastcall TSocketDataModule::ServerSocket1ClientRead(TObject *Sender,
             s = Parser("VAL=", Answer, "|");
             value = s.ToIntDef(0);
             dmDB->AggiornaParametri(57, value, "");
-               dmDB->LeggiParametri(0);
+            dmDB->LeggiParametri(0);
             dmDB->LogMsg("Cambio stato Giorno , Value : " + IntToStr(value));
         }
 

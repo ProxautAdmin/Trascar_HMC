@@ -5153,7 +5153,7 @@ void TdmDB::LeggiStrutturaUdc(TUDC & UDC) {
             return;
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = ADOConnection1;
-        stringa = "Select * from UDC_view where IdUdc = " + IntToStr(UDC.IDUDC) + " and idudc>0";
+		stringa = "Select * from UDC_view where IdUdc = " + IntToStr(UDC.IDUDC) + " and idudc>0";
         ADOQuery->Close();
         ADOQuery->SQL->Clear();
         ADOQuery->SQL->Append(stringa);
@@ -5171,11 +5171,11 @@ void TdmDB::LeggiStrutturaUdc(TUDC & UDC) {
                 dmExtraFunction->StringToChar(ADOQuery->FieldByName("DescArt")->AsString, UDC.Articolo.Descrizione);
             UDC.Articolo.IDTipoArticolo = 0; // ??????
             UDC.CodStato = ADOQuery->FieldByName("Stato")->AsInteger;
-            UDC.IndiceImpilabilita = ADOQuery->FieldByName("Sovrapposto")->AsInteger;
+			UDC.IndiceImpilabilita = ADOQuery->FieldByName("Sovrapposto")->AsString.ToIntDef(0);
         }
         ADOQuery->Close();
         // MainForm->LogMsg(stringa);
-    }
+	}
     catch (...) {
 
     }

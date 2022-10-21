@@ -21,6 +21,7 @@ __published: // IDE-managed Components
 	void GestisciMissioniPeso(int pos)  ;
 	void MisManSpost1Click(TMenuItem *Item)  ;
     void MisManSpostPLCClick(TMenuItem *Item) ;
+    void MoveMissioneManClick(TMenuItem *Item)     ;
 
 };
 

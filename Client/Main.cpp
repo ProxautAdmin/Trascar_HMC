@@ -51,6 +51,7 @@ TPaintBox *PaintBox1, *ZoomBox;
 TMainForm *MainForm;
 TClientData ClientData;
 TCentroMissione CentroMissione;
+TMissione MissioneMan;
 
 // ---------------------------------------------------------------------------
 void TMainForm::LeggiParametri() {
@@ -164,7 +165,7 @@ void TMainForm::DisegnaCarrello(int car) {
                     LabelAGV->Left = imgCarr->Left + (imgCarr->Width / 8);
                 }
                 if (imgCarr->Angle >= 270) {
-                    LabelAGV->Top = imgCarr->Top+ imgCarr->Height*0.55f ;//* 1.5f;
+                    LabelAGV->Top = imgCarr->Top + imgCarr->Height * 0.55f; // * 1.5f;
                     LabelAGV->Left = imgCarr->Left + ((imgCarr->Width - LabelAGV->Width) / 2);
                 }
                 LabelAGV->BringToFront();
@@ -386,13 +387,13 @@ void __fastcall TMainForm::FormCloseQuery(TObject *Sender, bool &CanClose)
 }
 // ---------------------------------------------------------------------------
 
-void __fastcall TMainForm::FormCreate(TObject *Sender)
-{
+void __fastcall TMainForm::FormCreate(TObject *Sender) {
     int lang, i, j;
     TIniFile *Ini;
     TCursor Save_Cursor = Screen->Cursor;
     FILE *f;
     char s[100];
+    AnsiString Imp;
     double fXo, fYo;
     double fH, fW, fFH, fFW;
     Screen->Cursor = crHourGlass; // Show hourglass cursor
@@ -411,8 +412,9 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
     Visible = false;
     Screen->Cursor = Save_Cursor;
     baiaformSegnali = 0;
-    tab.Load1("Trascar_HMC_prx.crs");
-    f = fopen("Trascar_HMC_prx.crs", "r");
+    Imp = Impianto + "_prx.crs";
+    tab.Load1(Imp.c_str());
+    f = fopen(Imp.c_str(), "r");
     time_ultimo_ridisegno = clock();
 
     if (f == NULL) {
@@ -1038,7 +1040,7 @@ void TMainForm::AggiornaMappa() {
                         }
 
                         prenotata = dmDB->QueryPos->FieldByName("Prenotata")->AsInteger;
-                        escludi = dmDB->QueryPos->FieldByName("disabilita")->AsInteger; // +dmDB->QueryPos->FieldByName("pos_disabilita")->AsInteger +(1-dmDB->QueryPos->FieldByName("abilitata")->AsInteger );
+                        escludi = dmDB->QueryPos->FieldByName("disabilita")->AsInteger + (1 - dmDB->QueryPos->FieldByName("abilitata")->AsInteger);
                         cornice = 0;
                         // pen per tipo posizione
                         if (dmDB->QueryPos->FieldByName("posinputplc")->AsInteger) {
@@ -1549,128 +1551,130 @@ void __fastcall TMainForm::ShapePosMouseUp(TObject *Sender, TMouseButton Button,
         if (Pos != NULL) {
             corsia = dmDB->TabPostazioni[IntToStr(Pos->Tag)]["FILA"].ToIntDef(0);
             if (Button == mbRight) {
-                /* if ((mousedown) && (x1 != x2) && (y1 != y2) && (Contatore > 0) && (ret) && (PaintBox1 != NULL)) {
-                 if (Pos != NULL) {
-                 X = Pos->Left + X;
-                 Y = Pos->Top + Y;
-                 Image1MouseUp(Sender, Button, Shift, X, Y);
-                 }
-                 }
-                 else {
-                 if (agvdaspostare) {
-                 TMenuItem *NewItem1 = new TMenuItem(this); // create the separator
-                 NewItem1->Caption = "Sposto Lgv " + IntToStr(agvdaspostare) + " in Posizione " + IntToStr(Pos->Tag) + "? ";
-                 NewItem1->Tag = Pos->Tag;
-                 NewItem1->OnClick = MoveAgv1Click;
-                 PopupMenuPos->Items->Add(NewItem1);
-                 if (ClientData.DatiAgv[agvdaspostare].load) {
-                 TMenuItem *NewItem2 = new TMenuItem(this); // create the separator
-                 NewItem2->Caption = "Sposto Lgv " + IntToStr(agvdaspostare) + " in Posizione " + IntToStr(Pos->Tag) + " e deposito ? ";
-                 NewItem2->Tag = Pos->Tag;
-                 NewItem2->OnClick = DropAgv1Click;
-                 PopupMenuPos->Items->Add(NewItem2);
-                 }
-                 popupok = 1;
-                 }
+                if ((mousedown) && (x1 != x2) && (y1 != y2) && (Contatore > 0) && (ret) && (PaintBox1 != NULL)) {
+                    if (Pos != NULL) {
+                        X = Pos->Left + X;
+                        Y = Pos->Top + Y;
+                        Image1MouseUp(Sender, Button, Shift, X, Y);
+                    }
+                }
+                else {
+                    /*
+                     if (agvdaspostare) {
+                     TMenuItem *NewItem1 = new TMenuItem(this); // create the separator
+                     NewItem1->Caption = "Sposto Lgv " + IntToStr(agvdaspostare) + " in Posizione " + IntToStr(Pos->Tag) + "? ";
+                     NewItem1->Tag = Pos->Tag;
+                     NewItem1->OnClick = MoveAgv1Click;
+                     PopupMenuPos->Items->Add(NewItem1);
+                     if (ClientData.DatiAgv[agvdaspostare].load) {
+                     TMenuItem *NewItem2 = new TMenuItem(this); // create the separator
+                     NewItem2->Caption = "Sposto Lgv " + IntToStr(agvdaspostare) + " in Posizione " + IntToStr(Pos->Tag) + " e deposito ? ";
+                     NewItem2->Tag = Pos->Tag;
+                     NewItem2->OnClick = DropAgv1Click;
+                     PopupMenuPos->Items->Add(NewItem2);
+                     }
+                     popupok = 1;
+                     }
+                     */
+                    TMenuItem *NewItem2 = new TMenuItem(this); // create the separator
+                    NewItem2->Caption = ("Disabilita le posizioni selezionate");
+                    NewItem2->Tag = Pos->Tag;
+                    NewItem2->OnClick = ExcludePosition1Click;
+                    PopupMenuPos->Items->Add(NewItem2);
+                    TMenuItem *NewItem3 = new TMenuItem(this); // create the separator
+                    NewItem3->Caption = ("Abilita le posizioni selezionate");
+                    NewItem3->Tag = Pos->Tag;
+                    NewItem3->OnClick = RemoveExclusion1Click;
+                    PopupMenuPos->Items->Add(NewItem3);
+                    PopupMenuPos->Items->InsertNewLineAfter(NewItem3);
+                    // ---- sezione extra posizioni contestuali
+                    // se non e' un plc / lavatrice
+                    if (!dmDB->RitornaPosInputPlc(Pos->Tag)) {
+                        if (dmDB->pwdlevel) {
+                            TMenuItem *NewItem4 = new TMenuItem(this); // create the separator
+                            NewItem4->Caption = DataForm->Traduci("MAINMENU", 7); // " Empty Lane";
+                            NewItem4->Tag = Pos->Tag;
+                            NewItem4->OnClick = Svuotacorsia1Click;
+                            PopupMenuPos->Items->Add(NewItem4);
+                        }
+                        TMenuItem *NewItem5 = new TMenuItem(this); // create the separator
+                        NewItem5->Caption = ("Disabilita Corsia");
+                        NewItem5->Tag = Pos->Tag;
+                        NewItem5->OnClick = DisabilitaCorsia1Click;
+                        PopupMenuPos->Items->Add(NewItem5);
+                        TMenuItem *NewItem6 = new TMenuItem(this); // create the separator
+                        NewItem6->Caption = ("Abilita Corsia");
+                        NewItem6->Tag = Pos->Tag;
+                        NewItem6->OnClick = Abilitacorsia1Click;
+                        PopupMenuPos->Items->Add(NewItem6);
+                        PopupMenuPos->Items->InsertNewLineAfter(NewItem6);
 
-                 TMenuItem *NewItem2 = new TMenuItem(this); // create the separator
-                 NewItem2->Caption = DataForm->Traduci("MAINMENU", 5); // " Disable Selected Position";
-                 NewItem2->Tag = Pos->Tag;
-                 NewItem2->OnClick = ExcludePosition1Click;
-                 PopupMenuPos->Items->Add(NewItem2);
-                 TMenuItem *NewItem3 = new TMenuItem(this); // create the separator
-                 NewItem3->Caption = DataForm->Traduci("MAINMENU", 6); // " Enable Selected Position";
-                 NewItem3->Tag = Pos->Tag;
-                 NewItem3->OnClick = RemoveExclusion1Click;
-                 PopupMenuPos->Items->Add(NewItem3);
-                 // ---- sezione extra posizioni contestuali
-                 // se non e' un plc / lavatrice
-                 if (!dmDB->RitornaPosInputPlc(Pos->Tag)) {
-                 if (dmDB->pwdlevel) {
-                 TMenuItem *NewItem4 = new TMenuItem(this); // create the separator
-                 NewItem4->Caption = DataForm->Traduci("MAINMENU", 7); // " Empty Lane";
-                 NewItem4->Tag = Pos->Tag;
-                 NewItem4->OnClick = Svuotacorsia1Click;
-                 PopupMenuPos->Items->Add(NewItem4);
-                 }
-                 TMenuItem *NewItem5 = new TMenuItem(this); // create the separator
-                 NewItem5->Caption = DataForm->Traduci("MAINMENU", 8); // " Disable Lane";
-                 NewItem5->Tag = Pos->Tag;
-                 NewItem5->OnClick = DisabilitaCorsia1Click;
-                 PopupMenuPos->Items->Add(NewItem5);
-                 TMenuItem *NewItem6 = new TMenuItem(this); // create the separator
-                 NewItem6->Caption = DataForm->Traduci("MAINMENU", 9); // " Enable Lane";
-                 NewItem6->Tag = Pos->Tag;
-                 NewItem6->OnClick = Abilitacorsia1Click;
-                 PopupMenuPos->Items->Add(NewItem6);
-                 PopupMenuPos->Items->InsertNewLineAfter(NewItem6);
+                        // c'e' un udc in posizione
+                        if (dmDBClient->TornaUDCinPosizione(Pos->Tag)) {
+                            // 8
+                            TMenuItem *NewItem8 = new TMenuItem(this); // create the separator
+                            NewItem8->Caption = DataForm->Traduci("MAINMENU", 15); // "Empty Position";
+                            NewItem8->Tag = Pos->Tag;
+                            NewItem8->OnClick = svuotapos1Click;
+                            PopupMenuPos->Items->Add(NewItem8);
 
-                 // c'e' un udc in posizione
-                 if (dmDBClient->TornaUDCinPosizione(Pos->Tag)) {
-                 // 8
-                 TMenuItem *NewItem8 = new TMenuItem(this); // create the separator
-                 NewItem8->Caption = DataForm->Traduci("MAINMENU", 15); // "Empty Position";
-                 NewItem8->Tag = Pos->Tag;
-                 NewItem8->OnClick = svuotapos1Click;
-                 PopupMenuPos->Items->Add(NewItem8);
+                            // 9 spostamento
+                            if (CentroMissione.posprel == 0) {
+                                TMenuItem *NewItem9 = new TMenuItem(this); // create the separator
+                                NewItem9->Caption = "Crea Missione di spostamento ";
+                                NewItem9->Tag = Pos->Tag; // mi salvo l'id dell'agv
+                                NewItem9->OnClick = MisManSpost1Click;
+                                PopupMenuPos->Items->Add(NewItem9);
+                            }
+                        }
+                        // senza udc in poszione    MA INZIO PRELIEVO PER SPOSTAMENTO
+                        if ((CentroMissione.posprel != 0) && (CentroMissione.CodTipoMovimento == 3)) {
+                            TMenuItem *NewItem9 = new TMenuItem(this); // create the separator
+                            NewItem9->Caption = "Preleva da " + String(CentroMissione.posprel) + ", ora scegli destinazione ";
+                            NewItem9->Tag = Pos->Tag; // mi salvo l'id dell'agv
+                            NewItem9->OnClick = MisManSpost1Click;
+                            PopupMenuPos->Items->Add(NewItem9);
+                        }
+                    }
+                    else {
+                        if (dmDB->pwdlevel) {
 
-                 // 9 spostamento
-                 if (CentroMissione.posprel == 0) {
-                 TMenuItem *NewItem9 = new TMenuItem(this); // create the separator
-                 NewItem9->Caption = "Crea Missione di spostamento ";
-                 NewItem9->Tag = Pos->Tag; // mi salvo l'id dell'agv
-                 NewItem9->OnClick = MisManSpost1Click;
-                 PopupMenuPos->Items->Add(NewItem9);
-                 }
-                 }
-                 // senza udc in poszione    MA INZIO PRELIEVO PER SPOSTAMENTO
-                 if ((CentroMissione.posprel != 0) && (CentroMissione.CodTipoMovimento == 3)) {
-                 TMenuItem *NewItem9 = new TMenuItem(this); // create the separator
-                 NewItem9->Caption = "Preleva da " + String(CentroMissione.posprel) + ", ora scegli destinazione ";
-                 NewItem9->Tag = Pos->Tag; // mi salvo l'id dell'agv
-                 NewItem9->OnClick = MisManSpost1Click;
-                 PopupMenuPos->Items->Add(NewItem9);
-                 }
-                 }
-                 else {
-                 if (dmDB->pwdlevel) {
+                            TMenuItem *NewItem4 = new TMenuItem(this); // create the separator
+                            NewItem4->Caption = "Crea Missione di Prelievo da PLC " + IntToStr(Pos->Tag);
+                            NewItem4->Tag = Pos->Tag;
+                            NewItem4->OnClick = MisManSpostPLCClick;
+                            PopupMenuPos->Items->Add(NewItem4);
 
-                 TMenuItem *NewItem4 = new TMenuItem(this); // create the separator
-                 NewItem4->Caption = "Crea Missione di Prelievo da PLC " + IntToStr(Pos->Tag);
-                 NewItem4->Tag = Pos->Tag;
-                 NewItem4->OnClick = MisManSpostPLCClick;
-                 PopupMenuPos->Items->Add(NewItem4);
+                        }
+                    }
+                    // se  non e' un plc / lavatrice  e c'e' un udc
+                    if (dmDB->IdUDCDaPosizione(Pos->Tag)) {
+                        // 9:prel spostamento
+                        TMenuItem *NewItem10 = new TMenuItem(this); // create the separator
+                        NewItem10->Caption = DataForm->Traduci("MAINMENU", 18); // " sposta UDC";
+                        NewItem10->Tag = Pos->Tag;
+                        NewItem10->Hint = "1";
+                        NewItem10->OnClick = PrelevaUDC1Click;
+                        PopupMenuPos->Items->Add(NewItem10);
+                    }
+                    // se e' stata segnato il prelievo dalla missione manuale
+                    else if ((CentroMissione.posprel != 0) && (!dmDB->IdUDCDaPosizione(Pos->Tag))) {
+                        // 9:dep
+                        TMenuItem *NewItem10 = new TMenuItem(this); // create the separator
+                        NewItem10->Caption = DataForm->Traduci("MAINMENU", 19); // " deposita UDC da spostamento";
+                        NewItem10->Tag = Pos->Tag;
+                        NewItem10->Hint = "1";
+                        NewItem10->OnClick = DepositaUDC1Click;
+                        PopupMenuPos->Items->Add(NewItem10);
+                    }
 
-                 }
-                 }
-                 // se  non e' un plc / lavatrice  e c'e' un udc
-                 if (dmDB->IdUDCDaPosizione(Pos->Tag)) {
-                 // 9:prel spostamento
-                 TMenuItem *NewItem10 = new TMenuItem(this); // create the separator
-                 NewItem10->Caption = DataForm->Traduci("MAINMENU", 18); // " sposta UDC";
-                 NewItem10->Tag = Pos->Tag;
-                 NewItem10->Hint = "1";
-                 NewItem10->OnClick = PrelevaUDC1Click;
-                 PopupMenuPos->Items->Add(NewItem10);
-                 }
-                 // se e' stata segnato il prelievo dalla missione manuale
-                 else if ((CentroMissione.posprel != 0) && (!dmDB->IdUDCDaPosizione(Pos->Tag))) {
-                 // 9:dep
-                 TMenuItem *NewItem10 = new TMenuItem(this); // create the separator
-                 NewItem10->Caption = DataForm->Traduci("MAINMENU", 19); // " deposita UDC da spostamento";
-                 NewItem10->Tag = Pos->Tag;
-                 NewItem10->Hint = "1";
-                 NewItem10->OnClick = DepositaUDC1Click;
-                 PopupMenuPos->Items->Add(NewItem10);
-                 }
+                    popupok = 1;
 
-                 popupok = 1;
-
-                 if (popupok) {
-                 PopupMenuPos->Tag = Pos->Tag;
-                 PopupMenuPos->Popup(Left + X + Pos->Left, Top + Y + Pos->Top + Panel2->Height + Image5->Height);
-                 }
-                 } */
+                    if (popupok) {
+                        PopupMenuPos->Tag = Pos->Tag;
+                        PopupMenuPos->Popup(Left + X + Pos->Left, Top + Y + Pos->Top + Panel2->Height);
+                    }
+                }
 
             }
             else if (Button == mbLeft) {
@@ -2004,8 +2008,34 @@ void __fastcall TMainForm::img2MouseUp(TObject * Sender, TMouseButton Button, TS
     Img = (TRotateImage*) Sender;
     PopupMenu1->Items->Clear();
     if (dmDB->ZonaString != "XXX") {
-        if ((Button == mbRight) && (Img != NULL))
-        {
+        if ((Button == mbRight) && (Img != NULL)) {
+            if ((!ClientData.DatiAgv[Img->Tag].manuale) && (!ClientData.DatiAgv[Img->Tag].alarm) && (ClientData.DatiAgv[Img->Tag].pos > 0) && (!ClientData.DatiAgv[Img->Tag].idmis)) {
+                // abilitare quando è pronta sull'agv
+                TMenuItem *NewItem1 = new TMenuItem(this); // create the separator
+                NewItem1->Caption = "Crea missione di movimento su posizione per AGV n° " + IntToStr(Img->Tag) + ".";
+                NewItem1->Tag = Img->Tag; // mi salvo l'id dell'agv
+                NewItem1->OnClick = MoveMis1Click;
+                PopupMenu1->Items->Add(NewItem1);
+            }
+            else if ((!ClientData.DatiAgv[Img->Tag].manuale) && (dmDB->pwdlevel) && (!ClientData.DatiAgv[Img->Tag].alarm) && (ClientData.DatiAgv[Img->Tag].pos > 0) && (ClientData.DatiAgv[Img->Tag].load) && (!ClientData.DatiAgv[Img->Tag].idmis))
+            {
+                // abilitare quando è pronta sull'agv
+                TMenuItem *NewItem2 = new TMenuItem(this); // create the separator
+                NewItem2->Caption = "Crea Missione di Deposito per AGV n° " + IntToStr(Img->Tag) + "!";
+                NewItem2->Tag = Img->Tag; // mi salvo l'id dell'agv
+                NewItem2->OnClick = DropMis1Click;
+                PopupMenu1->Items->Add(NewItem2);
+            }
+            if ((!ClientData.DatiAgv[Img->Tag].manuale) && (!ClientData.DatiAgv[Img->Tag].alarm) && (ClientData.DatiAgv[Img->Tag].pos > 0) && (!ClientData.DatiAgv[Img->Tag].idmis)) {
+                // abilitare quando è pronta sull'agv
+                TMenuItem *NewItem1 = new TMenuItem(this); // create the separator
+                NewItem1->Caption = "Crea missione movimento su nodo per AGV n° " + IntToStr(Img->Tag) + ".";
+                NewItem1->Tag = Img->Tag; // mi salvo l'id dell'agv
+                NewItem1->OnClick = MoveMisMan1Click;
+                PopupMenu1->Items->Add(NewItem1);
+                PopupMenu1->Items->InsertNewLineAfter(NewItem1);
+            }
+
             if ((!ClientData.DatiAgv[Img->Tag].manuale) && (dmDB->pwdlevel) && ((!ClientData.DatiAgv[Img->Tag].alarm) || (ClientData.DatiAgv[Img->Tag].stand_by)) && (ClientData.DatiAgv[Img->Tag].pos > 0)) {
                 // abilitare quando è pronta sull'agv
                 TMenuItem *NewItem5 = new TMenuItem(this); // create the separator
@@ -2350,7 +2380,8 @@ void __fastcall TMainForm::MoveMis1Click(TObject * Sender)
 void __fastcall TMainForm::MoveMisMan1Click(TObject * Sender) {
 
     TMenuItem *Item = (TMenuItem*) Sender;
-    dmGestMissioni->MoveMisMan1Click(Item);
+    // dmGestMissioni->MoveMisMan1Click(Item);
+    dmGestMissioni->MoveMissioneManClick(Item);
 
 }
 

@@ -41,8 +41,8 @@
 
 #define STRUTTURA_DATI_UDC_PLC	62
 
-#define ALTEZZA_PRELIEVO			5
-#define ALTEZZA_DEPOSITO			80
+#define ALTEZZA_PRELIEVO			70
+#define ALTEZZA_DEPOSITO			150
 
 #define ESITO_MISSIONE_INTERMEDIA_COMPLETATA  3
 #define ESITO_MISSIONE_COMPLETATA  	6
@@ -77,6 +77,8 @@
 #define TIPOLOGIA_PRODOTTOFINITO    3
 #define TIPOLOGIA_MATERIEPRIME    4
 #define TIPOLOGIA_PALLET    5
+
+const AnsiString Impianto = "Trascar_HMC";
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------

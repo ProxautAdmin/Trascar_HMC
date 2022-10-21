@@ -1,19 +1,17 @@
 object frZonaH: TfrZonaH
   Left = 0
   Top = 0
-  Width = 1201
+  Width = 451
   Height = 305
   Align = alClient
   TabOrder = 0
-  ExplicitWidth = 451
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1201
+    Width = 451
     Height = 305
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 451
     object pnPosH1: TPanel
       Tag = 401
       AlignWithMargins = True
@@ -233,7 +231,7 @@ object frZonaH: TfrZonaH
     Left = 651
     Top = 230
     Bitmap = {
-      494C010104001800300510001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104001800340510001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

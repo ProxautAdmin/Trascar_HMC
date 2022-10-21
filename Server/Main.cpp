@@ -57,6 +57,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
     double fXo, fYo;
     double fH, fW, fFH, fFW;
     ShowWindow(Handle, SW_HIDE);
+    AnsiString Imp;
 
     Richiesta_chiusura = false;
     LogTxt("*** Avvio ***");
@@ -65,25 +66,28 @@ void __fastcall TMainForm::FormCreate(TObject *Sender)
     dmDB->LeggiParametri(82);
 
     LeggiParametri();
-    tab.Load1("Trascar_HMC_prx.crs");
+    // tab.Load1("Trascar_HMC_prx.crs");
+    Imp = Impianto + "_prx.crs";
+    tab.Load1(Imp.c_str());
 
     for (i = 0; i < N_PLC; i++) {
         PLCThread[i] = new TPLCThread(true, i);
         PLCThread[i]->Resume();
+        PLCThread[i]->num_alarm_watchdog = 402;
+
+        PLCThread[i]->dbwatchdog_pc = -1; // se >0 abilito funzione watchdog   // DB DA METTERE A POSTO
+        PLCThread[i]->wordwatchdog_pc = 0;
+        PLCThread[i]->bit_watchdog_pc = 0;
+
+        PLCThread[i]->dbwatchdog_plc = 0;
+        PLCThread[i]->wordwatchdog_plc = 0;
+        PLCThread[i]->bit_watchdog_plc = 0;
+
+        PLCThread[i]->typewatchdog = 1; // tipo 1 lo associo al pc che copia il watchdog del plc
+
     }
 
-    PLCThread[0]->dbwatchdog_pc = 2000; // se presente abilito funzione watchdog   // DB DA METTERE A POSTO
-    PLCThread[0]->wordwatchdog_pc = 0;
-    PLCThread[0]->bit_watchdog_pc = 0;
-
-    PLCThread[0]->dbwatchdog_plc = 2001;
-    PLCThread[0]->wordwatchdog_plc = 0;
-    PLCThread[0]->bit_watchdog_plc = 0;
-
-    PLCThread[0]->typewatchdog = 1; // tipo 1 lo associo al pc che copia il watchdog del plc
-    PLCThread[0]->num_alarm_watchdog = 101;
-
-    for (int i = 0; i <= PLC_PHOENIX; i++) {
+    for (int i = 0; i < PLC_PHOENIX; i++) {
         PLCPhoenixThread[i] = new Phoenix_Thread(i + 1, true);
         PLCPhoenixThread[i]->Resume();
     }
@@ -201,7 +205,7 @@ void __fastcall TMainForm::FormClose(TObject *Sender, TCloseAction &Action)
     delete ss;
     delete cs;
     delete sock;
-  //  PLCThread[0]->StopThread();
+    // PLCThread[0]->StopThread();
     for (int i = 0; i < PLC_PHOENIX; i++) {
         PLCPhoenixThread[i]->StopThread();
     }
@@ -235,7 +239,6 @@ void __fastcall TMainForm::Timer1Timer(TObject *Sender) {
         for (int p = 0; p < PLC_PHOENIX; p++) {
             AccendiLed(p + 5, (PLCPhoenixThread[p]->connesso ? clLime : clRed));
         }
-
 
         Label8->Caption = SocketDataModule->ServerSocket1->Socket->ActiveConnections;
         StaticText1->Caption = "Server Agv Proxaut " + FormatDateTime("dd/mm/yyyy h':'mm':'ss", Now());
