@@ -92,6 +92,7 @@ void __fastcall TfrConfig::FormActivate(TObject *Sender) {
     // parametri gestione programma    da 80
     cAGVMov->Checked = TabParametri[80]["INTVALUE"].ToIntDef(0);
     cInfoBox->Checked = TabParametri[81]["INTVALUE"].ToIntDef(0);
+    ckAbilitaCheckGiornoNotte->Checked = TabParametri[83]["INTVALUE"].ToIntDef(0);
 
     // parametro pallet basso BONFANTI
     editAltezzaPalletBasso->Text = TabParametri[90]["INTVALUE"].ToIntDef(0);
@@ -100,6 +101,9 @@ void __fastcall TfrConfig::FormActivate(TObject *Sender) {
         Val_Init_Params[i] = TabParametri[i]["INTVALUE"].ToIntDef(0);
         Str_Init_Params[i] = TabParametri[i]["STRINGVALUE"];
     }
+
+    // abilitazioni
+    pAttivita->Visible = true;
 
 }
 
@@ -180,7 +184,12 @@ void __fastcall TfrConfig::BitBtnChangeClick(TObject *Sender) {
             dmDB->AggiornaParametri(80, cAGVMov->Checked);
             invia_aggiornamento = 1; // devo inviare un messaggio al server per ricaricare i parametri
         }
-        // parametro pallet basso BONFANTI
+        if (Val_Init_Params[83] != ckAbilitaCheckGiornoNotte->Checked) {
+            dmDB->AggiornaParametri(83, ckAbilitaCheckGiornoNotte->Checked);
+            invia_aggiornamento = 1; // devo inviare un messaggio al server per ricaricare i parametri
+        }
+
+        // parametro pallet basso BONFANTI  / altezza pallet HMC
         if (Val_Init_Params[90] != editAltezzaPalletBasso->Text) {
             dmDB->AggiornaParametri(90, editAltezzaPalletBasso->Text.ToIntDef(0));
             invia_aggiornamento = 1; // devo inviare un messaggio al server per ricaricare i parametri
@@ -208,7 +217,7 @@ void __fastcall TfrConfig::Timer1Timer(TObject *Sender) {
 
     // btnApplicaModifiche->Enabled = dmDB->pwdlevel;
 
-    BitBtnPos->Enabled = (dmDB->pwdlevel >= 8);
+    BitBtnPos->Enabled = false; //(dmDB->pwdlevel >= 8);
     btStoricizza->Enabled = (dmDB->pwdlevel > 5);
     // btService->Enabled = (dmDB->pwdlevel==9);
     for (i = 1; i <= numframe; i++) {
@@ -343,3 +352,4 @@ void __fastcall TfrConfig::btResetAGVClick(TObject *Sender)
         ShowMessage("Operazione permessa solo a utenti amministratori e missioni disabilitate");
 }
 // ---------------------------------------------------------------------------
+

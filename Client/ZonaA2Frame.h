@@ -10,6 +10,11 @@
 #include "MyShape.h"
 #include "clientdata.h"
 #include <Vcl.ExtCtrls.hpp>
+#include "frame_UDCinMateriePrime.h"
+#include <Data.DB.hpp>
+#include <Data.Win.ADODB.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.Grids.hpp>
 //---------------------------------------------------------------------------
 class TfrZonaA2 : public TFrame
 {
@@ -18,14 +23,16 @@ __published:	// IDE-managed Components
     TPanel *pnPosA1;
     TPanel *pnPosA2;
     TPanel *pnPosA3;
-    TLabel *lbSelA;
     TPanel *pnPosA4;
     TPanel *pnPosA5;
     TPanel *pnPosA6;
-    TPanel *pnPosA7;
-    TPanel *pnPosA8;
-    TPanel *pnPosA9;
+    TADOQuery *ADOQuery1;
+    TDataSource *DataSource1;
+    TFrameUDCinMateriePrime *FrameUDCinMateriePrime;
+    TADOQuery *ADOQuery2;
+    TDataSource *DataSource2;
     void __fastcall pnPosAMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
+    void __fastcall pnPosA1DblClick(TObject *Sender);
 private:	// User declarations
 
 public:		// User declarations

@@ -39,8 +39,6 @@ __published: // IDE-managed Components
     TADOQuery *ADOQuery1;
     TDataSource *DataSource1;
     TFrameArticoliInLavorazione *FrameArticoliInLavorazione;
-    TPanel *Panel1;
-    TDBGrid *DBGrid1;
     TADOQuery *ADOQuery2;
     TDataSource *DataSource2;
     TMemo *Memo1;
@@ -52,8 +50,8 @@ private: // User declarations
 
         public : // User declarations
     __fastcall TfrZonaA1(TComponent* Owner);
-    void AggiornaDati();
-    int CercaConCodart(AnsiString CodArt) ;
+	void AggiornaDati() ;
+	int CercaConCodart(int riga);
 
     bool AbilitaConferma;
 

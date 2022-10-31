@@ -42,7 +42,7 @@
 #define STRUTTURA_DATI_UDC_PLC	62
 
 #define ALTEZZA_PRELIEVO			70
-#define ALTEZZA_DEPOSITO			150
+#define ALTEZZA_DEPOSITO			280
 
 #define ESITO_MISSIONE_INTERMEDIA_COMPLETATA  3
 #define ESITO_MISSIONE_COMPLETATA  	6
@@ -415,7 +415,7 @@ struct StrutturaParametriFunzionali {
     int Simula;
     int Giorno;
     int TempoRicarica;
-    int MescolaCeste;
+    int AbilitaCheckGiornoNotte;
     int zonascelta;
     int altezza_pallet;
 };

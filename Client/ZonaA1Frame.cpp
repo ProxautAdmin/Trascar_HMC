@@ -99,7 +99,7 @@ void __fastcall TfrZonaA1::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
                 // UDC.IDUDC = CercaConCodart(Pan->Hint.Trim());
                 // escludo anche i vuoti
                 if (UDC.IDUDC > 1) {
-                //    dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));
+                    // dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));
                     dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 1);
                 }
 
@@ -109,7 +109,7 @@ void __fastcall TfrZonaA1::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
         if (Button == mbRight) {
             if (Pan->Color == clYellow) {
                 // dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
-                UDC.IDUDC = CercaConCodart(FrameArticoliInLavorazione->ADOQuery1->FieldByName("Articolo")->AsString);
+                UDC.IDUDC = CercaConCodart(Pan->Tag - 100);
                 if (UDC.IDUDC > 0) {
                     dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));
                 }
@@ -161,22 +161,26 @@ void __fastcall TfrZonaA1::pnPosADblClick(TObject *Sender) {
 }
 // ---------------------------------------------------------------------------
 
-int TfrZonaA1::CercaConCodart(AnsiString CodArt) {
+int TfrZonaA1::CercaConCodart(int riga) {
     int res = 0;
+    AnsiString Articolo;
     TUDC UDC;
-    UDC.IDUDC = dmDB->IDUDCdaCodart(FrameArticoliInLavorazione->ADOQuery1->FieldByName("Articolo")->AsString);
-    if (UDC.IDUDC == 0) {
-        UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
-        dmExtraFunction->StringToChar("", UDC.Lotto);
-        dmExtraFunction->StringToChar(CodArt, UDC.Articolo.CodArt);
-        dmExtraFunction->StringToChar(FrameArticoliInLavorazione->ADOQuery1->FieldByName("Descrizione Articolo")->AsString, UDC.Articolo.Descrizione);
-        UDC.CodTipoUDC = 0;
-        UDC.IndiceImpilabilita = FrameArticoliInLavorazione->ADOQuery1->FieldByName("sovrapposto")->AsInteger;
-        UDC.Parziale = 0;
-        UDC.Riservato = 0;
-        UDC.CodStato = 0;
-        UDC.IDUDC = dmDB->InsertUpdateUDC(UDC);
+    Articolo = dmDBImpianto->TornaCodartConRigaDaHMC_ORDINI_IN_LAVORAZIONE(riga, UDC);
+    if (Articolo != "") {
+        UDC.IDUDC = dmDB->IDUDCdaCodart(Articolo);
+        if (UDC.IDUDC == 0) {
+            UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
+            dmExtraFunction->StringToChar("", UDC.Lotto);
+            // dmExtraFunction->StringToChar(Articolo, UDC.Articolo.CodArt);
+            // dmExtraFunction->StringToChar(FrameArticoliInLavorazione->ADOQuery1->FieldByName("Descrizione Articolo")->AsString, UDC.Articolo.Descrizione);
+            UDC.CodTipoUDC = 0;
+            // UDC.IndiceImpilabilita = 1; //FrameArticoliInLavorazione->ADOQuery1->FieldByName("sovrapposto")->AsInteger;
+            UDC.Parziale = 0;
+            UDC.Riservato = 0;
+            UDC.CodStato = 0;
+            UDC.IDUDC = dmDB->InsertUpdateUDC(UDC);
+        }
+        res = UDC.IDUDC;
     }
-    res = UDC.IDUDC;
     return res;
 }

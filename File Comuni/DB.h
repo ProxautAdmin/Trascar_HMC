@@ -310,6 +310,7 @@ private: // User declarations
     int CercaConCodart(AnsiString CodArt);
     int RitornaLatoForcheDaNomePosizione(AnsiString NomePos);
     int RitornaAgvDaIdPallet(int idPallet);
+    int BloccoMissione();
 
     AnsiString Lingua;
 
@@ -331,6 +332,7 @@ private: // User declarations
     AnsiString format_data_ora_database, ultima_data_priorita, ActualUser, PWD, NomeClientServer, StrTipoProdottoNULLSuPlc, CodiceCorsiaVascheVuoteNonLavate, CodiceCorsiaVascheVuoteLavate;
     AnsiString CodiceCorsiaVascheAutomatico, CodiceVascaVuota, DataOraChiamataRibaltatori[4];
     AnsiString UserNum, UserZona, ZonaString;
+
 };
 
 // ---------------------------------------------------------------------------

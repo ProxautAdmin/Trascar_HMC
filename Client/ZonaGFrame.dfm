@@ -1,7 +1,7 @@
 object frZonaG: TfrZonaG
   Left = 0
   Top = 0
-  Width = 1110
+  Width = 1079
   Height = 305
   Align = alClient
   TabOrder = 0
@@ -9,7 +9,7 @@ object frZonaG: TfrZonaG
   object pnG: TPanel
     Left = 0
     Top = 0
-    Width = 975
+    Width = 944
     Height = 305
     Align = alClient
     TabOrder = 0
@@ -235,9 +235,26 @@ object frZonaG: TfrZonaG
       TabOrder = 12
       OnMouseUp = pnPosGMouseUp
     end
+    object pnPosG14: TPanel
+      Tag = 314
+      AlignWithMargins = True
+      Left = 778
+      Top = 128
+      Width = 121
+      Height = 117
+      BorderWidth = 10
+      BorderStyle = bsSingle
+      Caption = 'Posizione 14'
+      Color = clHighlightText
+      DoubleBuffered = True
+      ParentBackground = False
+      ParentDoubleBuffered = False
+      TabOrder = 13
+      OnMouseUp = pnPosGMouseUp
+    end
   end
   object pnExtra: TPanel
-    Left = 975
+    Left = 944
     Top = 0
     Width = 135
     Height = 305

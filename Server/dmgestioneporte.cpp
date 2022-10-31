@@ -256,10 +256,10 @@ void TDMGestione_Porte::ControllaPorteDaAprire() {
                 porta = dmDB->ReturnIdPortaDaStringaConsensoPorta(MainForm->strcons[agv]);
                 if (porta) {
                     res = AgvInPosAperturaPorta(porta, agv);
-                    if ((!ClientData.DatiPorte[porta].ApriPorta) && (ClientData.DatiPorte[porta].Stato == 1) &&
-                        (!ClientData.DatiPorte[porta].PortaAperta) && (ClientData.DatiPorte[porta].PortaChiusa)
+					if ((!ClientData.DatiPorte[porta].ApriPorta) && (ClientData.DatiPorte[porta].Stato == 1) &&
+                        (!ClientData.DatiPorte[porta].PortaAperta) && (ClientData.DatiPorte[porta].PortaChiusa>0)
                         && (ClientData.DatiPorte[porta].PortaReady)) { // con la memoria di apertura non la richiudo ma faccio passare l'agv
-                        if (res) {
+						if (res) {
                             // apro la porta
                             ClientData.DatiPorte[porta].RichiestaAttiva++;
                             ClientData.DatiAgv[agv].primo_ciclo_consenso = 0;
@@ -268,13 +268,13 @@ void TDMGestione_Porte::ControllaPorteDaAprire() {
                         }
 
                     }
-                    else if (((res) || (ClientData.DatiPorte[porta].Stato >= 2)) && (!ClientData.DatiPorte[porta].ChiudiPorta) &&
+					else if (((res) || (ClientData.DatiPorte[porta].Stato >= 2)) && (!ClientData.DatiPorte[porta].ChiudiPorta) &&
                      (ClientData.DatiPorte[porta].PortaReady) &&
                         ((ClientData.DatiPorte[porta].Stato == 3) || ((ClientData.DatiPorte[porta].PortaAperta) &&
                                 ((ClientData.DatiPorte[porta].ApriPorta) || (ClientData.DatiPorte[porta].Stato == 2)))
                         )) { // porta esclusa oppure aperta in manuale o con richiesta
-                        // porta esclusa oppure aperta,invio consensoh
-                        if (ClientData.DatiAgv[agv].primo_ciclo_consenso) // gestione inversione agv su porta già aperta
+						// porta esclusa oppure aperta,invio consensoh
+						if (ClientData.DatiAgv[agv].primo_ciclo_consenso) // gestione inversione agv su porta già aperta
                                 ClientData.DatiPorte[porta].RichiestaAttiva++;
                         ClientData.DatiAgv[agv].consensodato = ClientData.DatiAgv[agv].nodob;
                         ClientData.DatiAgv[agv].richiestaconsenso = 0;

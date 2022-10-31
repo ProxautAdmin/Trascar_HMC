@@ -11,6 +11,7 @@
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "MyShape"
+#pragma link "frame_UDCinMateriePrime"
 #pragma resource "*.dfm"
 TfrZonaA2 *frZonaA2;
 AnsiString Zona;
@@ -19,13 +20,13 @@ AnsiString Zona;
 __fastcall TfrZonaA2::TfrZonaA2(TComponent* Owner) : TFrame(Owner) {
     Zona = "J";
     AbilitaConferma = 1;
-
+    FrameUDCinMateriePrime->FrameEnter(this);
 }
 
 // ---------------------------------------------------------------------------
 
 void TfrZonaA2::AggiornaDati() {
-    int numeroelementi = 9;
+    int numeroelementi = 6;
     int idx = 0, trovato = 0; ;
     int pos;
     AnsiString str;
@@ -51,6 +52,7 @@ void TfrZonaA2::AggiornaDati() {
                     }
                     else if (TabPosizioni[idx]["SELEZIONATA"].ToIntDef(0)) {
                         Pan->Color = clLime;
+                        MainForm->pos_udc = Pan->Tag;
                     }
                     else if (TabPosizioni[idx]["IDUDC"].ToIntDef(0) > 0) {
                         Pan->Color = clYellow;
@@ -65,11 +67,11 @@ void TfrZonaA2::AggiornaDati() {
                     if (TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_SCARTO) {
                         Pan->Caption = "SCARTO";
                     }
-                    else if (TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0) == 0) {
+                    else if (TabPosizioni[idx]["IDUDC"].ToIntDef(0) == 0) {
                         Pan->Caption = "Pos." + IntToStr(j) + " (" + IntToStr(Pan->Tag) + ")";
                     }
                     else {
-                        Pan->Caption = "Pos." + IntToStr(j) + " - " + IntToStr(TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0));
+                        Pan->Caption = "Pos." + IntToStr(j) + " - " + IntToStr(TabPosizioni[idx]["IDUDC"].ToIntDef(0));
                     }
                 }
                 if (!trovato)
@@ -77,6 +79,7 @@ void TfrZonaA2::AggiornaDati() {
             }
         }
     }
+    MainForm->trova_udc = FrameUDCinMateriePrime->ADOQuery1->FieldByName("idudc")->AsInteger;
 }
 
 void __fastcall TfrZonaA2::pnPosAMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y) {
@@ -90,7 +93,7 @@ void __fastcall TfrZonaA2::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
             }
             else {
                 // dmDBImpianto->AggiornaSelezionePosizioni(Zona, 0, 0);
-                if (Pan->Color == clYellow) {
+                if ((Pan->Color == clYellow) || (Pan->Color == clWhite)) {
                     dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 1);
                 }
 
@@ -98,13 +101,24 @@ void __fastcall TfrZonaA2::pnPosAMouseUp(TObject *Sender, TMouseButton Button, T
         }
         if (Button == mbRight) {
             if ((Pan->Color == clBtnFace) || (Pan->Color == clWhite)) {
+                // dmDB->ArticoloPrelevatoDepositato(Pan->Tag, FrameUDCinMateriePrime->ADOQuery1->FieldByName("idudc")->AsInteger, 1, dmDB->FilaPosizione(Pan->Tag));
                 dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
+
             }
             else if (Pan->Color == clYellow) {
                 dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 0, 1, dmDB->FilaPosizione(Pan->Tag));
             }
 
         }
+    }
+}
+
+// ---------------------------------------------------------------------------
+void __fastcall TfrZonaA2::pnPosA1DblClick(TObject *Sender) {
+    TPanel *Pan;
+    Pan = (TPanel*) Sender;
+    if (Pan != NULL) {
+        dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
     }
 }
 // ---------------------------------------------------------------------------

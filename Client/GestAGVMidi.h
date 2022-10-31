@@ -61,6 +61,8 @@ __published: // IDE-managed Components
     TTabSheet *tsZonaFDest;
     TLabel *Label1;
     TComboBox *cbPriorita;
+    TComboBox *cbLinea;
+    TLabel *Label2;
 
     void __fastcall TimerRefTimer(TObject *Sender);
     void __fastcall BitBtnCloseClick(TObject *Sender);
@@ -82,9 +84,10 @@ private: // User declarations
     void AggiornaDatiLocali();
     void TabVisibili(bool tab0 = 0, bool tab1 = 0, bool tab2 = 0, bool tab3 = 0, bool tab4 = 0, bool tab5 = 0, bool tab6 = 0, bool tab7 = 0, bool tab8 = 0, bool tab9 = 0);
     void TornaPosPrelSelezionata(AnsiString Zona, int &pos, int &piano, int &tipoposizione, int &idudc);
+    void SettaPianoSelezionatoPerZona(int setta, AnsiString zona);
+    void SettaPianoSelezionatoPerPos(int setta, int pos);
 
-
-    int pos, zona, posselezionata, destselezionata;
+    int pos, zona, posselezionata, destselezionata, impila;
 };
 
 // ---------------------------------------------------------------------------

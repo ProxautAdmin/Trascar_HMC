@@ -11,8 +11,6 @@ object frZonaA1: TfrZonaA1
     Height = 322
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1373
-    ExplicitHeight = 291
     object pnPosA1: TPanel
       Tag = 101
       AlignWithMargins = True
@@ -208,13 +206,13 @@ object frZonaA1: TfrZonaA1
         Font.Style = []
         ParentColor = False
         ParentFont = False
-        Transparent = False
+        Transparent = True
         Layout = tlCenter
       end
       object leDescArticolo: TLabeledEdit
         Left = 88
         Top = 60
-        Width = 486
+        Width = 713
         Height = 21
         AutoSelect = False
         AutoSize = False
@@ -230,7 +228,7 @@ object frZonaA1: TfrZonaA1
         EditLabel.Font.Name = 'Tahoma'
         EditLabel.Font.Style = []
         EditLabel.ParentFont = False
-        EditLabel.Transparent = False
+        EditLabel.Transparent = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
@@ -246,7 +244,7 @@ object frZonaA1: TfrZonaA1
       object leCodArt: TLabeledEdit
         Left = 324
         Top = 12
-        Width = 96
+        Width = 288
         Height = 21
         AutoSelect = False
         AutoSize = False
@@ -262,7 +260,7 @@ object frZonaA1: TfrZonaA1
         EditLabel.Font.Name = 'Tahoma'
         EditLabel.Font.Style = []
         EditLabel.ParentFont = False
-        EditLabel.Transparent = False
+        EditLabel.Transparent = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
@@ -294,7 +292,7 @@ object frZonaA1: TfrZonaA1
         EditLabel.Font.Name = 'Tahoma'
         EditLabel.Font.Style = []
         EditLabel.ParentFont = False
-        EditLabel.Transparent = False
+        EditLabel.Transparent = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
@@ -308,14 +306,14 @@ object frZonaA1: TfrZonaA1
         TabOrder = 2
       end
       object ckImpilabile: TCheckBox
-        Left = 454
-        Top = 16
-        Width = 76
+        Left = 618
+        Top = 17
+        Width = 111
         Height = 17
         Caption = 'Impilabile'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -11
+        Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
@@ -325,17 +323,13 @@ object frZonaA1: TfrZonaA1
     inline FrameArticoliInLavorazione: TFrameArticoliInLavorazione
       Left = 840
       Top = 13
-      Width = 536
+      Width = 484
       Height = 304
       DoubleBuffered = True
       ParentDoubleBuffered = False
       TabOrder = 8
       ExplicitLeft = 840
       ExplicitTop = 13
-      inherited Panel1: TPanel
-        TabOrder = 1
-        ExplicitWidth = 530
-      end
     end
     object Memo1: TMemo
       Left = 634
@@ -367,12 +361,12 @@ object frZonaA1: TfrZonaA1
     Parameters = <>
     SQL.Strings = (
       'select * from AnagraficaArticoliVasche')
-    Left = 688
-    Top = 240
+    Left = 592
+    Top = 248
   end
   object DataSource1: TDataSource
     DataSet = ADOQuery1
-    Left = 751
+    Left = 767
     Top = 232
   end
   object ADOQuery2: TADOQuery
@@ -386,7 +380,7 @@ object frZonaA1: TfrZonaA1
   end
   object DataSource2: TDataSource
     DataSet = ADOQuery2
-    Left = 319
-    Top = 232
+    Left = 575
+    Top = 208
   end
 end

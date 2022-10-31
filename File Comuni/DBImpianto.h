@@ -4,6 +4,7 @@
 #define DBImpiantoH
 // ---------------------------------------------------------------------------
 #include <System.Classes.hpp>
+#include "clientdata.h"
 
 // ---------------------------------------------------------------------------
 class TdmDBImpianto : public TDataModule
@@ -43,8 +44,11 @@ __published: // IDE-managed Components
     void TornaPosDepLiberaH(AnsiString Zona, int IDUDC, int &pos, int &piano) ;
     AnsiString TornaDescrizionedaZonaA1(AnsiString CodArt, int &impila);
     int TornaIndiceImpilabilitadaIDUDC(int idudc)     ;
-    int ClonaHMC_ORDINI_IN_LAVORAZIONE() ;
-    int CheckZonaUtente(AnsiString zonadacontrollare);
+    int ClonaHMC_ORDINI_IN_LAVORAZIONE(AnsiString posizione) ;
+	int CheckZonaUtente(AnsiString zonadacontrollare);
+	AnsiString TornaCodartConRigaDaHMC_ORDINI_IN_LAVORAZIONE(int riga, TUDC &UDC) ;
+	int CercaPrelievoF();
+	int CercaUDCinH(int udc);
 
 };
 

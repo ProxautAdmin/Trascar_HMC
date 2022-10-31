@@ -1,17 +1,19 @@
 object frZonaH: TfrZonaH
   Left = 0
   Top = 0
-  Width = 451
+  Width = 1119
   Height = 305
   Align = alClient
   TabOrder = 0
+  ExplicitWidth = 451
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 451
+    Width = 1119
     Height = 305
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 451
     object pnPosH1: TPanel
       Tag = 401
       AlignWithMargins = True
@@ -124,7 +126,7 @@ object frZonaH: TfrZonaH
       object leDescArticolo: TLabeledEdit
         Left = 83
         Top = 60
-        Width = 430
+        Width = 598
         Height = 21
         AutoSelect = False
         AutoSize = False
@@ -231,7 +233,7 @@ object frZonaH: TfrZonaH
     Left = 651
     Top = 230
     Bitmap = {
-      494C010104001800340510001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101040018003C0510001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -513,8 +515,8 @@ object frZonaH: TfrZonaH
     Parameters = <>
     SQL.Strings = (
       'select * from AnagraficaArticoliVasche')
-    Left = 520
-    Top = 264
+    Left = 552
+    Top = 216
   end
   object DataSource1: TDataSource
     DataSet = ADOQuery1

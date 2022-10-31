@@ -64,6 +64,7 @@ __published:	// IDE-managed Components
     TBitBtn *btResetPos;
     TBitBtn *btResetAGV;
     TLabeledEdit *leNumMissioni;
+    TCheckBox *ckAbilitaCheckGiornoNotte;
 	void __fastcall FormActivate(TObject *Sender);
 	void __fastcall BitBtnChangeClick(TObject *Sender);
 	void __fastcall Timer1Timer(TObject *Sender);

@@ -5,6 +5,7 @@
 #include "DBImpianto.h"
 #include "db.h"
 #include "ExtraFunction.h"
+#include "clientdata.h"
 
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -534,7 +535,7 @@ void TdmDBImpianto::SettaPLCIDUDC(int pos, int val) {
 
 void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int tipoposizione) {
     TADOQuery *ADOQuery;
-    AnsiString strsql, ev, TP;
+    AnsiString strsql, ev, TP, selectpiano = " ";
     pos = 0;
     piano = 0;
 
@@ -543,6 +544,9 @@ void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int
     else
         ev = " tipoposizione= " + IntToStr(tipoposizione) + " and ";
 
+    if (tipoposizione == TIPOLOGIA_SCARTO)
+        selectpiano = " piano=1 and ";
+
     try {
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
@@ -550,7 +554,8 @@ void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int
         if ((Zona == "B") || (Zona == "C") || (Zona == "E"))
             strsql.printf("Select top 1 pos, piano from piani_view where %s  ISNULL(disabilitata,0)=0 and ISNULL(pos_disabilita,0)=0 and zona='%s' order by pos, piano", ev, Zona);
         else
-            strsql.printf("Select top 1 pos, piano from piani_view where %s idudc=0 and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='%s' order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos, piano", ev, Zona);
+            strsql.printf("Select top 1 pos, piano from piani_view where %s idudc=0 and %s ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='%s' order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos, piano",
+            ev, selectpiano, Zona);
         ADOQuery->SQL->Text = strsql;
         ADOQuery->Open();
         ADOQuery->Last();
@@ -576,7 +581,8 @@ void TdmDBImpianto::TornaPosDepLiberaH(AnsiString Zona, int IDUDC, int &pos, int
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
         // strsql.printf(order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos, piano", Zona);
-        strsql = "Select top 1 pos, piano from piani_view where idudc=0 and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='" + Zona + "' ";
+        strsql = "Select top 1 pos, piano from piani_view where idudc=0 and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='" +
+            Zona + "' ";
         strsql += " and ((select idudc FROM dbo.Piani AS Piani_1 WHERE  (pos = dbo.piani_view.Pos) AND (piano = dbo.piani_view.piano-1))=" + IntToStr(IDUDC) + " or (piano=1)) ";
         strsql += " order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos, piano ";
         ADOQuery->SQL->Text = strsql;
@@ -646,8 +652,9 @@ void TdmDBImpianto::PrelievoVuoti(int idzona, int &pos, int &pianiocc) {
         }
         else {
             stringa += " from Piani_View where idzona=" + IntToStr(idzona) + " and piano =1 and  idudc>0 ";
+            stringa += " and tipoposizione = " + IntToStr(TIPOLOGIA_PALLET);
             stringa += " and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 ";
-            stringa += " order by npianiocc, pos ";
+            stringa += " order by npianiocc, pos desc";
         }
         ADOQuery->Close();
         ADOQuery->SQL->Clear();
@@ -679,7 +686,7 @@ int TdmDBImpianto::TornaPosVuoteZona(int idzona) {
         stringa = "select pos from piani_view ";
         stringa += " where idudc=0 and idzona=" + IntToStr(idzona);
         stringa += " and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 ";
-        stringa += " order by pos, piano";
+        stringa += " order by pos , piano";
         ADOQuery->Close();
         ADOQuery->SQL->Clear();
         ADOQuery->SQL->Append(stringa);
@@ -779,6 +786,34 @@ int TdmDBImpianto::CercaPrelievo(AnsiString Zona, int tipoposizione) {
     return res;
 }
 
+int TdmDBImpianto::CercaPrelievoF() {
+    AnsiString stringa;
+    TADOQuery *ADOQuery;
+    int res = 0;
+    try {
+        if (!dmDB->ADOConnection1->Connected)
+            return res;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        stringa = "select DISTINCT top 1 pos from piani_view where ";
+        stringa += " idudc>0 and zona='F' ";
+        stringa += " and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=1 ";
+        stringa += " order by pos ";
+        ADOQuery->Close();
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Append(stringa);
+        ADOQuery->Open();
+        if (ADOQuery->RecordCount > 0)
+            res = ADOQuery->FieldByName("pos")->AsInteger;
+
+        ADOQuery->Close();
+    }
+    catch (...) {
+    }
+    delete ADOQuery;
+    return res;
+}
+
 AnsiString TdmDBImpianto::TornaDescrizionedaZonaA1(AnsiString CodArt, int &impila) {
     AnsiString stringa;
     TADOQuery *ADOQuery;
@@ -828,7 +863,7 @@ int TdmDBImpianto::TornaIndiceImpilabilitadaIDUDC(int idudc) {
     return res;
 }
 
-int TdmDBImpianto::ClonaHMC_ORDINI_IN_LAVORAZIONE() {
+int TdmDBImpianto::ClonaHMC_ORDINI_IN_LAVORAZIONE(AnsiString posizione) {
     TADOQuery *ADOQuery;
     AnsiString strsql;
     int res = 1;
@@ -839,12 +874,12 @@ int TdmDBImpianto::ClonaHMC_ORDINI_IN_LAVORAZIONE() {
         if (dmDB->ADOConnection1->Connected) {
             ADOQuery->Close();
             ADOQuery->SQL->Clear();
-            ADOQuery->SQL->Append("Delete HMC_ORDINI_IN_LAVORAZIONE_Copia");
+            ADOQuery->SQL->Append("Delete HMC_ORDINI_IN_LAVORAZIONE_Copia where posizione='" + posizione + "'");
             ADOQuery->ExecSQL();
             ADOQuery->Close();
             ADOQuery->Close();
             ADOQuery->SQL->Clear();
-            strsql = "INSERT INTO HMC_ORDINI_IN_LAVORAZIONE_Copia select * from HMC_ORDINI_IN_LAVORAZIONE";
+            strsql = "INSERT INTO HMC_ORDINI_IN_LAVORAZIONE_Copia select * from HMC_ORDINI_IN_LAVORAZIONE where posizione='" + posizione + "'";
             ADOQuery->SQL->Append(strsql);
             ADOQuery->ExecSQL();
             ADOQuery->Close();
@@ -861,12 +896,67 @@ int TdmDBImpianto::ClonaHMC_ORDINI_IN_LAVORAZIONE() {
 
 int TdmDBImpianto::CheckZonaUtente(AnsiString zonadacontrollare) {
     int ret = 0;
-     //comunque se Z fai tutto, 99 puo' essere qualunque valore >0
+    // comunque se Z fai tutto, 99 puo' essere qualunque valore >0
     if (dmDB->ZonaString == "Z")
         ret = 99;
     else
         ret = dmDB->ZonaString.Pos(zonadacontrollare);
 
     return ret;
+}
 
+AnsiString TdmDBImpianto::TornaCodartConRigaDaHMC_ORDINI_IN_LAVORAZIONE(int riga, TUDC &UDC) {
+    TADOQuery *ADOQuery;
+    AnsiString strsql;
+    AnsiString res = "";
+
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        strsql.printf("SELECT * FROM HMC_ORDINI_IN_LAVORAZIONE_Copia where Posizione=%d", riga);
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+        ADOQuery->Last();
+        if (ADOQuery->RecordCount) {
+            res = ADOQuery->FieldByName("articolo")->AsString;
+            dmExtraFunction->StringToChar(ADOQuery->FieldByName("articolo")->AsString, UDC.Articolo.CodArt);
+            dmExtraFunction->StringToChar(ADOQuery->FieldByName("descrizione articolo")->AsString, UDC.Articolo.Descrizione);
+            UDC.IndiceImpilabilita = ADOQuery->FieldByName("sovrapposto")->AsInteger;
+
+        }
+        ADOQuery->Close();
+    }
+    catch (...) {
+    }
+    delete ADOQuery;
+    return res;
+}
+
+int TdmDBImpianto::CercaUDCinH(int udc) {
+    AnsiString stringa;
+    TADOQuery *ADOQuery;
+    int res = 0;
+    try {
+        if (!dmDB->ADOConnection1->Connected)
+            return res;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        stringa = "select DISTINCT top 1 pos from piani_view where ";
+        stringa += " (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0))=1 ";
+        stringa += " and idudc = " + IntToStr(udc);
+        stringa += " and zona='H' ";
+        stringa += " order by pos ";
+        ADOQuery->Close();
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Append(stringa);
+        ADOQuery->Open();
+        if (ADOQuery->RecordCount > 0)
+            res = ADOQuery->FieldByName("pos")->AsInteger;
+
+        ADOQuery->Close();
+    }
+    catch (...) {
+    }
+    delete ADOQuery;
+    return res;
 }

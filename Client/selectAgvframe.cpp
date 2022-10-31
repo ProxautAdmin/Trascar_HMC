@@ -35,14 +35,14 @@ void TfrSelectAgv::RiempiCampi(int idparametro) {
     dmDB->CaricaTabella("Parametri order by IdParametro", TabParametri);
     // check agv
     val = TabParametri[idparametro]["INTVALUE"].ToIntDef(0);
-    //assegna valori
+    // assegna valori
     for (i = 1; i <= NAGV; i++) {
         Check = (TCheckBox*) FindComponent("cbAgv" + IntToStr(i));
         if (Check != NULL) {
             Check->Checked = val & dmDB->bit[i - 1];
         }
     }
-    //disabilita gli AGV in eccesso
+    // disabilita gli AGV in eccesso
     for (i = NAGV + 1; i <= 7; i++) {
         Check = (TCheckBox*) FindComponent("cbAgv" + IntToStr(i));
         if (Check != NULL) {
@@ -50,17 +50,15 @@ void TfrSelectAgv::RiempiCampi(int idparametro) {
             Check->Visible = false;
         }
     }
-    //priorita
-        cbPriority1->Text = TabParametri[idparametro + 8]["INTVALUE"].ToIntDef(0);
+    // priorita
+    cbPriority1->Text = TabParametri[idparametro + 8]["INTVALUE"].ToIntDef(0);
     // text
     lbTitolo->Caption = TabParametri[idparametro]["DESCRIZIONE"];
-
-
 
 }
 
 void TfrSelectAgv::SalvaCampi(int idparametro) {
-    int i, id, val=0, j;
+    int i, id, val = 0, j;
     TRecordList TabParametri;
     TfrSelectAgv *frSelAgv;
     TComboBox *Combo;

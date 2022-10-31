@@ -89,13 +89,21 @@ void __fastcall TDMGestioneEventi::TimerMissioniTimer(TObject *Sender) {
 
     // sospensione
     if (divisoretempo >= 9) { // controllo ogni 10 secondi
-
+        if (ClientData.ParametriFunzionali.AbilitaCheckGiornoNotte == true) {
+            if (dmDB->BloccoMissione() != 0)
+                ClientData.ParametriFunzionali.Giorno = true;
+            else {
+                // sospendo le missioni solo se non ho qualcosa a bordo
+                if (ClientData.DatiAgv[1].load == 0)
+                    ClientData.ParametriFunzionali.Giorno = false;
+            }
+        }
         divisoretempo = 0;
+
     }
     else {
         divisoretempo++;
     }
-
 
     TimerMissioni->Enabled = true;
 

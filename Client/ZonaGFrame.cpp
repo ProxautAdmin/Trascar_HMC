@@ -23,7 +23,7 @@ __fastcall TfrZonaG::TfrZonaG(TComponent* Owner) : TFrame(Owner) {
 }
 
 void TfrZonaG::AggiornaDati() {
-    int numeroelementi = 13;
+    int numeroelementi = 14;
     int idx = 0, trovato = 0; ;
     int pos;
     AnsiString str;
@@ -67,10 +67,10 @@ void TfrZonaG::AggiornaDati() {
                         Pan->Caption = "SCARTO";
                     }
                     else if (TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0) == 0) {
-                        Pan->Caption = "Pos." + IntToStr(j) + " (" + IntToStr(Pan->Tag) + ")";
+                        Pan->Caption = "Pos." + IntToStr(15-j) ; //+ " (" + IntToStr(Pan->Tag) + ")";
                     }
                     else {
-                        Pan->Caption = "Pos." + IntToStr(j) + " - " + IntToStr(TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0));
+                        Pan->Caption = "Pos." + IntToStr(15-j) + " Pal. " + IntToStr(TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0));
                     }
                 }
                 if (!trovato)

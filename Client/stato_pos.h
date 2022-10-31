@@ -39,7 +39,7 @@ __published: // IDE-managed Components
     TPanel *Panel10;
     TBitBtn *BitBtn1;
     TBitBtn *BitBtn3;
-    TGroupBox *GroupBox1;
+    TGroupBox *gbStatoCorsia;
     TCheckBox *ckUsoPrel;
     TCheckBox *ckUsoDep;
     TCheckBox *ckAbilita;
@@ -57,10 +57,10 @@ __published: // IDE-managed Components
     TBitBtn *BitBtn5;
     TBitBtn *btConferma;
     TTimer *Timer1;
-    TGroupBox *GroupBox3;
+    TGroupBox *gbStatoPosizione;
     TCheckBox *ckDisabilitaPos;
     TCheckBox *cPrenotataPos;
-    TGroupBox *GroupBox4;
+    TGroupBox *gbUDC;
     TLabel *Label13;
     TLabel *Label14;
     TEdit *eUDC;
@@ -84,7 +84,7 @@ __published: // IDE-managed Components
     TLabel *Label22;
     TLabel *Label24;
     TSpeedButton *SpeedButton2;
-    TGroupBox *GroupBox8;
+    TGroupBox *gbStatoPiano;
     TLabel *Label25;
     TLabel *Label26;
     TEdit *eHprel;

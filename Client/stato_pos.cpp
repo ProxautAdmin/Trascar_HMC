@@ -29,7 +29,6 @@ __fastcall TfCorsia::TfCorsia(TComponent* Owner)
     // _TSL_FORM(this);
     change_dati_corsia = false;
     change_dati_pos = false;
-
 }
 
 // ---------------------------------------------------------------------------
@@ -256,10 +255,10 @@ void __fastcall TfCorsia::BitBtn3Click(TObject * Sender)
 void __fastcall TfCorsia::Timer1Timer(TObject * Sender)
 {
     Timer1->Enabled = false;
-    GroupBox1->Enabled = (dmDB->pwdlevel >= 8);
-    GroupBox3->Enabled = (dmDB->pwdlevel >= 8);
-    GroupBox4->Enabled = false; // (dmDB->pwdlevel>=8);
-    GroupBox8->Enabled = (dmDB->pwdlevel >= 8);
+    gbStatoCorsia->Enabled = (dmDB->pwdlevel >= 8);
+    gbStatoPosizione->Enabled = (dmDB->pwdlevel >= 8);
+    gbUDC->Enabled = false; //(dmDB->pwdlevel>=8);
+    gbStatoPiano->Enabled = (dmDB->pwdlevel >= 8);
     BitBtn3->Enabled = !ckVuota->Checked;
     GroupBox10->Enabled = (dmDB->pwdlevel >= 8);
     BitBtn2->Enabled = (eUDC->Text.ToIntDef(0) > 0);

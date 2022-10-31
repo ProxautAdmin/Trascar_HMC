@@ -20,7 +20,7 @@ __fastcall TFrameArticoliInLavorazione::TFrameArticoliInLavorazione(TComponent* 
 // ---------------------------------------------------------------------------
 void TFrameArticoliInLavorazione::RiempiCampi() {
     AnsiString filtro = ""; ;
-    filtro = "Select * from HMC_ORDINI_IN_LAVORAZIONE ";
+    filtro = "Select * from HMC_ORDINI_IN_LAVORAZIONE_copia ";
 
     filtro = filtro + " order by posizione";
     ADOQuery1->Close();
@@ -32,7 +32,7 @@ void TFrameArticoliInLavorazione::RiempiCampi() {
 }
 
 void __fastcall TFrameArticoliInLavorazione::btScegliClick(TObject *Sender) {
-    MainForm->trova_HMC_Anagrafica = ADOQuery1->FieldByName("componente")->AsString;
+    MainForm->trova_HMC_Anagrafica = ADOQuery1->FieldByName("articolo")->AsString;
 }
 // ---------------------------------------------------------------------------
 

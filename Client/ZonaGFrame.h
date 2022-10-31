@@ -31,6 +31,7 @@ __published:	// IDE-managed Components
     TPanel *pnExtra;
     TLabel *Label1;
     TComboBox *cbNumero;
+	TPanel *pnPosG14;
     void __fastcall pnPosGMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 private:	// User declarations
 public:		// User declarations

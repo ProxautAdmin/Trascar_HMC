@@ -7,8 +7,7 @@ inherited fCorsia: TfCorsia
   Font.Height = -13
   OnActivate = FormActivate
   OnCreate = FormCreate
-  ExplicitLeft = -630
-  ExplicitTop = -203
+  ExplicitTop = -161
   ExplicitWidth = 1755
   ExplicitHeight = 855
   PixelsPerInch = 96
@@ -508,7 +507,7 @@ inherited fCorsia: TfCorsia
           OnClick = btConfermaClick
         end
       end
-      object GroupBox3: TGroupBox
+      object gbStatoPosizione: TGroupBox
         Left = 487
         Top = 64
         Width = 274
@@ -528,6 +527,7 @@ inherited fCorsia: TfCorsia
           Height = 25
           Caption = 'Posizione disabilitata'
           TabOrder = 0
+          OnClick = CambioCheck
         end
         object cPrenotataPos: TCheckBox
           Left = 7
@@ -548,7 +548,7 @@ inherited fCorsia: TfCorsia
           OnClick = CambioCheck
         end
       end
-      object GroupBox4: TGroupBox
+      object gbUDC: TGroupBox
         Left = 16
         Top = 152
         Width = 465
@@ -1186,7 +1186,7 @@ inherited fCorsia: TfCorsia
           TabOrder = 2
         end
       end
-      object GroupBox8: TGroupBox
+      object gbStatoPiano: TGroupBox
         Left = 487
         Top = 159
         Width = 274
@@ -1965,7 +1965,7 @@ inherited fCorsia: TfCorsia
           WordWrap = True
         end
       end
-      object GroupBox1: TGroupBox
+      object gbStatoCorsia: TGroupBox
         Left = 9
         Top = 64
         Width = 268

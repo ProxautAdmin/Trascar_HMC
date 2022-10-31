@@ -1,7 +1,7 @@
 object FrameArticoliInLavorazione: TFrameArticoliInLavorazione
   Left = 0
   Top = 0
-  Width = 536
+  Width = 484
   Height = 304
   DoubleBuffered = True
   ParentDoubleBuffered = False
@@ -11,7 +11,7 @@ object FrameArticoliInLavorazione: TFrameArticoliInLavorazione
     AlignWithMargins = True
     Left = 3
     Top = 5
-    Width = 530
+    Width = 478
     Height = 294
     Margins.Top = 5
     Margins.Bottom = 5
@@ -21,12 +21,11 @@ object FrameArticoliInLavorazione: TFrameArticoliInLavorazione
     ParentDoubleBuffered = False
     TabOrder = 0
     VerticalAlignment = taAlignTop
-    ExplicitWidth = 392
-    ExplicitHeight = 277
+    ExplicitWidth = 530
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1
-      Width = 528
+      Width = 476
       Height = 292
       Align = alClient
       DataSource = DataSource1
@@ -82,7 +81,7 @@ object FrameArticoliInLavorazione: TFrameArticoliInLavorazione
           Title.Font.Height = -11
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
-          Width = 300
+          Width = 250
           Visible = True
         end
         item

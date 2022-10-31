@@ -222,7 +222,7 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
             <DependentOn>frame_ArticoliMP.h</DependentOn>
-            <BuildOrder>62</BuildOrder>
+            <BuildOrder>64</BuildOrder>
         </CppCompile>
         <CppCompile Include="frame_ArticoliSovrapposti.cpp">
             <Form>FrameSovrapposti</Form>
@@ -247,6 +247,13 @@
             <DependentOn>frame_modulo.h</DependentOn>
             <BuildOrder>49</BuildOrder>
         </None>
+        <CppCompile Include="frame_UDCinMateriePrime.cpp">
+            <Form>FrameUDCinMateriePrime</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+            <DependentOn>frame_UDCinMateriePrime.h</DependentOn>
+            <BuildOrder>62</BuildOrder>
+        </CppCompile>
         <CppCompile Include="GestAGVMidi.cpp">
             <Form>fGestAGVMidi</Form>
             <FormType>dfm</FormType>
@@ -538,64 +545,65 @@
             <BuildOrder>5</BuildOrder>
         </CppCompile>
         <FormResources Include="stato_pos.dfm"/>
-        <FormResources Include="SocketComunicazioneClient.dfm"/>
-        <FormResources Include="selectAgvframe.dfm"/>
         <FormResources Include="tipologia.dfm"/>
+        <FormResources Include="selectAgvframe.dfm"/>
+        <FormResources Include="SocketComunicazioneClient.dfm"/>
+        <FormResources Include="ZonaA1Frame.dfm"/>
         <FormResources Include="ZonaA1Frame_PosDirette.dfm"/>
-        <FormResources Include="UDClist.dfm"/>
         <FormResources Include="UDCDuplicati.dfm"/>
-        <FormResources Include="segnaliBaia.dfm"/>
+        <FormResources Include="UDClist.dfm"/>
         <FormResources Include="PosPrelievoPLC.dfm"/>
-        <FormResources Include="PosDepositoPLC.dfm"/>
-        <FormResources Include="PorteFumo.dfm"/>
         <FormResources Include="pos_UDC.dfm"/>
+        <FormResources Include="PorteFumo.dfm"/>
+        <FormResources Include="PosDepositoPLC.dfm"/>
         <FormResources Include="SceltaUDC.dfm"/>
-        <FormResources Include="ZonaA2Frame.dfm"/>
-        <FormResources Include="..\File Comuni\DBImpianto.dfm"/>
+        <FormResources Include="segnaliBaia.dfm"/>
         <FormResources Include="..\File Comuni\DB.dfm"/>
-        <FormResources Include="..\File Comuni\dmFunzioniComuniClientServer.dfm"/>
-        <FormResources Include="..\File Comuni\login.dfm"/>
-        <FormResources Include="..\File Comuni\ExtraFunction.dfm"/>
+        <FormResources Include="..\File Comuni\DBImpianto.dfm"/>
         <FormResources Include="ZonaIFrame.dfm"/>
-        <FormResources Include="ZonaDFrame.dfm"/>
+        <FormResources Include="..\File Comuni\login.dfm"/>
+        <FormResources Include="..\File Comuni\dmFunzioniComuniClientServer.dfm"/>
+        <FormResources Include="..\File Comuni\ExtraFunction.dfm"/>
         <FormResources Include="ZonaCFrame.dfm"/>
+        <FormResources Include="ZonaDFrame.dfm"/>
+        <FormResources Include="ZonaA2Frame.dfm"/>
         <FormResources Include="ZonaBFrame.dfm"/>
-        <FormResources Include="ZonaEFrame.dfm"/>
-        <FormResources Include="ZonaHFrame.dfm"/>
         <FormResources Include="ZonaGFrame.dfm"/>
+        <FormResources Include="ZonaHFrame.dfm"/>
+        <FormResources Include="ZonaEFrame.dfm"/>
         <FormResources Include="ZonaFFrame.dfm"/>
         <FormResources Include="configCBFrame.dfm"/>
-        <FormResources Include="config.dfm"/>
-        <FormResources Include="Chiusura.dfm"/>
         <FormResources Include="DataExchange.dfm"/>
+        <FormResources Include="Chiusura.dfm"/>
+        <FormResources Include="config.dfm"/>
         <FormResources Include="frame_ArticoliInLavorazione.dfm"/>
-        <FormResources Include="DBExtra.dfm"/>
+        <FormResources Include="frame_UDCinMateriePrime.dfm"/>
         <FormResources Include="DBClient.dfm"/>
-        <FormResources Include="ChildWin.dfm"/>
+        <FormResources Include="DBExtra.dfm"/>
         <FormResources Include="allarmi.dfm"/>
-        <FormResources Include="AGVFrameL.dfm"/>
-        <FormResources Include="AGV.dfm"/>
         <FormResources Include="AllarmiAttivi.dfm"/>
+        <FormResources Include="AGV.dfm"/>
+        <FormResources Include="AGVFrameL.dfm"/>
         <FormResources Include="CentroMissioni.dfm"/>
-        <FormResources Include="Batterie.dfm"/>
+        <FormResources Include="ChildWin.dfm"/>
         <FormResources Include="anagrafica_articoli.dfm"/>
-        <FormResources Include="frame_ArticoliSovrapposti.dfm"/>
-        <FormResources Include="missioni.dfm"/>
+        <FormResources Include="Batterie.dfm"/>
         <FormResources Include="Main.dfm"/>
-        <FormResources Include="log.dfm"/>
-        <FormResources Include="MSG.dfm"/>
-        <FormResources Include="port.dfm"/>
-        <FormResources Include="Password.dfm"/>
+        <FormResources Include="missioni.dfm"/>
         <FormResources Include="ins_Utenti.dfm"/>
-        <FormResources Include="GestAGVMidi.dfm"/>
+        <FormResources Include="log.dfm"/>
+        <FormResources Include="port.dfm"/>
+        <FormResources Include="MSG.dfm"/>
+        <FormResources Include="Password.dfm"/>
         <FormResources Include="frame_modulo.dfm"/>
+        <FormResources Include="GestAGVMidi.dfm"/>
+        <FormResources Include="frame_ArticoliSovrapposti.dfm"/>
         <FormResources Include="frame_info.dfm"/>
-        <FormResources Include="GestMissioni.dfm"/>
-        <FormResources Include="ins_UDC.dfm"/>
         <FormResources Include="ins_MssioniWMS.dfm"/>
+        <FormResources Include="ins_UDC.dfm"/>
+        <FormResources Include="GestMissioni.dfm"/>
         <FormResources Include="GestUser.dfm"/>
         <FormResources Include="frame_ArticoliMP.dfm"/>
-        <FormResources Include="ZonaA1Frame.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

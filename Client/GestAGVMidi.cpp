@@ -58,6 +58,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
     // crea e gestisci i frame
     posselezionata = 0;
     destselezionata = 0;
+    impila = 0;
     ttop = (MainForm->ScrollBox1->Height - 260 - 280 - PanelDest->Top - PanelTitle->Height) / 2; // -altezza frame-altezza panel4 fa un po' cagare
     ttop = 10;
     pos = MainForm->pos_udc;
@@ -316,7 +317,8 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
         }
     }
 
-    AggiornaDatiLocali();
+    // AggiornaDatiLocali();
+    cbLinea->Text = "01";
 
     pcPrel->TabIndex = 0;
     TimerRef->Enabled = true;
@@ -338,7 +340,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "J") {
-        TabVisibili(0, 0, 1, 0, 1, 0, 0, 0, 0);
+        TabVisibili(0, 0, 1, 0, 0, 0, 0, 0, 0);
         frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Prel"));
         if (frA2 != NULL) {
             frA2->AggiornaDati();
@@ -354,7 +356,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "H") {
-        TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
+        TabVisibili(0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
         frH = (TfrZonaH*)(FindComponent("frZonaHPrel"));
         if (frH != NULL) {
             frH->AggiornaDati();
@@ -503,7 +505,7 @@ void TfGestAGVMidi::TabVisibili(bool tab0, bool tab1, bool tab2, bool tab3, bool
 }
 
 void TfGestAGVMidi::AggiornaDatiLocali() {
-    dmDBImpianto->ClonaHMC_ORDINI_IN_LAVORAZIONE();
+    dmDBImpianto->ClonaHMC_ORDINI_IN_LAVORAZIONE(cbLinea->Text);
 }
 
 void __fastcall TfGestAGVMidi::BitBtnCloseClick(TObject * Sender)
@@ -524,20 +526,49 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
 
     // prel
     ZonaPrel = pcPrel->Pages[pcPrel->TabIndex]->Hint;
-    TornaPosPrelSelezionata(ZonaPrel, posprel, pianoprel, tipoposizione, idudc);
+    if (ZonaPrel == "F") {
+        SettaPianoSelezionatoPerZona(1, "F");
+    }
+    else
+        TornaPosPrelSelezionata(ZonaPrel, posprel, pianoprel, tipoposizione, idudc);
 
     // dep
     ZonaDep = pcDest->ActivePage->Hint;
     if ((ZonaPrel == "A")) { // && (ZonaDep == "H"))
-        if (dmDBImpianto->TornaIndiceImpilabilitadaIDUDC(idudc) == 1)
+        if ((dmDBImpianto->TornaIndiceImpilabilitadaIDUDC(idudc) == 1) && (ZonaDep != "B"))
             dmDBImpianto->TornaPosDepLiberaH("H", idudc, posdep, pianodep);
+        else if ((dmDBImpianto->TornaIndiceImpilabilitadaIDUDC(idudc) == 1) && (ZonaDep == "B")) {
+            if (Application->MessageBox(L"Vuoi portare un pallet impilabile all'avvolgitore?", L"Conferma", MB_YESNO) == IDYES)
+                dmDBImpianto->TornaPosDepLibera("B", posdep, pianodep);
+        }
         else
             dmDBImpianto->TornaPosDepLibera("B", posdep, pianodep);
     }
-    else if ((ZonaPrel == "J") && (ZonaDep == "I") && (tipoposizione == TIPOLOGIA_SCARTO))
-        dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_SCARTO);
-    else if ((ZonaPrel == "J") && (ZonaDep == "G"))
-        dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_PALLET);
+    else if (ZonaPrel == "J") {
+        if (tipoposizione == TIPOLOGIA_SCARTO)
+            dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_SCARTO);
+        else {
+            idudc = dmDB->RitornaUDCdaPosPiano(MainForm->pos_udc, 1);
+            if (idudc == 0) {
+                // se e' vuoto porto la selezione di J
+                ZonaPrel = "I";
+                posprel = dmDB->UDCPresenteInMagazzino(MainForm->trova_udc);
+                pianoprel = 1;
+                ZonaDep = "J";
+                posdep = MainForm->pos_udc;
+                pianodep = 1;
+            }
+            else {
+                // altrimenti prima porta via
+                ZonaPrel = "J";
+                TornaPosPrelSelezionata(ZonaPrel, posprel, pianoprel, tipoposizione, idudc);
+                ZonaDep = "G";
+                dmDBImpianto->TornaPosDepLibera("G", posdep, pianodep, TIPOLOGIA_PALLET);
+
+            }
+
+        }
+    }
     else if ((ZonaPrel == "I") && (ZonaDep == "J") && (tipoposizione == TIPOLOGIA_MATERIEPRIME))
         dmDBImpianto->TornaPosDepLibera(ZonaDep, posdep, pianodep, TIPOLOGIA_MATERIEPRIME);
     else
@@ -545,12 +576,18 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
 
     // genera cmissione
     if ((posprel > 0) && (posdep > 0) && (pianoprel > 0) && (pianodep > 0)) {
+        // se deposito g azzero
+        if (ZonaDep == "G") {
+            posdep = 0;
+            pianodep = 0;
+            CentroMis.ZonaDeposito = ZonaDep;
+        }
         CentroMis.posprel = posprel;
         CentroMis.posdep = posdep;
         CentroMis.pianoprel = pianoprel;
         CentroMis.pianodep = pianodep;
         CentroMis.h_prel = dmDB->RitornaAltezzedaPosizione(CentroMis.posprel, CentroMis.pianoprel, "HPREL");
-        if (ZonaDep == "G")
+        if (tipoposizione == TIPOLOGIA_PALLET)
             CentroMis.h_dep = pianodep * ClientData.ParametriFunzionali.altezza_pallet;
         else
             CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
@@ -560,7 +597,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         CentroMis.Priorita = cbPriorita->Text.ToIntDef(1);
         CentroMis.Agv = 1;
         CentroMis.IDUDC = dmDB->RitornaUDCdaPosPiano(CentroMis.posprel, CentroMis.pianoprel);
-        CentroMis.CorsiaDeposito = "";
+        CentroMis.CorsiaDeposito = " ";
         CentroMis.stato = 0;
         CentroMis.FilaInCorsiaDeposito = 0;
         CentroMis.TipoUDC = 0;
@@ -570,7 +607,39 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
         dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
     }
-    Close();
+
+    if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione != TIPOLOGIA_SCARTO)) {
+        CentroMis.ZonaDeposito = ZonaDep;
+        CentroMis.ZonaPrelievo = ZonaPrel;
+        CentroMis.posprel = dmDB->UDCPresenteInMagazzino(MainForm->trova_udc);
+        CentroMis.pianoprel = 1;
+        CentroMis.posdep = MainForm->pos_udc;
+        CentroMis.pianodep = 1;
+        CentroMis.IDUDC = MainForm->trova_udc;
+        CentroMis.h_prel = dmDB->RitornaAltezzedaPosizione(CentroMis.posprel, CentroMis.pianoprel, "HPREL");
+        if (tipoposizione == TIPOLOGIA_PALLET)
+            CentroMis.h_dep = pianodep * ClientData.ParametriFunzionali.altezza_pallet;
+        else
+            CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
+        CentroMis.TipoMissione = 0;
+        CentroMis.CodTipoMovimento = 0;
+        CentroMis.CodTipoMissione = 0;
+        CentroMis.Priorita = cbPriorita->Text.ToIntDef(1);
+        CentroMis.Agv = 1;
+
+        CentroMis.CorsiaDeposito = " ";
+        CentroMis.stato = 0;
+        CentroMis.FilaInCorsiaDeposito = 0;
+        CentroMis.TipoUDC = 0;
+        CentroMis.DestinazioneModuli = 0;
+        dmDB->GeneraCentroMissione(CentroMis);
+        // tolgo prenotazioni
+        dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
+        dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
+    }
+    MainForm->pos_udc = 0;
+    MainForm->trova_udc = 0;
+    // Close();
 
 }
 
@@ -584,14 +653,14 @@ void TfGestAGVMidi::TornaPosPrelSelezionata(AnsiString Zona, int &pos, int &pian
     tipoposizione = 0;
     idudc = 0;
 
-    AnsiString codudc = "";
+    AnsiString codudc = " ";
     try {
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
-        strsql.printf("Select idudc, pos, piano, tipoposizione from piani_view where selezionata>0 and zona='%s' ", Zona);
+        strsql.printf("Select idudc, pos, piano, tipoposizione from piani_view where selezionata > 0 and zona = '%s' order by pos, piano", Zona);
         ADOQuery->SQL->Text = strsql;
         ADOQuery->Open();
-        ADOQuery->Last();
+        ADOQuery->First();
         if (ADOQuery->RecordCount) {
             idudc = ADOQuery->FieldByName("idudc")->AsInteger;
             pos = ADOQuery->FieldByName("pos")->AsInteger;
@@ -606,6 +675,52 @@ void TfGestAGVMidi::TornaPosPrelSelezionata(AnsiString Zona, int &pos, int &pian
     return;
 }
 
+void TfGestAGVMidi::SettaPianoSelezionatoPerZona(int setta, AnsiString zona) {
+    // setta il campo selezionata sulla posizione data. Se viene passata la zone setta su tutta la zona
+    AnsiString stringa;
+    TADOQuery *ADOQuery;
+    int res;
+    try {
+        if (!dmDB->ADOConnection1->Connected)
+            return;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        stringa = "UPDATE piani_view SET Selezionata = " + IntToStr(setta);
+        stringa += " where idudc>0 and zona = '" + zona + "'";
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Text = stringa;
+        res = ADOQuery->ExecSQL();
+        ADOQuery->Close();
+        dmDB->LogMsg("Settata Zona " + zona + ", valore : " + IntToStr(setta));
+        delete ADOQuery;
+    }
+    catch (...) {
+    }
+}
+
+void TfGestAGVMidi::SettaPianoSelezionatoPerPos(int setta, int pos) {
+    // setta il campo selezionata sulla posizione data. Se viene passata la zone setta su tutta la zona
+    AnsiString stringa;
+    TADOQuery *ADOQuery;
+    int res;
+    try {
+        if (!dmDB->ADOConnection1->Connected)
+            return;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        stringa = "UPDATE piani_view SET Selezionata = " + IntToStr(setta);
+        stringa += " where pos = '" + IntToStr(pos) + "'";
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Text = stringa;
+        res = ADOQuery->ExecSQL();
+        ADOQuery->Close();
+        dmDB->LogMsg("Selezionata Pos " + IntToStr(pos) + ", valore : " + IntToStr(setta));
+        delete ADOQuery;
+    }
+    catch (...) {
+    }
+}
+
 void __fastcall TfGestAGVMidi::FormDestroy(TObject * Sender)
 {
     int numpos;
@@ -615,7 +730,7 @@ void __fastcall TfGestAGVMidi::FormDestroy(TObject * Sender)
      numpos = dmDB->RitornaNumPosDaPos(pos);
 
      for (int i = 1; i <= numpos; i++) {
-     frLoad = (TFGestAGVFrame*)(FindComponent("FGestAGVFrame" + IntToStr(i)));
+     frLoad = (TFGestAGVFrame*)(FindComponent(" FGestAGVFrame " + IntToStr(i)));
      if (frLoad != NULL) {
      delete frLoad;
      }
@@ -624,7 +739,7 @@ void __fastcall TfGestAGVMidi::FormDestroy(TObject * Sender)
 }
 
 // ---------------------------------------------------------------------------
-void __fastcall TfGestAGVMidi::btRefreshClick(TObject *Sender)
+void __fastcall TfGestAGVMidi::btRefreshClick(TObject * Sender)
 {
     AggiornaDatiLocali();
 }

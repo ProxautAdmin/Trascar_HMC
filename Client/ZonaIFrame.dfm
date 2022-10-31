@@ -11,7 +11,6 @@ object frZonaI: TfrZonaI
     Height = 324
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 317
     object pnPosI1: TPanel
       Tag = 201
       AlignWithMargins = True
@@ -212,7 +211,7 @@ object frZonaI: TfrZonaI
       object Label2: TLabel
         Left = 7
         Top = 12
-        Width = 121
+        Width = 90
         Height = 25
         AutoSize = False
         Caption = 'Selezione'
@@ -228,9 +227,9 @@ object frZonaI: TfrZonaI
         Layout = tlCenter
       end
       object leDescArticolo: TLabeledEdit
-        Left = 515
+        Left = 483
         Top = 12
-        Width = 326
+        Width = 373
         Height = 21
         AutoSelect = False
         AutoSize = False
@@ -249,7 +248,7 @@ object frZonaI: TfrZonaI
         EditLabel.Transparent = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -16
+        Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = []
         LabelPosition = lpLeft
@@ -260,7 +259,7 @@ object frZonaI: TfrZonaI
         TabOrder = 0
       end
       object leIdUDC: TLabeledEdit
-        Left = 159
+        Left = 127
         Top = 12
         Width = 96
         Height = 21
@@ -292,7 +291,7 @@ object frZonaI: TfrZonaI
         TabOrder = 1
       end
       object leCodArt: TLabeledEdit
-        Left = 327
+        Left = 295
         Top = 12
         Width = 96
         Height = 21
