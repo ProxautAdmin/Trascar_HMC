@@ -1,11 +1,10 @@
 object frZonaG: TfrZonaG
   Left = 0
   Top = 0
-  Width = 1079
+  Width = 451
   Height = 305
   Align = alClient
   TabOrder = 0
-  ExplicitWidth = 451
   object pnG: TPanel
     Left = 0
     Top = 0

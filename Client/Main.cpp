@@ -806,14 +806,14 @@ void __fastcall TMainForm::MainStatusBarDrawPanel(TStatusBar *StatusBar, TStatus
         break;
     case 4:
         if (ClientData.Plc[1].PlcConnesso) {
-            Panel->Text = "Siemens OK";
+            Panel->Text = "PLC Rulliera OK";
             if (!ClientData.ParametriFunzionali.Simula) {
                 pCanvas->Brush->Color = clLime;
                 pCanvas->Font->Color = clBlack;
             }
         }
         else {
-            Panel->Text = "Siemens KO";
+            Panel->Text = "PLC Rulliera KO";
             if (!ClientData.ParametriFunzionali.Simula) {
                 pCanvas->Brush->Color = clRed;
                 pCanvas->Font->Color = clWhite;
@@ -831,14 +831,14 @@ void __fastcall TMainForm::MainStatusBarDrawPanel(TStatusBar *StatusBar, TStatus
         break;
     case 5:
         if (ClientData.DatiPorte[1].PlcConnesso) {
-            Panel->Text = "Phoenix OK";
+            Panel->Text = "Porta OK";
             if (!ClientData.ParametriFunzionali.Simula) {
                 pCanvas->Brush->Color = clLime;
                 pCanvas->Font->Color = clBlack;
             }
         }
         else {
-            Panel->Text = "Phoenix KO";
+            Panel->Text = "Porta KO";
             if (!ClientData.ParametriFunzionali.Simula) {
                 pCanvas->Brush->Color = clRed;
                 pCanvas->Font->Color = clWhite;
@@ -2508,7 +2508,7 @@ void __fastcall TMainForm::Svuotacorsia1Click(TObject * Sender)
 {
     //
     int corsia;
-    if (Application->MessageBox(L"Are you sure you want to empty the Lane ? ", L"Confirm !!!", MB_YESNO) == IDYES) {
+	if (Application->MessageBox(L"Sei sicuro di voler svuotare la fila ? ", L"Conferma !!!", MB_YESNO) == IDYES) {
         corsia = dmDB->ReturnFilaDaPos(PopupMenuPos->Tag);
         dmDB->SvuotaCorsia(corsia);
         // aggiornamappa = 1 ;
@@ -2575,11 +2575,11 @@ void __fastcall TMainForm::svuotapos1Click(TObject * Sender)
     //
     TMenuItem *Item = (TMenuItem*) Sender;
     if ((Item != NULL) && (Item->Tag)) {
-        if (Application->MessageBox(L"Are you sure you want to empty the selected Position ? ", L"Confirm !!!", MB_YESNO) == IDYES) {
-            dmDB->SvuotaPos(Item->Tag);
+		if (Application->MessageBox(L"Sei sicuro di voler svuotare la posizione selezionata ? ", L"Conferma !!!", MB_YESNO) == IDYES) {
+			dmDB->SvuotaPos(Item->Tag);
             // aggiornamappa = 1 ;
         }
-    }
+	}
 
 }
 

@@ -244,7 +244,7 @@ void __fastcall TfCorsia::frScaffale1MyShape4MouseUp(TObject * Sender, TMouseBut
 
 void __fastcall TfCorsia::BitBtn3Click(TObject * Sender)
 {
-    if (Application->MessageBox(L"Are you sure you want to empty the Lane ?", L"Confirm!!!", MB_YESNO) == IDYES) {
+	if (Application->MessageBox(L"Sei sicuro di voler svuotare la fila ?", L"Confirm!!!", MB_YESNO) == IDYES) {
         dmDB->SvuotaCorsia(MainForm->corsia_udc);
         VisualizzaPosizioneUDC();
         MainForm->aggiornamappa = 1;
@@ -341,7 +341,7 @@ void __fastcall TfCorsia::BitBtnChangeClick(TObject * Sender)
 
 void __fastcall TfCorsia::BitBtn2Click(TObject * Sender)
 {
-    if (Application->MessageBox(L"Are you sure you want to empty the Position ?", L"Confirm!!!", MB_YESNO) == IDYES) {
+	if (Application->MessageBox(L"Sei sicuro di voler svuotare la posizione ?", L"Confirm!!!", MB_YESNO) == IDYES) {
         dmDB->SvuotaPiano(MainForm->pos_udc, pianosel + 1);
         VisualizzaPosizioneUDC();
         // MainForm->aggiornamappa = 1 ;

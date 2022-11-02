@@ -972,7 +972,7 @@ inherited fGestAGVMidi: TfGestAGVMidi
         Top = 1
         Width = 933
         Height = 388
-        ActivePage = tsZonaA2Prel
+        ActivePage = tsZonaDPrel
         Align = alClient
         MultiLine = True
         TabOrder = 0
@@ -980,11 +980,19 @@ inherited fGestAGVMidi: TfGestAGVMidi
         object tsZonaA1Prel: TTabSheet
           Hint = 'A'
           Caption = 'Prod. Finito (A1)'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaA2Prel: TTabSheet
           Hint = 'J'
           Caption = 'Box In (A2)'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaGPrel: TTabSheet
           Hint = 'G'
@@ -1017,10 +1025,14 @@ inherited fGestAGVMidi: TfGestAGVMidi
           Hint = 'D'
           Caption = 'Deposito (D)'
           ImageIndex = 5
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaCPrel: TTabSheet
           Hint = 'C'
-          Caption = 'Rulliera C'
+          Caption = 'Fasciat. Out (C)'
           ImageIndex = 6
           ExplicitLeft = 0
           ExplicitTop = 0
@@ -1029,7 +1041,7 @@ inherited fGestAGVMidi: TfGestAGVMidi
         end
         object tsZonaBPrel: TTabSheet
           Hint = 'B'
-          Caption = 'Rulliera B'
+          Caption = 'Fasciat. In (B)'
           ImageIndex = 7
           ExplicitLeft = 0
           ExplicitTop = 0
@@ -1038,7 +1050,7 @@ inherited fGestAGVMidi: TfGestAGVMidi
         end
         object tsZonaEPrel: TTabSheet
           Hint = 'E'
-          Caption = 'Rulliera E'
+          Caption = 'Pallet In (E)'
           ImageIndex = 8
           ExplicitLeft = 0
           ExplicitTop = 0
@@ -1127,58 +1139,98 @@ inherited fGestAGVMidi: TfGestAGVMidi
         Top = 1
         Width = 933
         Height = 388
-        ActivePage = tsZonaFDest
+        ActivePage = tsZonaBDest
         Align = alClient
         TabOrder = 1
         TabWidth = 150
         object tsZonaA1Dest: TTabSheet
           Hint = 'A'
           Caption = 'Prod. Finito (A1)'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaA2Dest: TTabSheet
           Hint = 'J'
           Caption = 'Box In (A2)'
           ImageIndex = 5
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaGDest: TTabSheet
           Hint = 'G'
           Caption = 'Pallet (G)'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaHDest: TTabSheet
           Hint = 'H'
           Caption = 'Dep. Sovrap.(H)'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaIDest: TTabSheet
           Hint = 'I'
           Caption = 'Box Out (I)'
           ImageIndex = 3
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaDDest: TTabSheet
           Hint = 'D'
           Caption = 'Deposito (D)'
           ImageIndex = 4
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaCDest: TTabSheet
           Hint = 'C'
-          Caption = 'Rulliera C'
+          Caption = 'Fasciat. Out (C)'
           ImageIndex = 6
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaBDest: TTabSheet
           Hint = 'B'
-          Caption = 'Rulliera B'
+          Caption = 'Fasciat. In (B)'
           ImageIndex = 7
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaEDest: TTabSheet
           Hint = 'E'
-          Caption = 'Rulliera E'
+          Caption = 'Pallet In (E)'
           ImageIndex = 8
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
         object tsZonaFDest: TTabSheet
           Hint = 'F'
           Caption = 'Pallet Trascar (F)'
           ImageIndex = 9
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
         end
       end
     end

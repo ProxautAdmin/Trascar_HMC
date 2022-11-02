@@ -572,12 +572,13 @@
         <FormResources Include="ZonaHFrame.dfm"/>
         <FormResources Include="ZonaEFrame.dfm"/>
         <FormResources Include="ZonaFFrame.dfm"/>
+        <FormResources Include="port.dfm"/>
         <FormResources Include="configCBFrame.dfm"/>
         <FormResources Include="DataExchange.dfm"/>
         <FormResources Include="Chiusura.dfm"/>
         <FormResources Include="config.dfm"/>
         <FormResources Include="frame_ArticoliInLavorazione.dfm"/>
-        <FormResources Include="frame_UDCinMateriePrime.dfm"/>
+        <FormResources Include="frame_ArticoliMP.dfm"/>
         <FormResources Include="DBClient.dfm"/>
         <FormResources Include="DBExtra.dfm"/>
         <FormResources Include="allarmi.dfm"/>
@@ -588,22 +589,21 @@
         <FormResources Include="ChildWin.dfm"/>
         <FormResources Include="anagrafica_articoli.dfm"/>
         <FormResources Include="Batterie.dfm"/>
-        <FormResources Include="Main.dfm"/>
-        <FormResources Include="missioni.dfm"/>
-        <FormResources Include="ins_Utenti.dfm"/>
         <FormResources Include="log.dfm"/>
-        <FormResources Include="port.dfm"/>
-        <FormResources Include="MSG.dfm"/>
+        <FormResources Include="Main.dfm"/>
+        <FormResources Include="ins_UDC.dfm"/>
+        <FormResources Include="ins_Utenti.dfm"/>
         <FormResources Include="Password.dfm"/>
+        <FormResources Include="missioni.dfm"/>
+        <FormResources Include="MSG.dfm"/>
         <FormResources Include="frame_modulo.dfm"/>
-        <FormResources Include="GestAGVMidi.dfm"/>
+        <FormResources Include="frame_UDCinMateriePrime.dfm"/>
         <FormResources Include="frame_ArticoliSovrapposti.dfm"/>
         <FormResources Include="frame_info.dfm"/>
-        <FormResources Include="ins_MssioniWMS.dfm"/>
-        <FormResources Include="ins_UDC.dfm"/>
-        <FormResources Include="GestMissioni.dfm"/>
         <FormResources Include="GestUser.dfm"/>
-        <FormResources Include="frame_ArticoliMP.dfm"/>
+        <FormResources Include="ins_MssioniWMS.dfm"/>
+        <FormResources Include="GestAGVMidi.dfm"/>
+        <FormResources Include="GestMissioni.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

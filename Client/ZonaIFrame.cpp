@@ -27,6 +27,7 @@ void TfrZonaI::AggiornaDati() {
     int numeroelementi = 10;
     int idx = 0, trovato = 0; ;
     int pos;
+    int numpostazioni = 10;
     AnsiString str;
     TPanel *Pan;
     TRecordList TabPosizioni;
