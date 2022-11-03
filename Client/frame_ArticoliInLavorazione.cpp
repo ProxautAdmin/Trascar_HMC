@@ -7,6 +7,7 @@
 #include "dmFunzioniComuniClientServer.h"
 #include "main.h"
 #include "db.h"
+#include "GestAGVMidi.h"
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -39,5 +40,10 @@ void __fastcall TFrameArticoliInLavorazione::btScegliClick(TObject *Sender) {
 void __fastcall TFrameArticoliInLavorazione::FrameEnter(TObject *Sender)
 {
     RiempiCampi();
+}
+
+// ---------------------------------------------------------------------------
+void __fastcall TFrameArticoliInLavorazione::DBGrid1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y) {
+   // fGestAGVMidi->cbLinea->Text = "03";
 }
 // ---------------------------------------------------------------------------

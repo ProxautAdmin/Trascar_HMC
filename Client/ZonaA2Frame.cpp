@@ -23,6 +23,10 @@ __fastcall TfrZonaA2::TfrZonaA2(TComponent* Owner) : TFrame(Owner) {
     FrameUDCinMateriePrime->FrameEnter(this);
 }
 
+void TfrZonaA2::AggiornaGriglia() {
+    FrameUDCinMateriePrime->FrameEnter(this);
+}
+
 // ---------------------------------------------------------------------------
 
 void TfrZonaA2::AggiornaDati() {

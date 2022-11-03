@@ -38,6 +38,7 @@ private:	// User declarations
 public:		// User declarations
     __fastcall TfrZonaA2(TComponent* Owner);
     void AggiornaDati();
+    void AggiornaGriglia();
             bool AbilitaConferma;
 
 

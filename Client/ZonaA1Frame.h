@@ -52,6 +52,7 @@ private: // User declarations
     __fastcall TfrZonaA1(TComponent* Owner);
 	void AggiornaDati() ;
 	int CercaConCodart(int riga);
+    void AggiornaGriglia() ;
 
     bool AbilitaConferma;
 

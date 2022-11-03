@@ -1,22 +1,23 @@
 object frZonaI: TfrZonaI
   Left = 0
   Top = 0
-  Width = 1275
+  Width = 1311
   Height = 324
   TabOrder = 0
   object pnI: TPanel
     Left = 0
     Top = 0
-    Width = 1275
+    Width = 1311
     Height = 324
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 1275
     object pnPosI1: TPanel
       Tag = 201
       AlignWithMargins = True
-      Left = 30
-      Top = 7
-      Width = 160
+      Left = 758
+      Top = 130
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -31,9 +32,9 @@ object frZonaI: TfrZonaI
     object pnPosI2: TPanel
       Tag = 202
       AlignWithMargins = True
-      Left = 196
-      Top = 7
-      Width = 160
+      Left = 606
+      Top = 130
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -48,9 +49,9 @@ object frZonaI: TfrZonaI
     object pnPosI3: TPanel
       Tag = 203
       AlignWithMargins = True
-      Left = 357
-      Top = 7
-      Width = 160
+      Left = 456
+      Top = 130
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -65,9 +66,9 @@ object frZonaI: TfrZonaI
     object pnPosI4: TPanel
       Tag = 204
       AlignWithMargins = True
-      Left = 523
-      Top = 7
-      Width = 160
+      Left = 306
+      Top = 130
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -82,9 +83,9 @@ object frZonaI: TfrZonaI
     object pnPosI5: TPanel
       Tag = 205
       AlignWithMargins = True
-      Left = 689
-      Top = 7
-      Width = 160
+      Left = 157
+      Top = 130
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -99,9 +100,9 @@ object frZonaI: TfrZonaI
     object pnPosI6: TPanel
       Tag = 206
       AlignWithMargins = True
-      Left = 30
+      Left = 8
       Top = 130
-      Width = 160
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -116,9 +117,9 @@ object frZonaI: TfrZonaI
     object pnPosI7: TPanel
       Tag = 207
       AlignWithMargins = True
-      Left = 196
-      Top = 130
-      Width = 160
+      Left = 758
+      Top = 7
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -133,9 +134,9 @@ object frZonaI: TfrZonaI
     object pnPosI8: TPanel
       Tag = 208
       AlignWithMargins = True
-      Left = 357
-      Top = 130
-      Width = 160
+      Left = 606
+      Top = 7
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -150,9 +151,9 @@ object frZonaI: TfrZonaI
     object pnPosI9: TPanel
       Tag = 209
       AlignWithMargins = True
-      Left = 523
-      Top = 130
-      Width = 160
+      Left = 456
+      Top = 7
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -167,9 +168,9 @@ object frZonaI: TfrZonaI
     object pnPosI10: TPanel
       Tag = 210
       AlignWithMargins = True
-      Left = 689
-      Top = 130
-      Width = 160
+      Left = 306
+      Top = 7
+      Width = 150
       Height = 117
       BorderWidth = 10
       BorderStyle = bsSingle
@@ -182,12 +183,12 @@ object frZonaI: TfrZonaI
       OnMouseUp = pnPosIMouseUp
     end
     inline FrameMatPrime: TFrameMatPrime
-      Left = 870
+      Left = 911
       Top = 7
       Width = 400
       Height = 310
       TabOrder = 10
-      ExplicitLeft = 870
+      ExplicitLeft = 911
       ExplicitTop = 7
       ExplicitWidth = 400
       ExplicitHeight = 310
@@ -205,7 +206,7 @@ object frZonaI: TfrZonaI
     object pInfoUDC: TPanel
       Left = 8
       Top = 254
-      Width = 859
+      Width = 897
       Height = 57
       TabOrder = 11
       object Label2: TLabel
@@ -229,7 +230,7 @@ object frZonaI: TfrZonaI
       object leDescArticolo: TLabeledEdit
         Left = 483
         Top = 12
-        Width = 373
+        Width = 398
         Height = 21
         AutoSelect = False
         AutoSize = False
@@ -322,6 +323,40 @@ object frZonaI: TfrZonaI
         ReadOnly = True
         TabOrder = 2
       end
+    end
+    object pnPosI11: TPanel
+      Tag = 211
+      AlignWithMargins = True
+      Left = 157
+      Top = 7
+      Width = 150
+      Height = 117
+      BorderWidth = 10
+      BorderStyle = bsSingle
+      Caption = 'Posizione 11'
+      Color = clHighlightText
+      DoubleBuffered = True
+      ParentBackground = False
+      ParentDoubleBuffered = False
+      TabOrder = 12
+      OnMouseUp = pnPosIMouseUp
+    end
+    object pnPosI12: TPanel
+      Tag = 212
+      AlignWithMargins = True
+      Left = 8
+      Top = 7
+      Width = 150
+      Height = 117
+      BorderWidth = 10
+      BorderStyle = bsSingle
+      Caption = 'Posizione 12'
+      Color = clHighlightText
+      DoubleBuffered = True
+      ParentBackground = False
+      ParentDoubleBuffered = False
+      TabOrder = 13
+      OnMouseUp = pnPosIMouseUp
     end
   end
 end

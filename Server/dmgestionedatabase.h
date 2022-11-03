@@ -52,7 +52,7 @@ private: // User declarations
 	int GeneraCMDaGaA1(int val);
 	int GeneraCMDaHaB(int val);
 	int GeneraCMDaIaA2(int val);
-    int GeneraCMDaHaBFineProduzione(int val);
+
 
 	int minuto_prec, letto_data_peso_campione;
 	AnsiString DataOraPesoCampione;

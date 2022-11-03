@@ -61,8 +61,9 @@ __published: // IDE-managed Components
     TTabSheet *tsZonaFDest;
     TLabel *Label1;
     TComboBox *cbPriorita;
-    TComboBox *cbLinea;
+    TPanel *pLinea;
     TLabel *Label2;
+    TComboBox *cbLinea;
 
     void __fastcall TimerRefTimer(TObject *Sender);
     void __fastcall BitBtnCloseClick(TObject *Sender);

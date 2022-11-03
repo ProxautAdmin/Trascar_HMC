@@ -23,8 +23,12 @@ __fastcall TfrZonaI::TfrZonaI(TComponent* Owner) : TFrame(Owner) {
     FrameMatPrime->FrameEnter(this);
 }
 
+void TfrZonaI::AggiornaGriglia() {
+    FrameMatPrime->FrameEnter(this);
+}
+
 void TfrZonaI::AggiornaDati() {
-    int numeroelementi = 10;
+    int numeroelementi = 12;
     int idx = 0, trovato = 0; ;
     int pos;
     int numpostazioni = 10;
@@ -68,10 +72,10 @@ void TfrZonaI::AggiornaDati() {
                         Pan->Caption = "SCARTO";
                     }
                     else if (TabPosizioni[idx]["IDUDC"].ToIntDef(0) == 0) {
-                        Pan->Caption = "Pos." + IntToStr(j) + " (" + IntToStr(Pan->Tag) + ")";
+                        Pan->Caption = "Pos." + IntToStr((numeroelementi - j) + 1) + " (" + IntToStr(Pan->Tag) + ")";
                     }
                     else {
-                        Pan->Caption = "Pos." + IntToStr(j) + " - " + IntToStr(TabPosizioni[idx]["IDUDC"].ToIntDef(0));
+                        Pan->Caption = "Pos." + IntToStr((numeroelementi - j) + 1) + " - " + IntToStr(TabPosizioni[idx]["IDUDC"].ToIntDef(0));
                     }
                     Pan->Hint = TabPosizioni[idx]["IDUDC"].ToIntDef(0);
                 }

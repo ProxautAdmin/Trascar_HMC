@@ -980,91 +980,51 @@ inherited fGestAGVMidi: TfGestAGVMidi
         object tsZonaA1Prel: TTabSheet
           Hint = 'A'
           Caption = 'Prod. Finito (A1)'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaA2Prel: TTabSheet
           Hint = 'J'
           Caption = 'Box In (A2)'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaGPrel: TTabSheet
           Hint = 'G'
           Caption = 'Pallet (G)'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaHPrel: TTabSheet
           Hint = 'H'
           Caption = 'Dep. Sovrap.(H)'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaIPrel: TTabSheet
           Hint = 'I'
           Caption = 'Box Out (I)'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaDPrel: TTabSheet
           Hint = 'D'
           Caption = 'Deposito (D)'
           ImageIndex = 5
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaCPrel: TTabSheet
           Hint = 'C'
           Caption = 'Fasciat. Out (C)'
           ImageIndex = 6
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaBPrel: TTabSheet
           Hint = 'B'
           Caption = 'Fasciat. In (B)'
           ImageIndex = 7
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaEPrel: TTabSheet
           Hint = 'E'
           Caption = 'Pallet In (E)'
           ImageIndex = 8
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaFPrel: TTabSheet
           Hint = 'F'
           Caption = 'Pallet Trascar (F)'
           ImageIndex = 9
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
       object pnOptionPrel: TPanel
@@ -1081,13 +1041,6 @@ inherited fGestAGVMidi: TfGestAGVMidi
           Height = 19
           Caption = 'Priorita'
         end
-        object Label2: TLabel
-          Left = 24
-          Top = 245
-          Width = 143
-          Height = 19
-          Caption = 'Linea da Aggiornare'
-        end
         object cbPriorita: TComboBox
           Left = 24
           Top = 147
@@ -1097,22 +1050,36 @@ inherited fGestAGVMidi: TfGestAGVMidi
           DropDownCount = 9
           TabOrder = 0
         end
-        object cbLinea: TComboBox
-          Left = 24
-          Top = 283
-          Width = 145
-          Height = 27
-          AutoDropDown = True
-          DropDownCount = 9
+        object pLinea: TPanel
+          Left = 6
+          Top = 208
+          Width = 176
+          Height = 105
           TabOrder = 1
-          Items.Strings = (
-            '01'
-            '02'
-            '03'
-            '04'
-            '05'
-            '06'
-            '07')
+          object Label2: TLabel
+            Left = 15
+            Top = 14
+            Width = 143
+            Height = 19
+            Caption = 'Linea da Aggiornare'
+          end
+          object cbLinea: TComboBox
+            Left = 13
+            Top = 62
+            Width = 145
+            Height = 27
+            AutoDropDown = True
+            DropDownCount = 9
+            TabOrder = 0
+            Items.Strings = (
+              '01'
+              '02'
+              '03'
+              '04'
+              '05'
+              '06'
+              '07')
+          end
         end
       end
     end
@@ -1139,98 +1106,58 @@ inherited fGestAGVMidi: TfGestAGVMidi
         Top = 1
         Width = 933
         Height = 388
-        ActivePage = tsZonaBDest
+        ActivePage = tsZonaHDest
         Align = alClient
         TabOrder = 1
         TabWidth = 150
         object tsZonaA1Dest: TTabSheet
           Hint = 'A'
           Caption = 'Prod. Finito (A1)'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaA2Dest: TTabSheet
           Hint = 'J'
           Caption = 'Box In (A2)'
           ImageIndex = 5
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaGDest: TTabSheet
           Hint = 'G'
           Caption = 'Pallet (G)'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaHDest: TTabSheet
           Hint = 'H'
           Caption = 'Dep. Sovrap.(H)'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaIDest: TTabSheet
           Hint = 'I'
           Caption = 'Box Out (I)'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaDDest: TTabSheet
           Hint = 'D'
           Caption = 'Deposito (D)'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaCDest: TTabSheet
           Hint = 'C'
           Caption = 'Fasciat. Out (C)'
           ImageIndex = 6
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaBDest: TTabSheet
           Hint = 'B'
           Caption = 'Fasciat. In (B)'
           ImageIndex = 7
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaEDest: TTabSheet
           Hint = 'E'
           Caption = 'Pallet In (E)'
           ImageIndex = 8
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaFDest: TTabSheet
           Hint = 'F'
           Caption = 'Pallet Trascar (F)'
           ImageIndex = 9
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
     end

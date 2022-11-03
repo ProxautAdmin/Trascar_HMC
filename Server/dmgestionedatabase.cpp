@@ -48,8 +48,9 @@ void __fastcall TdmDBServer::TimerMissioniDBTimer(TObject * Sender) {
         if (dmDB->ContaMissioniAttive(0) < ClientData.ParametriFunzionali.NumMissioniLimite) {
             // genera missioni da cm
             checkzonah = RicercaNuovaMissionedaGenerare(0);
-            if (checkzonah > 0)
-                GeneraCMDaHaBFineProduzione(checkzonah);
+            if (checkzonah > 0)   {
+           //     GeneraCMDaHaBFineProduzione(checkzonah);
+           }
         }
     }
 
@@ -385,65 +386,6 @@ int TdmDBServer::GeneraCMDaHaB(int val) {
 
                         if ((cm.posdep > 0) && (cm.pianodep > 0) && (cm.h_dep > 0)) {
                             cm.posprel = dmDBImpianto->CercaPrelievoH();
-                            if (cm.posprel > 0) {
-                                cm.pianoprel = 1;
-                                cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
-                                if (dmDB->PresenzaCentroMissione(cm.posprel, 0) == 0) {
-                                    if (dmDB->PosPresenteMissioneAttiva(cm.posprel) == 0) {
-                                        res = dmDB->GeneraCentroMissione(cm);
-                                    }
-                                }
-                                if (res > 0) {
-                                    // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
-                                    ok_genera = 1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
-    }
-    catch (...) {}
-    return res;
-}
-
-int TdmDBServer::GeneraCMDaHaBFineProduzione(int val) {
-    TCentroMissione cm;
-    AnsiString strsql;
-    int tipo_mis, agv;
-    int id_articolo, IDPlc;
-    TUDC UDCMissione;
-    int i, ok_genera = 0, idudc, idudc2, res = 0, piano_dep = 0;
-    int idx_plc, idx;
-
-    try {
-        idx = 1; // fisso
-        idx_plc = IDX_PLCDEPOSITO; // metti che ci siano altri indici cosi' lo tratto come voglio
-        if ((ClientData.Plc[idx_plc].Deposito[idx][1].Ready) && (!ClientData.Plc[idx_plc].Deposito[idx][1].InAllarme) && (ClientData.Plc[idx_plc].Deposito[idx][1].ProntaAlDeposito)) {
-            if (1 == 1) { // (dmDB->PresenzaCentroMissione(ClientData.Plc[idx_plc].Deposito[idx][1].pos, 0) == 0) {
-                if (1 == 1) { // if (dmDB->PosPresenteMissioneAttiva(ClientData.Plc[idx_plc].Deposito[idx][1].pos) == 0) {
-                    // per limitare la generazione delle missioni un ciclo alla volta, controllo che ok_genera=0, in questo modo scorre i record finche'
-                    // o sono finiti o ne ha trovato uno buono, altrimenti potrebbe fermarsi a generare anche se potrebbe proseguire
-                    if (ok_genera == 0) {
-                        cm.TipoMissione = 0;
-                        cm.CodTipoMovimento = 0;
-                        cm.CodTipoMissione = 1;
-                        cm.Agv = 1;
-                        cm.IDUDC = val; // ???
-                        cm.TipoUDC = 0; // ??
-                        cm.stato = 0;
-                        cm.Priorita = dmDB->priorita_missioni[3];
-
-                        cm.posdep = ClientData.Plc[idx_plc].Deposito[idx][1].pos;
-                        cm.pianodep = 1;
-                        cm.h_dep = dmDB->RitornaAltezzedaPosizione(cm.posdep, cm.pianodep, "HDEP");
-                        // cm.corsia_prel = dmDB->FilaPosizione(m.posprel);
-
-                        if ((cm.posdep > 0) && (cm.pianodep > 0) && (cm.h_dep > 0)) {
-                            cm.posprel = dmDBImpianto->CercaUDCinH(cm.IDUDC);
                             if (cm.posprel > 0) {
                                 cm.pianoprel = 1;
                                 cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");

@@ -347,9 +347,9 @@ object frZonaA1: TfrZonaA1
       Lines.Strings = (
         '- Cick su pieno per selezionare'
         '- Cick su posizione selezionata per des.'
-        '- Doppio click per svuotare '
+        '- Doppio click per car/scar '
         ''
-        'NB: UDC 1= pallet')
+        'NB: UDC 1= pallet vuoto')
       ParentDoubleBuffered = False
       ParentFont = False
       TabOrder = 9

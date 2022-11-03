@@ -25,6 +25,7 @@ __published:	// IDE-managed Components
     TDataSource *DataSource1;
     void __fastcall btScegliClick(TObject *Sender);
     void __fastcall FrameEnter(TObject *Sender);
+    void __fastcall DBGrid1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 
 private:	// User declarations
     int ccont;

@@ -21,7 +21,6 @@ object FrameArticoliInLavorazione: TFrameArticoliInLavorazione
     ParentDoubleBuffered = False
     TabOrder = 0
     VerticalAlignment = taAlignTop
-    ExplicitWidth = 530
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1
@@ -36,6 +35,7 @@ object FrameArticoliInLavorazione: TFrameArticoliInLavorazione
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnMouseUp = DBGrid1MouseUp
       Columns = <
         item
           Expanded = False

@@ -38,6 +38,8 @@ __published: // IDE-managed Components
     TLabeledEdit *leDescArticolo;
     TLabeledEdit *leIdUDC;
     TLabeledEdit *leCodArt;
+    TPanel *pnPosI11;
+    TPanel *pnPosI12;
 
     void __fastcall pnPosIMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y);
 
@@ -47,6 +49,7 @@ private: // User declarations
     void AggiornaDati();
     bool AbilitaConferma ;
     int CercaConCodart(AnsiString CodArt) ;
+    void AggiornaGriglia() ;
 };
 
 // ---------------------------------------------------------------------------
