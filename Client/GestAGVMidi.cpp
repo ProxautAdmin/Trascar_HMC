@@ -65,7 +65,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
     // PanelPrel->Height = gbMain->Height / 2;
     PanelPrel->Top = 0;
     PanelPrel->Left = 0;
-    dmExtraFunction->ComboScelte(cbPriorita, 9, 1, 1);
+    dmExtraFunction->ComboScelte(cbPriorita, 9, 3, 1);
 
     // PREL
     // A1
@@ -460,13 +460,16 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     // refresh griglie o dati
     if (pcPrel->ActivePage->Hint == "A") {
         pLinea->Visible = true;
+        btRefresh->Enabled = true;
         if (zonascelta != "A") {
             pcDest->TabIndex = 0;
         }
         zonascelta = "A";
+
     }
     else if (pcPrel->ActivePage->Hint == "J") {
-        pLinea->Visible = true;
+        pLinea->Visible = false;
+        btRefresh->Enabled = false;
         if (zonascelta != "J") {
             if (frA2 != NULL) {
                 frA2->AggiornaGriglia();
@@ -476,6 +479,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else {
         pLinea->Visible = false;
+        btRefresh->Enabled = false;
         zonascelta = "";
     }
 
@@ -559,7 +563,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
     TADOQuery *ADOQuery;
     AnsiString strsql, ZonaPrel, ZonaDep;
     bool chiudi = true;
-    int posprel = 0, pianoprel = 0, posdep = 0, pianodep = 0, tipoposizione, idudc;
+    int posprel = 0, pianoprel = 0, posdep = 0, pianodep = 0, tipoposizione, tipoposizionedep, idudc;
 
     // prel
     ZonaPrel = pcPrel->Pages[pcPrel->TabIndex]->Hint;
@@ -589,7 +593,9 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
             if (idudc == 0) {
                 // se e' vuoto porto la selezione di J
                 ZonaPrel = "I";
-                posprel = dmDB->UDCPresenteInMagazzino(MainForm->trova_udc);
+                posprel = dmDBImpianto->UDCPresenteInMagazzinoPerTipo(MainForm->trova_udc, TIPOLOGIA_MATERIEPRIME);
+                if (posprel == 0)
+                    ShowMessage("Materia prima non trovata, missione non creata");
                 pianoprel = 1;
                 ZonaDep = "J";
                 posdep = MainForm->pos_udc;
@@ -614,7 +620,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
     // genera cmissione
     if ((posprel > 0) && (posdep > 0) && (pianoprel > 0) && (pianodep > 0)) {
         // se deposito g azzero
-        if ((ZonaDep == "G") && (tipoposizione == TIPOLOGIA_PALLET)) {
+        if ((ZonaDep == "G") && (ZonaPrel == "J")) {
             posdep = 0;
             pianodep = 0;
             CentroMis.ZonaDeposito = ZonaDep;
@@ -624,10 +630,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         CentroMis.pianoprel = pianoprel;
         CentroMis.pianodep = pianodep;
         CentroMis.h_prel = dmDB->RitornaAltezzedaPosizione(CentroMis.posprel, CentroMis.pianoprel, "HPREL");
-        if (tipoposizione == TIPOLOGIA_PALLET)
-            CentroMis.h_dep = pianodep * ClientData.ParametriFunzionali.altezza_pallet;
-        else
-            CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
+        CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
         CentroMis.TipoMissione = 0;
         CentroMis.CodTipoMovimento = 0;
         CentroMis.CodTipoMissione = 0;
@@ -639,29 +642,32 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         CentroMis.FilaInCorsiaDeposito = 0;
         CentroMis.TipoUDC = 0;
         CentroMis.DestinazioneModuli = 0;
-        dmDB->GeneraCentroMissione(CentroMis);
-        // tolgo prenotazioni
-        dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
-        dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
+        if (dmDB->PresenzaCentroMissionePerPosizioni(CentroMis.posprel, CentroMis.posdep, 0) == 0) {
+            dmDB->GeneraCentroMissione(CentroMis);
+            // tolgo prenotazioni
+            dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
+            dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
+        }
+        else {
+            ShowMessage("PreMissione gia' creata, operazione annullata");
+        }
     }
 
     if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione != TIPOLOGIA_SCARTO)) {
-        CentroMis.ZonaDeposito = ZonaDep;
-        CentroMis.ZonaPrelievo = ZonaPrel;
-        CentroMis.posprel = dmDB->UDCPresenteInMagazzino(MainForm->trova_udc);
+        CentroMis.ZonaDeposito = ZonaPrel ;
+        CentroMis.ZonaPrelievo ="I" ;
+        CentroMis.posprel =      dmDBImpianto->UDCPresenteInMagazzinoPerTipo(MainForm->trova_udc, TIPOLOGIA_MATERIEPRIME);
+        // dmDB->UDCPresenteInMagazzino(MainForm->trova_udc);
         CentroMis.pianoprel = 1;
         CentroMis.posdep = MainForm->pos_udc;
         CentroMis.pianodep = 1;
-        CentroMis.IDUDC = MainForm->trova_udc;
+        CentroMis.IDUDC = 1; // porto sempre un vuoto MainForm->trova_udc;
         CentroMis.h_prel = dmDB->RitornaAltezzedaPosizione(CentroMis.posprel, CentroMis.pianoprel, "HPREL");
-        if (tipoposizione == TIPOLOGIA_PALLET)
-            CentroMis.h_dep = pianodep * ClientData.ParametriFunzionali.altezza_pallet;
-        else
-            CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
+        CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
         CentroMis.TipoMissione = 0;
         CentroMis.CodTipoMovimento = 0;
         CentroMis.CodTipoMissione = 0;
-        CentroMis.Priorita = cbPriorita->Text.ToIntDef(1);
+        CentroMis.Priorita = cbPriorita->Text.ToIntDef(1) - 1;
         CentroMis.Agv = 1;
 
         CentroMis.CorsiaDeposito = " ";
@@ -669,13 +675,19 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         CentroMis.FilaInCorsiaDeposito = 0;
         CentroMis.TipoUDC = 0;
         CentroMis.DestinazioneModuli = 0;
-        dmDB->GeneraCentroMissione(CentroMis);
-        // tolgo prenotazioni
-        dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
-        dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
+        if (dmDB->PresenzaCentroMissionePerPosizioni(CentroMis.posprel, CentroMis.posdep, 0) == 0) {
+            dmDB->GeneraCentroMissione(CentroMis);
+            // tolgo prenotazioni
+            dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
+            dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
+        }
+        else {
+            ShowMessage("PreMissione gia' creata, operazione annullata");
+        }
     }
     MainForm->pos_udc = 0;
     MainForm->trova_udc = 0;
+    cbPriorita->Text = "3";
     // Close();
 
 }
@@ -779,5 +791,19 @@ void __fastcall TfGestAGVMidi::FormDestroy(TObject * Sender)
 void __fastcall TfGestAGVMidi::btRefreshClick(TObject * Sender)
 {
     AggiornaDatiLocali();
+
+}
+
+// ---------------------------------------------------------------------------
+void __fastcall TfGestAGVMidi::TimerRigaTimer(TObject * Sender) {
+    // questa cosa del timer fa cagare ma diversamente da errore
+    TimerRiga->Enabled = false;
+
+    if (MainForm->codiceriga > 0) {
+        cbLinea->Text = dmExtraFunction->PadS(IntToStr(MainForm->codiceriga), 2, "0");
+        MainForm->codiceriga = 0;
+    }
+    TimerRiga->Enabled = true;
+
 }
 // ---------------------------------------------------------------------------

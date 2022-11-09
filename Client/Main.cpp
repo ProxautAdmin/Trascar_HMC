@@ -469,6 +469,7 @@ void __fastcall TMainForm::FormCreate(TObject *Sender) {
     prelievo_missione_manuale = 0;
     TimerSinottico->Enabled = true;
     lbAGV1Status->Transparent = false;
+    codiceriga=0;
 
 }
 // ---------------------------------------------------------------------------
@@ -2718,7 +2719,7 @@ void __fastcall TMainForm::bStoriciMouseUp(TObject * Sender, TMouseButton Button
 // ---------------------------------------------------------------------------
 
 void __fastcall TMainForm::StoricoAllarmiClick(TObject * Sender) {
-    CreateMDIChild(fAllarmi, "fAllarmi", "Historic Alarms");
+    CreateMDIChild(fAllarmi, "fAllarmi", "Storico Allarmi");
 }
 
 void __fastcall TMainForm::AllarmiAttiviClick(TObject * Sender) {
@@ -2730,11 +2731,11 @@ void __fastcall TMainForm::ArticoliUDCMultipliClick(TObject * Sender) {
 }
 
 void __fastcall TMainForm::MissioniClick(TObject * Sender) {
-    CreateMDIChild(fMissioni, "fMissioni", "Storico Missioni");
+    CreateMDIChild(fMissioni, "fMissioni", "Gestione Missioni");
 }
 
 void __fastcall TMainForm::CentroMissioniClick(TObject * Sender) {
-    CreateMDIChild(fCentroMissioni, "fCentroMissioni", "Storico Centro Missioni");
+    CreateMDIChild(fCentroMissioni, "fCentroMissioni", "Gestione Pre-Missioni");
     // CreateMDIChild(fDBExtra, "fDBExtra", "Missioni WMS");
 }
 

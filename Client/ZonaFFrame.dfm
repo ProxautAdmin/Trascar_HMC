@@ -1,19 +1,17 @@
 object frZonaF: TfrZonaF
   Left = 0
   Top = 0
-  Width = 1132
+  Width = 451
   Height = 305
   Align = alClient
   TabOrder = 0
-  ExplicitWidth = 451
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1132
+    Width = 451
     Height = 305
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 451
     object lbSelF: TLabel
       Left = 64
       Top = 8
@@ -62,7 +60,7 @@ object frZonaF: TfrZonaF
     Left = 107
     Top = 118
     Bitmap = {
-      494C0101040018001C0510001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104001800200510001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

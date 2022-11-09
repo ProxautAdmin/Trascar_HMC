@@ -571,6 +571,40 @@ void TdmDBImpianto::TornaPosDepLibera(AnsiString Zona, int &pos, int &piano, int
     return;
 }
 
+void TdmDBImpianto::TornaPosDepLiberaPallet(AnsiString Zona, int &pos, int &piano, int tipoposizione) {
+    TADOQuery *ADOQuery;
+    AnsiString strsql, ev, TP, selectpiano = " ";
+    pos = 0;
+    piano = 0;
+
+    if (tipoposizione == 0)
+        ev = " ";
+    else
+        ev = " tipoposizione= " + IntToStr(tipoposizione) + " and ";
+
+    if (tipoposizione == TIPOLOGIA_SCARTO)
+        selectpiano = " piano=1 and ";
+
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        strsql.printf("Select top 1 pos, piano from piani_view where %s idudc=0 and %s ISNULL(disabilitata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='%s' order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos desc, piano",
+            ev, selectpiano, Zona);
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+        ADOQuery->First();
+        if (ADOQuery->RecordCount) {
+            pos = ADOQuery->FieldByName("pos")->AsInteger;
+            piano = ADOQuery->FieldByName("piano")->AsInteger;
+        }
+        ADOQuery->Close();
+    }
+    catch (...) {
+    }
+    delete ADOQuery;
+    return;
+}
+
 void TdmDBImpianto::TornaPosDepLiberaH(AnsiString Zona, int IDUDC, int &pos, int &piano) {
     TADOQuery *ADOQuery;
     AnsiString strsql, ev, TP;
@@ -653,7 +687,9 @@ void TdmDBImpianto::PrelievoVuoti(int idzona, int &pos, int &pianiocc) {
         else {
             stringa += " from Piani_View where idzona=" + IntToStr(idzona) + " and piano =1 and  idudc>0 ";
             stringa += " and tipoposizione = " + IntToStr(TIPOLOGIA_PALLET);
-            stringa += " and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 ";
+            // riabilitare iol controllo completo negli impianti non gestiti da deficienti stringa += " and ISNULL(prenotata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 ";
+            stringa += " and ISNULL(disabilitata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 ";
+
             stringa += " order by npianiocc, pos desc";
         }
         ADOQuery->Close();
@@ -1043,6 +1079,92 @@ AnsiString TdmDBImpianto::TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(AnsiStri
     }
     catch (...) {
 
+    }
+    delete ADOQuery;
+    return res;
+}
+
+int TdmDBImpianto::UDCPresenteInMagazzinoPerTipo(int idudc, int tipoposizione) {
+    AnsiString stringa;
+    AnsiString strsql;
+    TADOQuery *ADOQuery;
+    int res = 0;
+
+    try {
+        if (!dmDB->ADOConnection1->Connected)
+            return 0;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        stringa = "Select Pos from piani_view where IdUDC = " + IntToStr(idudc) + " and IDUDC>0 ";
+        stringa += " and tipoposizione= " + IntToStr(tipoposizione);
+        stringa  += " and zona <> 'J' ";
+        stringa += " order by pos ";
+        ADOQuery->Close();
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Append(stringa);
+        ADOQuery->Open();
+        if (ADOQuery->RecordCount > 0) {
+            res = ADOQuery->FieldByName("Pos")->AsInteger;
+        }
+        ADOQuery->Close();
+        // MainForm->LogMsg(stringa);
+    }
+    catch (...) {
+
+    }
+    delete ADOQuery;
+    return res;
+}
+
+
+
+
+int TdmDB::UDCPresenteInMagazzino(int idudc) {
+	AnsiString stringa;
+	AnsiString strsql;
+	TADOQuery *ADOQuery;
+	int res = 0;
+
+	try {
+		if (!ADOConnection1->Connected)
+			return 0;
+		ADOQuery = new TADOQuery(NULL);
+		ADOQuery->Connection = ADOConnection1;
+		stringa = "Select Pos from piani where IdUDC = " + IntToStr(idudc) + " and IDUDC>0";
+		ADOQuery->Close();
+		ADOQuery->SQL->Clear();
+		ADOQuery->SQL->Append(stringa);
+		ADOQuery->Open();
+		if (ADOQuery->RecordCount > 0) {
+			res = ADOQuery->FieldByName("Pos")->AsInteger;
+		}
+		ADOQuery->Close();
+		// MainForm->LogMsg(stringa);
+	}
+	catch (...) {
+
+	}
+	delete ADOQuery;
+	return res;
+}
+
+int TdmDBImpianto::PosPresenteMissioneAttivaA(int pos) {
+    TADOQuery *ADOQuery;
+    AnsiString strsql, ev;
+    TLocateOptions Opts;
+    Opts.Clear();
+    int res = 0;
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = dmDB->ADOConnection1;
+        strsql = "SELECT TOP 1 ID FROM Missioni where (fine is null) and (prelevato is null) and (posprel =" + IntToStr(pos) + ")";
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+
+        res = ADOQuery->RecordCount;
+        ADOQuery->Close();
+    }
+    catch (...) {
     }
     delete ADOQuery;
     return res;

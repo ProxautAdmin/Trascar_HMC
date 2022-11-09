@@ -37,7 +37,7 @@ AnsiString TdmExtraFunction::nomeIstanza(AnsiString strsql) {
 }
 
 AnsiString TdmExtraFunction::PadS(AnsiString strt, int lenp, AnsiString padc) {
-    // allinea la stringa a sinistra riempendo per la lunghezza lenp con la stringa padc
+    // allinea la stringa a sinistra riempendo per la lunghezza lenp con la stringa padc      "X"="0X"
     AnsiString ret;
     for (int i = 1; i <= lenp - strt.Length(); i++) {
         ret = ret + padc;
@@ -47,7 +47,7 @@ AnsiString TdmExtraFunction::PadS(AnsiString strt, int lenp, AnsiString padc) {
 }
 
 AnsiString TdmExtraFunction::PadR(AnsiString strt, int lenp, AnsiString padc) {
-    // allinea la stringa a sinistra riempendo per la lunghezza lenp con la stringa padc
+    // allinea la stringa a sinistra riempendo per la lunghezza lenp con la stringa padc    "X"="X0"
     AnsiString ret;
     for (int i = 1; i <= lenp - strt.Length(); i++) {
         ret = ret + padc;
@@ -669,5 +669,5 @@ void TdmExtraFunction::ComboScelte(TComboBox * tcbCombo, int numero, int def, in
     for (int j = start; j <= numero; j++) {
         cbCombo->Items->Append(IntToStr(j));
     }
-    cbCombo->Text = def;
+    cbCombo->Text = IntToStr(def);
 }

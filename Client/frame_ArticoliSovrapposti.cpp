@@ -21,14 +21,17 @@ __fastcall TFrameSovrapposti::TFrameSovrapposti(TComponent* Owner) : TFrame(Owne
 void TFrameSovrapposti::RiempiCampi() {
     AnsiString filtro = ""; ;
     filtro = "Select distinta, [Descrizione distinta] from HMC_SOVRAPPOSTI ";
-
     filtro = filtro + " order by distinta";
-    ADOQuery1->Close();
-    ADOQuery1->SQL->Clear();
-    ADOQuery1->SQL->Add(filtro);
-    ADOQuery1->Open();
-    ADOQuery1->First();
-
+    try {
+        ADOQuery1->Close();
+        ADOQuery1->SQL->Clear();
+        ADOQuery1->SQL->Add(filtro);
+        ADOQuery1->Open();
+        ADOQuery1->First();
+    }
+    catch (...) {
+        dmDB->LogMsg("Erreore in refresh griglia HMC_SOVRAPPOSTI ");
+    }
 }
 
 void __fastcall TFrameSovrapposti::btScegliClick(TObject *Sender) {

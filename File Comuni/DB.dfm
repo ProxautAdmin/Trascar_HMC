@@ -65,7 +65,7 @@ object dmDB: TdmDB
   end
   object TimerPassword: TTimer
     Enabled = False
-    Interval = 120000
+    Interval = 300000
     OnTimer = TimerPasswordTimer
     Left = 36
     Top = 192

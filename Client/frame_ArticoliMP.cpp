@@ -21,14 +21,17 @@ __fastcall TFrameMatPrime::TFrameMatPrime(TComponent* Owner) : TFrame(Owner) {
 void TFrameMatPrime::RiempiCampi() {
     AnsiString filtro = ""; ;
     filtro = "Select * from HMC_Anagrafica ";
-
     filtro = filtro + " order by componente";
-    ADOQuery1->Close();
-    ADOQuery1->SQL->Clear();
-    ADOQuery1->SQL->Add(filtro);
-    ADOQuery1->Open();
-    ADOQuery1->First();
-
+    try {
+        ADOQuery1->Close();
+        ADOQuery1->SQL->Clear();
+        ADOQuery1->SQL->Add(filtro);
+        ADOQuery1->Open();
+        ADOQuery1->First();
+    }
+    catch (...) {
+        dmDB->LogMsg("Erreore in refresh griglia HMC_Anagrafica ");
+    }
 }
 
 void __fastcall TFrameMatPrime::btScegliClick(TObject *Sender) {

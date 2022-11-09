@@ -311,6 +311,8 @@ private: // User declarations
     int RitornaLatoForcheDaNomePosizione(AnsiString NomePos);
     int RitornaAgvDaIdPallet(int idPallet);
     int BloccoMissione();
+    int TornaNodoFermataDaPosizioni(int pos);
+    int PresenzaCentroMissionePerPosizioni(int posprel, int posdep, int stato);
 
     AnsiString Lingua;
 

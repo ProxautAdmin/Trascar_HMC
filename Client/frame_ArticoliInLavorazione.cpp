@@ -7,7 +7,6 @@
 #include "dmFunzioniComuniClientServer.h"
 #include "main.h"
 #include "db.h"
-#include "GestAGVMidi.h"
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -21,15 +20,19 @@ __fastcall TFrameArticoliInLavorazione::TFrameArticoliInLavorazione(TComponent* 
 // ---------------------------------------------------------------------------
 void TFrameArticoliInLavorazione::RiempiCampi() {
     AnsiString filtro = ""; ;
+
     filtro = "Select * from HMC_ORDINI_IN_LAVORAZIONE_copia ";
-
     filtro = filtro + " order by posizione";
-    ADOQuery1->Close();
-    ADOQuery1->SQL->Clear();
-    ADOQuery1->SQL->Add(filtro);
-    ADOQuery1->Open();
-    ADOQuery1->First();
-
+    try {
+        ADOQuery1->Close();
+        ADOQuery1->SQL->Clear();
+        ADOQuery1->SQL->Add(filtro);
+        ADOQuery1->Open();
+        ADOQuery1->First();
+    }
+    catch (...) {
+        dmDB->LogMsg("Erreore in refresh griglia HMC_ORDINI_IN_LAVORAZIONE_copia ");
+    }
 }
 
 void __fastcall TFrameArticoliInLavorazione::btScegliClick(TObject *Sender) {
@@ -44,6 +47,11 @@ void __fastcall TFrameArticoliInLavorazione::FrameEnter(TObject *Sender)
 
 // ---------------------------------------------------------------------------
 void __fastcall TFrameArticoliInLavorazione::DBGrid1MouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y) {
-   // fGestAGVMidi->cbLinea->Text = "03";
+    // questa cosa del timer fa cagare ma diversamente da errore
+
+    // TfGestAGVMidi *fGestAGVMidi;
+    // if (fGestAGVMidi != NULL) {
+    MainForm->codiceriga = ADOQuery1->FieldByName("posizione")->AsString.ToIntDef(0);
+    // }
 }
 // ---------------------------------------------------------------------------

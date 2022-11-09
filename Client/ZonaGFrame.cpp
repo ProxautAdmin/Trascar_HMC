@@ -19,7 +19,7 @@ AnsiString Zona;
 __fastcall TfrZonaG::TfrZonaG(TComponent* Owner) : TFrame(Owner) {
     Zona = "G";
     dmExtraFunction->ComboScelte(cbNumero, NUMPIANI_VUOTI, NUMPIANI_VUOTI);
-    AbilitaConferma=0;
+    AbilitaConferma = 0;
 }
 
 void TfrZonaG::AggiornaDati() {
@@ -32,7 +32,7 @@ void TfrZonaG::AggiornaDati() {
     TRecordList TabPosizioni;
     // str = "piani_view WHERE Zona = '" + Zona + "' ORDER BY Pos ";
     str = "select *, (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.Piani_View.Pos) AND (IDUDC <> 0)) as npianiocc from piani_view ";
-    str += " WHERE Zona = '"+Zona+"' and piano= 1 ORDER BY Pos ";
+    str += " WHERE Zona = '" + Zona + "' and piano= 1 ORDER BY Pos ";
     dmDB->FullTabella(str, TabPosizioni);
     for (int j = 1; j <= numeroelementi; j++) {
         Pan = (TPanel*) FindComponent("pnPos" + Zona + IntToStr(j));
@@ -44,10 +44,15 @@ void TfrZonaG::AggiornaDati() {
                 if (Pan->Tag == pos) {
                     Pan->Enabled = true;
                     trovato = 1;
-                    if (TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_SCARTO) {
+                    if ((TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_SCARTO) && (TabPosizioni[idx]["IDUDC"].ToIntDef(0) == 0)) {
                         Pan->Color = clBtnFace;
-                        Pan->Enabled = false;
+                        // Pan->Enabled = false;
                     }
+                    else if ((TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_SCARTO) && (TabPosizioni[idx]["IDUDC"].ToIntDef(0) > 0)) {
+                        Pan->Color = clYellow;
+                        // Pan->Enabled = false;
+                    }
+
                     else if (TabPosizioni[idx]["PRENOTATA"].ToIntDef(0) || TabPosizioni[idx]["POS_PRENOTATA"].ToIntDef(0)) {
                         Pan->Color = clBlue;
                     }
@@ -67,11 +72,17 @@ void TfrZonaG::AggiornaDati() {
                     if (TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_SCARTO) {
                         Pan->Caption = "SCARTO";
                     }
+                    else if ((TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_MATERIEPRIME) && (TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0) == 0)) {
+                        Pan->Caption = "Mat.Prime " + IntToStr((numeroelementi - j) + 1);
+                    }
+                    else if ((TabPosizioni[idx]["TIPOPOSIZIONE"].ToIntDef(0) == TIPOLOGIA_MATERIEPRIME) && (TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0) > 0)) {
+                        Pan->Caption = "Mat.Prime " + IntToStr((numeroelementi - j) + 1) + " - " + IntToStr(TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0));
+                    }
                     else if (TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0) == 0) {
-                        Pan->Caption = "Pos." + IntToStr((numeroelementi-j)+1) ; //+ " (" + IntToStr(Pan->Tag) + ")";
+                        Pan->Caption = "Pos." + IntToStr((numeroelementi - j) + 1); // + " (" + IntToStr(Pan->Tag) + ")";
                     }
                     else {
-                        Pan->Caption = "Pos." + IntToStr((numeroelementi-j)+1) + " Pal. " + IntToStr(TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0));
+                        Pan->Caption = "Pos." + IntToStr((numeroelementi - j) + 1) + " Pal. " + IntToStr(TabPosizioni[idx]["NPIANIOCC"].ToIntDef(0));
                     }
                 }
                 if (!trovato)
@@ -101,7 +112,13 @@ void __fastcall TfrZonaG::pnPosGMouseUp(TObject *Sender, TMouseButton Button, TS
             }
         }
         if (Button == mbRight) {
-            dmDBImpianto->AggiornaUDCPosizioni(Pan->Tag, 1, cbNumero->Text.ToIntDef(0));
+            if (Pan->Caption == "SCARTO")
+                if (Pan->Color == clYellow)
+                    dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 0, 1, dmDB->FilaPosizione(Pan->Tag));
+                else
+                    dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
+            else
+                dmDBImpianto->AggiornaUDCPosizioni(Pan->Tag, 1, cbNumero->Text.ToIntDef(0));
             /*
              if (Pan->Color == clWhite) {
              dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));

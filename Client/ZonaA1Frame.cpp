@@ -31,7 +31,6 @@ void TfrZonaA1::AggiornaGriglia() {
     FrameArticoliInLavorazione->FrameEnter(this);
 }
 
-
 void TfrZonaA1::AggiornaDati() {
     int numeroelementi = 7;
     int idx = 0, trovato = 0; ;
@@ -152,10 +151,13 @@ void __fastcall TfrZonaA1::pnPosADblClick(TObject *Sender) {
     if (Pan != NULL) {
         UDC.IDUDC = 0;
         leIdUDC->Text = UDC.IDUDC;
-        if (Pan->Color == clYellow)
-        dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 0, 1, dmDB->FilaPosizione(Pan->Tag));
-        else    if (Pan->Color == clWhite)
-        dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
+        if (Pan->Color == clYellow) {
+            if (Application->MessageBox(L"Svuotare la posizione significa creare una missione di deposito pallet. Vuoi procedere?", L"Conferma", MB_YESNO) == IDYES)
+                dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 0, 1, dmDB->FilaPosizione(Pan->Tag));
+        }
+        else if (Pan->Color == clWhite) {
+            dmDB->ArticoloPrelevatoDepositato(Pan->Tag, 1, 1, dmDB->FilaPosizione(Pan->Tag));
+        }
 
         // gestione udc/articoli
 

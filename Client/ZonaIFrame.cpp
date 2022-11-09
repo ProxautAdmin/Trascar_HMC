@@ -35,7 +35,7 @@ void TfrZonaI::AggiornaDati() {
     AnsiString str;
     TPanel *Pan;
     TRecordList TabPosizioni;
-    str = "select *, (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.Piani_View.Pos) AND (IDUDC <> 0)) as npianiocc from piani_view ";
+    str = "select *, (SELECT COUNT(*) AS Expr1 FROM dbo.Piani_view AS Piani_1 WHERE (pos = dbo.Piani_View.Pos) AND (IDUDC <> 0)) as npianiocc from piani_view ";
     str += " WHERE Zona = '" + Zona + "' and piano= 1 ORDER BY Pos ";
     dmDB->FullTabella(str, TabPosizioni);
     for (int j = 1; j <= numeroelementi; j++) {
@@ -75,7 +75,7 @@ void TfrZonaI::AggiornaDati() {
                         Pan->Caption = "Pos." + IntToStr((numeroelementi - j) + 1) + " (" + IntToStr(Pan->Tag) + ")";
                     }
                     else {
-                        Pan->Caption = "Pos." + IntToStr((numeroelementi - j) + 1) + " - " + IntToStr(TabPosizioni[idx]["IDUDC"].ToIntDef(0));
+                        Pan->Caption = Trim( IntToStr((numeroelementi - j) + 1) + "-" + TabPosizioni[idx]["DESCUDC"]);
                     }
                     Pan->Hint = TabPosizioni[idx]["IDUDC"].ToIntDef(0);
                 }
@@ -140,7 +140,7 @@ int TfrZonaI::CercaConCodart(AnsiString CodArt) {
         UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
         dmExtraFunction->StringToChar("", UDC.Lotto);
         dmExtraFunction->StringToChar(CodArt, UDC.Articolo.CodArt);
-        dmExtraFunction->StringToChar(FrameMatPrime->ADOQuery1->FieldByName("descrizione componente")->AsString, UDC.Articolo.Descrizione);
+        dmExtraFunction->StringToChar(FrameMatPrime->ADOQuery1->FieldByName("desccrizione breve")->AsString, UDC.Articolo.Descrizione);
         UDC.CodTipoUDC = 0;
         UDC.IndiceImpilabilita = 0;
         UDC.Parziale = 0;

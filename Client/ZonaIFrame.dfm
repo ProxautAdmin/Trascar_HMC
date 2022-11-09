@@ -11,7 +11,6 @@ object frZonaI: TfrZonaI
     Height = 324
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1275
     object pnPosI1: TPanel
       Tag = 201
       AlignWithMargins = True
@@ -24,8 +23,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 1'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 0
       OnMouseUp = pnPosIMouseUp
     end
@@ -41,8 +46,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 2'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 1
       OnMouseUp = pnPosIMouseUp
     end
@@ -58,8 +69,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 3'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 2
       OnMouseUp = pnPosIMouseUp
     end
@@ -75,8 +92,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 4'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 3
       OnMouseUp = pnPosIMouseUp
     end
@@ -92,8 +115,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 5'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 4
       OnMouseUp = pnPosIMouseUp
     end
@@ -109,8 +138,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 6'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 5
       OnMouseUp = pnPosIMouseUp
     end
@@ -126,8 +161,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 7'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 6
       OnMouseUp = pnPosIMouseUp
     end
@@ -143,8 +184,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 8'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 7
       OnMouseUp = pnPosIMouseUp
     end
@@ -160,8 +207,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 9'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 8
       OnMouseUp = pnPosIMouseUp
     end
@@ -177,8 +230,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 10'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 9
       OnMouseUp = pnPosIMouseUp
     end
@@ -336,8 +395,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 11'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 12
       OnMouseUp = pnPosIMouseUp
     end
@@ -353,8 +418,14 @@ object frZonaI: TfrZonaI
       Caption = 'Posizione 12'
       Color = clHighlightText
       DoubleBuffered = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
       ParentDoubleBuffered = False
+      ParentFont = False
       TabOrder = 13
       OnMouseUp = pnPosIMouseUp
     end

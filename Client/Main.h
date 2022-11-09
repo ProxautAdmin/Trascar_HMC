@@ -278,6 +278,7 @@ public:
 	int trova_udc, trova_idarticolo;
     AnsiString trova_HMC_Anagrafica;
 	bool ret, mousedown, retsel, mousedownsel, sync_lamp;
+    int codiceriga;
 
 	TTime ScrollMouse;
 

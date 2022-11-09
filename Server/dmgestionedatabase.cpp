@@ -48,9 +48,9 @@ void __fastcall TdmDBServer::TimerMissioniDBTimer(TObject * Sender) {
         if (dmDB->ContaMissioniAttive(0) < ClientData.ParametriFunzionali.NumMissioniLimite) {
             // genera missioni da cm
             checkzonah = RicercaNuovaMissionedaGenerare(0);
-            if (checkzonah > 0)   {
-           //     GeneraCMDaHaBFineProduzione(checkzonah);
-           }
+            if (checkzonah > 0) {
+                // GeneraCMDaHaBFineProduzione(checkzonah);
+            }
         }
     }
 
@@ -76,6 +76,7 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
     TMissione m;
     AnsiString strsql, strresult, CorsiaDeposito, stringa_hex;
     int tipo_mis, priorita, agv, tipologia, PrelieviRimasti;
+    int costantepallet = 350;
     bool trovato, posplc;
     int IDPlc, idx, idx_plc;
     int dbposprel, dbposdep, dbpianoprel, dbpianodep;
@@ -151,13 +152,14 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                         dmDBImpianto->TornaPosDepLibera("J", dbposdep, dbpianodep, TIPOLOGIA_MATERIEPRIME);
                     }
                     else if (ZonaDep == "G") {
-                        dmDBImpianto->TornaPosDepLibera("G", dbposdep, dbpianodep, TIPOLOGIA_PALLET);
+                        // fa cagare con tutte queste eccezioni ma visto che non deve controllare il prenotata vaffanculo
+                        dmDBImpianto->TornaPosDepLiberaPallet("G", dbposdep, dbpianodep, TIPOLOGIA_PALLET);
                     }
                 }
-                //faccio la missione da I a j solo se J vuota
+                // faccio la missione da I a j solo se J vuota
                 if (ZonaDep == "J") {
                     if (dmDB->RitornaUDCdaPosPiano(dbposdep, 1) != 0) {
-                       dbposdep  =0;
+                        dbposdep = 0;
                     }
                 }
 
@@ -182,7 +184,7 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                     m.posprel = dbposprel;
                     m.piano_prel = dbpianoprel;
                     if (ZonaPrel == "G")
-                        m.h_prel = dmExtraFunction->Constrain((ClientData.ParametriFunzionali.altezza_pallet * (m.piano_prel - 1)) + 70, 350, 1500);
+                        m.h_prel = dmExtraFunction->Constrain((ClientData.ParametriFunzionali.altezza_pallet * (m.piano_prel - 1)) + 70 + costantepallet, 350, 1500);
                     else
                         m.h_prel = dmDB->RitornaAltezzedaPosizione(m.posprel, m.piano_prel, "HPREL");
 
@@ -190,7 +192,7 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                 }
 
                 if ((m.posprel > 0) && (m.piano_prel > 0) && (m.h_prel > 0)) {
-                    if (dmDB->ControllaPosizioneOK(m.posprel, m.piano_prel) > 0) {
+                    if ((dmDB->ControllaPosizioneOK(m.posprel, m.piano_prel) > 0) || (ZonaPrel == "G")) {
                         // deposito
                         m.posdep = 0;
                         m.piano_dep = 0;
@@ -217,20 +219,32 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                         // se non sono posizioni plc E non sono praticabili OPPURE e' una missione manuale
                         if ((m.posdep == 0) && (posplc == false)) {
                             m.posdep = dbposdep;
-                            m.piano_dep = dbpianodep; ;
-                            m.h_dep = max(dmDB->RitornaAltezzedaPosizione(m.posdep, m.piano_dep, "HDEP"), ALTEZZA_PRELIEVO);
+                            m.piano_dep = dbpianodep;
+                            if (ZonaDep == "G")
+                                m.h_dep = dmExtraFunction->Constrain((m.piano_dep * ClientData.ParametriFunzionali.altezza_pallet) + 302, 350, 1500);
+                            else
+                                m.h_dep = max(dmDB->RitornaAltezzedaPosizione(m.posdep, m.piano_dep, "HDEP"), ALTEZZA_PRELIEVO);
                             m.corsia_dep = dmDB->FilaPosizione(m.posdep);
+                        }
+                        // check di emergenza per evitare che porti in j prima un pieno poi prenda il vuoto
+                        if (ZonaDep == "J") {
+                            if (dmDB->RitornaUDCdaPosPiano(m.posdep, m.piano_dep) != 0) {
+                                m.posdep = 0;
+                                m.piano_dep = 0;
+                            }
                         }
 
                         if ((m.posdep > 0) && (m.piano_dep > 0) && (m.h_dep > 0)) {
                             if (dmDB->ControllaPosizioneOK(m.posdep, m.piano_dep) == 1) {
+                                // if ((dmDB->ControllaPosizioneOK(m.posdep, m.piano_dep) == 1) || (ZonaDep == "G")) {
                                 res = GeneraMissione(m);
                                 if (res > 0) {
                                     dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
                                     ok_genera = 1;
                                     // Fine liena H
-                                    if (((m.posprel >= 101) && (m.posprel <= 107)) && (m.posdep == ClientData.Plc[IDX_PLCDEPOSITO].Deposito[1][1].pos))
+                                    if (((m.posprel >= 101) && (m.posprel <= 107)) && (m.posdep == ClientData.Plc[IDX_PLCDEPOSITO].Deposito[1][1].pos)) {
                                         missdaa = m.idudc;
+                                    }
                                     // se a2 in pos
                                 }
                             }
@@ -259,7 +273,9 @@ int TdmDBServer::GeneraCMDaPrelievo(int val) {
     int idx_plc;
 
     try {
-        for (int idx = 1; idx <= NUM_PRELIEVOPLC; idx++) {
+        for (int idx = 1;
+            idx <= NUM_PRELIEVOPLC;
+            idx++) {
             idx_plc = IDX_PLCPRELIEVO; // metti che ci siano altri indici cosi' lo tratto come voglio
             if ((ClientData.Plc[idx_plc].Prelievo[idx][1].Ready) && (!ClientData.Plc[idx_plc].Prelievo[idx][1].InAllarme) && (ClientData.Plc[idx_plc].Prelievo[idx][1].ProntaAlPrelievo)) {
                 if (dmDB->PresenzaCentroMissione(ClientData.Plc[idx_plc].Prelievo[idx][1].pos, 0) == 0) {
@@ -330,7 +346,7 @@ int TdmDBServer::GeneraCMDaGaA1(int val) {
             cm.h_dep = dmDB->RitornaAltezzedaPosizione(cm.posdep, cm.pianodep, "HDEP");
             if (cm.posdep > 0) {
                 if (dmDB->PresenzaCentroMissione(cm.posdep, 0) == 0) {
-                    if (dmDB->PosPresenteMissioneAttiva(cm.posdep) == 0) {
+                    if (dmDBImpianto->PosPresenteMissioneAttivaA(cm.posdep) == 0) {
                         cm.ZonaPrelievo = "G";
                         cm.posprel = 0;
                         cm.pianoprel = 0;
@@ -749,6 +765,10 @@ void TdmDBServer::RitornaNodoPassaggio(int agv, int posprel, int posdep, int lat
     pospassanteprel = 0;
     pospassantedep = 0;
 
+    // uso il nodofermata  come nodo passaggio
+    pospassanteprel = dmDB->TornaNodoFermataDaPosizioni(posprel);
+    pospassantedep = dmDB->TornaNodoFermataDaPosizioni(posdep);
+
     if ((pospassanteprel < 0) || (pospassanteprel > 9999)) {
         pospassanteprel = 0;
     }
@@ -955,14 +975,16 @@ void __fastcall TdmDBServer::TimerAggiornamentiMinutiTimer(TObject * Sender) {
 }
 // ---------------------------------------------------------------------------
 
-void __fastcall TdmDBServer::TimerStanzaTimer(TObject *Sender) {
+void __fastcall TdmDBServer::TimerStanzaTimer(TObject * Sender) {
     int inzona = 0;
     int idporta = 1;
     if ((MainForm->count_inizio < 20) || (MainForm->close_program) || (!dmDB->ADOConnection1->Connected) || (!dmDB->lettostatoagv))
         return;
     TimerStanza->Enabled = false;
     try {
-        for (int i = 1; i <= NAGV; i++) {
+        for (int i = 1;
+            i <= NAGV;
+            i++) {
             if (ClientData.DatiAgv[i].pos > 0) {
                 inzona = CercaZona(tab.mappa_nodi[ClientData.DatiAgv[i].pos].posx, tab.mappa_nodi[ClientData.DatiAgv[i].pos].posy);
                 // logica girata
@@ -1046,16 +1068,24 @@ void TdmDBServer::AggiornaStrutturaPLC() {
     for (i = 1;
         i <= N_PLC;
         i++) {
-        for (j = 1; j <= NUM_PRELIEVOPLC; j++) {
-            for (int p = 0; p < NUMPIANI_DEP; p++) {
+        for (j = 1;
+            j <= NUM_PRELIEVOPLC;
+            j++) {
+            for (int p = 0;
+                p < NUMPIANI_DEP;
+                p++) {
                 ClientData.Plc[i].Prelievo[j][p].generata = TabPos[j]["PRENOTATA"].ToIntDef(0) | TabPos[j]["POS_PRENOTATA"].ToIntDef(0);
                 ClientData.Plc[i].Prelievo[j][p].esclusa = TabPos[j]["DISABILITATA"].ToIntDef(0) | TabPos[j]["POS_DISABILITA"].ToIntDef(0);
                 ClientData.Plc[i].Prelievo[j][p].selezionata = TabPos[j]["SELEZIONATA"].ToIntDef(0);
 
             }
         }
-        for (j = 1; j <= NUM_DEPOSITOPLC; j++) {
-            for (int p = 0; p < NUMPIANI_DEP; p++) {
+        for (j = 1;
+            j <= NUM_DEPOSITOPLC;
+            j++) {
+            for (int p = 0;
+                p < NUMPIANI_DEP;
+                p++) {
                 ClientData.Plc[i].Deposito[j][p].generata = TabPos[j]["PRENOTATA"].ToIntDef(0) | TabPos[j]["POS_PRENOTATA"].ToIntDef(0);
                 ClientData.Plc[i].Deposito[j][p].esclusa = TabPos[j]["DISABILITATA"].ToIntDef(0) | TabPos[j]["POS_DISABILITA"].ToIntDef(0);
                 ClientData.Plc[i].Deposito[j][p].selezionata = TabPos[j]["SELEZIONATA"].ToIntDef(0);
@@ -1147,7 +1177,9 @@ void TdmDBServer::MissionePrelievoManuale(int buttontag) {
         try {
             if (!dmDB->ADOConnection1->Connected)
                 return;
-            for (int i = 1; i <= NAGV; i++) {
+            for (int i = 1;
+                i <= NAGV;
+                i++) {
                 if ((ClientData.DatiAgv[i].idmis == 0) && (!ClientData.DatiAgv[i].load) && (!ClientData.DatiAgv[i].manuale && !ClientData.DatiAgv[i].semiautomatico)) {
                     ok_genera = 0;
                     m.idcentromissioni = 0;

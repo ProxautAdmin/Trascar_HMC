@@ -64,6 +64,7 @@ __published: // IDE-managed Components
     TPanel *pLinea;
     TLabel *Label2;
     TComboBox *cbLinea;
+    TTimer *TimerRiga;
 
     void __fastcall TimerRefTimer(TObject *Sender);
     void __fastcall BitBtnCloseClick(TObject *Sender);
@@ -71,6 +72,7 @@ __published: // IDE-managed Components
     void __fastcall FormDestroy(TObject *Sender);
     void __fastcall FormActivate(TObject *Sender);
     void __fastcall btRefreshClick(TObject *Sender);
+    void __fastcall TimerRigaTimer(TObject *Sender);
 
 private: // User declarations
         public : // User declarations

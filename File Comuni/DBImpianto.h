@@ -51,6 +51,10 @@ __published: // IDE-managed Components
     int CercaUDCinH(int udc);
     int GeneraCMDaHaBFineProduzione(int val);
     AnsiString TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(AnsiString posizione) ;
+    int UDCPresenteInMagazzinoPerTipo(int idudc, int tipoposizione)      ;
+    int PosPresenteMissioneAttivaA(int pos) ;
+    void TornaPosDepLiberaPallet(AnsiString Zona, int &pos, int &piano, int tipoposizione);
+    int UDCPresenteInMagazzinoPerTipoJ(int idudc, int tipoposizione);
 
 };
 

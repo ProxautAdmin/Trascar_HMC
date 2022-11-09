@@ -54,7 +54,7 @@ object FrameMatPrime: TFrameMatPrime
         end
         item
           Expanded = False
-          FieldName = 'Descrizione Componente'
+          FieldName = 'Desccrizione breve'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13

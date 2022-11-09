@@ -58,7 +58,7 @@
 // RICORDARSI DI SETTARLA anche NELLA PLCtHREAD!!!!!!!   #define	N_PLC 1
 #define	N_PLC 1
 
-#define NUMPIANI_VUOTI   10
+#define NUMPIANI_VUOTI   9
 #define NUMPIANI_PREL   1
 #define NUMPIANI_DEP    1
 #define NUMFILE 10

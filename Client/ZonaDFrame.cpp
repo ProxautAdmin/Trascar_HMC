@@ -28,7 +28,7 @@ void __fastcall TfrZonaD::btSvuotaZonaDClick(TObject *Sender) {
     int idx_plc = IDX_PLCPRELIEVO;
     int idx = 1;
 
-    if (ClientData.ParametriFunzionali.Giorno != 0) {
+    if (1 == 1) { // (ClientData.ParametriFunzionali.Giorno != 0) {    //chiesto da Alessandra 09-11-2022
         // if (dmDB->PresenzaCentroMissione(ClientData.Plc[idx_plc].Prelievo[idx][1].pos, 0) == 0) {       // non funziona a livello logico
         if (1 == 1) {
             if (dmDB->PosPresenteMissioneAttiva(ClientData.Plc[idx_plc].Prelievo[idx][1].pos) == 0) {

@@ -19,7 +19,6 @@ object FrameUDCinMateriePrime: TFrameUDCinMateriePrime
     ParentDoubleBuffered = False
     TabOrder = 0
     VerticalAlignment = taAlignTop
-    ExplicitWidth = 392
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1
@@ -85,6 +84,7 @@ object FrameUDCinMateriePrime: TFrameUDCinMateriePrime
           Title.Font.Height = -13
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = []
+          Width = 50
           Visible = True
         end
         item
@@ -101,6 +101,7 @@ object FrameUDCinMateriePrime: TFrameUDCinMateriePrime
           Title.Font.Height = -13
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = []
+          Width = 50
           Visible = True
         end>
     end
