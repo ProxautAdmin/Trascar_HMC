@@ -91,6 +91,8 @@ private: // User declarations
     void SettaPianoSelezionatoPerPos(int setta, int pos);
 
     int pos, zona, posselezionata, destselezionata, impila;
+
+    AnsiString zonascelta;
 };
 
 // ---------------------------------------------------------------------------

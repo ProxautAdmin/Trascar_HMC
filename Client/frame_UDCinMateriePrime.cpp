@@ -22,6 +22,9 @@ void TFrameUDCinMateriePrime::RiempiCampi() {
     AnsiString filtro = ""; ;
     filtro = "Select * from PosizioniMateriePrime ";
     filtro = filtro + " where idudc>0  ";
+    filtro = filtro + " and piano=1  ";
+    filtro = filtro + " and ISNULL(pos_selezionata,0)=0 and ISNULL(pos_disabilitata,0)=0 and ISNULL(pos_prenotata,0)=0 ";
+    filtro = filtro + " and ISNULL(selezionata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(prenotata,0)=0  ";
     filtro = filtro + " order by Pos";
     try {
         ADOQuery1->Close();
@@ -31,7 +34,7 @@ void TFrameUDCinMateriePrime::RiempiCampi() {
         ADOQuery1->First();
     }
     catch (...) {
-       dmDB->LogMsg("Erreore in refresh griglia PosizioniMateriePrime ");
+        dmDB->LogMsg("Errore in refresh griglia PosizioniMateriePrime ");
     }
 
 }

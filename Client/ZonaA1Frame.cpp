@@ -177,7 +177,7 @@ int TfrZonaA1::CercaConCodart(int riga) {
     Articolo = dmDBImpianto->TornaCodartConRigaDaHMC_ORDINI_IN_LAVORAZIONE(riga, UDC);
     if (Articolo != "") {
         UDC.IDUDC = dmDB->IDUDCdaCodart(Articolo);
-        if (UDC.IDUDC == 0) {
+        if (1==1) { //(UDC.IDUDC == 0) {
             UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
             dmExtraFunction->StringToChar("", UDC.Lotto);
             // dmExtraFunction->StringToChar(Articolo, UDC.Articolo.CodArt);

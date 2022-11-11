@@ -318,6 +318,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
     }
 
     // AggiornaDatiLocali();
+    zonascelta = "";
     cbLinea->Text = "01";
 
     pcPrel->TabIndex = 0;
@@ -326,7 +327,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
 // ---------------------------------------------------------------------------
 
 void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
-    static AnsiString zonascelta = "";
+    // static AnsiString zonascelta = "";
     AnsiString ts;
     TimerRef->Enabled = false;
 
@@ -465,7 +466,6 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
             pcDest->TabIndex = 0;
         }
         zonascelta = "A";
-
     }
     else if (pcPrel->ActivePage->Hint == "J") {
         pLinea->Visible = false;
@@ -563,6 +563,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
     TADOQuery *ADOQuery;
     AnsiString strsql, ZonaPrel, ZonaDep;
     bool chiudi = true;
+    int premissionegiacreata = 0;
     int posprel = 0, pianoprel = 0, posdep = 0, pianodep = 0, tipoposizione, tipoposizionedep, idudc;
 
     // prel
@@ -636,7 +637,10 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         CentroMis.CodTipoMissione = 0;
         CentroMis.Priorita = cbPriorita->Text.ToIntDef(1);
         CentroMis.Agv = 1;
-        CentroMis.IDUDC = dmDB->RitornaUDCdaPosPiano(CentroMis.posprel, CentroMis.pianoprel);
+        if ((ZonaPrel == "J") && (ZonaDep == "G"))
+            CentroMis.IDUDC = 1;
+        else
+            CentroMis.IDUDC = dmDB->RitornaUDCdaPosPiano(CentroMis.posprel, CentroMis.pianoprel);
         CentroMis.CorsiaDeposito = " ";
         CentroMis.stato = 0;
         CentroMis.FilaInCorsiaDeposito = 0;
@@ -649,14 +653,14 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
             dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
         }
         else {
-            ShowMessage("PreMissione gia' creata, operazione annullata");
+            premissionegiacreata = 1;
         }
     }
 
     if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione != TIPOLOGIA_SCARTO)) {
-        CentroMis.ZonaDeposito = ZonaPrel ;
-        CentroMis.ZonaPrelievo ="I" ;
-        CentroMis.posprel =      dmDBImpianto->UDCPresenteInMagazzinoPerTipo(MainForm->trova_udc, TIPOLOGIA_MATERIEPRIME);
+        CentroMis.ZonaDeposito = ZonaPrel;
+        CentroMis.ZonaPrelievo = "I";
+        CentroMis.posprel = dmDBImpianto->UDCPresenteInMagazzinoPerTipo(MainForm->trova_udc, TIPOLOGIA_MATERIEPRIME);
         // dmDB->UDCPresenteInMagazzino(MainForm->trova_udc);
         CentroMis.pianoprel = 1;
         CentroMis.posdep = MainForm->pos_udc;
@@ -682,9 +686,15 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
             dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
         }
         else {
-            ShowMessage("PreMissione gia' creata, operazione annullata");
+            premissionegiacreata = 1;
         }
     }
+    if (premissionegiacreata > 0)
+        ShowMessage("PreMissione gia' creata, operazione annullata");
+
+    if ((ZonaPrel == "J") || (ZonaDep == "J"))
+        zonascelta = "";
+
     MainForm->pos_udc = 0;
     MainForm->trova_udc = 0;
     cbPriorita->Text = "3";

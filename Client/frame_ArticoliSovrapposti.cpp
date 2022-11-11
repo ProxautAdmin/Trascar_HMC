@@ -30,7 +30,7 @@ void TFrameSovrapposti::RiempiCampi() {
         ADOQuery1->First();
     }
     catch (...) {
-        dmDB->LogMsg("Erreore in refresh griglia HMC_SOVRAPPOSTI ");
+        dmDB->LogMsg("Errore in refresh griglia HMC_SOVRAPPOSTI ");
     }
 }
 

@@ -136,7 +136,7 @@ int TfrZonaI::CercaConCodart(AnsiString CodArt) {
     int res = 0;
     TUDC UDC;
     UDC.IDUDC = dmDB->IDUDCdaCodart(FrameMatPrime->ADOQuery1->FieldByName("componente")->AsString);
-    if (UDC.IDUDC == 0) {
+    if (1==1) { //(UDC.IDUDC == 0) {
         UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
         dmExtraFunction->StringToChar("", UDC.Lotto);
         dmExtraFunction->StringToChar(CodArt, UDC.Articolo.CodArt);

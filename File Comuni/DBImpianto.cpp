@@ -923,6 +923,7 @@ int TdmDBImpianto::ClonaHMC_ORDINI_IN_LAVORAZIONE(AnsiString posizione) {
 
     }
     catch (...) {
+        dmDB->LogMsg("Errore in update HMC_ORDINI_IN_LAVORAZIONE_copia con poszione= " + posizione);
         res = 0;
     }
     delete ADOQuery;
@@ -1097,8 +1098,10 @@ int TdmDBImpianto::UDCPresenteInMagazzinoPerTipo(int idudc, int tipoposizione) {
         ADOQuery->Connection = dmDB->ADOConnection1;
         stringa = "Select Pos from piani_view where IdUDC = " + IntToStr(idudc) + " and IDUDC>0 ";
         stringa += " and tipoposizione= " + IntToStr(tipoposizione);
-        stringa  += " and zona <> 'J' ";
-        stringa += " order by pos ";
+        stringa += " and zona <> 'J' ";
+        stringa += " and ISNULL(selezionata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(pos_prenotata,0)=0 ";
+        stringa += " and ISNULL(Piani_selezionata,0)=0 and ISNULL(disabilitata,0)=0 and ISNULL(prenotata,0)=0  ";
+        stringa += " order by pos desc";
         ADOQuery->Close();
         ADOQuery->SQL->Clear();
         ADOQuery->SQL->Append(stringa);
@@ -1116,36 +1119,33 @@ int TdmDBImpianto::UDCPresenteInMagazzinoPerTipo(int idudc, int tipoposizione) {
     return res;
 }
 
-
-
-
 int TdmDB::UDCPresenteInMagazzino(int idudc) {
-	AnsiString stringa;
-	AnsiString strsql;
-	TADOQuery *ADOQuery;
-	int res = 0;
+    AnsiString stringa;
+    AnsiString strsql;
+    TADOQuery *ADOQuery;
+    int res = 0;
 
-	try {
-		if (!ADOConnection1->Connected)
-			return 0;
-		ADOQuery = new TADOQuery(NULL);
-		ADOQuery->Connection = ADOConnection1;
-		stringa = "Select Pos from piani where IdUDC = " + IntToStr(idudc) + " and IDUDC>0";
-		ADOQuery->Close();
-		ADOQuery->SQL->Clear();
-		ADOQuery->SQL->Append(stringa);
-		ADOQuery->Open();
-		if (ADOQuery->RecordCount > 0) {
-			res = ADOQuery->FieldByName("Pos")->AsInteger;
-		}
-		ADOQuery->Close();
-		// MainForm->LogMsg(stringa);
-	}
-	catch (...) {
+    try {
+        if (!ADOConnection1->Connected)
+            return 0;
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = ADOConnection1;
+        stringa = "Select Pos from piani where IdUDC = " + IntToStr(idudc) + " and IDUDC>0";
+        ADOQuery->Close();
+        ADOQuery->SQL->Clear();
+        ADOQuery->SQL->Append(stringa);
+        ADOQuery->Open();
+        if (ADOQuery->RecordCount > 0) {
+            res = ADOQuery->FieldByName("Pos")->AsInteger;
+        }
+        ADOQuery->Close();
+        // MainForm->LogMsg(stringa);
+    }
+    catch (...) {
 
-	}
-	delete ADOQuery;
-	return res;
+    }
+    delete ADOQuery;
+    return res;
 }
 
 int TdmDBImpianto::PosPresenteMissioneAttivaA(int pos) {

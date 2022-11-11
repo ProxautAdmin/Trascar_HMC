@@ -31,7 +31,7 @@ void TFrameArticoliInLavorazione::RiempiCampi() {
         ADOQuery1->First();
     }
     catch (...) {
-        dmDB->LogMsg("Erreore in refresh griglia HMC_ORDINI_IN_LAVORAZIONE_copia ");
+        dmDB->LogMsg("Errore in refresh griglia HMC_ORDINI_IN_LAVORAZIONE_copia ");
     }
 }
 

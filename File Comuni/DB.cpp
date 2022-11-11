@@ -5011,8 +5011,11 @@ int TdmDB::InsertUpdateUDC(TUDC UDC) {
         }
         else {
             res = UDC.IDUDC;
-            if ((UDC.CodStato > 0) && (UDC.Articolo.IDArticolo > 0)) {
-                strsql.printf("UPDATE UDC SET " "CodStatoUDC = %d , " "IDArticolo = %d, " "Tara = %d, " "PesoAttuale = %d, " "IndiceImpilabilita = %d, " "Lotto = '%s', " "Parziale =%u, " " Riservato=%d " " where IDUDC = %d "
+            if (1==1)  { //((UDC.CodStato > 0) && (UDC.Articolo.IDArticolo > 0)) {
+                strsql.printf("UPDATE UDC SET Descrizione='%s', CodTipoUDC=%d,  CodUDC ='%s', stato = %d , IDArticolo = %d, Tara = %d, PesoAttuale = %d, IndiceImpilabilita = %d, Lotto = '%s', Parziale =%u,  Riservato=%d  where IDUDC = %d "
+                    , descrizione.c_str()
+                    , UDC.CodTipoUDC
+                    , CodUDC.c_str()
                     , UDC.CodStato
                     , UDC.Articolo.IDArticolo
                     , 0
@@ -5295,7 +5298,6 @@ int TdmDB::TornaNodoFermataDaPosizioni(int pos) {
     delete ADOQuery;
     return res;
 }
-
 
 int TdmDB::PresenzaCentroMissionePerPosizioni(int posprel, int posdep, int stato) {
     TADOQuery *ADOQuery;

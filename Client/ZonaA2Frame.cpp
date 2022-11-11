@@ -83,7 +83,12 @@ void TfrZonaA2::AggiornaDati() {
             }
         }
     }
-    MainForm->trova_udc = FrameUDCinMateriePrime->ADOQuery1->FieldByName("idudc")->AsInteger;
+    try {
+        MainForm->trova_udc = FrameUDCinMateriePrime->ADOQuery1->FieldByName("idudc")->AsInteger;
+    }
+    catch (...) {
+        MainForm->trova_udc = 0;
+    }
 }
 
 void __fastcall TfrZonaA2::pnPosAMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift, int X, int Y) {

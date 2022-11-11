@@ -30,7 +30,7 @@ void TFrameMatPrime::RiempiCampi() {
         ADOQuery1->First();
     }
     catch (...) {
-        dmDB->LogMsg("Erreore in refresh griglia HMC_Anagrafica ");
+        dmDB->LogMsg("Errore in refresh griglia HMC_Anagrafica ");
     }
 }
 
