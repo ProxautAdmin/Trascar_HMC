@@ -621,7 +621,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
     // genera cmissione
     if ((posprel > 0) && (posdep > 0) && (pianoprel > 0) && (pianodep > 0)) {
         // se deposito g azzero
-        if ((ZonaDep == "G") && (ZonaPrel == "J")) {
+        if ((ZonaDep == "G") && (ZonaPrel == "J") && (tipoposizione == TIPOLOGIA_PALLET)) {
             posdep = 0;
             pianodep = 0;
             CentroMis.ZonaDeposito = ZonaDep;
