@@ -156,6 +156,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
         if (Tab != NULL)
             Tab->TabVisible = false;
     }
+
     // C
     Zona = "C";
     if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
@@ -172,6 +173,7 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
         if (Tab != NULL)
             Tab->TabVisible = false;
     }
+
     // B
     Zona = "B";
     if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
@@ -204,6 +206,8 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
         if (Tab != NULL)
             Tab->TabVisible = false;
     }
+
+
     // F
     Zona = "F";
     if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
@@ -334,7 +338,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     // NB ottimizzare, non c'e' bisogno di un tipo diverso TfrZonaxx
     // prel
     if (pcPrel->ActivePage->Hint == "A") {
-        TabVisibili(0, 0, 0, 1, 0, 0, 0, 1, 0);
+        if (zonascelta != "A") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 0, 0, 1, 0, 0, 0, 1, 0);
+        }
         frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Prel"));
         if (frA1 != NULL) {
             frA1->AggiornaDati();
@@ -342,7 +349,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "J") {
-        TabVisibili(0, 0, 1, 0, 0, 0, 0, 0, 0);
+        if (zonascelta != "J") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 0, 1, 0, 0, 0, 0, 0, 0);
+        }
         frA2 = (TfrZonaA2*)(FindComponent("frZonaA2Prel"));
         if (frA2 != NULL) {
             frA2->AggiornaDati();
@@ -350,7 +360,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "G") {
-        TabVisibili(1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        if (zonascelta != "G") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        }
         frG = (TfrZonaG*)(FindComponent("frZonaGPrel"));
         if (frG != NULL) {
             frG->AggiornaDati();
@@ -358,7 +371,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "H") {
-        TabVisibili(0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
+        if (zonascelta != "H") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
+        }
         frH = (TfrZonaH*)(FindComponent("frZonaHPrel"));
         if (frH != NULL) {
             frH->AggiornaDati();
@@ -366,7 +382,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "I") {
-        TabVisibili(0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+        if (zonascelta != "I") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+        }
         frI = (TfrZonaI*)(FindComponent("frZonaIPrel"));
         if (frI != NULL) {
             frI->AggiornaDati();
@@ -374,7 +393,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "D") {
-        TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        if (zonascelta != "D") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        }
         frD = (TfrZonaD*)(FindComponent("frZonaDPrel"));
         if (frD != NULL) {
             frD->AggiornaDati();
@@ -382,7 +404,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "C") {
-        TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
+        if (zonascelta != "C") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
+        }
         frC = (TfrZonaC*)(FindComponent("frZonaCPrel"));
         if (frC != NULL) {
             frC->AggiornaDati();
@@ -390,7 +415,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "B") {
-        TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
+        if (zonascelta != "B") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        }
         frB = (TfrZonaB*)(FindComponent("frZonaBPrel"));
         if (frB != NULL) {
             frB->AggiornaDati();
@@ -398,7 +426,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "E") {
-        TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
+        if (zonascelta != "E") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
+        }
         frE = (TfrZonaE*)(FindComponent("frZonaEPrel"));
         if (frE != NULL) {
             frE->AggiornaDati();
@@ -406,7 +437,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         }
     }
     else if (pcPrel->ActivePage->Hint == "F") {
-        TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
+        if (zonascelta != "F") {
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
+        }
         frF = (TfrZonaF*)(FindComponent("frZonaFPrel"));
         if (frF != NULL) {
             frF->AggiornaDati();
@@ -460,6 +494,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
 
     // refresh griglie o dati
     if (pcPrel->ActivePage->Hint == "A") {
+      pcDest->Enabled = true;
         pLinea->Visible = true;
         btRefresh->Enabled = true;
         if (zonascelta != "A") {
@@ -478,9 +513,10 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
         zonascelta = "J";
     }
     else {
+        pcDest->Enabled = false;
         pLinea->Visible = false;
         btRefresh->Enabled = false;
-        zonascelta = "";
+        zonascelta = pcPrel->ActivePage->Hint;
     }
 
     TimerRef->Enabled = true;
@@ -491,24 +527,28 @@ void TfGestAGVMidi::TabVisibili(bool tab0, bool tab1, bool tab2, bool tab3, bool
     TTabSheet *Tab;
 
     Tab = (TTabSheet*)(FindComponent("tsZonaA1Dest"));
-    if (Tab != NULL)
+    if (Tab != NULL) {
         Tab->TabVisible = tab0;
+    }
 
     Tab = (TTabSheet*)(FindComponent("tsZonaA2Dest"));
-    if (Tab != NULL)
+    if (Tab != NULL) {
         Tab->TabVisible = tab1;
+    }
 
     Tab = (TTabSheet*)(FindComponent("tsZonaGDest"));
     if (Tab != NULL)
         Tab->TabVisible = tab2;
 
     Tab = (TTabSheet*)(FindComponent("tsZonaHDest"));
-    if (Tab != NULL)
+    if (Tab != NULL) {
         Tab->TabVisible = tab3;
+    }
 
     Tab = (TTabSheet*)(FindComponent("tsZonaIDest"));
-    if (Tab != NULL)
+    if (Tab != NULL) {
         Tab->TabVisible = tab4;
+    }
 
     Tab = (TTabSheet*)(FindComponent("tsZonaDDest"));
     if (Tab != NULL)
@@ -519,8 +559,9 @@ void TfGestAGVMidi::TabVisibili(bool tab0, bool tab1, bool tab2, bool tab3, bool
         Tab->TabVisible = tab6;
 
     Tab = (TTabSheet*)(FindComponent("tsZonaBDest"));
-    if (Tab != NULL)
+    if (Tab != NULL) {
         Tab->TabVisible = tab7;
+    }
 
     Tab = (TTabSheet*)(FindComponent("tsZonaEDest"));
     if (Tab != NULL)
@@ -534,14 +575,28 @@ void TfGestAGVMidi::TabVisibili(bool tab0, bool tab1, bool tab2, bool tab3, bool
 
 void TfGestAGVMidi::AggiornaDatiLocali() {
     AnsiString OldCod = "", NewCod = "";
-    int idudc = 0;
+    AnsiString OldOrd = "", NewOrd = "";
+    int idudc = 0, res = 0;
     // fa davvero cagare ma che pure basta quindi va bene cosi'
-    OldCod = dmDBImpianto->TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(cbLinea->Text);
+    dmDBImpianto->TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(cbLinea->Text, OldCod, OldOrd);
     dmDBImpianto->ClonaHMC_ORDINI_IN_LAVORAZIONE(cbLinea->Text);
-    NewCod = dmDBImpianto->TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(cbLinea->Text);
-    if (NewCod != OldCod) {
+    dmDBImpianto->TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(cbLinea->Text, NewCod, NewOrd);
+    if ((NewCod != OldCod) || (NewOrd != OldOrd)) {
         idudc = dmDB->RitornaUDCdaCodUDC(OldCod);
-        dmDBImpianto->GeneraCMDaHaBFineProduzione(idudc);
+        if (idudc > 0) {
+            res = dmDBImpianto->GeneraCMDaHaBFineProduzione(idudc);
+            if (res == 1)
+                dmDB->LogMsg("Miss. H generata: oldcod " + OldCod + " ord. " + OldOrd + ", newcod " + NewCod + " ord. " + NewOrd);
+            else
+                dmDB->LogMsg("UDC " + IntToStr(idudc) + " non trovato in H: oldcod " + OldCod + " ord. " + OldOrd + ", newcod " + NewCod + " ord. " + NewOrd);
+        }
+        else {
+            ShowMessage("Articolo " + OldCod + " fine produzione non trovato, missione non creata");
+            dmDB->LogMsg("Articolo " + OldCod + " fine produzione non trovato, missione non creata");
+        }
+    }
+    else {
+        dmDB->LogMsg("Miss. H non generata: oldcod " + OldCod + " ord. " + OldOrd + ", newcod " + NewCod + " ord. " + NewOrd + " uguali");
     }
     frA1 = (TfrZonaA1*)(FindComponent("frZonaA1Prel"));
     if (frA1 != NULL) {
@@ -564,6 +619,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
     AnsiString strsql, ZonaPrel, ZonaDep;
     bool chiudi = true;
     int premissionegiacreata = 0;
+    int mission1creata = 0;
     int posprel = 0, pianoprel = 0, posdep = 0, pianodep = 0, tipoposizione, tipoposizionedep, idudc;
 
     // prel
@@ -607,7 +663,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
                 ZonaPrel = "J";
                 TornaPosPrelSelezionata(ZonaPrel, posprel, pianoprel, tipoposizione, idudc);
                 ZonaDep = "G";
-                dmDBImpianto->TornaPosDepLibera("G", posdep, pianodep, TIPOLOGIA_PALLET);
+                dmDBImpianto->TornaPosDepLiberaPallet("G", posdep, pianodep, TIPOLOGIA_PALLET);
 
             }
 
@@ -621,7 +677,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
     // genera cmissione
     if ((posprel > 0) && (posdep > 0) && (pianoprel > 0) && (pianodep > 0)) {
         // se deposito g azzero
-        if ((ZonaDep == "G") && (ZonaPrel == "J") && (tipoposizione == TIPOLOGIA_PALLET)) {
+        if ((ZonaDep == "G") && (ZonaPrel == "J") && (tipoposizione == TIPOLOGIA_MATERIEPRIME)) {
             posdep = 0;
             pianodep = 0;
             CentroMis.ZonaDeposito = ZonaDep;
@@ -648,6 +704,7 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
         CentroMis.DestinazioneModuli = 0;
         if (dmDB->PresenzaCentroMissionePerPosizioni(CentroMis.posprel, CentroMis.posdep, 0) == 0) {
             dmDB->GeneraCentroMissione(CentroMis);
+            mission1creata = 1;
             // tolgo prenotazioni
             dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
             dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
@@ -656,37 +713,39 @@ void __fastcall TfGestAGVMidi::btConfermaClick(TObject * Sender) {
             premissionegiacreata = 1;
         }
     }
+    // creo missione 2 solo se fatta la 1
+    if (mission1creata >= 1) {
+        if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione != TIPOLOGIA_SCARTO)) {
+            CentroMis.ZonaDeposito = ZonaPrel;
+            CentroMis.ZonaPrelievo = "I";
+            CentroMis.posprel = dmDBImpianto->UDCPresenteInMagazzinoPerTipo(MainForm->trova_udc, TIPOLOGIA_MATERIEPRIME);
+            // dmDB->UDCPresenteInMagazzino(MainForm->trova_udc);
+            CentroMis.pianoprel = 1;
+            CentroMis.posdep = MainForm->pos_udc;
+            CentroMis.pianodep = 1;
+            CentroMis.IDUDC = 1; // porto sempre un vuoto MainForm->trova_udc;
+            CentroMis.h_prel = dmDB->RitornaAltezzedaPosizione(CentroMis.posprel, CentroMis.pianoprel, "HPREL");
+            CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
+            CentroMis.TipoMissione = 0;
+            CentroMis.CodTipoMovimento = 0;
+            CentroMis.CodTipoMissione = 0;
+            CentroMis.Priorita = cbPriorita->Text.ToIntDef(1) - 1;
+            CentroMis.Agv = 1;
 
-    if ((ZonaPrel == "J") && (ZonaDep == "G") && (tipoposizione != TIPOLOGIA_SCARTO)) {
-        CentroMis.ZonaDeposito = ZonaPrel;
-        CentroMis.ZonaPrelievo = "I";
-        CentroMis.posprel = dmDBImpianto->UDCPresenteInMagazzinoPerTipo(MainForm->trova_udc, TIPOLOGIA_MATERIEPRIME);
-        // dmDB->UDCPresenteInMagazzino(MainForm->trova_udc);
-        CentroMis.pianoprel = 1;
-        CentroMis.posdep = MainForm->pos_udc;
-        CentroMis.pianodep = 1;
-        CentroMis.IDUDC = 1; // porto sempre un vuoto MainForm->trova_udc;
-        CentroMis.h_prel = dmDB->RitornaAltezzedaPosizione(CentroMis.posprel, CentroMis.pianoprel, "HPREL");
-        CentroMis.h_dep = dmDB->RitornaAltezzedaPosizione(CentroMis.posdep, CentroMis.pianodep, "HDEP");
-        CentroMis.TipoMissione = 0;
-        CentroMis.CodTipoMovimento = 0;
-        CentroMis.CodTipoMissione = 0;
-        CentroMis.Priorita = cbPriorita->Text.ToIntDef(1) - 1;
-        CentroMis.Agv = 1;
-
-        CentroMis.CorsiaDeposito = " ";
-        CentroMis.stato = 0;
-        CentroMis.FilaInCorsiaDeposito = 0;
-        CentroMis.TipoUDC = 0;
-        CentroMis.DestinazioneModuli = 0;
-        if (dmDB->PresenzaCentroMissionePerPosizioni(CentroMis.posprel, CentroMis.posdep, 0) == 0) {
-            dmDB->GeneraCentroMissione(CentroMis);
-            // tolgo prenotazioni
-            dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
-            dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
-        }
-        else {
-            premissionegiacreata = 1;
+            CentroMis.CorsiaDeposito = " ";
+            CentroMis.stato = 0;
+            CentroMis.FilaInCorsiaDeposito = 0;
+            CentroMis.TipoUDC = 0;
+            CentroMis.DestinazioneModuli = 0;
+            if (dmDB->PresenzaCentroMissionePerPosizioni(CentroMis.posprel, CentroMis.posdep, 0) == 0) {
+                dmDB->GeneraCentroMissione(CentroMis);
+                // tolgo prenotazioni
+                dmDBImpianto->AggiornaSelezionePosizioni(ZonaPrel, 0, 0);
+                dmDBImpianto->AggiornaSelezionePosizioni(ZonaDep, 0, 0);
+            }
+            else {
+                premissionegiacreata = 1;
+            }
         }
     }
     if (premissionegiacreata > 0)

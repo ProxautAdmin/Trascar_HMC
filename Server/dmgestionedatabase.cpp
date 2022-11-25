@@ -136,6 +136,7 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                 if (dbposprel == 0) {
                     if (ZonaPrel == "G") {
                         dmDBImpianto->PrelievoVuoti(7, dbposprel, dbpianoprel);
+                        dmDBImpianto->AggiornaUDCPosizioni(dbposprel, 1, dbpianoprel);
                         // m.corsia_dep = dmDB->FilaPosizione(m.posdep);
                     }
                     else if (ZonaPrel == "I") {
@@ -154,6 +155,9 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                     else if (ZonaDep == "G") {
                         // fa cagare con tutte queste eccezioni ma visto che non deve controllare il prenotata vaffanculo
                         dmDBImpianto->TornaPosDepLiberaPallet("G", dbposdep, dbpianodep, TIPOLOGIA_PALLET);
+                        dbpianodep=dmDB->ContaUDCsuPos(dbposdep)   ;
+                        dmDBImpianto->AggiornaUDCPosizioni(dbposdep, 1, dbpianodep);
+                        dbpianodep++;
                     }
                 }
                 // faccio la missione da I a j solo se J vuota
@@ -221,7 +225,8 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                             m.posdep = dbposdep;
                             m.piano_dep = dbpianodep;
                             if (ZonaDep == "G")
-                                m.h_dep = dmExtraFunction->Constrain((m.piano_dep * ClientData.ParametriFunzionali.altezza_pallet) + 302, 350, 1500);
+							  //  m.h_dep = dmExtraFunction->Constrain(((NUMPIANI_VUOTI + 2) * ClientData.ParametriFunzionali.altezza_pallet), 350, 1500);
+                             m.h_dep = dmExtraFunction->Constrain((m.piano_dep * ClientData.ParametriFunzionali.altezza_pallet) + 302, 350, 1500);
                             else
                                 m.h_dep = max(dmDB->RitornaAltezzedaPosizione(m.posdep, m.piano_dep, "HDEP"), ALTEZZA_PRELIEVO);
                             m.corsia_dep = dmDB->FilaPosizione(m.posdep);
@@ -235,7 +240,7 @@ int TdmDBServer::RicercaNuovaMissionedaGenerare(int stato, int cod_tipo_mov) {
                         }
 
                         if ((m.posdep > 0) && (m.piano_dep > 0) && (m.h_dep > 0)) {
-                            if (dmDB->ControllaPosizioneOK(m.posdep, m.piano_dep) == 1) {
+                            if ((dmDB->ControllaPosizioneOK(m.posdep, m.piano_dep) == 1)|| (ZonaDep == "G")) {
                                 // if ((dmDB->ControllaPosizioneOK(m.posdep, m.piano_dep) == 1) || (ZonaDep == "G")) {
                                 res = GeneraMissione(m);
                                 if (res > 0) {
@@ -471,6 +476,7 @@ int TdmDBServer::GeneraCMDaIaA2(int val) {
 }
 
 int TdmDBServer::GeneraCMDaFaE(int val) {
+    static int contatore = 0;
     TCentroMissione cm;
     AnsiString strsql;
     int tipo_mis, agv;
@@ -485,47 +491,52 @@ int TdmDBServer::GeneraCMDaFaE(int val) {
         if ((ClientData.Plc[idx_plc].Deposito[idx][1].Ready) && (!ClientData.Plc[idx_plc].Deposito[idx][1].InAllarme) && (ClientData.Plc[idx_plc].Deposito[idx][1].ProntaAlDeposito)) {
             if (dmDB->PresenzaCentroMissione(ClientData.Plc[idx_plc].Deposito[idx][1].pos, 0) == 0) {
                 if (dmDB->PosPresenteMissioneAttiva(ClientData.Plc[idx_plc].Deposito[idx][1].pos) == 0) {
-                    // per limitare la generazione delle missioni un ciclo alla volta, controllo che ok_genera=0, in questo modo scorre i record finche'
-                    // o sono finiti o ne ha trovato uno buono, altrimenti potrebbe fermarsi a generare anche se potrebbe proseguire
-                    if (ok_genera == 0) {
-                        cm.TipoMissione = 0;
-                        cm.CodTipoMovimento = 0;
-                        cm.CodTipoMissione = 1;
-                        cm.Agv = 1;
-                        cm.IDUDC = 1; // ???
-                        cm.TipoUDC = 0; // ??
-                        cm.stato = 0;
-                        cm.Priorita = dmDB->priorita_missioni[3]; // SISTEMARE
+                    if (contatore >= 60) {
+                        // per limitare la generazione delle missioni un ciclo alla volta, controllo che ok_genera=0, in questo modo scorre i record finche'
+                        // o sono finiti o ne ha trovato uno buono, altrimenti potrebbe fermarsi a generare anche se potrebbe proseguire
+                        if (ok_genera == 0) {
+                            cm.TipoMissione = 0;
+                            cm.CodTipoMovimento = 0;
+                            cm.CodTipoMissione = 1;
+                            cm.Agv = 1;
+                            cm.IDUDC = 1; // ???
+                            cm.TipoUDC = 0; // ??
+                            cm.stato = 0;
+                            cm.Priorita = dmDB->priorita_missioni[3]; // SISTEMARE
 
-                        cm.posdep = ClientData.Plc[idx_plc].Deposito[idx][1].pos;
-                        cm.pianodep = 1;
-                        cm.h_dep = dmDB->RitornaAltezzedaPosizione(cm.posdep, cm.pianodep, "HDEP");
-                        // cm.corsia_prel = dmDB->FilaPosizione(m.posprel);
+                            cm.posdep = ClientData.Plc[idx_plc].Deposito[idx][1].pos;
+                            cm.pianodep = 1;
+                            cm.h_dep = dmDB->RitornaAltezzedaPosizione(cm.posdep, cm.pianodep, "HDEP");
+                            // cm.corsia_prel = dmDB->FilaPosizione(m.posprel);
 
-                        if ((cm.posdep > 0) && (cm.pianodep > 0) && (cm.h_dep > 0)) {
-                            cm.posprel = dmDBImpianto->CercaPrelievoF();
-                            if (cm.posprel > 0) {
-                                cm.pianoprel = 1;
-                                cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
-                                if (dmDB->PresenzaCentroMissione(cm.posprel, 0) == 0) {
-                                    if (dmDB->PosPresenteMissioneAttiva(cm.posprel) == 0) {
-                                        res = dmDB->GeneraCentroMissione(cm);
+                            if ((cm.posdep > 0) && (cm.pianodep > 0) && (cm.h_dep > 0)) {
+                                cm.posprel = dmDBImpianto->CercaPrelievoF();
+                                if (cm.posprel > 0) {
+                                    cm.pianoprel = 1;
+                                    cm.h_prel = dmDB->RitornaAltezzedaPosizione(cm.posprel, cm.pianoprel, "HPREL");
+                                    if (dmDB->PresenzaCentroMissione(cm.posprel, 0) == 0) {
+                                        if (dmDB->PosPresenteMissioneAttiva(cm.posprel) == 0) {
+                                            res = dmDB->GeneraCentroMissione(cm);
+                                        }
                                     }
-                                }
-                                if (res > 0) {
-                                    // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
-                                    ok_genera = 1;
+                                    if (res > 0) {
+                                        contatore = 0;
+                                        // dmDBServer->AggiornaStatoCentroMissioni(m.idcentromissioni, 1);
+                                        ok_genera = 1;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                else {
+                    contatore = 0;
+                }
             }
-
         }
-
     }
     catch (...) {}
+    contatore++;
     return res;
 }
 
@@ -981,28 +992,31 @@ void __fastcall TdmDBServer::TimerStanzaTimer(TObject * Sender) {
     if ((MainForm->count_inizio < 20) || (MainForm->close_program) || (!dmDB->ADOConnection1->Connected) || (!dmDB->lettostatoagv))
         return;
     TimerStanza->Enabled = false;
+
     try {
-        for (int i = 1;
-            i <= NAGV;
-            i++) {
-            if (ClientData.DatiAgv[i].pos > 0) {
-                inzona = CercaZona(tab.mappa_nodi[ClientData.DatiAgv[i].pos].posx, tab.mappa_nodi[ClientData.DatiAgv[i].pos].posy);
-                // logica girata
-                if (inzona > 0) {
-                    if (ClientData.DatiPorte[idporta].AGVInZona)
-                        PLCPhoenixThread[ClientData.DatiPorte[idporta].id_thread_plc]->ScriviPhoenix(ClientData.DatiPorte[idporta].Bit_AGVInZona, ClientData.DatiPorte[idporta].DW_Addr_AGVInZona, false);
+        ClientData.DatiPorte[idporta].PlcConnesso = PLCPhoenixThread[ClientData.DatiPorte[idporta].id_thread_plc]->connesso;
+        if ((PLCPhoenixThread[ClientData.DatiPorte[idporta].id_thread_plc]->connesso) || (ClientData.ParametriFunzionali.Simula)) {
+            for (int i = 1; i <= NAGV; i++) {
+                if (ClientData.DatiAgv[i].pos > 0) {
+                    // 16-11-2022 forzaturacome ricbhiesto
+                    // inzona = CercaZona(tab.mappa_nodi[ClientData.DatiAgv[i].pos].posx, tab.mappa_nodi[ClientData.DatiAgv[i].pos].posy);
+                    inzona = 0;
+                    // logica girata
+                    if (inzona > 0) {
+                        if (ClientData.DatiPorte[idporta].AGVInZona)
+                            PLCPhoenixThread[ClientData.DatiPorte[idporta].id_thread_plc]->ScriviPhoenix(ClientData.DatiPorte[idporta].Bit_AGVInZona, ClientData.DatiPorte[idporta].DW_Addr_AGVInZona, false);
 
-                }
-                else {
-                    if (!ClientData.DatiPorte[1].AGVInZona)
-                        PLCPhoenixThread[ClientData.DatiPorte[idporta].id_thread_plc]->ScriviPhoenix(ClientData.DatiPorte[idporta].Bit_AGVInZona, ClientData.DatiPorte[idporta].DW_Addr_AGVInZona, true);
+                    }
+                    else {
+                        if (!ClientData.DatiPorte[1].AGVInZona)
+                            PLCPhoenixThread[ClientData.DatiPorte[idporta].id_thread_plc]->ScriviPhoenix(ClientData.DatiPorte[idporta].Bit_AGVInZona, ClientData.DatiPorte[idporta].DW_Addr_AGVInZona, true);
 
+                    }
                 }
             }
         }
     }
     catch (...) {
-
     }
     TimerStanza->Enabled = true;
 }

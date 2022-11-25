@@ -87,6 +87,11 @@ object FrameArticoliInLavorazione: TFrameArticoliInLavorazione
         item
           Expanded = False
           FieldName = 'Sovrapposto'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
           Title.Caption = 'Imp.'
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
@@ -94,6 +99,23 @@ object FrameArticoliInLavorazione: TFrameArticoliInLavorazione
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
           Width = 40
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CODICE_ORDINE'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Title.Caption = 'Cod.Ordine'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Width = 120
           Visible = True
         end>
     end

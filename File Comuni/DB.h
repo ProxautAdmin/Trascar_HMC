@@ -313,6 +313,8 @@ private: // User declarations
     int BloccoMissione();
     int TornaNodoFermataDaPosizioni(int pos);
     int PresenzaCentroMissionePerPosizioni(int posprel, int posdep, int stato);
+    int ContaUDCsuPos(int pos) ;
+    int ContaPosPresenteMissioneAttiva(int pos);
 
     AnsiString Lingua;
 

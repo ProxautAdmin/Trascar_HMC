@@ -5,6 +5,7 @@ inherited fCentroMissioni: TfCentroMissioni
   ParentBiDiMode = False
   OnActivate = FormActivate
   ExplicitLeft = -375
+  ExplicitTop = -65
   ExplicitWidth = 1500
   ExplicitHeight = 689
   PixelsPerInch = 96
@@ -68,7 +69,7 @@ inherited fCentroMissioni: TfCentroMissioni
     object BitBtn1: TBitBtn
       AlignWithMargins = True
       Left = 4
-      Top = -11
+      Top = 137
       Width = 117
       Height = 59
       Align = alBottom
@@ -182,11 +183,12 @@ inherited fCentroMissioni: TfCentroMissioni
       TabOrder = 1
       WordWrap = True
       OnClick = BitBtn1Click
+      ExplicitTop = -11
     end
     object BitBtn2: TBitBtn
       AlignWithMargins = True
       Left = 4
-      Top = 54
+      Top = 202
       Width = 117
       Height = 60
       Align = alBottom
@@ -301,11 +303,12 @@ inherited fCentroMissioni: TfCentroMissioni
       TabOrder = 2
       WordWrap = True
       OnClick = BitBtn2Click
+      ExplicitTop = 54
     end
     object btDelRiga: TBitBtn
       AlignWithMargins = True
       Left = 4
-      Top = 147
+      Top = 295
       Width = 117
       Height = 61
       Margins.Top = 30
@@ -419,11 +422,12 @@ inherited fCentroMissioni: TfCentroMissioni
       Spacing = 5
       TabOrder = 3
       OnClick = btDelRigaClick
+      ExplicitTop = 147
     end
     object btEsporta: TBitBtn
       AlignWithMargins = True
       Left = 4
-      Top = -77
+      Top = 71
       Width = 117
       Height = 60
       Align = alBottom
@@ -538,42 +542,7 @@ inherited fCentroMissioni: TfCentroMissioni
       TabOrder = 4
       WordWrap = True
       OnClick = btEsportaClick
-    end
-    object btGestCMiss: TBitBtn
-      AlignWithMargins = True
-      Left = 4
-      Top = 295
-      Width = 117
-      Height = 61
-      Margins.Top = 10
-      Align = alBottom
-      Caption = 'Prelievo Manuale'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      Spacing = 5
-      TabOrder = 5
-    end
-    object btBarcode: TBitBtn
-      AlignWithMargins = True
-      Left = 4
-      Top = 221
-      Width = 117
-      Height = 61
-      Margins.Top = 10
-      Align = alBottom
-      Caption = 'Prelievo BarCode'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      Spacing = 5
-      TabOrder = 6
+      ExplicitTop = -77
     end
     object BitBtn3: TBitBtn
       AlignWithMargins = True
@@ -691,7 +660,7 @@ inherited fCentroMissioni: TfCentroMissioni
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       ParentFont = False
       Spacing = 10
-      TabOrder = 7
+      TabOrder = 5
       WordWrap = True
       OnClick = BitBtn3Click
     end

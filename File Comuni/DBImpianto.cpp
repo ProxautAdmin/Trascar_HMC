@@ -588,8 +588,13 @@ void TdmDBImpianto::TornaPosDepLiberaPallet(AnsiString Zona, int &pos, int &pian
     try {
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
-        strsql.printf("Select top 1 pos, piano from piani_view where %s idudc=0 and %s ISNULL(disabilitata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='%s' order by (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos desc, piano",
-            ev, selectpiano, Zona);
+        strsql = "Select top 1 pos, piano from piani_view ";
+        strsql += " where " + ev + " idudc=0 and " + selectpiano + " ISNULL(disabilitata,0)=0 and ISNULL(pos_disabilita,0)=0 and ISNULL(selezionata,0)=0 and zona='" + Zona + "' ";
+        strsql += " and ((SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) <9-";
+        strsql += " (SELECT count(*) ccont FROM Missioni where ((fine is null) and (posdep = dbo.piani_view.Pos))) ";
+        strsql += " ) ";
+        strsql += " order by pos_prenotata desc, (SELECT COUNT(*) AS Expr1 FROM dbo.Piani AS Piani_1 WHERE (pos = dbo.piani_view.Pos) AND (IDUDC <> 0)) desc,pos desc, piano";
+
         ADOQuery->SQL->Text = strsql;
         ADOQuery->Open();
         ADOQuery->First();
@@ -783,9 +788,10 @@ int TdmDBImpianto::AggiornaUDCPosizioni(int pos, int IDUDC, int piano) {
         ADOQuery->SQL->Text = strsql;
         res = ADOQuery->ExecSQL();
         dmDB->LogMsg(strsql + " , result : " + IntToStr(res));
-    }
-    catch (...) {
-    }
+	}
+	catch (...) {
+		   dmDB->LogMsg("ERRORE IN "+strsql + " , result : " + IntToStr(res));
+	}
     delete ADOQuery;
     return res;
 }
@@ -942,7 +948,7 @@ int TdmDBImpianto::CheckZonaUtente(AnsiString zonadacontrollare) {
     return ret;
 }
 
-AnsiString TdmDBImpianto::TornaCodartConRigaDaHMC_ORDINI_IN_LAVORAZIONE(int riga, TUDC &UDC) {
+AnsiString TdmDBImpianto::TornaCodartConRigaDaHMC_ORDINI_IN_LAVORAZIONE(int riga, TUDC & UDC) {
     TADOQuery *ADOQuery;
     AnsiString strsql;
     AnsiString res = "";
@@ -1057,23 +1063,26 @@ int TdmDBImpianto::GeneraCMDaHaBFineProduzione(int val) {
     return res;
 }
 
-AnsiString TdmDBImpianto::TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(AnsiString posizione) {
+void TdmDBImpianto::TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(AnsiString posizione, AnsiString &codart, AnsiString &codordine) {
     AnsiString stringa, res = "";
     AnsiString strsql;
     TADOQuery *ADOQuery;
+    codordine=0;
+    codart=0;
 
     try {
         if (!dmDB->ADOConnection1->Connected)
-            return res;
+            return ;
         ADOQuery = new TADOQuery(NULL);
         ADOQuery->Connection = dmDB->ADOConnection1;
-        stringa = "SELECT * FROM HMC_ORDINI_IN_LAVORAZIONE_Copia where Posizione='" + posizione + "'";
+        stringa = "SELECT articolo, codice_ordine FROM HMC_ORDINI_IN_LAVORAZIONE_Copia where Posizione='" + posizione + "'";
         ADOQuery->Close();
         ADOQuery->SQL->Clear();
         ADOQuery->SQL->Append(stringa);
         ADOQuery->Open();
         if (ADOQuery->RecordCount > 0) {
-            res = ADOQuery->FieldByName("Articolo")->AsString.Trim();
+            codart = ADOQuery->FieldByName("Articolo")->AsString.Trim();
+            codordine = ADOQuery->FieldByName("codice_ordine")->AsString.Trim();
         }
         ADOQuery->Close();
         // MainForm->LogMsg(stringa);
@@ -1082,7 +1091,7 @@ AnsiString TdmDBImpianto::TornaArticoloDaHMC_ORDINI_IN_LAVORAZIONEcopia(AnsiStri
 
     }
     delete ADOQuery;
-    return res;
+    return ;
 }
 
 int TdmDBImpianto::UDCPresenteInMagazzinoPerTipo(int idudc, int tipoposizione) {

@@ -59,8 +59,6 @@ __published:	// IDE-managed Components
     TEdit *edPrelievo;
     TCheckBox *cbPrelievo;
     TBitBtn *btEsporta;
-    TBitBtn *btGestCMiss;
-    TBitBtn *btBarcode;
     TBitBtn *BitBtn3;
     TDateTimePicker *DaOra;
     TDateTimePicker *DaData;

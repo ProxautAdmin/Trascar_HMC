@@ -5011,7 +5011,7 @@ int TdmDB::InsertUpdateUDC(TUDC UDC) {
         }
         else {
             res = UDC.IDUDC;
-            if (1==1)  { //((UDC.CodStato > 0) && (UDC.Articolo.IDArticolo > 0)) {
+            if (1 == 1) { // ((UDC.CodStato > 0) && (UDC.Articolo.IDArticolo > 0)) {
                 strsql.printf("UPDATE UDC SET Descrizione='%s', CodTipoUDC=%d,  CodUDC ='%s', stato = %d , IDArticolo = %d, Tara = %d, PesoAttuale = %d, IndiceImpilabilita = %d, Lotto = '%s', Parziale =%u,  Riservato=%d  where IDUDC = %d "
                     , descrizione.c_str()
                     , UDC.CodTipoUDC
@@ -5320,3 +5320,53 @@ int TdmDB::PresenzaCentroMissionePerPosizioni(int posprel, int posdep, int stato
     delete ADOQuery;
     return res;
 }
+
+int TdmDB::ContaUDCsuPos(int pos) {
+    int res = 0, cont;
+    TADOQuery *ADOQuery;
+    AnsiString strsql;
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = ADOConnection1;
+        strsql = "SELECT COUNT(*) AS npianiocc FROM dbo.Piani AS Piani_1 WHERE (pos = " + IntToStr(pos) + ") AND (IDUDC <> 0)";
+
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+        ADOQuery->First();
+
+        if (ADOQuery->RecordCount) {
+            res = ADOQuery->FieldByName("npianiocc")->AsInteger ;
+        }
+        ADOQuery->Close();
+    }
+	catch (...) {
+	 dmDB->LogMsg("ERRORE IN "+strsql + " , result : " + IntToStr(res));
+    }
+    delete ADOQuery;
+
+    return res;
+}
+
+
+int TdmDB::ContaPosPresenteMissioneAttiva(int pos) {
+    TADOQuery *ADOQuery;
+    AnsiString strsql, ev;
+    TLocateOptions Opts;
+    Opts.Clear();
+    int res = 0;
+    try {
+        ADOQuery = new TADOQuery(NULL);
+        ADOQuery->Connection = ADOConnection1;
+        strsql = "SELECT count(*) ccont FROM Missioni where ((fine is null) and ((posprel =" + IntToStr(pos) + ") or (posdep = " + IntToStr(pos) + ")))";
+        ADOQuery->SQL->Text = strsql;
+        ADOQuery->Open();
+        ADOQuery->First();
+        res = ADOQuery->FieldByName("ccont")->AsInteger;
+        ADOQuery->Close();;
+    }
+    catch (...) {
+    }
+    delete ADOQuery;
+    return res;
+}
+

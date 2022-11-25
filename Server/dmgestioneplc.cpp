@@ -408,9 +408,11 @@ void TDMPlc::ControlloIngressoPrelievi(DatiPlc &Plc, DatiPrelievo &Prelievo) {
 	int prelievirimasti, id;
 	if (dmDB->lettostatoagv) {
 		for (int agv = 1; agv <= NAGV; agv++) {
-			if ((ClientData.DatiAgv[agv].richiestaconsenso) && (!ClientData.DatiAgv[agv].consensodato) && (ClientData.DatiAgv[agv].pos == Prelievo.pos_fuori_ingombro) && (MainForm->strcons[agv] == "rulierac")) {
+		  //			if ((ClientData.DatiAgv[agv].richiestaconsenso) && (!ClientData.DatiAgv[agv].consensodato) && (ClientData.DatiAgv[agv].pos == Prelievo.pos_fuori_ingombro) && (MainForm->strcons[agv] == "rulierac")) {
+           // NB: si mette il controllo sul nodo solo se non controllo la stringa ma in questo caso
+			if ((ClientData.DatiAgv[agv].richiestaconsenso) && (!ClientData.DatiAgv[agv].consensodato)  && (MainForm->strcons[agv] == "rulierac")) {
 				// if ((Prelievo.BaiaCaricoInAutomatico) && (!Prelievo.BaiaCaricoInEmergenza) && (Prelievo.OkIngresso)) {
-				if ((!Prelievo.InAllarme) && (Prelievo.Ready) && (Prelievo.OkPrelievo)) {
+				if ((!Prelievo.InAllarme) && (Prelievo.Ready) ) { //&& (Prelievo.OkPrelievo)) {
 					ClientData.DatiAgv[agv].consensodato = ClientData.DatiAgv[agv].nodob;
 					ClientData.DatiAgv[agv].richiestaconsenso = 0;
 					dmDB->LogMsg("Consenso ingresso inviato ad Agv " + IntToStr(agv) + " in pos " + IntToStr(ClientData.DatiAgv[agv].pos) + " ,dest " + IntToStr(ClientData.DatiAgv[agv].dest));
@@ -444,7 +446,7 @@ void TDMPlc::ControlloIngressoDepositi(DatiPlc &Plc, DatiDeposito &Deposito) {
 		for (int agv = 1; agv <= NAGV; agv++) {
 			if (((ClientData.DatiAgv[agv].richiestaconsenso) && (!ClientData.DatiAgv[agv].consensodato)) && ((MainForm->strcons[agv] == "rulierab") || (MainForm->strcons[agv] == "rulierae"))) {
 				// if ((Deposito.BaiaScaricoInAutomatico) && (!Deposito.BaiaScaricoInEmergenza) && (Deposito.OkIngresso)) {
-				if ((!Deposito.InAllarme) && (Deposito.Ready) && (Deposito.bit_OkDeposito)) {
+				if ((!Deposito.InAllarme) && (Deposito.Ready)) { // && (Deposito.OkDeposito)) {
 					ClientData.DatiAgv[agv].consensodato = ClientData.DatiAgv[agv].nodob;
 					ClientData.DatiAgv[agv].richiestaconsenso = 0;
 					dmDB->LogMsg("Consenso ingresso inviato ad Agv " + IntToStr(agv) + " in pos " + IntToStr(ClientData.DatiAgv[agv].pos) + " ,dest " + IntToStr(ClientData.DatiAgv[agv].dest));

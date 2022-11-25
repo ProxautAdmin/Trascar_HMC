@@ -33,6 +33,7 @@ void SUPERVISIONEMISS_STATESOCKET::Elabora(char *ev, TCustomWinSocket *Socket) {
     int pesata, dest = 0, word, val, tipomis, porta, posdep, prel, nagv, loaded, nodoa, nodob, corsia, livellobatt, bypass;
     int fila, prenota, id_centro_missione, IDWMS, tipologia_mov, tipologia_mis;
     int piano_prel = 1, piano_dep = 1, tipoplcprel = 0, tipoplcdep = 0, latoprel = 0, latodep = 0;
+    int tipoposprel = 0, tipoposdep = 0, contaudc = 0;
 
     int tipo_pallet = 0;
     int corsia_prel = 0, corsia_dep = 0;
@@ -401,10 +402,11 @@ void SUPERVISIONEMISS_STATESOCKET::Elabora(char *ev, TCustomWinSocket *Socket) {
                     tipologia_mis = dmDB->QueryMissioniSocket->FieldByName("CodTipoMissione")->AsInteger;
                     latodep = dmDB->QueryMissioniSocket->FieldByName("latodep")->AsInteger;
                     // tipoplcdep = dmDB->QueryMissioniSocket->FieldByName("PosInputPLC_Dep")->AsInteger;
+                    tipoposprel = dmDB->QueryMissioniSocket->FieldByName("tipoposprel")->AsInteger;
+                    tipoposdep = dmDB->QueryMissioniSocket->FieldByName("tipoposdep")->AsInteger;
 
                     ClientData.DatiAgv[nagv].DatiUDC.IDUDC = dmDB->QueryMissioniSocket->FieldByName("idudc")->AsInteger;
                     ClientData.DatiAgv[nagv].DatiUDC.IdArtUDC = dmDB->QueryMissioniSocket->FieldByName("idudc")->AsInteger;
-
                     ClientData.DatiAgv[nagv].tipo_pallet = dmDB->QueryMissioniSocket->FieldByName("IdArtUDC")->AsInteger; // è il tipo pallet
 
                 }
@@ -412,15 +414,23 @@ void SUPERVISIONEMISS_STATESOCKET::Elabora(char *ev, TCustomWinSocket *Socket) {
                 dmDB->LogMsg("Prelievo missione " + IntToStr(idmiss) + " eseguito in posizione: " + IntToStr(pos) + " corsia " + corsia_prel + " da agv numero " + IntToStr(id));
                 if (prel) {
                     // dmDBImpianto->AggiornaStatoMissioniWMS(IDWMS, 3);
-                     dmDBServer->AggiornaMissione(idmiss, 2, nagv, pesata);
+                    dmDBServer->AggiornaMissione(idmiss, 2, nagv, pesata);
                     prenota = 0;
 
                     dmDB->PrenotaPos(prel, prenota, corsia_prel);
                     // S15-09-2022 SOLO HMC
                     if (corsia_prel == 100)
                         dmDB->ArticoloPrelevatoDepositato(prel, 0, 0, corsia_prel);
-                    else
-                        dmDB->ArticoloPrelevatoDepositato(prel, 0, piano_prel, corsia_prel);
+                    else {
+                        if (tipoposprel == TIPOLOGIA_PALLET) {
+                            contaudc = dmDB->ContaUDCsuPos(prel);
+                            dmDBImpianto->AggiornaUDCPosizioni(prel, 1, dmExtraFunction->Constrain(contaudc - 1, 0, NUMPIANI_VUOTI));
+                            dmDB->LogMsg("Rettificata posprel " + IntToStr(prel) + " ad altezza " + IntToStr(dmExtraFunction->Constrain(contaudc - 1, 0, NUMPIANI_VUOTI)));
+                        }
+                        else {
+                            dmDB->ArticoloPrelevatoDepositato(prel, 0, piano_prel, corsia_prel);
+                        }
+                    }
 
                 }
                 else {
@@ -446,6 +456,8 @@ void SUPERVISIONEMISS_STATESOCKET::Elabora(char *ev, TCustomWinSocket *Socket) {
                     tipologia_mis = dmDB->QueryMissioniSocket->FieldByName("CodTipoMissione")->AsInteger;
                     tipoplcprel = dmDB->QueryMissioniSocket->FieldByName("PosInputPLC_Prel")->AsInteger;
                     tipoplcdep = dmDB->QueryMissioniSocket->FieldByName("PosInputPLC_Dep")->AsInteger;
+                    tipoposprel = dmDB->QueryMissioniSocket->FieldByName("tipoposprel")->AsInteger;
+                    tipoposdep = dmDB->QueryMissioniSocket->FieldByName("tipoposdep")->AsInteger;
                     if (((tipomis == 0) || (tipomis == 2)) && (!ClientData.DatiAgv[nagv].DatiUDC.IDUDC) && (dmDB->QueryMissioniSocket->FieldByName("idudc")->AsInteger)) {
                         ClientData.DatiAgv[nagv].DatiUDC.IDUDC = dmDB->QueryMissioniSocket->FieldByName("idudc")->AsInteger;
 
@@ -460,18 +472,16 @@ void SUPERVISIONEMISS_STATESOCKET::Elabora(char *ev, TCustomWinSocket *Socket) {
                     if ((tipomis == 0) || (tipomis == 2)) {
                         // deposito udc
                         // aggiorna Riferimento Ordine su Posizione deposito NB: va messo prima del riempimento della posizione senno' la trova piena e non aggiorna
-                        dmDB->ArticoloPrelevatoDepositato(posdep, ClientData.DatiAgv[nagv].DatiUDC.IDUDC, piano_dep, corsia_dep);
+                        if (tipoposdep == TIPOLOGIA_PALLET) {
+                            contaudc = dmDB->ContaUDCsuPos(posdep);
+                            dmDBImpianto->AggiornaUDCPosizioni(posdep, 1, dmExtraFunction->Constrain(contaudc + 1, 0, NUMPIANI_VUOTI));
+                            dmDB->LogMsg("Rettificata posdep " + IntToStr(posdep) + " ad altezza " + IntToStr(dmExtraFunction->Constrain(contaudc + 1, 0, NUMPIANI_VUOTI)));
+                        }
+                        else {
+                            dmDB->ArticoloPrelevatoDepositato(posdep, ClientData.DatiAgv[nagv].DatiUDC.IDUDC, piano_dep, corsia_dep);
+                        }
                         dmDB->PrenotaPos(posdep, 0, corsia_dep);
-                        // dmDB->SettaCorsiaInUso(dmDB->FilaPosizione(posdep), 0, 1); // setto alla creazione misisone in impostazione codice
-                        // !!! DA METTERE A POSTO
-                        /* if (posdep <= 20)
-                         {
-                         DMPlc->ScriviIdPalletPosizioneDiDeposito(piano_dep, posdep, nagv);
-                         } */
-                        // ClientData.DatiAgv[nagv].codice_pallet = 0; // mod pallet
                         if (ClientData.DatiAgv[nagv].DatiUDC.IdArtUDC) {
-                            // dmDBServer->CompilaEdInviaRecordSap(ClientData.DatiAgv[nagv].DatiUDC,id_centro_missione,posdep," 10 ") ;//invio missione completata a sap
-                            // EVITABILI????
                             dmDB->AggiornaUltimoIdUdcPerArticoloUdc(ClientData.DatiAgv[nagv].DatiUDC.IdArtUDC, ClientData.DatiAgv[nagv].DatiUDC.IDUDC); // al deposito imposto ultimo udc all'articolo
                         }
                     }
@@ -518,6 +528,8 @@ void SUPERVISIONEMISS_STATESOCKET::Elabora(char *ev, TCustomWinSocket *Socket) {
                 // MainForm->AbortMission(idmiss);
                 corsia_prel = 0;
                 corsia_dep = 0;
+                prel = 0;
+                posdep = 0;
                 if (dmDB->QueryMissioniSocket->RecordCount) {
                     // posprel = dmDB->QueryMissioniSocket->FieldByName(" posprel ")->AsInteger ;
                     prel = dmDB->QueryMissioniSocket->FieldByName("posprel")->AsInteger;
@@ -547,11 +559,13 @@ void SUPERVISIONEMISS_STATESOCKET::Elabora(char *ev, TCustomWinSocket *Socket) {
                 if (NoPrel == "") {
                     // devo azzerare la chiamata
                     prenota = 0;
-                    dmDB->PrenotaPos(prel, prenota, corsia_prel);
+                    if (prel > 0)
+                        dmDB->PrenotaPos(prel, prenota, corsia_prel);
                 }
 
                 prenota = 0;
-                dmDB->PrenotaPos(posdep, prenota, corsia_dep);
+                if (posdep > 0)
+                    dmDB->PrenotaPos(posdep, prenota, corsia_dep);
                 ClientData.DatiAgv[nagv].consensodato = 0;
                 ClientData.DatiAgv[nagv].generata = 0;
                 ClientData.DatiAgv[nagv].idmis = 0;

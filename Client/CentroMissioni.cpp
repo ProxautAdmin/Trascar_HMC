@@ -56,13 +56,10 @@ void __fastcall TfCentroMissioni::FormActivate(TObject *Sender)
 
     if (dmDB->ZonaString == "XXX") {
         btDelRiga->Visible = false; // dmDB->pwdlevel;
-        btGestCMiss->Visible = false; // dmDB->pwdlevel;
         BitBtn2->Visible = false;
         BitBtn1->Visible = false;
-        btBarcode->Visible = false;
     }
     else {
-        btBarcode->Visible = true;
         BitBtn1->Visible = false;
     }
 

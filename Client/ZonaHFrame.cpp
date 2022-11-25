@@ -95,13 +95,13 @@ void __fastcall TfrZonaH::pnPosH1MouseUp(TObject *Sender, TMouseButton Button, T
             leIdUDC->Text = UDC.IDUDC;
             if (Pan->Color == clLime) {
                 dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 0);
-              //  UDC.IDUDC = 0;
+                // UDC.IDUDC = 0;
             }
-            else if ((Pan->Color == clWebOrange)||  (Pan->Color == clYellow)) {
-                UDC.IDUDC = CercaConCodart(Pan->Hint.Trim());
-                if (UDC.IDUDC > 0) {
-                    dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));
-                }
+            else if ((Pan->Color == clWebOrange) || (Pan->Color == clYellow)) {
+               // UDC.IDUDC = CercaConCodart(Pan->Hint.Trim());
+                // if (UDC.IDUDC > 0) {
+                // dmDB->ArticoloPrelevatoDepositato(Pan->Tag, UDC.IDUDC, 1, dmDB->FilaPosizione(Pan->Tag));
+                // }
                 dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 1);
             }
             else {
@@ -184,8 +184,13 @@ void __fastcall TfrZonaH::SvuotaPosizioneClick(TObject * Sender) {
     AnsiString s;
     TMenuItem *Item = (TMenuItem*) Sender;
     if (Item != NULL) {
-        dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), 0);
-        FillDescrizione(0);
+        if (Item->Hint.ToIntDef(0) > 0) {
+            if (Application->MessageBox(L"Sei sicuro di voler svuotare una posizione piena?", L"Conferma", MB_YESNO) == IDYES) {
+                dmDBImpianto->AggiornaUDCPosizioni(Item->Hint.ToIntDef(0), 0);
+                FillDescrizione(0);
+                dmDB->LogMsg("Svuotata pos. : " + IntToStr(Item->Hint.ToIntDef(0)));
+            }
+        }
     }
 }
 

@@ -75,7 +75,7 @@ void TfrZonaI::AggiornaDati() {
                         Pan->Caption = "Pos." + IntToStr((numeroelementi - j) + 1) + " (" + IntToStr(Pan->Tag) + ")";
                     }
                     else {
-                        Pan->Caption = Trim( IntToStr((numeroelementi - j) + 1) + "-" + TabPosizioni[idx]["DESCUDC"]);
+                        Pan->Caption = Trim(IntToStr((numeroelementi - j) + 1) + "-" + TabPosizioni[idx]["DESCUDC"]);
                     }
                     Pan->Hint = TabPosizioni[idx]["IDUDC"].ToIntDef(0);
                 }
@@ -95,7 +95,8 @@ void __fastcall TfrZonaI::pnPosIMouseUp(TObject *Sender, TMouseButton Button, TS
         leIdUDC->Text = UDC.IDUDC;
         if (Button == mbLeft) {
             if (Pan->Color == clLime) {
-                dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 0);
+                if (Application->MessageBox(L"Sei sicuro di voler togliere la selezione dalla posizione?", L"Conferma", MB_YESNO) == IDYES)
+                    dmDBImpianto->AggiornaSelezionePosizioni(Zona, Pan->Tag, 0);
 
             }
             else {
@@ -136,7 +137,7 @@ int TfrZonaI::CercaConCodart(AnsiString CodArt) {
     int res = 0;
     TUDC UDC;
     UDC.IDUDC = dmDB->IDUDCdaCodart(FrameMatPrime->ADOQuery1->FieldByName("componente")->AsString);
-    if (1==1) { //(UDC.IDUDC == 0) {
+    if (1 == 1) { // (UDC.IDUDC == 0) {
         UDC.Articolo.IDArticolo = 0; // MainForm->trova_idarticolo;
         dmExtraFunction->StringToChar("", UDC.Lotto);
         dmExtraFunction->StringToChar(CodArt, UDC.Articolo.CodArt);
