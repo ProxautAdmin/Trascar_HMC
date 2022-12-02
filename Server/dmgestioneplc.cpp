@@ -408,11 +408,11 @@ void TDMPlc::ControlloIngressoPrelievi(DatiPlc &Plc, DatiPrelievo &Prelievo) {
 	int prelievirimasti, id;
 	if (dmDB->lettostatoagv) {
 		for (int agv = 1; agv <= NAGV; agv++) {
-		  //			if ((ClientData.DatiAgv[agv].richiestaconsenso) && (!ClientData.DatiAgv[agv].consensodato) && (ClientData.DatiAgv[agv].pos == Prelievo.pos_fuori_ingombro) && (MainForm->strcons[agv] == "rulierac")) {
-           // NB: si mette il controllo sul nodo solo se non controllo la stringa ma in questo caso
-			if ((ClientData.DatiAgv[agv].richiestaconsenso) && (!ClientData.DatiAgv[agv].consensodato)  && (MainForm->strcons[agv] == "rulierac")) {
+			// if ((ClientData.DatiAgv[agv].richiestaconsenso) && (!ClientData.DatiAgv[agv].consensodato) && (ClientData.DatiAgv[agv].pos == Prelievo.pos_fuori_ingombro) && (MainForm->strcons[agv] == "rulierac")) {
+			// NB: si mette il controllo sul nodo solo se non controllo la stringa ma in questo caso
+			if ((ClientData.DatiAgv[agv].richiestaconsenso) && (!ClientData.DatiAgv[agv].consensodato) && (MainForm->strcons[agv] == "rulierac")) {
 				// if ((Prelievo.BaiaCaricoInAutomatico) && (!Prelievo.BaiaCaricoInEmergenza) && (Prelievo.OkIngresso)) {
-				if ((!Prelievo.InAllarme) && (Prelievo.Ready) ) { //&& (Prelievo.OkPrelievo)) {
+				if ((!Prelievo.InAllarme) && (Prelievo.Ready)) { // && (Prelievo.OkPrelievo)) {
 					ClientData.DatiAgv[agv].consensodato = ClientData.DatiAgv[agv].nodob;
 					ClientData.DatiAgv[agv].richiestaconsenso = 0;
 					dmDB->LogMsg("Consenso ingresso inviato ad Agv " + IntToStr(agv) + " in pos " + IntToStr(ClientData.DatiAgv[agv].pos) + " ,dest " + IntToStr(ClientData.DatiAgv[agv].dest));
@@ -528,6 +528,13 @@ void TDMPlc::ControlloStatoPrelievi(DatiPlc & Plc, DatiPrelievo & Prelievo) {
 					Prelievo.uscitedascrivere[0] = Prelievo.uscitedascrivere[0] & dmDB->bitAnd[Prelievo.bit_RichiestaAbilitaPrel];
 					dmDB->LogMsg("Reset RichiestaIngombroZonaCarico su posizione " + IntToStr(Prelievo.pos) + " in posizione " + IntToStr(ClientData.DatiAgv[a].pos));
 				}
+				/*
+				if (ClientData.DatiAgv[a].stand_by) {
+					// fermo agv durante carico per allarme plc a terra
+					dmComandiAgv->StandByAgv(a, 0);
+					dmDB->LogMsg("Ripristino AGV da standby " + IntToStr(Prelievo.pos));
+				}
+				*/
 
 			}
 		}
@@ -550,7 +557,7 @@ void TDMPlc::ControlloStatoDepositi(DatiPlc & Plc, DatiDeposito & Deposito) {
 						dmDB->LogMsg("Set IngombroZonaScarico su posizione " + IntToStr(Deposito.pos));
 					}
 				}
-				if ((ClientData.DatiAgv[a].pos == Deposito.pos) && (ClientData.DatiAgv[a].dest == Deposito.pos)
+				if (((ClientData.DatiAgv[a].pos == Deposito.pos) || (ClientData.DatiAgv[a].pos == Deposito.pos_fuori_ingombro)) && (ClientData.DatiAgv[a].dest == Deposito.pos)
 					&& ((Deposito.InAllarme) || (!Deposito.Ready))) {
 					if (!ClientData.DatiAgv[a].stand_by) {
 						// fermo agv durante carico per allarme plc a terra
@@ -588,6 +595,13 @@ void TDMPlc::ControlloStatoDepositi(DatiPlc & Plc, DatiDeposito & Deposito) {
 					Deposito.uscitedascrivere[0] = Deposito.uscitedascrivere[0] & dmDB->bitAnd[Deposito.bit_AGVInIngombro];
 					dmDB->LogMsg("Reset IngombroZonaScarico su posizione " + IntToStr(ClientData.DatiAgv[a].pos));
 				}
+				/*
+				if (ClientData.DatiAgv[a].stand_by) {
+					// riavvio agv durante carico per allarme plc a terra
+					dmComandiAgv->StandByAgv(a, 0);
+					dmDB->LogMsg("Reset Standby agv su posizione " + IntToStr(Deposito.pos));
+				}
+				*/
 
 			}
 

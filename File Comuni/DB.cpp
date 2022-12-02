@@ -3675,7 +3675,7 @@ int TdmDB::GeneraCentroMissione(TCentroMissione CentroMis) {
                 dmDB->SettaPosSelezionata(CentroMis.posprel, 1, 0);
                 dmDB->SettaPosSelezionata(CentroMis.posdep, 1, 0);
             }
-            strsql = "Centro missione creata , result : " + IntToStr(res);
+            strsql = "Centro missione pos_prel (" + IntToStr(CentroMis.posprel) + "), pos_dep (" + IntToStr(CentroMis.posdep) + ") creata , result : " + IntToStr(res);
         }
         else {
             strsql = "pos_prel (" + IntToStr(CentroMis.posprel) + ") o pos_dep " + IntToStr(CentroMis.posdep) + " non corretto in genera centro missioni";

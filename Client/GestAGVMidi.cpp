@@ -207,7 +207,6 @@ void __fastcall TfGestAGVMidi::FormActivate(TObject *Sender) {
             Tab->TabVisible = false;
     }
 
-
     // F
     Zona = "F";
     if (dmDBImpianto->CheckZonaUtente(Zona) > 0) {
@@ -339,6 +338,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     // prel
     if (pcPrel->ActivePage->Hint == "A") {
         if (zonascelta != "A") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 0, 0, 1, 0, 0, 0, 1, 0);
         }
@@ -350,6 +350,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "J") {
         if (zonascelta != "J") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 0, 1, 0, 0, 0, 0, 0, 0);
         }
@@ -361,6 +362,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "G") {
         if (zonascelta != "G") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
@@ -372,6 +374,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "H") {
         if (zonascelta != "H") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
         }
@@ -383,6 +386,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "I") {
         if (zonascelta != "I") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
         }
@@ -394,6 +398,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "D") {
         if (zonascelta != "D") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
@@ -405,6 +410,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "C") {
         if (zonascelta != "C") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
         }
@@ -416,6 +422,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "B") {
         if (zonascelta != "B") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
@@ -427,6 +434,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "E") {
         if (zonascelta != "E") {
+            cbPriorita->Text = "3";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
         }
@@ -438,6 +446,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
     }
     else if (pcPrel->ActivePage->Hint == "F") {
         if (zonascelta != "F") {
+            cbPriorita->Text = "4";
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 0);
             TabVisibili(0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
         }
@@ -494,7 +503,7 @@ void __fastcall TfGestAGVMidi::TimerRefTimer(TObject * Sender) {
 
     // refresh griglie o dati
     if (pcPrel->ActivePage->Hint == "A") {
-      pcDest->Enabled = true;
+        pcDest->Enabled = true;
         pLinea->Visible = true;
         btRefresh->Enabled = true;
         if (zonascelta != "A") {

@@ -985,28 +985,16 @@ inherited fGestAGVMidi: TfGestAGVMidi
           Hint = 'J'
           Caption = 'Box In (A2)'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaGPrel: TTabSheet
           Hint = 'G'
           Caption = 'Pallet (G)'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaHPrel: TTabSheet
           Hint = 'H'
           Caption = 'Dep. Sovrap.(H)'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaIPrel: TTabSheet
           Hint = 'I'
@@ -1032,19 +1020,11 @@ inherited fGestAGVMidi: TfGestAGVMidi
           Hint = 'E'
           Caption = 'Pallet In (E)'
           ImageIndex = 8
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
         object tsZonaFPrel: TTabSheet
           Hint = 'F'
           Caption = 'Pallet Trascar (F)'
           ImageIndex = 9
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
         end
       end
       object pnOptionPrel: TPanel
