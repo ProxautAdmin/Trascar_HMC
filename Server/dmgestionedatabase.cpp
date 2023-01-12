@@ -60,7 +60,7 @@ void __fastcall TdmDBServer::TimerMissioniDBTimer(TObject * Sender) {
 	if (dmDB->ContaMissioniAttive(0) == 0) {
 		GeneraCMDaHaB(0);
 	}
-	else {
+ //	else {
 		GeneraCMDaFaE(0);
 		// GeneraCMDaIaA2(0);
 		// giorno /notte
@@ -70,7 +70,7 @@ void __fastcall TdmDBServer::TimerMissioniDBTimer(TObject * Sender) {
 		else {
 			// GeneraCMDaGaA1(0); // ga G a A1
 		}
-	}
+ //	}
 	TimerMissioniDB->Enabled = true;
 
 }
