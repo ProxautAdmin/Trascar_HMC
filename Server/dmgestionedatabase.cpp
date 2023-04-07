@@ -64,7 +64,7 @@ void __fastcall TdmDBServer::TimerMissioniDBTimer(TObject * Sender) {
 		GeneraCMDaFaE(0);
 		// GeneraCMDaIaA2(0);
 		// giorno /notte
-		if (ClientData.ParametriFunzionali.Giorno == 0) {
+		if ((ClientData.ParametriFunzionali.Giorno == 0) || (!ClientData.ParametriFunzionali.AbilitaCheckGiornoNotte)){
 			GeneraCMDaPrelievo(0); // missione da prelievo C
 		}
 		else {
