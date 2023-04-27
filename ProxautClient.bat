@@ -1,8 +1,10 @@
-xcopy "D:\Proxaut\Trascar_HMC\Client\ProxautClient.exe" "C:\Proxaut\Trascar_HMC\Client\ProxautClient.exe" /e/y
-xcopy "D:\Proxaut\Trascar_HMC\Client\*.crs" "C:\Proxaut\Trascar_HMC\Client\" /e/y
-xcopy "D:\Proxaut\Trascar_HMC\Client\allarmi.txt" "C:\Proxaut\Trascar_HMC\Client\" /e/y
-xcopy "D:\Proxaut\Trascar_HMC\Client\*.bmp" "C:\Proxaut\Trascar_HMC\Client\" /e/y
+SET FROMPATH=D:\Proxaut\Trascar_HMC\Client
+SET TOPATH=C:\Proxaut\Trascar_HMC\Client
+xcopy "%FROMPATH%\ProxautClient.exe" "%TOPATH%\ProxautClient.exe" /e/y
+xcopy "%FROMPATH%\\*.crs" "%TOPATH%\Client\" /e/y
+xcopy "%FROMPATH%\\allarmi.txt" "%TOPATH%\" /e/y
+xcopy "%FROMPATH%\\*.bmp" "%TOPATH%\" /e/y
 
 
-cd "C:\Proxaut\Trascar_HMC\Client\"
-start "" "C:\Proxaut\Trascar_HMC\Client\ProxautClient.exe"
+cd "%FROMPATH%"
+start "" "%FROMPATH%\ProxautClient.exe"
